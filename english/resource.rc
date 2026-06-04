@@ -1,0 +1,1838 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource_r.h"
+
+#include <windows.h>
+#include <commctrl.h>
+
+// MFC symbols formerly supplied by afxres.h
+#ifndef IDC_STATIC
+#define IDC_STATIC (-1)
+#endif
+
+#ifndef ID_EDIT_CLEAR
+#define ID_EDIT_CLEAR           0xE120
+#define ID_EDIT_CLEAR_ALL       0xE121
+#define ID_EDIT_COPY            0xE122
+#define ID_EDIT_CUT             0xE123
+#define ID_EDIT_FIND            0xE124
+#define ID_EDIT_PASTE           0xE125
+#define ID_EDIT_PASTE_LINK      0xE126
+#define ID_EDIT_PASTE_SPECIAL   0xE127
+#define ID_EDIT_REPEAT          0xE128
+#define ID_EDIT_REPLACE         0xE129
+#define ID_EDIT_SELECT_ALL      0xE12A
+#define ID_EDIT_UNDO            0xE12B
+#define ID_EDIT_REDO            0xE12C
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+// neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE 0x00, 0x00
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_SAKURA_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "sakura"
+    BEGIN
+        POPUP "&Recommendations"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "Por&tal site"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "&Network update\tCtrl+U",     SAKURA_MENU_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "&Uninstall",                  SAKURA_MENU_UNINSTALL
+        MENUITEM SEPARATOR
+        POPUP "RSS/&Headlines"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "&Plugins"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "Check &mail"
+        BEGIN
+            MENUITEM SEPARATOR
+            MENUITEM "Check &all accounts",         SAKURA_MENU_POP_ALLCHECK
+        END
+        POPUP "Sh&ell scaling"
+        BEGIN
+            MENUITEM "Additional settings (Same as ghost preferences)", 
+                                                    SAKURA_MENU_SETUP_GHOST
+            MENUITEM "&Other percentage...",        SAKURA_MENU_SCALING_FREE
+            MENUITEM SEPARATOR
+        END
+        POPUP "Balloon scaling (&D)"
+        BEGIN
+            MENUITEM "&Other percentage...",        SAKURA_MENU_SCALING_BALLOON_FREE
+
+            MENUITEM SEPARATOR
+        END
+        POPUP "Utilities (&F)"
+        BEGIN
+            MENUITEM "&Calendar\tCtrl+D",           SAKURA_MENU_CALENDAR
+            MENUITEM "SSP &messenger\tCtrl+M",      SAKURA_MENU_IM
+            MENUITEM "&NTP time sync",              SAKURA_MENU_SNTP
+            MENUITEM "&Explorer\tCtrl+E",           SAKURA_MENU_EXPLORER
+            MENUITEM "Check for SSP &updates",      SAKURA_MENU_CHECKUPDATE
+            MENUITEM SEPARATOR
+            MENUITEM "Speech recognition (&T)",     SAKURA_MENU_DICTATION
+            MENUITEM "&Voice synthesis",            SAKURA_MENU_TTS
+            MENUITEM SEPARATOR
+            MENUITEM "&Address bar\tCtrl+Shift+U",  SAKURA_MENU_ADDRESSBAR
+            MENUITEM "Open file (&I)\tCtrl+O",      SAKURA_MENU_OPENFILE
+            MENUITEM "Open folder (&F)\tCtrl+F",    SAKURA_MENU_OPENDIR
+            MENUITEM SEPARATOR
+            MENUITEM "Script &log\tCtrl+L",         SAKURA_MENU_SCRIPTLOG
+            MENUITEM "&Development interface\tCtrl+Shift+D", 
+                                                    SAKURA_MENU_DEVELOPER
+            MENUITEM SEPARATOR
+            MENUITEM "Purge &ghost cache",          SAKURA_MENU_PURGEGHOSTCACHE
+
+            MENUITEM "&FMO update",                 SAKURA_MENU_UPDATEFMO
+            MENUITEM "&Reload all folders",         SAKURA_MENU_RELOADINFO
+            MENUITEM SEPARATOR
+            MENUITEM "Rel&oad ghost",               SAKURA_MENU_RELOADGHOST
+            MENUITEM "Reset &passive mode",         SAKURA_MENU_LEAVEPASSIVE
+            MENUITEM "&Keep temporary ghost\tCtrl+K", SAKURA_MENU_KEEPGHOST
+            MENUITEM SEPARATOR
+            MENUITEM "Reset s&hell position\tCtrl+Shift+F12", 
+                                                    SAKURA_MENU_RESETPOS
+            MENUITEM "Reset balloo&n position\tCtrl+Shift+F10", 
+                                                    SAKURA_MENU_RESETBALLOON
+            MENUITEM "Hide all &balloons\tCtrl+Shift+Del", 
+                                                    SAKURA_MENU_CLOSEBALLOON
+        END
+        POPUP "&Options"
+        BEGIN
+            MENUITEM "&Preferences...",             SAKURA_MENU_SETUP
+            MENUITEM "Ghost preferences...",        SAKURA_MENU_SETUP_GHOST
+            MENUITEM SEPARATOR
+            MENUITEM "Enable pro&xy",               SAKURA_MENU_PROXY
+            MENUITEM "Set default &charset",        SAKURA_MENU_CHARSET
+            MENUITEM SEPARATOR
+            MENUITEM "[Compatibility]",             IDC_STATIC, GRAYED
+            MENUITEM "Raise AI talk from &SHIORI",  SAKURA_MENU_TALKSHIORI
+            MENUITEM "&Old specification support",  SAKURA_MENU_COMPATIBLEMODE
+
+        END
+        MENUITEM SEPARATOR
+        POPUP "Change &ghost"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "Call ghost (&Z)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "&Shell"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "&Clothes/Dressup"
+        BEGIN
+            MENUITEM "Dressup &explorer",           SAKURA_MENU_BIND_EXPLORER
+
+            MENUITEM SEPARATOR
+        END
+        POPUP "&Balloon"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "History (&Y)"
+        BEGIN
+            POPUP "Change &ghost"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "Call ghost (&Z)"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "&Balloon"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "&Headline"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "&Plugin"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+        END
+        MENUITEM SEPARATOR
+        POPUP "Inform&ation"
+        BEGIN
+            MENUITEM "&About SSP...",               SAKURA_MENU_VERSION
+            MENUITEM "About this &ghost...",        SAKURA_MENU_GHOSTINFO
+            MENUITEM "&Terms of this ghost...",     SAKURA_MENU_GHOSTTERMS
+            MENUITEM "&Help",                       SAKURA_MENU_HELP
+            MENUITEM SEPARATOR
+            MENUITEM "A&I graph",                   SAKURA_MENU_AIGRAPH
+            MENUITEM "Ghost usage statistics (&R)", SAKURA_MENU_GHOSTTIME
+            MENUITEM "Output &system information",  SAKURA_MENU_SYSTEMINFO
+        END
+        POPUP "&Language"
+        BEGIN
+            MENUITEM SEPARATOR
+            MENUITEM "&Use system lang.",           SAKURA_MENU_LANG_RESET
+        END
+        MENUITEM "&Iconify\tCtrl+I",            SAKURA_MENU_MINIMIZE
+        MENUITEM SEPARATOR
+        MENUITEM "Close (&W)\tCtrl+W",          SAKURA_MENU_CLOSE
+        MENUITEM "Quit (&X)\tCtrl+Q",           SAKURA_MENU_EXIT
+    END
+END
+
+IDR_SAKURA_CALENDAR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Calendar"
+    BEGIN
+        MENUITEM "&Edit schedule",              SAKURA_CALENDAR_MENU_EDIT
+        MENUITEM "&Read schedule",              SAKURA_CALENDAR_MENU_READEVENT
+
+        MENUITEM "&Today's schedule",           SAKURA_CALENDAR_MENU_TODAYSSCHEDULE
+
+        POPUP "&Delete all"
+        BEGIN
+            MENUITEM "This &day",                   SAKURA_CALENDAR_MENU_DELETE
+
+            MENUITEM "This &month",                 SAKURA_CALENDAR_MENU_DELETEMONTH
+
+            MENUITEM "This &year",                  SAKURA_CALENDAR_MENU_DELETEYEAR
+
+            MENUITEM "All before this day (&A)",    SAKURA_CALENDAR_MENU_DELETEFROMHERE
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "&Previous month",             SAKURA_CALENDAR_MENU_PREV
+        MENUITEM "&Next month",                 SAKURA_CALENDAR_MENU_NEXT
+        MENUITEM "T&his month",                 SAKURA_CALENDAR_MENU_TODAY
+        POPUP "&View"
+        BEGIN
+            MENUITEM "Always show on &top",         SAKURA_CALENDAR_MENU_TOPMOST
+
+            MENUITEM "Always open in &center",      SAKURA_CALENDAR_MENU_CENTER
+
+        END
+        POPUP "&Scaling"
+        BEGIN
+            MENUITEM "&Other percentage...",        SAKURA_MENU_SCALING_CALENDAR_FREE
+
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        POPUP "S&kin"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "&Schedule sensor"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Close (&X)",                  SAKURA_CALENDAR_MENU_CLOSE
+    END
+END
+
+IDR_LISTDIALOG_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Ghost"
+    BEGIN
+        MENUITEM "Change (&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM "&Call\tCtrl+G",               LIST_CALLGHOST
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        POPUP "&Move to..."
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM "Create &shortcut",            LIST_CREATE_SHORTCUT
+        MENUITEM "Make this ghost start automatically when OS starts", 
+                                                LIST_CREATE_SHORTCUT_BOOTUP
+        MENUITEM "Open shell list of this ghost", LIST_OPEN_SHELL
+        MENUITEM SEPARATOR
+        MENUITEM "Set this as the d&efault ghost", LIST_SET_DEFAULT
+        MENUITEM "Set this as the talk &priority ghost", LIST_SET_PREFERRED
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM "Smart update with RSS",       LIST_UPDATE_RSS
+        MENUITEM SEPARATOR
+        MENUITEM "Network update (Check only)", LIST_UPDATE_CHECKONLY
+        MENUITEM "Smart update with RSS (Check only)", 
+                                                LIST_UPDATE_RSS_CHECKONLY
+        MENUITEM "Clear update check flag",     LIST_CHECKONLY_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "Register on Ghost Captor &Sakura", LIST_REGISTER_GHOSTS
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+    POPUP "Shell"
+    BEGIN
+        MENUITEM "Change (&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+    POPUP "Balloon"
+    BEGIN
+        MENUITEM "Change (&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        POPUP "&Move to..."
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "Set this as the d&efault balloon", LIST_SET_DEFAULT
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+    POPUP "Headline"
+    BEGIN
+        MENUITEM "Read (&X)\tCtrl+H",           LIST_EXEC
+        MENUITEM "Jump to website\tCtrl+W",     LIST_WEBJUMP
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        POPUP "&Move to..."
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+    POPUP "Plugin"
+    BEGIN
+        MENUITEM "E&xecute/Configure\tCtrl+H",  LIST_EXEC
+        MENUITEM "&Enable/Disable",             LIST_ENABLE
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        POPUP "&Move to..."
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "Enable &logging",             LIST_LOG_ENABLE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+    POPUP "Language"
+    BEGIN
+        MENUITEM "Change (&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+    POPUP "Calendar Skin"
+    BEGIN
+        MENUITEM "Change (&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+    POPUP "Schedule Sensor"
+    BEGIN
+        MENUITEM "E&xecute\tCtrl+H",            LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "&Delete",                     LIST_DELETE
+        MENUITEM "&Open folder\tCtrl+O",        LIST_OPEN
+        MENUITEM "&Jump to author's website\tCtrl+J", LIST_URLJUMP
+        MENUITEM "Open &readme document",       LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "&Network update\tCtrl+U",     LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "Create &update file",         LIST_UPDATE_CREATE
+        MENUITEM "Create &NAR...",              LIST_CREATE_NAR
+        MENUITEM "Create &both...",             LIST_CREATE_BOTH
+        MENUITEM "Create &zip+txt update package", LIST_CREATE_ZIPTXT
+    END
+END
+
+IDR_KERO_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "kero"
+    BEGIN
+        POPUP "&Recommendations"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "&Clothes/Dressup"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "Close\tCtrl+W",               SAKURA_MENU_CLOSE
+        MENUITEM "Quit (&X)\tCtrl+Q",           SAKURA_MENU_EXIT
+    END
+END
+
+IDR_MESSENGER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "Close (&X)",                  IDCLOSE
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "Cu&t\tCtrl+X",                ID_EDIT_CUT
+        MENUITEM "&Copy\tCtrl+C",               ID_EDIT_COPY
+        MENUITEM "Paste (&V)\tCtrl+V",          ID_EDIT_PASTE
+        MENUITEM "&Delete\tDel",                ID_EDIT_CLEAR
+    END
+    POPUP "Register(&C)"
+    BEGIN
+        MENUITEM "Add recipient(&N)",           IDC_USERNEW
+        MENUITEM "&Edit recipient",             IDC_USERPROP
+        MENUITEM "&Delete recipient",           IDC_USERDEL
+        MENUITEM SEPARATOR
+        MENUITEM "&Update",                     IDC_UPDATELIST
+        MENUITEM "&Clear log",                  MESSENGER_MENU_LOGDEL
+    END
+END
+
+IDR_LISTDIALOG_TOP_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Reload",                     LIST_RELOAD
+        MENUITEM SEPARATOR
+        MENUITEM "&Close\tAlt+F4",              IDCANCEL
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Copy\tCtrl+C",               LIST_COPY
+        MENUITEM "Select &all\tCtrl+A",         LIST_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "&Find...\tCtrl+F",            LIST_FIND
+        MENUITEM "Find &next\tF3",              LIST_FIND_NEXT
+    END
+    POPUP "&Type"
+    BEGIN
+        MENUITEM "&Ghost",                      LIST_TYPE_GHOST
+        MENUITEM "&Shell",                      LIST_TYPE_SHELL
+        MENUITEM "&Balloon",                    LIST_TYPE_BALLOON
+        MENUITEM "&Headline",                   LIST_TYPE_HEADLINE
+        MENUITEM "&Plugin",                     LIST_TYPE_PLUGIN
+        MENUITEM "&Language",                   LIST_TYPE_LANGUAGE
+        MENUITEM "&Calendar skin",              LIST_TYPE_CALENDAR_SKIN
+        MENUITEM "Sch&edule sensor",            LIST_TYPE_SCHEDULE_SENSOR
+    END
+    MENUITEM "F&unction",                   65535
+    POPUP "&Config"
+    BEGIN
+        MENUITEM "Disable &auto close",         LIST_PROP_AUTOCLOSE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_FOLDER DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Folder: Configuration of data directories to read"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "Edit...",IDC_GHOST_EDIT,121,15,50,14
+    PUSHBUTTON      "Reload",IDC_GHOST_RELOAD,176,15,50,14
+    CONTROL         "Select directory when installing",IDC_GHOST_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
+    CONTROL         "Show directory configuration dialog when booting",
+                    IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,47,212,10
+    PUSHBUTTON      "Edit...",IDC_BALLOON_EDIT,121,73,50,14
+    PUSHBUTTON      "Reload",IDC_BALLOON_RELOAD,176,73,50,14
+    CONTROL         "Select directory when installing",IDC_BALLOON_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,91,212,10
+    CONTROL         "Show directory configuration dialog when booting",
+                    IDC_BALLOON_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,105,212,10
+    PUSHBUTTON      "Edit...",IDC_HEADLINE_EDIT,121,132,50,14
+    PUSHBUTTON      "Reload",IDC_HEADLINE_RELOAD,176,132,50,14
+    CONTROL         "Select directory when installing",IDC_HEADLINE_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,150,212,10
+    PUSHBUTTON      "Edit...",IDC_PLUGIN_EDIT,121,178,50,14
+    PUSHBUTTON      "Reload",IDC_PLUGIN_RELOAD,176,178,50,14
+    CONTROL         "Select directory when installing",IDC_PLUGIN_SELECT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
+    GROUPBOX        "Ghost",IDC_STATIC,4,6,228,56
+    GROUPBOX        "Balloon",IDC_STATIC,4,64,228,56
+    GROUPBOX        "Headline",IDC_STATIC,4,123,228,43
+    GROUPBOX        "Plugin",IDC_STATIC,4,169,228,43
+    LTEXT           "Total found: [NUM]",IDC_GHOST_NUM,11,18,103,8
+    LTEXT           "Total found: [NUM]",IDC_BALLOON_NUM,11,76,103,8
+    LTEXT           "Total found: [NUM]",IDC_HEADLINE_NUM,11,135,103,8
+    LTEXT           "Total found: [NUM]",IDC_PLUGIN_NUM,11,181,103,8
+    LTEXT           "config-folder.htm",IDC_HELPFILE,181,323,51,8,NOT 
+                    WS_VISIBLE
+    EDITTEXT        IDC_TEMP_PATH,4,231,168,14,ES_AUTOHSCROLL
+    LTEXT           "Temporary file path",IDC_TEMP_PATH_STATIC,4,221,66,8
+    EDITTEXT        IDC_NAR_PATH,4,262,168,14,ES_AUTOHSCROLL
+    LTEXT           "NAR download path",IDC_NAR_PATH_STATIC,4,251,87,8
+    PUSHBUTTON      "Browse",IDC_TEMP_PATH_REF,204,231,28,14
+    PUSHBUTTON      "Browse",IDC_NAR_PATH_REF,204,262,28,14
+    PUSHBUTTON      "Default",IDC_NAR_PATH_DEFAULT,175,262,28,14
+    PUSHBUTTON      "Default",IDC_TEMP_PATH_DEFAULT,175,231,28,14
+END
+
+IDD_TALK DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Talking/Balloon: Ghost talking/balloon commands"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Slider1",IDC_TALK_SPEED,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,78,4,143,20
+    CONTROL         "Slider1",IDC_TALK_TIMEOUT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,78,35,143,20
+    CONTROL         "Slider1",IDC_SELECTION_TIMEOUT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,78,56,143,20
+    CONTROL         "Slider1",IDC_CLICK_TIMEOUT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,78,76,143,20
+    CONTROL         "Always display text instantly when reading headlines",
+                    IDC_NO_WAIT_HEADLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,113,227,10
+    CONTROL         "Always display balloons when online",
+                    IDC_SHOWBALLOONONLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,139,227,10
+    CONTROL         "Enable text skip key:",IDC_SPEEDUP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,170,94,10
+    COMBOBOX        IDC_SPEEDUP_KEY,108,168,65,94,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Disable timeout when cursor is in balloon",
+                    IDC_MOUSEOVER_NOTIMEOUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,152,227,10
+    EDITTEXT        IDC_TALK_SOUNDPATH,9,220,140,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse",IDC_TALK_BROWSE,152,220,30,14
+    PUSHBUTTON      "None",IDC_TALK_NONE,184,220,20,14
+    PUSHBUTTON      "Play",IDC_TALK_PLAY,206,220,20,14
+    COMBOBOX        IDC_LEFTDC_SETTING,60,259,57,62,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RIGHT_SETTING,168,259,57,62,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Slider1",IDC_AI_INTERVAL,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,68,294,143,21
+    CONTROL         "Talk news",IDC_TALK_NEWS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,315,55,10
+    LTEXT           "Often",IDC_STATIC,201,316,24,8
+    LTEXT           "Instant",IDC_STATIC,75,25,33,8
+    LTEXT           "Talk frequency",IDC_STATIC,11,299,55,8
+    LTEXT           "Message speed",IDC_STATIC,10,10,59,8
+    RTEXT           "Slower (200ms)",IDC_STATIC,173,25,51,8
+    LTEXT           " | Default (50ms)",IDC_STATIC,115,25,57,8
+    RTEXT           "Default |",IDC_STATIC,153,316,39,8
+    GROUPBOX        "Old specification support",IDC_STATIC,4,285,227,46
+    LTEXT           "Balloon timeout\n(Default = 15sec.)",IDC_STATIC,11,36,
+                    67,19
+    LTEXT           "Disabled",IDC_STATIC,75,98,37,8
+    LTEXT           "Selection timeout\n(Default = 30sec.)",IDC_STATIC,11,56,
+                    67,19
+    RTEXT           "Longer (150s)",IDC_STATIC,164,98,55,8
+    GROUPBOX        "Balloon config",IDC_STATIC,4,248,227,30
+    RTEXT           "Double click:",IDC_STATIC,11,261,47,8
+    RTEXT           "Right click:",IDC_STATIC,119,261,47,8
+    LTEXT           "config-talk.htm",IDC_HELPFILE,172,327,45,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Click timeout\n(Default = Disabled)",IDC_STATIC,11,76,
+                    67,19
+    GROUPBOX        "Notification sound when a dialogue script starts",
+                    IDC_STATIC,4,208,227,33
+    CONTROL         "Disable timeout when displaying headlines",
+                    IDC_HEADLINE_NO_TIMEOUT,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,4,126,227,10
+END
+
+IDD_SETUP DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_VISIBLE | WS_CAPTION
+CAPTION "General: Miscellaneous settings"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Check for SSP updates automatically",
+                    IDC_SELFUPDATE_AUTO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,4,227,10
+    CONTROL         "Associate related file extensions with SSP",
+                    IDC_ASSOCIATEFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,16,227,10
+    CONTROL         "Uninstall is always available in menu",
+                    IDC_IGNORE_UNINSTALL_HIDE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,28,227,10
+    CONTROL         "Always show task tray icon",IDC_SHOWICONALWAYS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,40,227,10
+    CONTROL         "Show readme after installing",IDC_INSTALL_README,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,52,227,10
+    CONTROL         "Register hot keys",IDC_REGISTER_HOTKEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,64,227,10
+    CONTROL         "Show transparent status display window",IDC_SHOW_STATUS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,76,227,10
+    CONTROL         "Enable functions for developers [Caution!]",
+                    IDC_DEVFUNC_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,105,227,10
+    EDITTEXT        IDC_FIRSTNAME,9,297,67,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CALLNAME,82,297,67,14,ES_AUTOHSCROLL
+    CONTROL         "DateTimePicker1",IDC_BIRTHDAY,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP,155,297,69,14
+    CONTROL         "Male",IDC_SEX_MALE,"Button",BS_AUTORADIOBUTTON,42,315,
+                    48,10
+    CONTROL         "Female",IDC_SEX_FEMALE,"Button",BS_AUTORADIOBUTTON,93,
+                    315,48,10
+    CONTROL         "Undefined",IDC_SEX_UNDEF,"Button",BS_AUTORADIOBUTTON,
+                    144,315,48,10
+    LTEXT           "Name:",IDC_STATIC,9,287,39,8
+    LTEXT           "Nickname:",IDC_STATIC,82,287,43,8
+    GROUPBOX        "User information",IDC_STATIC,4,276,227,55
+    LTEXT           "config-ippan.htm",IDC_HELPFILE,158,327,50,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Birthday:",IDC_STATIC,155,287,42,8
+    LTEXT           "Sex:",IDC_STATIC,9,316,30,8
+    GROUPBOX        "Tablet mode",IDC_STATIC,4,243,227,28
+    CONTROL         "Auto (OS dep.)",IDC_TAB_AUTO,"Button",
+                    BS_AUTORADIOBUTTON,9,255,67,10
+    CONTROL         "Always enable",IDC_TAB_ENABLE,"Button",
+                    BS_AUTORADIOBUTTON,83,255,67,10
+    CONTROL         "Always disable",IDC_TAB_DISABLE,"Button",
+                    BS_AUTORADIOBUTTON,157,255,67,10
+    GROUPBOX        "Dark mode [Requires SSP restart]",IDC_STATIC,4,179,227,
+                    28
+    CONTROL         "Auto (OS dep.)",IDC_DARK_AUTO,"Button",
+                    BS_AUTORADIOBUTTON,9,191,67,10
+    CONTROL         "Always dark",IDC_DARK_ENABLE,"Button",
+                    BS_AUTORADIOBUTTON,83,191,67,10
+    CONTROL         "Always light",IDC_DARK_DISABLE,"Button",
+                    BS_AUTORADIOBUTTON,157,191,67,10
+    GROUPBOX        "Sensor/Location information",IDC_STATIC,4,211,227,28
+    CONTROL         "Auto (OS Dep.)",IDC_SENSOR_ENABLE,"Button",
+                    BS_AUTORADIOBUTTON,9,223,67,10
+    CONTROL         "Except location",IDC_SENSOR_LOC,"Button",
+                    BS_AUTORADIOBUTTON,83,223,67,10
+    CONTROL         "Disable all",IDC_SENSOR_DISABLE,"Button",
+                    BS_AUTORADIOBUTTON,157,223,67,10
+    CONTROL         "Enable virus check [Win10 or later]",IDC_VIRUS_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,88,227,10
+END
+
+IDD_NETWORKEXT DIALOGEX 0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Network (2): Network connection configuration"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Auto check",IDC_AUTOHEADLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,16,56,10
+    EDITTEXT        IDC_HEADLINE_INTERVAL,105,14,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_HEADLINE_INTERVAL_S,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,14,9,14
+    CONTROL         "Update auto check position when headlines are executed manually",
+                    IDC_HEADLINE_COUNT_MANUAL_UPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,30,216,10
+    EDITTEXT        IDC_HEADLINE_SOUNDPATH,9,55,140,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_HEADLINE_BROWSE,152,55,30,14
+    PUSHBUTTON      "None",IDC_HEADLINE_NONE,184,55,20,14
+    PUSHBUTTON      "Play",IDC_HEADLINE_PLAY,206,55,20,14
+    CONTROL         "List1",IDC_SSTP_LIST,"SysListView32",LVS_LIST | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | 
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,9,93,161,47,
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Add...",IDC_SSTP_ADD,175,94,50,14
+    PUSHBUTTON      "Delete",IDC_SSTP_DEL,175,110,50,14
+    PUSHBUTTON      "ON/OFF",IDC_SSTP_ONOFF,175,126,50,14
+    CONTROL         "Log SSTP contents",IDC_SSTP_LOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,145,177,10
+    CONTROL         "Add entries for fake (not booted) ghosts to FMO",
+                    IDC_LIST_INSTALLED_TO_FMO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,157,177,10
+    CONTROL         "Don't block SSTP scripts with choices",
+                    IDC_NOBLOCK_CHOICE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,169,177,10
+    CONTROL         "Always bypass translate procedure for SSTP",
+                    IDC_NO_SSTP_TRANSLATE_EVENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,181,177,10
+    COMBOBOX        IDC_GHOSTBOOT,63,196,134,77,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_AFTERBOOT,63,211,134,60,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TMPGHOST_MAX,151,226,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN_TMPGHOST_MAX,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,185,226,10,14
+    EDITTEXT        IDC_TMPGHOST_INTERVAL,151,242,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN_TMPGHOST_INTERVAL,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,185,242,10,14
+    LTEXT           "Min.",IDC_STATIC,148,18,12,8
+    RTEXT           "Every",IDC_STATIC,68,17,34,8
+    GROUPBOX        "Headlines",IDC_STATIC,4,4,227,72
+    LTEXT           "Play sound when updating",IDC_STATIC,9,44,112,8
+    GROUPBOX        "SSTP settings",IDC_STATIC,4,82,227,180
+    LTEXT           "config-conn2.htm",IDC_HELPFILE,157,327,51,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Ghost boot:",IDC_STATIC,11,199,50,8
+    LTEXT           "After booted:",IDC_STATIC,11,214,50,8
+    LTEXT           "Max. number of temp. ghosts (0 = No limit)",IDC_STATIC,
+                    11,229,138,8
+    LTEXT           "Minimum boot duration of temp. ghosts",IDC_STATIC,11,
+                    245,138,8
+END
+
+IDD_NETWORK DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Network (1): Network connection configuration"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_PROTOCOL,131,13,93,141,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Verify SSL/TLS server certificate",IDC_SSL_VERIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,31,215,10
+    CONTROL         "Use OS configuration",IDC_USE_SYSTEM_SETTING,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,65,215,10
+    CONTROL         "Use proxy server",IDC_ENABLEPROXY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,77,215,10
+    COMBOBOX        IDC_PROXYTYPE,9,102,51,83,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_PROXYADDRESS,62,102,122,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXYPORT,187,102,37,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXYUSER,9,130,71,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXYPASS,120,130,71,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "If not connected to internet",IDC_CONNECTION_ASK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,164,99,10
+    CONTROL         "Between these times:",IDC_CONNECTION_LIMIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,179,90,10
+    CONTROL         "DateTimePicker1",IDC_CONNECTION_LIMIT_START,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,109,175,41,15
+    CONTROL         "DateTimePicker1",IDC_CONNECTION_LIMIT_STOP,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,166,175,41,15
+    COMBOBOX        IDC_SNTPADDRESS,96,212,129,143,CBS_DROPDOWN | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_HTTPADDRESS,96,226,129,110,CBS_DROPDOWN | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SNTP_DURATION,112,244,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SNTP_DURATION_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,136,244,9,14
+    GROUPBOX        "Ask for network connection",IDC_STATIC,4,153,227,42
+    LTEXT           "hours",IDC_STATIC,157,247,45,8
+    GROUPBOX        "Synchronize system time",IDC_STATIC,4,200,227,63
+    LTEXT           "Port",IDC_STATIC,187,92,27,8
+    GROUPBOX        "HTTP proxy server",IDC_STATIC,4,55,227,94
+    LTEXT           "Server name/IP address",IDC_STATIC,62,92,97,8
+    LTEXT           " -",IDC_STATIC,154,179,8,8
+    LTEXT           "Username (Can be empty)",IDC_STATIC,9,120,84,8
+    LTEXT           "Password (Can be empty)",IDC_STATIC,120,120,77,8
+    LTEXT           "config-conn1.htm",IDC_HELPFILE,180,323,51,8,NOT 
+                    WS_VISIBLE
+    CONTROL         "Auto execute every:",IDC_SNTP_AUTO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,246,99,10
+    CONTROL         "SNTP server:",IDC_SNTPCHECK,"Button",BS_AUTORADIOBUTTON,
+                    9,213,57,10
+    CONTROL         "HTTP server:",IDC_HTTPCHECK,"Button",BS_AUTORADIOBUTTON,
+                    9,227,57,10
+    LTEXT           "Type",IDC_STATIC,9,92,32,8
+    GROUPBOX        "General",IDC_STATIC,4,4,227,45
+    LTEXT           "Network protocol:",IDC_STATIC,10,16,117,8
+END
+
+IDD_POP DIALOGEX 0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "POP: Accounts for email check (BIFF)"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Get email headers (Slower)",IDC_CHECK_MAILHEADER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,4,227,10
+    CONTROL         "Notify number of new emails instead of all emails",
+                    IDC_CHECK_NOTIFYONLYNEW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,17,227,10
+    CONTROL         "Notify events only when new emails exist",
+                    IDC_CHECK_NOTIFYWHENNEW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,30,227,10
+    EDITTEXT        IDC_POP_SOUNDPATH,9,61,140,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse",IDC_POP_BROWSE,152,61,30,14
+    PUSHBUTTON      "None",IDC_POP_NONE,184,61,20,14
+    PUSHBUTTON      "Play",IDC_POP_PLAY,206,61,20,14
+    CONTROL         "List1",IDC_POP_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_TABSTOP,9,237,216,71,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "Add...",IDC_POP_ADD,9,311,38,14
+    PUSHBUTTON      "Modify...",IDC_POP_MODIFY,50,311,38,14
+    PUSHBUTTON      "Copy",IDC_POP_COPY,91,311,38,14
+    PUSHBUTTON      "",IDC_FOLDERUP,133,311,16,14,BS_ICON
+    PUSHBUTTON      "",IDC_FOLDERDN,149,311,16,14,BS_ICON
+    PUSHBUTTON      "Delete",IDC_POP_DEL,187,311,38,14
+    GROUPBOX        "Account settings",IDC_STATIC,4,226,227,105
+    LTEXT           "config-pop.htm",IDC_HELPFILE,162,327,44,8,NOT 
+                    WS_VISIBLE
+    GROUPBOX        "Notification sound for new emails",IDC_STATIC,4,49,227,
+                    33
+END
+
+IDD_GHOSTPROFILE DIALOG DISCARDABLE  0, 0, 302, 183
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "About this character"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,249,166,50,14
+    EDITTEXT        IDC_GHOSTPROFILE,2,33,297,130,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | 
+                    WS_VSCROLL
+    RTEXT           "Author:",IDC_STATIC,2,5,30,8
+    RTEXT           "URL:",IDC_STATIC,2,19,30,8
+    CONTROL         "(N/A)",IDC_CRAFTMAN,"Static",SS_LEFTNOWORDWRAP | 
+                    SS_NOPREFIX | WS_GROUP,34,5,265,8
+    CONTROL         "(N/A)",IDC_CRAFTMANURL,"Static",SS_LEFTNOWORDWRAP | 
+                    SS_NOPREFIX | SS_NOTIFY | WS_GROUP,34,19,265,8
+    COMBOBOX        IDC_PROFILE_KIND,2,166,115,48,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PROFILE_CHARSET,122,166,115,142,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SCHEDULE DIALOGEX 0, 0, 403, 310
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "Schedule"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_SCHEDULE_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    WS_BORDER | WS_TABSTOP,8,16,91,261,WS_EX_CLIENTEDGE
+    COMBOBOX        IDC_SCHEDULE_TYPE,163,104,86,154,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SCHEDULE_CAPTION,163,15,231,14,ES_AUTOHSCROLL
+    CONTROL         "Enable start time",IDC_SCHEDULE_TIME_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,307,41,78,8
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,239,38,60,
+                    14
+    CONTROL         "Enable end date/time",IDC_SCHEDULE_TIMEEND_ENABLE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,307,62,78,8
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_ENDTIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,239,59,60,
+                    14
+    EDITTEXT        IDC_SCHEDULE_SUBTITLE,120,154,274,36,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_SOUND_PATH,163,123,193,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_SOUND_BROWSE,360,122,34,14
+    CONTROL         "&None",IDC_SCHEDULE_NONE,"Button",BS_AUTORADIOBUTTON,
+                    128,209,46,10
+    CONTROL         "&Weekly",IDC_SCHEDULE_WEEK,"Button",BS_AUTORADIOBUTTON,
+                    181,209,46,10
+    CONTROL         "&Monthly",IDC_SCHEDULE_MONTH,"Button",
+                    BS_AUTORADIOBUTTON,234,209,46,10
+    CONTROL         "&Yearly",IDC_SCHEDULE_YEAR,"Button",BS_AUTORADIOBUTTON,
+                    287,209,46,10
+    EDITTEXT        IDC_SCHEDULE_SCRIPT,120,244,274,36,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL
+    PUSHBUTTON      "New",IDC_SCHEDULE_NEW,8,283,40,14,WS_DISABLED
+    PUSHBUTTON      "Delete",IDC_SCHEDULE_DELETE,58,283,40,14,WS_DISABLED
+    DEFPUSHBUTTON   "Close",IDC_OKBUTTON,346,290,53,14
+    LTEXT           "Title:",IDC_STATIC,121,19,38,8
+    LTEXT           "Details",IDC_STATIC,121,142,38,8
+    LTEXT           "SakuraScript",IDC_STATIC,121,231,62,8
+    LTEXT           "Type:",IDC_STATIC,121,107,38,8
+    LTEXT           "Notification sound",IDC_STATIC,121,126,38,8
+    GROUPBOX        "Repeat",IDC_STATIC,121,196,273,29
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_DATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,163,38,68,14
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_ENDDATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,163,59,68,14
+    LTEXT           "Start",IDC_STATIC,121,41,38,8
+    LTEXT           "End",IDC_STATIC,121,62,38,8
+    GROUPBOX        "0000/00/00",IDC_SCHEDULE_CURRENTDATE,3,3,103,301
+    GROUPBOX        "Optional items",IDC_STATIC,113,89,286,197
+    GROUPBOX        "Required items",IDC_STATIC,113,3,286,81
+END
+
+IDD_MESSENGER DIALOGEX 0, 0, 286, 147
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "SSP instant messenger"
+MENU IDR_MESSENGER_MENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Tab1",IDC_USERTAB,"SysTabControl32",0x0,1,1,284,17
+    CONTROL         "List1",IDC_MESSAGELIST,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_TABSTOP,1,17,284,50,
+                    WS_EX_CLIENTEDGE
+    EDITTEXT        IDC_MESSAGE,1,69,284,46,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN | WS_VSCROLL
+    PUSHBUTTON      "Clear (&N)",IDC_CLEAR,1,117,41,16
+    DEFPUSHBUTTON   "&Send",IDC_SEND,244,117,41,16
+    PUSHBUTTON      "Check (&L)",IDC_TEST,201,117,41,16
+END
+
+IDD_MESSENGERUSER DIALOG DISCARDABLE  0, 0, 203, 97
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Add/Edit recipient"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Address",IDC_DIRECTIP,"Button",BS_AUTORADIOBUTTON,4,7,
+                    40,10
+    EDITTEXT        IDC_NAME,35,23,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GROUPNAME,136,23,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ADDRESS,35,41,161,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PORT,156,58,40,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,90,75,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,145,75,50,14
+    RTEXT           "Name:",IDC_STATIC,14,26,18,8
+    RTEXT           "Group:",IDC_STATIC,112,25,18,8
+    RTEXT           "Address:",IDC_STATIC,7,44,25,8
+    RTEXT           "Port:",IDC_STATIC,139,62,13,8
+END
+
+IDD_MESSENGERSETTING DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "IM: SSP instant messenger"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_NAME,42,6,74,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GROUPNAME,42,23,74,14,ES_AUTOHSCROLL
+    CONTROL         "Set ""don't translate"" flag for SSTP",IDC_NOTRANSLATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,45,226,10
+    CONTROL         "Clear message window after sending",IDC_AUTOCLEAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,59,226,10
+    LTEXT           "Name:",IDC_STATIC,8,9,29,8
+    LTEXT           "Group:",IDC_STATIC,8,26,29,8
+    LTEXT           "config-im.htm",IDC_HELPFILE,157,327,41,8,NOT WS_VISIBLE
+END
+
+IDD_IPMESSENGERSETTING DIALOGEX 0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "IPMessenger: IPMessenger compatible mode"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Use IPMessenger compatible mode",IDC_IPMESSENGER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,8,128,10
+    EDITTEXT        IDC_IPMSGPORT,182,6,43,14,ES_AUTOHSCROLL
+    CONTROL         "Dial-up connection (can't use broadcast)",
+                    IDC_USE_DIALUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    22,227,10
+    EDITTEXT        IDC_BROADCAST_EDIT,8,58,177,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Add",IDC_BROADCAST_ADD,189,58,37,14
+    PUSHBUTTON      "Delete",IDC_BROADCAST_DEL,122,75,37,14
+    PUSHBUTTON      "Default config.",IDC_BROADCAST_INIT,162,75,64,14
+    CONTROL         "List1",IDC_BROADCAST_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | 
+                    WS_TABSTOP,8,93,219,42,WS_EX_CLIENTEDGE
+    LTEXT           "Port (2425):",IDC_STATIC,138,9,37,8
+    GROUPBOX        "Broadcast/Multicast/Unicast targets",IDC_STATIC,4,44,
+                    227,96
+    LTEXT           "?:192.168.0.255/FF02::1",IDC_STATIC,11,79,73,8
+    LTEXT           "config-ipmes.htm",IDC_HELPFILE,160,327,51,8,NOT 
+                    WS_VISIBLE
+END
+
+IDD_EXTAPP DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Applications: External applications"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_DEFAULT_BROWSER,10,17,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_REF_BROWSER,188,17,37,14
+    EDITTEXT        IDC_DEFAULT_FILER,10,50,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_REF_FILER,188,50,37,14
+    EDITTEXT        IDC_DEFAULT_EDITOR,10,83,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_REF_EDITOR,188,83,37,14
+    EDITTEXT        IDC_DEFAULT_MAILER,10,148,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_REF_MAILER,188,148,37,14
+    EDITTEXT        IDC_DEFAULT_MAILER_ARG,55,167,170,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEFAULT_SVN,10,276,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_REF_SVN,188,276,37,14
+    EDITTEXT        IDC_DEFAULT_GIT,10,300,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Select...",IDC_REF_GIT,188,300,37,14
+    GROUPBOX        "Browser",IDC_STATIC,4,7,227,29
+    GROUPBOX        "File manager",IDC_STATIC,4,40,227,29
+    GROUPBOX        "Editor",IDC_STATIC,4,73,227,60
+    RTEXT           "Argument",IDC_STATIC,10,170,40,8
+    LTEXT           "Only used when composing new emails. %1 = ""mailto:(Address)""",
+                    IDC_STATIC,10,184,215,10
+    GROUPBOX        "Mailer",IDC_STATIC,4,137,227,60
+    LTEXT           "Leave the browser/mailer boxes empty to use control panel's ""Internet"" settings.\nLeave the file manager box empty to use Explorer.\nLeave the editor box empty to use notepad.exe.",
+                    IDC_STATIC,4,201,227,38
+    LTEXT           "config-extprog.htm",IDC_HELPFILE,174,327,56,8,NOT 
+                    WS_VISIBLE
+    GROUPBOX        "Version control system",IDC_STATIC,4,256,227,63
+    LTEXT           "Subversion (Leave empty to use TortoiseSVN.)",
+                    IDC_STATIC,11,267,213,8
+    LTEXT           "Git (Leave empty to use TortoiseGit)",IDC_STATIC,11,291,
+                    213,8
+    EDITTEXT        IDC_DEFAULT_EDITOR_ARG,55,102,170,14,ES_AUTOHSCROLL
+    RTEXT           "Argument",IDC_STATIC,10,104,40,8
+    LTEXT           "%1 = File name (full path) %2 = Line number",IDC_STATIC,
+                    10,120,214,10
+END
+
+IDD_LISTDIALOG DIALOGEX 0, 0, 210, 192
+STYLE DS_NOIDLEMSG | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Explorer"
+MENU IDR_LISTDIALOG_TOP_MENU
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "List2",IDC_DLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | WS_BORDER | 
+                    WS_TABSTOP,0,0,210,172,WS_EX_CLIENTEDGE
+    DEFPUSHBUTTON   "E&xecute",IDOK,138,174,69,14
+    PUSHBUTTON      "&Close",IDCANCEL,94,174,40,14
+    CONTROL         "Progress1",IDC_CACHE_PROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,3,176,86,12
+END
+
+IDD_LOG DIALOGEX 0, 0, 282, 145
+STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "Log list"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_LOG,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | 
+                    LVS_NOSORTHEADER | WS_TABSTOP,3,4,276,119,
+                    WS_EX_CLIENTEDGE
+    DEFPUSHBUTTON   "E&xecute",IDC_EXECUTE,235,128,44,14
+    COMBOBOX        IDC_TYPE,3,128,48,84,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_LOGLINE,95,128,27,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Clear",IDC_CLEAR,129,128,32,14
+    PUSHBUTTON      "Copy",IDC_COPY,164,128,32,14
+    PUSHBUTTON      "Save...",IDC_SAVE,199,128,32,14
+    LTEXT           "Log lines",IDC_STATIC_LOGLINE,59,131,29,8
+END
+
+IDD_PROPERTY DIALOGEX 0, 0, 315, 375
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SSP: Preferences"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SHEETFRAME,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,79,17,235,335
+    DEFPUSHBUTTON   "&Close",IDOK,261,356,50,15
+    PUSHBUTTON      "&Help",IDC_HELPME,214,356,42,15
+    LTEXT           "Unless otherwise noted, changes will take effect immediately",
+                    IDC_STATIC,4,361,207,8
+    CONTROL         "List2",IDC_SHEETS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | 
+                    LVS_NOSCROLL | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | 
+                    WS_TABSTOP,4,4,75,349,WS_EX_CLIENTEDGE
+    CONTROL         " Dialog title--",IDC_TITLEFRAME,"Static",
+                    SS_LEFTNOWORDWRAP | SS_CENTERIMAGE | WS_GROUP,82,4,229,
+                    14,WS_EX_STATICEDGE
+END
+
+IDD_DEVELOPER DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Dev./Other: Optional settings for developers"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Change FMO name",IDC_CHANGE_FMO_NAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,6,79,10
+    EDITTEXT        IDC_FMO_NAME,129,4,102,14,ES_AUTOHSCROLL
+    CONTROL         "Create update def. file and/or NAR when directory is dragged && dropped",
+                    IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    21,227,10
+    CONTROL         "Backup old files when performing a network update",
+                    IDC_UPDATE_BACKUPFILES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,33,227,10
+    CONTROL         "Don't update read-only files",IDC_UPDATE_IGNOREREADONLY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,45,227,10
+    CONTROL         "Hide character window when surface doesn't exist",
+                    IDC_HIDE_SURFACEERR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,57,227,10
+    CONTROL         "Create ""Sakura"" mutex to simulate ""Materia""",
+                    IDC_SAKURA_MUTEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    69,227,10
+    CONTROL         "Disable uninstall procedure",IDC_DISABLE_VANISH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,81,227,10
+    CONTROL         "Disable single instance lock (dangerous)",
+                    IDC_DISABLE_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    93,227,10
+    CONTROL         "Use version control system if available",
+                    IDC_TORTOISESVN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    106,227,10
+    COMBOBOX        IDC_NOTIFY_ERROR,4,119,56,81,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Use exception handler to prevent program termination",
+                    IDC_EXHANDLER,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    135,227,10
+    CONTROL         "updates2.dau",IDC_UPDATE_DAU,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,231,81,10
+    CONTROL         "updates.txt",IDC_UPDATE_TXT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,99,231,74,10
+    CONTROL         "Specify every time",IDC_NARPATH_ASK,"Button",
+                    BS_AUTORADIOBUTTON,9,297,73,10
+    CONTROL         "Same as folder",IDC_NARPATH_SAME,"Button",
+                    BS_AUTORADIOBUTTON,84,297,63,10
+    CONTROL         "Specified path",IDC_NARPATH_USER,"Button",
+                    BS_AUTORADIOBUTTON,154,297,58,10
+    EDITTEXT        IDC_NARPATH_USER_EDIT,10,310,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_NARPATH_USER_ASK,188,310,37,14
+    RTEXT           "Name:",IDC_STATIC,88,7,37,8
+    LTEXT           "config-dev.htm",IDC_HELPFILE,158,327,44,8,NOT 
+                    WS_VISIBLE
+    GROUPBOX        "Update definition file creation",IDC_STATIC,4,219,227,
+                    60
+    GROUPBOX        "NAR creation path",IDC_STATIC,4,286,227,45
+    LTEXT           "-> Error notification level",IDC_STATIC,67,121,149,8
+    CONTROL         "Enable test version updates",IDC_ENABLE_TEST_UPDATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,148,227,10
+    CONTROL         "Always use UTF-8 charset (May break compatibility)",
+                    IDC_UPDATE_UTF8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,
+                    246,215,10
+    CONTROL         "Enable caching of file hash values",IDC_UPDATE_CACHE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,261,215,10
+END
+
+IDD_DIRECTORYDROP DIALOG DISCARDABLE  0, 0, 187, 81
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Please choose an action"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "(DUMMY:EDIT IDR_LISTDIALOG_MENU)",IDC_DIR_UPDATEDEF,
+                    "Button",BS_AUTORADIOBUTTON,4,6,179,10
+    CONTROL         "(DUMMY:EDIT IDR_LISTDIALOG_MENU)",IDC_DIR_CREATENAR,
+                    "Button",BS_AUTORADIOBUTTON,4,19,179,10
+    CONTROL         "(DUMMY:EDIT IDR_LISTDIALOG_MENU)",IDC_DIR_BOTH,"Button",
+                    BS_AUTORADIOBUTTON,4,32,179,10
+    CONTROL         "Ignore and notify ghost",IDC_DIR_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON,4,45,179,10
+    DEFPUSHBUTTON   "OK",IDOK,79,63,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,133,63,50,14
+END
+
+IDD_DEVPALETTE DIALOGEX 0, 0, 107, 229
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Dev. palette"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "Display collisions",IDC_SHOW_HITRECT,"Button",
+                    BS_AUTO3STATE | WS_TABSTOP,4,4,99,10
+    CONTROL         "Balloon test mode",IDC_BALLOONTEST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,14,99,10
+    CONTROL         "Adjust SERIKO wait timing",IDC_ADJUST_SERIKOWAIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,24,99,10
+    CONTROL         "Updates are check only",IDC_DUMMYUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,34,99,10
+    CONTROL         "Change SHIORI sender",IDC_CHANGESENDER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,44,99,10
+    CONTROL         "Write SHIORI call log",IDC_SHIORI_LOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,99,10
+    CONTROL         "Enable SHIORI internal log",IDC_SHIORI_LOG_NOTIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,64,99,10
+    CONTROL         "Enable SHIORI debug mode",IDC_SHIORI_DEBUG_NOTIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,74,99,10
+    CONTROL         "Disable auto change",IDC_FOLDER_NOAUTO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,84,99,10
+    CONTROL         "Disable auto checks",IDC_FOLDER_NOCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,94,99,10
+    CONTROL         "Disable auto update",IDC_FOLDER_NOAUTOUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,104,99,10
+    PUSHBUTTON      "Script input Ctrl+S",IDC_OPEN_SCRIPT,4,127,99,13
+    PUSHBUTTON      "Surface test Ctrl+T",IDC_OPEN_SURFACETEST,4,141,99,13
+    PUSHBUTTON      "Show error log",IDC_OPEN_ERRORLOG,4,155,99,13
+    PUSHBUTTON      "Reload...",IDC_EXEC_RELOAD,4,197,99,13
+    PUSHBUTTON      "Open...",IDC_EXEC_OPEN,4,212,99,13
+    PUSHBUTTON      "Change time virtually",IDC_OPEN_TIMEMACHINE,4,169,99,13
+    PUSHBUTTON      "SERIKO inspector",IDC_OPEN_SERIKO,4,183,99,13
+    CONTROL         "Disable closing with \\- tag",IDC_SUPPRESS_EXIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,114,99,10
+END
+
+IDD_DISP DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Display: Settings for displaying the ghost window"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Don't change cursor [Takes effect after next ghost boot]",
+                    IDC_DONTSETCURSOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,4,227,10
+    LTEXT           "Offset from taskbar (Leave at 0px. for normal use):",
+                    IDC_STATIC,4,19,155,8
+    EDITTEXT        IDC_DESKTOP_OFFSET,172,16,37,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_DTOFFSET_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,207,16,9,14
+    CONTROL         "Adapt menu width to image",IDC_EXTENDMENUWIDTH,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,33,227,10
+    CONTROL         "Show thumbnails when choosing in menu",
+                    IDC_SHOW_THUMBNAIL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,45,227,10
+    LTEXT           "Vertical menu spacing (default 2px.):",IDC_STATIC,4,62,
+                    143,8
+    EDITTEXT        IDC_MENU_HEIGHT,150,59,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_MENU_HEIGHT_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,194,59,10,14
+    CONTROL         "Enable hierarchical menu",IDC_CREATE_SUBMENU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,76,227,10
+    LTEXT           "Max. name length in ghost/balloon menu (5-255):",
+                    IDC_STATIC,4,92,156,8
+    EDITTEXT        IDC_MENU_LIMIT,164,89,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_MENU_LIMIT_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,199,89,10,14
+    LTEXT           "Max. entries in history menu (2-255):",IDC_STATIC,4,108,
+                    156,8
+    EDITTEXT        IDC_HISTORY_LIMIT,164,105,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_HISTORY_LIMIT_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,199,106,10,14
+    CONTROL         "Display window during flip3d (Windows Vista or newer)",
+                    IDC_FLIP3D,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,122,
+                    227,10
+    CONTROL         "Show icon on taskbar",IDC_TASKBAR,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,134,227,10
+    CONTROL         "Auto minimize when full-screen application is running",
+                    IDC_HIDEFULLSCREEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,146,227,10
+    CONTROL         "Use cross-fader",IDC_CROSSFADER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,238,201,10
+    CONTROL         "Make window translucent while dragging",IDC_DRAGDROP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,251,201,10
+    CONTROL         "Slider1",IDC_ALPHA_SAKURA,"msctls_trackbar32",TBS_TOP | 
+                    TBS_NOTICKS | TBS_TOOLTIPS | WS_TABSTOP,45,276,180,16
+    CONTROL         "Slider1",IDC_ALPHA_SAKURAMSG,"msctls_trackbar32",
+                    TBS_TOP | TBS_NOTICKS | TBS_TOOLTIPS | WS_TABSTOP,45,293,
+                    180,16
+    CONTROL         "Slider1",IDC_ALPHA_CALENDAR,"msctls_trackbar32",TBS_TOP | 
+                    TBS_NOTICKS | TBS_TOOLTIPS | WS_TABSTOP,45,310,180,16
+    GROUPBOX        "Transparent window",IDC_STATIC,4,227,227,104
+    RTEXT           "Character:",IDC_STATIC,11,280,32,8
+    RTEXT           "Balloon:",IDC_STATIC,11,297,32,8
+    RTEXT           "Calendar:",IDC_STATIC,11,314,32,8
+    LTEXT           "Transparent",IDC_STATIC,45,266,47,8
+    RTEXT           "Opaque",IDC_STATIC,193,266,34,8
+    LTEXT           "config-disp.htm",IDC_HELPFILE,170,327,46,8,NOT 
+                    WS_VISIBLE
+    CONTROL         "Show character on all virtual desktops (Win10 or later)",
+                    IDC_PIN_VD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,158,
+                    227,10
+    CONTROL         "Bring other windows to front when clicking character",
+                    IDC_BRING_OTHER_WINDOW_TO_FRONT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,170,227,10
+    CONTROL         "Enable high DPI awareness [Needs SSP restart]",
+                    IDC_DPI_AWARE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    182,227,10
+    CONTROL         "Automatically move off-screen windows into view",
+                    IDC_AUTOMOVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,193,
+                    226,10
+END
+
+IDD_FOLDEREDIT DIALOGEX 0, 0, 323, 186
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_ACCEPTFILES
+CAPTION "Directory settings: %s"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_FOLDERLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | 
+                    LVS_NOSORTHEADER | WS_TABSTOP,4,4,315,117,
+                    WS_EX_CLIENTEDGE
+    CONTROL         "Exclude from random change candidates",
+                    IDC_FOLDER_NORAND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    8,136,146,10
+    CONTROL         "Disable auto (random) change",IDC_FOLDER_NOAUTO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,148,146,10
+    CONTROL         "Disable auto (headline and POP) check",
+                    IDC_FOLDER_NOCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    165,136,146,10
+    CONTROL         "Disable auto update",IDC_FOLDER_NOAUTOUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,165,148,146,10
+    PUSHBUTTON      "Add...",IDC_FOLDERADD,4,168,37,14
+    PUSHBUTTON      "Change...",IDC_FOLDERMODIFY,44,168,37,14
+    PUSHBUTTON      "Edit",IDC_FOLDEREDIT,84,168,37,14
+    PUSHBUTTON      "Delete",IDC_FOLDERDEL,124,168,37,14
+    PUSHBUTTON      "",IDC_FOLDERUP,166,168,14,14,BS_ICON
+    PUSHBUTTON      "",IDC_FOLDERDN,181,168,14,14,BS_ICON
+    DEFPUSHBUTTON   "OK",IDOK,217,168,48,14
+    PUSHBUTTON      "Cancel",IDCANCEL,269,168,50,14
+    GROUPBOX        "Directory property",IDC_STATIC,4,125,315,38
+END
+
+IDD_GHOST DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Ghost (1): Settings for ghosts"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Boot a random ghost when SSP boots",IDC_RANDOMGHOSTBOOT,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,4,227,10
+    CONTROL         "Display ghost selection dialog when booting SSP",
+                    IDC_SELECTGHOSTBOOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,17,227,10
+    CONTROL         "Ignore ghost-defined menu strings (faster)",
+                    IDC_NOMENUMODIFY,"Button",BS_AUTO3STATE | WS_TABSTOP,4,
+                    30,227,10
+    CONTROL         "Don't talk while minimizing",IDC_NOTALKMINIMIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,43,227,10
+    CONTROL         "Disable screen boundary check",IDC_MIKIRE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,56,227,10
+    CONTROL         "Disable character overlap check",IDC_KASANARI,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,69,227,10
+    CONTROL         "Enable ghost auto updates",IDC_AUTO_UPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,155,94,10
+    EDITTEXT        IDC_AUTO_UPDATE_DURATION,177,153,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_AUTO_UPDATE_DURATION,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,213,151,10,14
+    CONTROL         "Enable modifier key for recovery mode:",
+                    IDC_STRICT_UPDATE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,173,133,10
+    COMBOBOX        IDC_STRICT_UPDATE_KEY,146,171,50,157,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Update shells, balloons, and others alongside ghost updates",
+                    IDC_UPDATE_CHECKOTHER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,187,214,10
+    COMBOBOX        IDC_UPDATECHECK_METHOD,78,201,146,108,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Enable auto change",IDC_AUTOCHANGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,237,128,10
+    CONTROL         "Random",IDC_AUTOCHANGE_RANDOM,"Button",
+                    BS_AUTORADIOBUTTON,9,251,39,10
+    CONTROL         "Sequential",IDC_AUTOCHANGE_SEQUENTIAL,"Button",
+                    BS_AUTORADIOBUTTON,63,251,46,10
+    EDITTEXT        IDC_AUTOCHANGE_DURATION,177,248,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_AUTOCHANGE_DURATION,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,213,245,10,14
+    CONTROL         "Enable ghost cache",IDC_CACHE_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,283,128,10
+    EDITTEXT        IDC_CACHE_NUM,56,297,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin3",IDC_SPIN_CACHE_NUM,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,91,295,10,14
+    EDITTEXT        IDC_CACHE_DURATION,177,297,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_CACHE_DURATION,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,213,295,10,14
+    GROUPBOX        "Ghost auto change",IDC_STATIC,4,225,227,42
+    RTEXT           "Interval (Min.)",IDC_STATIC,121,251,52,8
+    GROUPBOX        "Ghost cache control",IDC_STATIC,4,271,227,60
+    RTEXT           "Duration (Min.)",IDC_STATIC,121,300,52,8
+    RTEXT           "Max count",IDC_STATIC,10,300,43,8
+    LTEXT           "config-ghost.htm",IDC_HELPFILE,181,323,50,8,NOT 
+                    WS_VISIBLE
+    LTEXT           "Method of update:",IDC_STATIC,11,203,54,8
+    GROUPBOX        "Network update",IDC_STATIC,4,142,227,78
+    CONTROL         "Enable ghost/balloon list cache",IDC_CACHE_LIST_ENABLE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,315,169,10
+    RTEXT           "Interval (days)",IDC_STATIC,119,156,55,8
+    CONTROL         "Use alternate key for middle click:",IDC_ALT_MID_CLICK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,83,119,10
+    COMBOBOX        IDC_ALT_MID_CLICK_KEY,126,81,50,157,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Send music playback events to ghost",
+                    IDC_CHECK_NOTIFY_MUSICPLAY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,98,227,10
+END
+
+IDD_GHOSTEXT DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Ghost (2): Configuration for ghosts (Default settings)"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Mute sounds",IDC_SOUND,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,4,227,10
+    CONTROL         "Always show on top",IDC_TOPMOST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,16,227,10
+    CONTROL         "Ignore SERIKO move (faster) ***",IDC_IGNOREMOVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,28,227,10
+    CONTROL         "Allow balloon to be moved",IDC_BALLOONMOVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,40,227,10
+    GROUPBOX        "Developer settings",IDC_DEV_STATIC,4,54,227,38
+    CONTROL         "Ignore undefined surfaces ***",IDC_DEFINEDSURFACEONLY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,65,216,10
+    CONTROL         "Display elements set to hidden",
+                    IDC_SHOW_HIDDEN_ELEMENTS,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,77,216,10
+    GROUPBOX        "Character window position ***",IDC_STATIC,4,155,227,27
+    CONTROL         "Always free",IDC_FORCEALIGNFREE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,8,167,70,10
+    CONTROL         "Ghost's setting",IDC_FORCEALIGNOFF,"Button",
+                    BS_AUTORADIOBUTTON,82,167,70,10
+    CONTROL         "Stick to taskbar",IDC_FORCEALIGNLIMIT,"Button",
+                    BS_AUTORADIOBUTTON,156,167,70,10
+    GROUPBOX        "Move to front when talking",IDC_STATIC,4,188,227,38
+    CONTROL         "Always",IDC_ACTIVATEWHENTALK,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,8,198,37,10
+    CONTROL         "Except updating",IDC_ACTIVATE_EXCEPTUPDATE,"Button",
+                    BS_AUTORADIOBUTTON,82,198,64,10
+    CONTROL         "Never",IDC_ACTIVATE_OFF,"Button",BS_AUTORADIOBUTTON,156,
+                    198,33,10
+    CONTROL         "Move back when finished talking",IDC_DEACTIVATE,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,211,216,10
+    GROUPBOX        "Reset all ghost settings",IDC_RESET_STATIC,4,250,227,34
+    PUSHBUTTON      "Execute",IDC_RESET,10,263,39,14
+    CONTROL         "Progress1",IDC_RESET_PROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,56,263,168,14
+    PUSHBUTTON      "&Reset",IDC_RESET_GHOST,71,317,50,14
+    PUSHBUTTON      "&Apply",IDC_APPLY_GHOST,124,317,50,14
+    PUSHBUTTON      "OK",IDOK,181,317,50,14
+    CONTROL         "<- This checkbox means default settings are applied",
+                    IDC_CHECKBOX_SAMPLE,"Button",BS_3STATE | WS_TABSTOP,4,
+                    300,227,10
+    GROUPBOX        "Shell scaling ***",IDC_STATIC,4,97,227,52
+    CONTROL         "Link balloon's scaling",IDC_SCALING_BALLOON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,109,136,10
+    CONTROL         "High-quality scaling (slower)",IDC_SCALING_DITHER,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,121,136,10
+    CONTROL         "Balloon high-quality scaling (slower)",
+                    IDC_SCALING_DITHER_BALLOON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,134,136,10
+    PUSHBUTTON      "Scale all shells...",IDC_SCALING_BUTTON,147,107,79,16
+    LTEXT           "*** = Individual shell config",IDC_STATIC,4,289,227,8
+    PUSHBUTTON      "Scale all balloons...",IDC_BALLOON_SCALING_BUTTON,147,
+                    127,79,16
+END
+
+IDD_POPACCOUNT DIALOG DISCARDABLE  0, 0, 319, 275
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Email check settings"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_POP_ACCOUNT,78,5,236,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_BIFF_TYPE,78,23,68,62,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_POP_ADDRESS,78,46,236,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_POP_PORT,78,64,36,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "<< Default port",IDC_POP_PORT_DEFAULT,117,64,91,14
+    EDITTEXT        IDC_POP_ID,78,88,236,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_POP_PASS,78,106,236,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "Use SSL/TLS connection (check port)",IDC_POP_SSL,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,5,202,309,10
+    CONTROL         "Verify SSL/TLS server certificate",IDC_POP_SSLVERIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,215,309,10
+    EDITTEXT        IDC_POP_INTERVAL,150,229,35,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_POP_INTERVAL_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,181,229,10,14
+    DEFPUSHBUTTON   "OK",IDOK,207,251,50,19
+    PUSHBUTTON      "Cancel",IDCANCEL,264,251,50,19
+    CONTROL         "Auto check",IDC_POP_AUTO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,231,50,10
+    RTEXT           "Account:",IDC_STATIC,5,8,67,8
+    RTEXT           "Server:",IDC_STATIC,5,49,67,8
+    RTEXT           "Port:",IDC_STATIC,5,67,67,8
+    RTEXT           "User ID:",IDC_STATIC,5,91,67,8
+    RTEXT           "Password:",IDC_STATIC,5,109,67,8
+    RTEXT           "Interval (Minutes):",IDC_STATIC,83,232,62,8
+    RTEXT           "Type:",IDC_STATIC,5,25,67,8
+    EDITTEXT        IDC_POP_MAILER_PATH,78,129,185,14,ES_AUTOHSCROLL
+    RTEXT           "Mailer:",IDC_STATIC,5,133,67,8
+    LTEXT           "Leave empty when you want to use system settings. URL acceptable.",
+                    IDC_STATIC,78,147,234,8
+    PUSHBUTTON      "Browse...",IDC_POP_MAILER_BROWSE,267,129,47,14
+    EDITTEXT        IDC_POP_MAILER_ARG,78,160,179,14,ES_AUTOHSCROLL
+    RTEXT           "Argument:",IDC_STATIC,5,163,67,8
+    LTEXT           "Only used when composing new emails. %1 = ""mailto:(Address)""",
+                    IDC_STATIC,78,178,234,10
+END
+
+IDD_INTERNATIONAL DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "I18N: Configuration for internationalization"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "Select...",IDC_FONT_MENU_CHOICE,135,15,44,14
+    PUSHBUTTON      "&Reset",IDC_FONT_MENU_DEFAULT,182,15,44,14
+    PUSHBUTTON      "Select...",IDC_FONT_BALLOON_CHOICE,135,52,44,14
+    PUSHBUTTON      "&Reset",IDC_FONT_BALLOON_DEFAULT,182,52,44,14
+    GROUPBOX        "Override menu font config.",IDC_STATIC,4,4,227,32
+    LTEXT           "[FONT]",IDC_FONT_MENU_SHOW,10,16,118,13,SS_CENTERIMAGE
+    GROUPBOX        "Override balloon font config.",IDC_STATIC,4,41,227,32
+    LTEXT           "[FONT]",IDC_FONT_BALLOON_SHOW,10,53,118,13,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_SHIORI_CHARSET,74,176,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MAKOTO_CHARSET,74,194,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PIRO_CHARSET,74,212,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SCRIPT_CHARSET,74,230,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "SHIORI:",IDC_STATIC,14,178,53,8
+    RTEXT           "MAKOTO:",IDC_STATIC,14,196,53,8
+    RTEXT           "PIRO (OLD):",IDC_STATIC,14,214,53,8
+    RTEXT           "SCRIPT (OLD):",IDC_STATIC,14,232,53,8
+    GROUPBOX        "Default charset",IDC_STATIC,4,80,227,171
+    COMBOBOX        IDC_DEFINE_CHARSET,74,94,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_README_CHARSET,74,158,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "readme:",IDC_STATIC,14,160,53,8
+    RTEXT           "Text definition:",IDC_STATIC,14,96,53,8
+    LTEXT           "descript.txt, install.txt, surfaces.txt etc...",
+                    IDC_STATIC,74,111,145,9
+    COMBOBOX        IDC_FILE_CHARSET,74,126,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "File I/O:",IDC_STATIC,14,128,53,8
+    LTEXT           "Network update, zip unpack, etc...",IDC_STATIC,74,143,
+                    157,9
+END
+
+IDD_DICTATIONSETTING DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Speech: SSP speech recognition & synthesis"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    GROUPBOX        "Recognition",IDC_STATIC,4,3,226,90
+    COMBOBOX        IDC_DICTATION_ENGINE,59,16,165,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DICTATION_INPUT,59,71,129,151,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Engine",IDC_STATIC,9,18,48,8
+    RTEXT           "Input source",IDC_STATIC,9,73,48,8
+    PUSHBUTTON      "Engine config...",IDC_DICTATION_ENGINE_CONFIG,9,48,76,
+                    14
+    PUSHBUTTON      "Config...",IDC_DICTATION_INPUT_CONFIG,190,70,34,14
+    COMBOBOX        IDC_DICTATION_PROFILE,59,32,165,151,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Mic. config...",IDC_DICTATION_ENGINE_MIC,90,48,64,14
+    RTEXT           "Profile",IDC_STATIC,9,34,48,8
+    PUSHBUTTON      "Training...",IDC_DICTATION_ENGINE_TRAINING,159,48,64,14
+    GROUPBOX        "Synthesis",IDC_STATIC,4,98,226,210
+    COMBOBOX        IDC_TTS_OUTPUT,59,184,129,151,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Sound output",IDC_STATIC,9,186,48,8
+    PUSHBUTTON      "Config...",IDC_TTS_OUTPUT_CONFIG,190,183,34,14
+    CONTROL         "Slider1",IDC_TTS_SPEED,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,9,238,216,25
+    LTEXT           "Talk speed  slow",IDC_STATIC,9,227,52,8
+    CTEXT           "Normal",IDC_STATIC,105,227,23,8
+    RTEXT           "Fast",IDC_STATIC,191,227,29,8
+    CONTROL         "Slider1",IDC_TTS_LEVEL,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,9,275,216,25
+    LTEXT           "Volume",IDC_STATIC,9,265,23,8
+    CTEXT           "50%",IDC_STATIC,105,265,23,8
+    RTEXT           "100%",IDC_STATIC,191,265,29,8
+    COMBOBOX        IDC_TTS_VOICE_0,29,122,129,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "\\0",IDC_STATIC,9,124,17,8
+    PUSHBUTTON      "Config...",IDC_TTS_VOICE_CONFIG_0,190,121,34,14
+    COMBOBOX        IDC_TTS_VOICE_1,29,141,129,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "\\1",IDC_STATIC,9,143,17,8
+    PUSHBUTTON      "Config...",IDC_TTS_VOICE_CONFIG_1,190,140,34,14
+    COMBOBOX        IDC_TTS_VOICE_2,29,160,129,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "\\2+",IDC_STATIC,9,162,17,8
+    PUSHBUTTON      "Config...",IDC_TTS_VOICE_CONFIG_2,190,159,34,14
+    LTEXT           "Voice",IDC_STATIC,30,109,54,8
+    LTEXT           "Pitch",IDC_STATIC,163,109,21,8
+    COMBOBOX        IDC_TTS_PITCH_0,161,122,27,195,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_TTS_PITCH_1,161,141,27,195,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_TTS_PITCH_2,161,160,27,195,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Sync script playback with speech synthesis speed",
+                    IDC_TTS_SYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,206,
+                    215,10
+END
+
+IDD_DICTATION DIALOGEX 0, 0, 191, 74
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Speech recognition"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    RTEXT           "Who",IDC_DICTATION_TARGET_ST,4,6,36,8
+    LTEXT           "",IDC_DICTATION_TARGET,44,4,143,13,SS_SUNKEN
+    RTEXT           "What",IDC_DICTATION_COMMAND_ST,4,23,36,8
+    LTEXT           "",IDC_DICTATION_COMMAND,44,21,143,13,SS_SUNKEN
+    RTEXT           "Which",IDC_DICTATION_RESULT_ST,4,40,36,8
+    CONTROL         "List2",IDC_DICTATION_RESULT,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | 
+                    LVS_NOSCROLL | LVS_NOCOLUMNHEADER | WS_TABSTOP,44,38,143,
+                    13,WS_EX_STATICEDGE
+    CONTROL         "Progress1",IDC_DICTATION_LEVEL,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,4,58,52,12
+    RTEXT           "",IDC_DICTATION_STATUS,61,59,126,11
+END
+
+IDD_NOGHOST DIALOGEX 0, 0, 254, 169
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Boot error"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Continue",IDOK,200,151,50,14
+    PUSHBUTTON      "Exit",IDCANCEL,145,151,50,14
+    CTEXT           "Please do something.",IDC_STATIC,4,4,246,32,
+                    SS_CENTERIMAGE,WS_EX_CLIENTEDGE
+    LTEXT           "Boot sequence failed because Ghosts and/or Balloons weren't found.\nTo continue boot sequence, drag and drop NAR archives onto this window\nor change the directory configuration using the buttons below.",
+                    IDC_STATIC,4,43,228,28
+    PUSHBUTTON      "Edit directory list...",IDC_GHOST_EDIT,149,84,95,14
+    PUSHBUTTON      "Edit directory list...",IDC_BALLOON_EDIT,149,122,95,14
+    GROUPBOX        "Ghost",IDC_STATIC,4,73,246,31
+    GROUPBOX        "Balloon",IDC_STATIC,4,111,246,31
+    LTEXT           "Total found: [NUM]",IDC_GHOST_NUM,11,87,120,8
+    LTEXT           "Total found: [NUM]",IDC_BALLOON_NUM,11,125,120,8
+END
+
+IDD_SAVESHARE DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Save data: Settings for sharing save data"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Enable save data sharing",IDC_SAVESHARE_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,4,227,10
+    LTEXT           "[]",IDC_SAVESHARE_DISP,4,20,227,24,SS_SUNKEN
+    GROUPBOX        "Specify destination",IDC_STATIC,4,50,227,56
+    COMBOBOX        IDC_SAVESHARE_SERVICE,10,63,215,200,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SAVESHARE_PATH,10,82,178,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_SAVESHARE_BROWSE,193,82,30,14
+END
+
+IDD_GHOSTTERMS DIALOG DISCARDABLE  0, 0, 302, 183
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Terms of use: (FILENAME)"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "Accept",IDOK,249,166,50,14
+    PUSHBUTTON      "Decline",IDCANCEL,195,166,50,14
+    EDITTEXT        IDC_GHOSTTERMS,3,33,296,127,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | 
+                    WS_VSCROLL
+    ICON            116,IDC_STATIC,5,5,20,20
+    LTEXT           "There are terms of use for this ghost. Please read the text below carefully,\nthen click the [Accept] button to resume installation.",
+                    IDC_STATIC,33,9,259,20
+    COMBOBOX        IDC_PROFILE_CHARSET,3,166,115,142,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DEVSERIKODUMP DIALOG DISCARDABLE  0, 0, 295, 256
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SERIKO Image Dump"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_DEVSEREIKODUMP_ID,87,8,67,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_DEVSEREIKODUMP_ID_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,154,10,10,14
+    EDITTEXT        IDC_DEVSEREIKODUMP_LIST,88,46,203,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,185,238,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,241,238,50,14
+    RTEXT           "Target Character ID :",IDC_STATIC,6,11,74,8
+    RTEXT           "Dump Surface List :",IDC_STATIC,6,49,74,8
+    LTEXT           "\\0 = 0, \\1 = 1, \\p[2] = 2 ...",IDC_STATIC,88,28,203,
+                    8
+    LTEXT           "Surface number list separated comma and minus.\nfor example:\n0-10,12,15 = dump 0 to 10, 12, and 15 surface",
+                    IDC_STATIC,88,83,203,36
+    EDITTEXT        IDC_DEVSEREIKODUMP_PREFIX,88,124,203,14,ES_AUTOHSCROLL
+    RTEXT           "File Name Prefix :",IDC_STATIC,6,127,74,8
+    LTEXT           "Dumping picture filename prefix.\nDefault : surface (ex. surface0.png)",
+                    IDC_STATIC,88,142,203,28
+    PUSHBUTTON      "Get Current Surface",IDC_DEVSEREIKODUMP_GETCURRENT,87,
+                    63,92,14
+    RTEXT           "Output Directory :",IDC_STATIC,6,177,74,8
+    LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    PUSHBUTTON      "Select Directory",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
+                    92,14
+    PUSHBUTTON      "Open in Explorer",IDC_DEVSEREIKODUMP_DIROPEN,183,192,
+                    108,14
+    CONTROL         "Discard image data in the upper left of 0,0",
+                    IDC_DEVSEREIKODUMP_FROMZERO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,214,263,15
+END
+
+IDD_SEND_SHIORI_REQUEST DIALOGEX 0, 0, 199, 129
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Send SHIORI Request..."
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Send",IDOK,4,111,147,14
+    PUSHBUTTON      "Close",IDCANCEL,163,111,32,14
+    EDITTEXT        IDC_SEND_EDIT,0,0,199,89,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    CONTROL         "Parse Response",IDC_CHECK_PARSE_RESPONSE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,132,94,63,10
+    CONTROL         "",IDC_SHIORI_CHARSET,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,4,92,123,234
+END
+
+IDD_STREAMINGTOOL DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "Streaming: Configuration for use as a live streaming assistance tool"
+
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Make character easier to capture in streaming tools",
+                    IDC_WINDOW_TOPLEVEL_CHAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,4,226,10
+    CONTROL         "Make balloon easier to capture in streaming tools",
+                    IDC_WINDOW_TOPLEVEL_BALLOON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,18,226,10
+    CONTROL         "Enable auto lip-sync on voice detection",
+                    IDC_SOUND_LEVEL_MONITOR_ENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,36,226,10
+    RTEXT           "Audio Level :",IDC_STATIC,4,80,67,8
+    COMBOBOX        IDC_SOUND_LEVEL_MONITOR_DEVICE,74,50,156,132,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Slider1",IDC_SOUND_LEVEL_MONITOR_LEVEL,
+                    "msctls_trackbar32",TBS_TOP | TBS_NOTICKS | WS_TABSTOP,
+                    74,84,156,15
+    CONTROL         "Progress1",IDC_SOUND_LEVEL_MONITOR_BAR,
+                    "msctls_progress32",PBS_SMOOTH,81,73,142,10
+END
+
+IDD_VOICEAPI DIALOG DISCARDABLE  0, 0, 275, 194
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Voice synthesis settings: %s"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,165,176,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,221,176,50,14
+    GROUPBOX        "Connection Settings",IDC_STATIC,4,98,267,71
+    RTEXT           "Voice ID:",IDC_STATIC,11,60,57,8
+    RTEXT           "Host/IP:",IDC_STATIC,11,113,57,8
+    RTEXT           "API Key:",IDC_STATIC,11,149,57,8
+    RTEXT           "Port:",IDC_STATIC,11,131,57,8
+    EDITTEXT        IDC_VOICE_ID,71,57,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_VOICE_HOST,71,110,192,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_VOICE_PORT,71,128,192,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_VOICE_APIKEY,71,146,192,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "Browse...",IDC_VOICE_VIEW,226,57,37,14
+    RTEXT           "Type:",IDC_STATIC,11,39,57,8
+    COMBOBOX        IDC_VOICE_TYPE,71,37,192,155,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "Style ID:",IDC_STATIC,11,81,57,8
+    EDITTEXT        IDC_VOICE_STYLEID,71,78,192,14,ES_AUTOHSCROLL
+    LTEXT           "All fields are optional except API key when using cloud voice synthesis.\nPlease fill in only what is necessary and leave the rest blank.",
+                    IDC_STATIC,11,9,259,24
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,7,76,6
+ PRODUCTVERSION 2,7,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x9L
+#else
+ FILEFLAGS 0x8L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", " \0"
+            VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
+            VALUE "FileDescription", "Language Resource DLL\0"
+            VALUE "FileVersion", "2, 7, 76, 6\0"
+            VALUE "InternalName", "ssp\0"
+            VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
+            VALUE "LegalTrademarks", " \0"
+            VALUE "OriginalFilename", "ssp.exe\0"
+            VALUE "PrivateBuild", " \0"
+            VALUE "ProductName", "SSP\0"
+            VALUE "ProductVersion", "2, 7, 0, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+#endif    // !_MAC
+
+#endif    // neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
