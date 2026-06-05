@@ -1,0 +1,55 @@
+name: sync translations from english
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - 'languages/english/message.txt'
+      - 'languages/english/resource.rc'
+      - 'languages/english/surfacetable.txt'
+      - 'languages/english/install.txt'
+      - 'shared/resource_r.h'
+
+concurrency:
+  group: sync-translations-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  sync:
+    name: fount-CI sync translations
+    runs-on: windows-latest
+    steps:
+      - name: disable auto crlf
+        uses: steve02081504/disable-autocrlf@v1
+        with:
+          fuck-auto-CRLF: true
+
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 7
+
+      - name: run fount-CI agent
+        uses: steve02081504/fount-CI@master
+        with:
+          task: |
+            languages/english/ is the source-of-truth locale in this SSP i18n monorepo.
+            Use git log and git diff to inspect the latest languages/english/ changes relative to the previous commit.
+            Sync equivalent changes into every other locale folder:
+            - message.txt: align keys with english; translate new or changed strings
+            - resource.rc: mirror structural changes from languages/english/resource.rc; translate UI strings only
+            - surfacetable.txt and install.txt: align structure when english changed
+            Do not modify languages/english/, shared/resource_r.h, or scripts/.
+            When finished, run: pwsh ./scripts/build-resource.ps1
+            Confirm every locale builds resource.dll successfully before exiting.
+          max-steps: '200'
+          max-time-seconds: '1800'
+          commit-message: 'chore(i18n): sync translations from english update'
+        env:
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}

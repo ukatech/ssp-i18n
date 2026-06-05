@@ -1,0 +1,48 @@
+on:
+  push:
+    tags:
+      - '*'
+
+name: auto release
+
+jobs:
+  narbuild:
+    name: auto release
+    runs-on: ubuntu-latest
+    steps:
+      - name: get tag name
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
+
+      - name: disable auto crlf
+        uses: steve02081504/disable-autocrlf@v1
+        with:
+          fuck-auto-CRLF: true
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build nars
+        run: |
+          for locale in english chinese-simplified chinese-traditional; do
+            rm -f "./languages/${locale}/updates.txt" "./languages/${locale}/md5buildignore.txt"
+          done
+          cd languages
+          7z a -tzip "../english.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "english" "../.nar_icon"
+          7z a -tzip "../chinese-simplified.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "chinese-simplified" "../.nar_icon"
+          7z a -tzip "../chinese-traditional.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "chinese-traditional" "../.nar_icon"
+
+      - name: create release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: ${{ github.ref_name }}
+          body: |
+            [English](https://github.com/ukatech/ssp-i18n/releases/download/${{ env.TAG_NAME }}/english.nar)
+            [简体中文](https://github.com/ukatech/ssp-i18n/releases/download/${{ env.TAG_NAME }}/chinese-simplified.nar)
+            [繁體中文](https://github.com/ukatech/ssp-i18n/releases/download/${{ env.TAG_NAME }}/chinese-traditional.nar)
+
+            If you encounter issues, try online-updating SSP, ghosts, and language packs first.
+          files: |
+            english.nar
+            chinese-simplified.nar
+            chinese-traditional.nar

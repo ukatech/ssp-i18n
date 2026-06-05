@@ -1,0 +1,60 @@
+name: add new language
+
+on:
+  workflow_dispatch:
+    inputs:
+      locale_folder:
+        description: 'New locale directory name (e.g. french)'
+        required: true
+      display_name:
+        description: 'Display name (e.g. French)'
+        required: true
+      lang_id:
+        description: 'Windows LANGID decimal (e.g. 1036 for French)'
+        required: true
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  add-language:
+    name: fount-CI add language
+    runs-on: windows-latest
+    steps:
+      - name: disable auto crlf
+        uses: steve02081504/disable-autocrlf@v1
+        with:
+          fuck-auto-CRLF: true
+
+      - name: checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 7
+
+      - name: run fount-CI agent
+        uses: steve02081504/fount-CI@master
+        with:
+          task: |
+            Add a new SSP language pack locale to this monorepo.
+            Target folder: languages/${{ inputs.locale_folder }}/
+            Display name: ${{ inputs.display_name }}
+            Windows LANGID (descript.txt id field): ${{ inputs.lang_id }}
+
+            Steps:
+            1. Copy languages/english/ as the template into the new locale folder.
+            2. Update descript.txt: name, locale, id (${{ inputs.lang_id }}), and homeurl to
+               https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/${{ inputs.locale_folder }}/
+            3. Translate message.txt, resource.rc UI strings, surfacetable.txt, and install.txt.
+            4. Add md5buildignore.txt (copy from languages/english/).
+            5. Add ssp-pictures/ with localized loading images if applicable (reference languages/chinese-simplified/).
+            6. Run: pwsh ./scripts/build-resource.ps1 -Locale ${{ inputs.locale_folder }}
+            7. Update README.md language list with the new locale.
+            Do not modify existing locales except README.md.
+          max-steps: '300'
+          max-time-seconds: '3600'
+          commit-message: 'feat(i18n): add ${{ inputs.display_name }} (${{ inputs.locale_folder }})'
+        env:
+          OPENAI_BASE_URL: ${{ secrets.OPENAI_BASE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ secrets.OPENAI_MODEL }}

@@ -1,0 +1,16 @@
+charset,UTF-8
+0,Normal
+1,Embarrassed
+2,Surprised
+3,Anxious
+4,Discouraged
+5,Smile
+6,Eyes closed
+7,Angry
+8,Sweat smile
+9,Embarrassed & angry
+10,\1-Normal
+11,\1-Eyes open
+19,\1-Singing
+20,Signboard
+25,Singing

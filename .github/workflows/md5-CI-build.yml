@@ -1,0 +1,44 @@
+on: push
+
+name: auto md5 update
+
+concurrency:
+  group: md5-CI-build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  md5build:
+    name: auto md5 update
+    runs-on: windows-latest
+    steps:
+      - name: disable auto crlf
+        uses: steve02081504/disable-autocrlf@v1
+        with:
+          fuck-auto-CRLF: true
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build resource.dll for all locales
+        shell: pwsh
+        run: ./scripts/build-resource.ps1
+
+      - name: md5 english
+        uses: Taromati2/ukagaka-mirror-md5-CI-build@v1
+        with:
+          no-push: true
+          dir-path: ./languages/english
+          build-mode: other
+
+      - name: md5 chinese-simplified
+        uses: Taromati2/ukagaka-mirror-md5-CI-build@v1
+        with:
+          no-push: true
+          dir-path: ./languages/chinese-simplified
+          build-mode: other
+
+      - name: md5 chinese-traditional
+        uses: Taromati2/ukagaka-mirror-md5-CI-build@v1
+        with:
+          dir-path: ./languages/chinese-traditional
+          build-mode: other
