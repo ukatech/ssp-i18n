@@ -94,6 +94,8 @@ BEGIN
             MENUITEM "SSP &messenger\tCtrl+M",      SAKURA_MENU_IM
             MENUITEM "&NTP time sync",              SAKURA_MENU_SNTP
             MENUITEM "&Explorer\tCtrl+E",           SAKURA_MENU_EXPLORER
+            MENUITEM "Picture viewer",              SAKURA_MENU_PICTURE_VIEWER
+
             MENUITEM "Check for SSP &updates",      SAKURA_MENU_CHECKUPDATE
             MENUITEM SEPARATOR
             MENUITEM "Speech recognition (&T)",     SAKURA_MENU_DICTATION
@@ -254,6 +256,45 @@ BEGIN
         END
         MENUITEM SEPARATOR
         MENUITEM "Close (&X)",                  SAKURA_CALENDAR_MENU_CLOSE
+    END
+END
+
+IDR_PICTURE_VIEWER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&Open image...\tCtrl+O",      PICTURE_MENU_OPEN
+        MENUITEM "&Reload\tCtrl+R",             PICTURE_MENU_RELOAD
+        MENUITEM "&Save as...\tCtrl+S",         PICTURE_MENU_SAVE
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Copy\tCtrl+C",               PICTURE_MENU_COPY
+        MENUITEM "&Paste\tCtrl+V",              PICTURE_MENU_PASTE
+        MENUITEM "Resi&ze...",                  PICTURE_MENU_RESIZE
+        MENUITEM SEPARATOR
+        MENUITEM "Trim",                        PICTURE_MENU_TRIM
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "&Actual size\tCtrl+0",        PICTURE_MENU_SAME
+        MENUITEM "Zoom &in\tCtrl++",            PICTURE_MENU_ZOOMIN
+        MENUITEM "Zoom &out\tCtrl+-",           PICTURE_MENU_ZOOMOUT
+        MENUITEM "Fit to &window",              PICTURE_MENU_FIT
+        MENUITEM "Set &zoom ratio...",          PICTURE_MENU_ZOOMCUSTOM
+        MENUITEM SEPARATOR
+        MENUITEM "Previous page",               PICTURE_MENU_PREV
+        MENUITEM "Next page",                   PICTURE_MENU_NEXT
+        MENUITEM SEPARATOR
+        MENUITEM "Rotate left",                 PICTURE_MENU_ROTATE_LEFT
+        MENUITEM "Rotate right",                PICTURE_MENU_ROTATE_RIGHT
+        MENUITEM "Flip horizontal",             PICTURE_MENU_FLIP_H
+        MENUITEM SEPARATOR
+        MENUITEM "Black background",            PICTURE_MENU_BG_BLACK
+        MENUITEM "White background",            PICTURE_MENU_BG_WHITE
+        MENUITEM "Checkered background",        PICTURE_MENU_BG_CHECKER
+        MENUITEM SEPARATOR
+        MENUITEM "Make top-left color transparent", PICTURE_MENU_COLORKEY
     END
 END
 
@@ -1058,6 +1099,24 @@ BEGIN
                     PBS_SMOOTH | WS_BORDER,3,176,86,12
 END
 
+IDD_PV_RESIZE DIALOG DISCARDABLE  0, 0, 216, 132
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Resize"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    AUTORADIOBUTTON "Pixels",IDC_PV_RESIZE_RADIO_PX,8,8,60,10,WS_GROUP | WS_TABSTOP
+    AUTORADIOBUTTON "Percent",IDC_PV_RESIZE_RADIO_PCT,80,8,70,10
+    LTEXT           "Width",IDC_STATIC,8,26,90,8
+    LTEXT           "Height",IDC_STATIC,120,26,90,8
+    EDITTEXT        IDC_PV_RESIZE_EDIT_W,8,36,90,14,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    EDITTEXT        IDC_PV_RESIZE_EDIT_H,120,36,90,14,ES_AUTOHSCROLL | ES_NUMBER
+    AUTOCHECKBOX    "Keep aspect ratio",IDC_PV_RESIZE_KEEPRATIO,8,56,120,10,WS_GROUP | WS_TABSTOP
+    LTEXT           "Current:",IDC_PV_RESIZE_STATIC_CUR,8,76,204,9
+    LTEXT           "New:",IDC_PV_RESIZE_STATIC_NEW,8,88,204,9
+    DEFPUSHBUTTON   "OK",IDOK,104,110,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,158,110,50,14
+END
+
 IDD_LOG DIALOGEX 0, 0, 282, 145
 STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU | 
     WS_THICKFRAME
@@ -1790,8 +1849,8 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,7,76,6
- PRODUCTVERSION 2,7,0,0
+ FILEVERSION 2,8,33,7
+ PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x9L
@@ -1809,14 +1868,14 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 7, 76, 6\0"
+            VALUE "FileVersion", "2, 8, 33, 7\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"
             VALUE "OriginalFilename", "ssp.exe\0"
             VALUE "PrivateBuild", " \0"
             VALUE "ProductName", "SSP\0"
-            VALUE "ProductVersion", "2, 7, 0, 0\0"
+            VALUE "ProductVersion", "2, 8, 0, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END
