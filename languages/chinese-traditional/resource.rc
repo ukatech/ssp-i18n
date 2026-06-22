@@ -85,6 +85,7 @@ BEGIN
       MENUITEM "SSP 即時通訊(&M)\tCtrl+M",  SAKURA_MENU_IM
       MENUITEM "NTP 時間同步(&N)",  SAKURA_MENU_SNTP
       MENUITEM "瀏覽器(&E)\tCtrl+E",  SAKURA_MENU_EXPLORER
+      MENUITEM "圖片檢視器",              SAKURA_MENU_PICTURE_VIEWER
       MENUITEM "檢查 SSP 更新(&U)",  SAKURA_MENU_CHECKUPDATE
       MENUITEM SEPARATOR
       MENUITEM "語音辨識(&T)",  SAKURA_MENU_DICTATION
@@ -232,6 +233,46 @@ BEGIN
   END
 END
 
+ 
+IDR_PICTURE_VIEWER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "檔案(&F)"
+    BEGIN
+        MENUITEM "開啟圖片(&O)...\tCtrl+O",      PICTURE_MENU_OPEN
+        MENUITEM "重新載入(&R)\tCtrl+R",             PICTURE_MENU_RELOAD
+        MENUITEM "另存新檔(&S)...\tCtrl+S",         PICTURE_MENU_SAVE
+    END
+    POPUP "編輯(&E)"
+    BEGIN
+        MENUITEM "複製(&C)\tCtrl+C",               PICTURE_MENU_COPY
+        MENUITEM "貼上(&V)\tCtrl+V",              PICTURE_MENU_PASTE
+        MENUITEM "調整大小(&Z)...",                  PICTURE_MENU_RESIZE
+        MENUITEM SEPARATOR
+        MENUITEM "裁剪",                        PICTURE_MENU_TRIM
+    END
+    POPUP "檢視(&V)"
+    BEGIN
+        MENUITEM "實際大小(&A)\tCtrl+0",        PICTURE_MENU_SAME
+        MENUITEM "放大(&I)\tCtrl++",            PICTURE_MENU_ZOOMIN
+        MENUITEM "縮小(&O)\tCtrl+-",           PICTURE_MENU_ZOOMOUT
+        MENUITEM "符合視窗(&W)",              PICTURE_MENU_FIT
+        MENUITEM "設定縮放比例(&Z)...",          PICTURE_MENU_ZOOMCUSTOM
+        MENUITEM SEPARATOR
+        MENUITEM "上一頁",               PICTURE_MENU_PREV
+        MENUITEM "下一頁",                   PICTURE_MENU_NEXT
+        MENUITEM SEPARATOR
+        MENUITEM "向左旋轉",                 PICTURE_MENU_ROTATE_LEFT
+        MENUITEM "向右旋轉",                PICTURE_MENU_ROTATE_RIGHT
+        MENUITEM "水平翻轉",             PICTURE_MENU_FLIP_H
+        MENUITEM SEPARATOR
+        MENUITEM "黑色背景",            PICTURE_MENU_BG_BLACK
+        MENUITEM "白色背景",            PICTURE_MENU_BG_WHITE
+        MENUITEM "棋盤背景",        PICTURE_MENU_BG_CHECKER
+        MENUITEM SEPARATOR
+        MENUITEM "使左上角顏色透明", PICTURE_MENU_COLORKEY
+    END
+END
+ 
 IDR_LISTDIALOG_MENU MENU DISCARDABLE
 BEGIN
   POPUP "人格"
@@ -868,6 +909,24 @@ BEGIN
    CONTROL "Progress1", IDC_CACHE_PROGRESS, "msctls_progress32", PBS_SMOOTH | WS_CHILD | WS_VISIBLE | WS_BORDER, 3, 176, 86, 12
 END
 
+IDD_PV_RESIZE DIALOG DISCARDABLE  0, 0, 216, 132
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "調整大小"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    AUTORADIOBUTTON "像素",IDC_PV_RESIZE_RADIO_PX,8,8,60,10,WS_GROUP | WS_TABSTOP
+    AUTORADIOBUTTON "百分比",IDC_PV_RESIZE_RADIO_PCT,80,8,70,10
+    LTEXT           "寬度",IDC_STATIC,8,26,90,8
+    LTEXT           "高度",IDC_STATIC,120,26,90,8
+    EDITTEXT        IDC_PV_RESIZE_EDIT_W,8,36,90,14,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
+    EDITTEXT        IDC_PV_RESIZE_EDIT_H,120,36,90,14,ES_AUTOHSCROLL | ES_NUMBER
+    AUTOCHECKBOX    "保持長寬比",IDC_PV_RESIZE_KEEPRATIO,8,56,120,10,WS_GROUP | WS_TABSTOP
+    LTEXT           "目前:",IDC_PV_RESIZE_STATIC_CUR,8,76,204,9
+    LTEXT           "新:",IDC_PV_RESIZE_STATIC_NEW,8,88,204,9
+    DEFPUSHBUTTON   "OK",IDOK,104,110,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,158,110,50,14
+END
+ 
 IDD_LOG DIALOGEX 0, 0, 282, 145
 STYLE DS_SETFONT | DS_CENTER | WS_MAXIMIZEBOX | WS_MINIMIZEBOX | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
 CAPTION "日誌列表"
@@ -1449,8 +1508,8 @@ END
 
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION 2,7,76,6
-PRODUCTVERSION 2,7,0,0
+FILEVERSION 2,8,33,7
+PRODUCTVERSION 2,8,0,0
 FILEOS 0x4
 FILETYPE 0x1
 BEGIN
@@ -1461,14 +1520,14 @@ BEGIN
 		VALUE "Comments", " "
 		VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ"
 		VALUE "FileDescription", "語言資源 DLL"
-		VALUE "FileVersion", "2, 7, 76, 6"
+		VALUE "FileVersion", "2, 8, 33, 7"
 		VALUE "InternalName", "ssp"
 		VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ"
 		VALUE "LegalTrademarks", " "
 		VALUE "OriginalFilename", "ssp.exe"
 		VALUE "PrivateBuild", " "
 		VALUE "ProductName", "SSP"
-		VALUE "ProductVersion", "2, 7, 0, 0"
+		VALUE "ProductVersion", "2, 8, 0, 0"
 	END
 END
 
