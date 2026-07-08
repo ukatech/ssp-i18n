@@ -96,6 +96,8 @@ BEGIN
             MENUITEM "&Explorer\tCtrl+E",           SAKURA_MENU_EXPLORER
             MENUITEM "Picture viewer",              SAKURA_MENU_PICTURE_VIEWER
 
+            MENUITEM "Backlog/History\tCtrl+B",     SAKURA_MENU_BACKLOG_VIEWER
+
             MENUITEM "Check for SSP &updates",      SAKURA_MENU_CHECKUPDATE
             MENUITEM SEPARATOR
             MENUITEM "Speech recognition (&T)",     SAKURA_MENU_DICTATION
@@ -1104,13 +1106,18 @@ STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Resize"
 FONT 9, "MS Shell Dlg"
 BEGIN
-    AUTORADIOBUTTON "Pixels",IDC_PV_RESIZE_RADIO_PX,8,8,60,10,WS_GROUP | WS_TABSTOP
-    AUTORADIOBUTTON "Percent",IDC_PV_RESIZE_RADIO_PCT,80,8,70,10
+    CONTROL         "Pixels",IDC_PV_RESIZE_RADIO_PX,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,8,60,10
+    CONTROL         "Percent",IDC_PV_RESIZE_RADIO_PCT,"Button",
+                    BS_AUTORADIOBUTTON,80,8,70,10
     LTEXT           "Width",IDC_STATIC,8,26,90,8
     LTEXT           "Height",IDC_STATIC,120,26,90,8
-    EDITTEXT        IDC_PV_RESIZE_EDIT_W,8,36,90,14,ES_AUTOHSCROLL | ES_NUMBER | WS_GROUP
-    EDITTEXT        IDC_PV_RESIZE_EDIT_H,120,36,90,14,ES_AUTOHSCROLL | ES_NUMBER
-    AUTOCHECKBOX    "Keep aspect ratio",IDC_PV_RESIZE_KEEPRATIO,8,56,120,10,WS_GROUP | WS_TABSTOP
+    EDITTEXT        IDC_PV_RESIZE_EDIT_W,8,36,90,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_GROUP
+    EDITTEXT        IDC_PV_RESIZE_EDIT_H,120,36,90,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    CONTROL         "Keep aspect ratio",IDC_PV_RESIZE_KEEPRATIO,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,8,56,120,10
     LTEXT           "Current:",IDC_PV_RESIZE_STATIC_CUR,8,76,204,9
     LTEXT           "New:",IDC_PV_RESIZE_STATIC_NEW,8,88,204,9
     DEFPUSHBUTTON   "OK",IDOK,104,110,50,14,WS_GROUP
@@ -1849,7 +1856,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,33,7
+ FILEVERSION 2,8,51,8
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1868,7 +1875,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 33, 7\0"
+            VALUE "FileVersion", "2, 8, 51, 8\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"

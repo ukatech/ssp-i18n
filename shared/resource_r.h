@@ -46,6 +46,7 @@
 #define IDD_STREAMINGTOOL               178
 #define IDD_VOICEAPI                    179
 #define IDR_PICTURE_VIEWER_MENU         180
+#define IDD_PV_RESIZE                   181
 #define IDC_ACTIVATE_EXCEPTUPDATE       1002
 #define IDC_ACTIVATE_OFF                1003
 #define IDC_ACTIVATEWHENTALK            1004
@@ -463,6 +464,13 @@
 #define IDC_DARK_DISABLE                1466
 #define IDC_SAVESHARE_SERVICE           1467
 #define IDC_DEVSEREIKODUMP_DIROPEN      1468
+#define IDC_PV_RESIZE_RADIO_PX          1470
+#define IDC_PV_RESIZE_RADIO_PCT         1471
+#define IDC_PV_RESIZE_EDIT_W            1472
+#define IDC_PV_RESIZE_EDIT_H            1473
+#define IDC_PV_RESIZE_KEEPRATIO         1474
+#define IDC_PV_RESIZE_STATIC_CUR        1475
+#define IDC_PV_RESIZE_STATIC_NEW        1476
 #define SAKURA_CALENDAR_MENU_CENTER     5001
 #define SAKURA_CALENDAR_MENU_CLOSE      5002
 #define SAKURA_CALENDAR_MENU_DELETE     5003
@@ -582,13 +590,6 @@
 #define PICTURE_MENU_RESIZE             5127
 #define PICTURE_MENU_TRIM               5128
 #define PICTURE_MENU_PASTE              5129
-#define IDD_PV_RESIZE                   181
-#define IDC_PV_RESIZE_RADIO_PX          1470
-#define IDC_PV_RESIZE_RADIO_PCT         1471
-#define IDC_PV_RESIZE_EDIT_W            1472
-#define IDC_PV_RESIZE_EDIT_H            1473
-#define IDC_PV_RESIZE_KEEPRATIO         1474
-#define IDC_PV_RESIZE_STATIC_CUR        1475
-#define IDC_PV_RESIZE_STATIC_NEW        1476
+#define SAKURA_MENU_BACKLOG_VIEWER      5131
 
 #endif // RESOURCE_R_H
