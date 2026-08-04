@@ -47,6 +47,8 @@
 #define IDD_VOICEAPI                    179
 #define IDR_PICTURE_VIEWER_MENU         180
 #define IDD_PV_RESIZE                   181
+#define IDR_ARCHIVE_VIEWER_MENU         188
+#define IDD_AV_PASSWORD                 191
 #define IDC_ACTIVATE_EXCEPTUPDATE       1002
 #define IDC_ACTIVATE_OFF                1003
 #define IDC_ACTIVATEWHENTALK            1004
@@ -471,6 +473,15 @@
 #define IDC_PV_RESIZE_KEEPRATIO         1474
 #define IDC_PV_RESIZE_STATIC_CUR        1475
 #define IDC_PV_RESIZE_STATIC_NEW        1476
+#define IDC_AV_PW_RADIO_INPUT           1478
+#define IDC_AV_PW_RADIO_GENERATE        1479
+#define IDC_AV_PW_CHK_LOWER             1480
+#define IDC_AV_PW_CHK_UPPER             1481
+#define IDC_AV_PW_CHK_DIGIT             1482
+#define IDC_AV_PW_CHK_SYMBOL            1483
+#define IDC_AV_PW_LEN_EDIT              1484
+#define IDC_AV_PW_LEN_SPIN              1485
+#define IDC_AV_PW_EDIT                  1486
 #define SAKURA_CALENDAR_MENU_CENTER     5001
 #define SAKURA_CALENDAR_MENU_CLOSE      5002
 #define SAKURA_CALENDAR_MENU_DELETE     5003
@@ -591,5 +602,19 @@
 #define PICTURE_MENU_TRIM               5128
 #define PICTURE_MENU_PASTE              5129
 #define SAKURA_MENU_BACKLOG_VIEWER      5131
+#define ARCHIVE_MENU_OPEN               5132
+#define ARCHIVE_MENU_EXTRACT            5133
+#define ARCHIVE_MENU_EXTRACTALL         5134
+#define ARCHIVE_MENU_ADD                5135
+#define ARCHIVE_MENU_COMPRESS           5136
+#define ARCHIVE_MENU_SELECTALL          5137
+#define ARCHIVE_MENU_VIEW_LARGEICON     5138
+#define ARCHIVE_MENU_VIEW_SMALLICON     5139
+#define ARCHIVE_MENU_VIEW_LIST          5140
+#define ARCHIVE_MENU_VIEW_DETAIL        5141
+#define SAKURA_MENU_ARCHIVE_VIEWER      5143
+#define ARCHIVE_MENU_NEW                5144
+#define ARCHIVE_MENU_DELETE             5145
+#define ARCHIVE_MENU_ADDFOLDER          5146
 
 #endif // RESOURCE_R_H

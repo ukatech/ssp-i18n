@@ -96,6 +96,8 @@ BEGIN
             MENUITEM "&Explorer\tCtrl+E",           SAKURA_MENU_EXPLORER
             MENUITEM "Picture viewer",              SAKURA_MENU_PICTURE_VIEWER
 
+            MENUITEM "Archive viewer",              SAKURA_MENU_ARCHIVE_VIEWER
+
             MENUITEM "Backlog/History\tCtrl+B",     SAKURA_MENU_BACKLOG_VIEWER
 
             MENUITEM "Check for SSP &updates",      SAKURA_MENU_CHECKUPDATE
@@ -297,6 +299,35 @@ BEGIN
         MENUITEM "Checkered background",        PICTURE_MENU_BG_CHECKER
         MENUITEM SEPARATOR
         MENUITEM "Make top-left color transparent", PICTURE_MENU_COLORKEY
+    END
+END
+
+IDR_ARCHIVE_VIEWER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&File"
+    BEGIN
+        MENUITEM "&New archive\tCtrl+N",        ARCHIVE_MENU_NEW
+        MENUITEM "&Open archive...\tCtrl+O",    ARCHIVE_MENU_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "&Extract...",                 ARCHIVE_MENU_EXTRACT
+        MENUITEM "Extract &all...",             ARCHIVE_MENU_EXTRACTALL
+        MENUITEM SEPARATOR
+        MENUITEM "A&dd file...",                ARCHIVE_MENU_ADD
+        MENUITEM "Add &folder...",              ARCHIVE_MENU_ADDFOLDER
+        MENUITEM SEPARATOR
+        MENUITEM "&Save as archive...\tCtrl+S", ARCHIVE_MENU_COMPRESS
+    END
+    POPUP "&Edit"
+    BEGIN
+        MENUITEM "&Remofe from list\tDel",      ARCHIVE_MENU_DELETE
+        MENUITEM "Select &all\tCtrl+A",         ARCHIVE_MENU_SELECTALL
+    END
+    POPUP "&View"
+    BEGIN
+        MENUITEM "Large icons",                 ARCHIVE_MENU_VIEW_LARGEICON
+        MENUITEM "Small icons",                 ARCHIVE_MENU_VIEW_SMALLICON
+        MENUITEM "List",                        ARCHIVE_MENU_VIEW_LIST
+        MENUITEM "Details",                     ARCHIVE_MENU_VIEW_DETAIL
     END
 END
 
@@ -1124,6 +1155,34 @@ BEGIN
     PUSHBUTTON      "Cancel",IDCANCEL,158,110,50,14
 END
 
+IDD_AV_PASSWORD DIALOG DISCARDABLE  0, 0, 216, 146
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Set the password for extracting the archive"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    CONTROL         "Enter password",IDC_AV_PW_RADIO_INPUT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,8,96,10
+    CONTROL         "Generate password",IDC_AV_PW_RADIO_GENERATE,"Button",
+                    BS_AUTORADIOBUTTON,112,8,96,10
+    CONTROL         "Lowercase letters",IDC_AV_PW_CHK_LOWER,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,16,26,180,10
+    CONTROL         "Uppercase letters",IDC_AV_PW_CHK_UPPER,"Button",
+                    BS_AUTOCHECKBOX,16,38,180,10
+    CONTROL         "Digits",IDC_AV_PW_CHK_DIGIT,"Button",BS_AUTOCHECKBOX,16,
+                    50,180,10
+    CONTROL         "Symbols",IDC_AV_PW_CHK_SYMBOL,"Button",BS_AUTOCHECKBOX,
+                    16,62,180,10
+    LTEXT           "Length (4-64):",IDC_STATIC,16,80,100,8
+    EDITTEXT        IDC_AV_PW_LEN_EDIT,120,77,40,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_GROUP
+    CONTROL         "Spin1",IDC_AV_PW_LEN_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,155,77,10,14
+    EDITTEXT        IDC_AV_PW_EDIT,8,100,200,14,ES_AUTOHSCROLL | WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,104,124,50,14,WS_GROUP
+    PUSHBUTTON      "Cancel",IDCANCEL,158,124,50,14
+END
+
 IDD_LOG DIALOGEX 0, 0, 282, 145
 STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU | 
     WS_THICKFRAME
@@ -1856,7 +1915,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,51,8
+ FILEVERSION 2,8,66,9
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1875,7 +1934,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 51, 8\0"
+            VALUE "FileVersion", "2, 8, 66, 9\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"
