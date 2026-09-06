@@ -134,6 +134,13 @@ BEGIN
             MENUITEM "&Preferences...",             SAKURA_MENU_SETUP
             MENUITEM "Ghost preferences...",        SAKURA_MENU_SETUP_GHOST
             MENUITEM SEPARATOR
+            MENUITEM "Window mode - Off",           SAKURA_MENU_WINDOWMODE_OFF
+
+            MENUITEM "Window mode - All ghosts",    SAKURA_MENU_WINDOWMODE_SHARED
+
+            MENUITEM "Window mode - Each ghost",    SAKURA_MENU_WINDOWMODE_PERGHOST
+
+            MENUITEM SEPARATOR
             MENUITEM "Enable pro&xy",               SAKURA_MENU_PROXY
             MENUITEM "Set default &charset",        SAKURA_MENU_CHARSET
             MENUITEM SEPARATOR
@@ -328,6 +335,29 @@ BEGIN
         MENUITEM "Small icons",                 ARCHIVE_MENU_VIEW_SMALLICON
         MENUITEM "List",                        ARCHIVE_MENU_VIEW_LIST
         MENUITEM "Details",                     ARCHIVE_MENU_VIEW_DETAIL
+    END
+END
+
+IDR_GHOSTCONTAINER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Operation"
+    BEGIN
+        MENUITEM "Window mode - Off",           CONTAINER_MENU_WM_OFF
+        MENUITEM "Window mode - All ghosts",    CONTAINER_MENU_WM_SHARED
+        MENUITEM "Window mode - Each ghost",    CONTAINER_MENU_WM_PERGHOST
+        MENUITEM SEPARATOR
+        MENUITEM "Full screen\tF11",            CONTAINER_MENU_FULLSCREEN
+        MENUITEM "Show window frame",           CONTAINER_MENU_FRAME
+        MENUITEM "Integrate backlog too",       CONTAINER_MENU_BACKLOG
+        MENUITEM SEPARATOR
+        MENUITEM "Background - White",          CONTAINER_MENU_BG_WHITE
+        MENUITEM "Background - Gray",           CONTAINER_MENU_BG_GRAY
+        MENUITEM "Background - Black",          CONTAINER_MENU_BG_BLACK
+        MENUITEM "Background - Desktop",        CONTAINER_MENU_BG_DESKTOP
+        MENUITEM SEPARATOR
+        MENUITEM "Screenshot...",               CONTAINER_MENU_SCREENSHOT
+        MENUITEM SEPARATOR
+        MENUITEM "&Close\tCtrl+W",              CONTAINER_MENU_CLOSE
     END
 END
 
@@ -1879,6 +1909,14 @@ BEGIN
                     74,84,156,15
     CONTROL         "Progress1",IDC_SOUND_LEVEL_MONITOR_BAR,
                     "msctls_progress32",PBS_SMOOTH,81,73,142,10
+    GROUPBOX        "Window mode",IDC_STATIC,4,106,226,52
+    CONTROL         "Show ghosts inside a single window",
+                    IDC_WINDOWMODE_ENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,11,117,212,10
+    CONTROL         "One window for all ghosts",IDC_WINDOWMODE_SHARED,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,20,130,203,10
+    CONTROL         "One window per ghost",IDC_WINDOWMODE_PERGHOST,"Button",
+                    BS_AUTORADIOBUTTON,20,142,203,10
 END
 
 IDD_VOICEAPI DIALOG DISCARDABLE  0, 0, 275, 194
@@ -1915,7 +1953,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,66,10
+ FILEVERSION 2,8,86,11
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1934,7 +1972,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 66, 10\0"
+            VALUE "FileVersion", "2, 8, 86, 11\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"
