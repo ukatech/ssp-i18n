@@ -1,6 +1,10 @@
-on: push
-
 name: auto md5 update
+
+on:
+  workflow_run:
+    workflows: ["sync translations from english"]
+    types: [completed]
+  workflow_dispatch:
 
 concurrency:
   group: md5-CI-build-${{ github.ref }}
@@ -18,6 +22,8 @@ jobs:
 
       - name: checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_branch || github.ref_name }}
 
       - name: build resource.dll for all locales
         shell: pwsh

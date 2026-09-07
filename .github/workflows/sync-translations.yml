@@ -9,6 +9,7 @@ on:
       - 'languages/english/surfacetable.txt'
       - 'languages/english/install.txt'
       - 'shared/resource_r.h'
+  workflow_dispatch:
 
 concurrency:
   group: sync-translations-${{ github.ref }}
