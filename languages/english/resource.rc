@@ -238,6 +238,9 @@ BEGIN
 
             MENUITEM "All before this day (&A)",    SAKURA_CALENDAR_MENU_DELETEFROMHERE
 
+            MENUITEM "Schedules added by ghosts (&G)", 
+                                                    SAKURA_CALENDAR_MENU_DELETEGHOST
+
         END
         MENUITEM SEPARATOR
         MENUITEM "&Previous month",             SAKURA_CALENDAR_MENU_PREV
@@ -354,6 +357,7 @@ BEGIN
         MENUITEM "Background - Gray",           CONTAINER_MENU_BG_GRAY
         MENUITEM "Background - Black",          CONTAINER_MENU_BG_BLACK
         MENUITEM "Background - Desktop",        CONTAINER_MENU_BG_DESKTOP
+        MENUITEM "Background - Image...",       CONTAINER_MENU_BG_IMAGE
         MENUITEM SEPARATOR
         MENUITEM "Screenshot...",               CONTAINER_MENU_SCREENSHOT
         MENUITEM SEPARATOR
@@ -1953,7 +1957,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,86,11
+ FILEVERSION 2,8,91,12
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1972,7 +1976,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 86, 11\0"
+            VALUE "FileVersion", "2, 8, 91, 12\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"
