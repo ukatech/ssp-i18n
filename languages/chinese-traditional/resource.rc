@@ -1,4 +1,4 @@
-﻿//Microsoft Developer Studio generated resource script.
+//Microsoft Developer Studio generated resource script.
 //
 #include "resource_r.h"
 
@@ -211,6 +211,10 @@ BEGIN
       MENUITEM "本月(&M)",  SAKURA_CALENDAR_MENU_DELETEMONTH
       MENUITEM "本年(&Y)",  SAKURA_CALENDAR_MENU_DELETEYEAR
       MENUITEM "刪除本日之前(&A)",  SAKURA_CALENDAR_MENU_DELETEFROMHERE
+
+      MENUITEM "由幽靈添加的日程(&G)", 
+                                                    SAKURA_CALENDAR_MENU_DELETEGHOST
+
     END
     MENUITEM SEPARATOR
     MENUITEM "上個月(&P)",  SAKURA_CALENDAR_MENU_PREV
@@ -296,6 +300,7 @@ BEGIN
     MENUITEM "背景 - 灰色",  CONTAINER_MENU_BG_GRAY
     MENUITEM "背景 - 黑色",  CONTAINER_MENU_BG_BLACK
     MENUITEM "背景 - 桌面",  CONTAINER_MENU_BG_DESKTOP
+    MENUITEM "背景 - 影像...",       CONTAINER_MENU_BG_IMAGE
     MENUITEM SEPARATOR
     MENUITEM "截圖...",  CONTAINER_MENU_SCREENSHOT
     MENUITEM SEPARATOR
@@ -1546,7 +1551,7 @@ END
 
 
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION 2,8,86,11
+FILEVERSION 2,8,91,12
 PRODUCTVERSION 2,8,0,0
 FILEOS 0x4
 FILETYPE 0x1
@@ -1558,7 +1563,7 @@ BEGIN
 		VALUE "Comments", " "
 		VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ"
 		VALUE "FileDescription", "語言資源 DLL"
-		VALUE "FileVersion", "2, 8, 86, 11"
+		VALUE "FileVersion", "2, 8, 91, 12"
 		VALUE "InternalName", "ssp"
 		VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ"
 		VALUE "LegalTrademarks", " "
