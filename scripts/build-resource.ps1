@@ -90,7 +90,7 @@ function Build-LocaleResource {
         if (Test-Path $resFile) { Remove-Item $resFile -Force }
         if (Test-Path $dllFile) { Remove-Item $dllFile -Force }
 
-        & rc.exe /l $LangHex /i $IncludeRoot /d NDEBUG /fo $resFile (Join-Path $LocaleDir 'resource.rc')
+        & rc.exe /c 65001 /l $LangHex /i $IncludeRoot /d NDEBUG /fo $resFile (Join-Path $LocaleDir 'resource.rc')
         if ($LASTEXITCODE -ne 0) { throw "rc.exe failed for $LocaleDir" }
 
         & link.exe /nologo /dll /pdb:none /machine:I386 /nodefaultlib /out:$dllFile /noentry $resFile
