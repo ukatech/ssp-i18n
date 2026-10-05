@@ -1,0 +1,41 @@
+name: rebuild resource.dll
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: rebuild-dll-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  rebuild:
+    name: rebuild resource.dll
+    runs-on: windows-latest
+    steps:
+      - name: disable auto crlf
+        uses: steve02081504/disable-autocrlf@v1
+        with:
+          fuck-auto-CRLF: true
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: build resource.dll for all locales
+        shell: pwsh
+        run: ./scripts/build-resource.ps1
+
+      - name: commit and push
+        shell: pwsh
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- 'languages/*/resource.dll'
+          if (git status --porcelain -- 'languages/*/resource.dll') {
+            git commit -m "chore: rebuild resource.dll"
+            git push
+          } else {
+            Write-Host 'No resource.dll changes to commit.'
+          }
