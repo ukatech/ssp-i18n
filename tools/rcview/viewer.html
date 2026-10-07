@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSP Resource Viewer</title>
+<style>
+:root {
+  --bg: #f6f7f9; --fg: #1d2330; --muted: #677085; --line: #d7dbe3; --panel: #ffffff;
+  --accent: #2f6fde; --bad: #d4313d; --warn: #c27a00; --ok: #2f8f4e;
+  --dlg: #f0f0f0; --dlg-fg: #000; --ctl-border: #8e8f8f; --btn: #e1e1e1; --btn-border: #adadad;
+  --field: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15181e; --fg: #e3e6ec; --muted: #9aa3b5; --line: #2c323d; --panel: #1c2028;
+    --accent: #6d9cff; --bad: #ff6b75; --warn: #ffb547; --ok: #5ccf86;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15181e; --fg: #e3e6ec; --muted: #9aa3b5; --line: #2c323d; --panel: #1c2028;
+  --accent: #6d9cff; --bad: #ff6b75; --warn: #ffb547; --ok: #5ccf86;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg);
+  font: 13px/1.45 system-ui, -apple-system, "Segoe UI", "Noto Sans", sans-serif; }
+header { position: sticky; top: 0; z-index: 10; background: var(--panel); border-bottom: 1px solid var(--line);
+  padding: 8px 16px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; }
+header h1 { font-size: 14px; margin: 0; font-weight: 600; }
+header label { display: inline-flex; gap: 4px; align-items: center; color: var(--muted); }
+header select, header input[type=text], header input[type=number] { font: inherit; color: var(--fg); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 4px; padding: 2px 6px; }
+header select#target { max-width: 320px; }
+button.tool { font: inherit; color: var(--fg); background: var(--bg); border: 1px solid var(--line);
+  border-radius: 4px; padding: 2px 10px; cursor: pointer; }
+main { padding: 12px 16px 48px; }
+.meta { color: var(--muted); margin: 0 0 10px; }
+.meta code { color: var(--fg); }
+#stage { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+.pane { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 8px; max-width: 100%; overflow: auto; }
+.pane h2 { font-size: 12px; margin: 0 0 6px; font-weight: 600; display: flex; gap: 8px; align-items: baseline; }
+.pane h2 .sub { color: var(--muted); font-weight: 400; }
+.badge { display: inline-block; border-radius: 9px; padding: 0 7px; font-size: 11px; font-weight: 600; color: #fff; background: var(--bad); }
+.badge.ok { background: var(--ok); }
+.badge.warn { background: var(--warn); }
+
+/* ---- Win32 dialog emulation (always light, like classic Windows) ---- */
+.win { display: inline-block; border: 1px solid #6f6f6f; background: var(--dlg); color: var(--dlg-fg);
+  box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+.win .title { height: 30px; display: flex; align-items: center; padding: 0 0 0 8px; background: #fff; color: #000;
+  font: 12px "Segoe UI", system-ui, sans-serif; border-bottom: 1px solid #e5e5e5; white-space: nowrap; overflow: hidden; }
+.win .title .t { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.win .title .x { width: 46px; text-align: center; color: #333; }
+.win .pagecap { padding: 2px 6px; background: #dfe6f3; color: #000; font: 11px "Segoe UI", system-ui, sans-serif;
+  border-bottom: 1px solid #c3cbd9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.win .menubar { background: #fff; color: #000; padding: 2px 4px; font: 12px "Segoe UI", system-ui, sans-serif; border-bottom: 1px solid #e5e5e5; }
+.client { position: relative; overflow: hidden; }
+.grid .client { background-image: linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
+  linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px); }
+.ctl { position: absolute; color: #000; line-height: normal; }
+.ctl .txt { display: block; width: 100%; height: 100%; overflow: hidden; }
+.ctl.static .txt { white-space: pre-wrap; overflow-wrap: normal; word-break: normal; }
+.ctl.static.nowrap .txt { white-space: pre; }
+.ctl.static.right .txt { text-align: right; }
+.ctl.static.center .txt { text-align: center; }
+.ctl.static.vcenter .txt { display: flex; align-items: center; white-space: pre; }
+.ctl.static.vcenter.right .txt { justify-content: flex-end; }
+.ctl.static.vcenter.center .txt { justify-content: center; }
+.ctl.static.sunken { border: 1px solid #a0a0a0; border-right-color: #fff; border-bottom-color: #fff; }
+.ctl.button, .ctl.defbutton { background: var(--btn); border: 1px solid var(--btn-border); display: flex; align-items: center; justify-content: center; }
+.ctl.defbutton { border: 2px solid #0078d7; }
+.ctl.button .txt, .ctl.defbutton .txt { flex: none; width: auto; height: auto; text-align: center; white-space: pre; padding: 0 2px; }
+.ctl.button.multiline .txt, .ctl.defbutton.multiline .txt { flex: 1 1 auto; width: 100%; }
+.ctl.multiline .txt { white-space: pre-wrap !important; }
+.ctl.check, .ctl.radio { display: flex; align-items: center; gap: 4px; }
+.ctl.check .box, .ctl.radio .box { flex: 0 0 auto; width: 13px; height: 13px; border: 1px solid #333; background: #fff; }
+.ctl.radio .box { border-radius: 50%; }
+.ctl.check.lefttext, .ctl.radio.lefttext { flex-direction: row-reverse; justify-content: flex-end; }
+.ctl.check .txt, .ctl.radio .txt { width: auto; flex: 1 1 auto; min-width: 0; height: auto; white-space: pre; }
+.ctl.group { border: 1px solid #dcdcdc; border-radius: 2px; }
+.ctl.group .txt { position: absolute; left: 6px; top: -0.7em; width: auto; height: auto; max-width: calc(100% - 12px);
+  background: var(--dlg); padding: 0 2px; white-space: pre; }
+.ctl.edit, .ctl.combo, .ctl.listbox, .ctl.listview, .ctl.datetime { background: var(--field); border: 1px solid #7a7a7a; }
+.ctl.combo::after, .ctl.datetime.dropdown::after { content: "▾"; position: absolute; right: 3px; top: 50%; transform: translateY(-50%); font-size: 10px; color: #333; }
+.ctl.datetime .txt, .ctl.combo .txt { padding: 1px 3px; color: #555; white-space: pre; }
+.ctl.listview .hdr { height: 18px; background: #fff; border-bottom: 1px solid #e5e5e5; }
+.ctl .cls { position: absolute; right: 3px; bottom: 1px; font-size: 9px; color: #9a9a9a; font-family: system-ui, sans-serif; }
+.ctl.trackbar::before { content: ""; position: absolute; left: 6px; right: 6px; top: 50%; height: 3px; margin-top: -2px; background: #dadada; border: 1px solid #b5b5b5; }
+.ctl.trackbar::after { content: ""; position: absolute; left: 30%; top: 50%; width: 8px; height: 14px; margin-top: -7px; background: #0078d7; border-radius: 1px; }
+.ctl.updown { border: 1px solid #adadad; background: var(--btn); }
+.ctl.updown::before { content: "▴"; position: absolute; top: -2px; left: 0; right: 0; text-align: center; font-size: 9px; }
+.ctl.updown::after { content: "▾"; position: absolute; bottom: -2px; left: 0; right: 0; text-align: center; font-size: 9px; }
+.ctl.progress { border: 1px solid #bcbcbc; background: #e6e6e6; }
+.ctl.progress::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 40%; background: #06b025; }
+.ctl.tab { border-bottom: 1px solid #d9d9d9; }
+.ctl.tab .txt { display: inline-block; width: auto; height: auto; padding: 1px 8px; border: 1px solid #d9d9d9; border-bottom: none; background: #fff; }
+.ctl.icon { border: 1px dashed #8a8a8a; display: flex; align-items: center; justify-content: center; font-size: 9px; color: #777; }
+.ctl.frame { border: 1px solid #000; }
+.ctl.disabled .txt { color: #8d8d8d; }
+.ctl.hidden { display: none; }
+.showhidden .ctl.hidden { display: block; opacity: .45; outline: 1px dashed #777; }
+.showhidden .ctl.hidden.check, .showhidden .ctl.hidden.radio { display: flex; }
+.ctl.widened { background: rgba(47,111,222,.08); }
+.ctl .orig { position: absolute; top: -1px; bottom: -1px; border: 1px dashed #2f6fde; pointer-events: none; }
+.ctl.collide { outline: 2px dashed var(--warn) !important; z-index: 2; }
+.ctl.overflow { outline: 2px solid var(--bad) !important; outline-offset: 0; z-index: 2; }
+.ctl.overflow::before { z-index: 3; }
+.ctl.hl { outline: 2px solid #ff9f1a !important; z-index: 4; box-shadow: 0 0 0 4px rgba(255,159,26,.35); }
+.ctl:hover { outline: 1px solid #2f6fde; z-index: 5; }
+u { text-decoration: underline; }
+
+/* ---- menus ---- */
+.menu { font: 12px "Segoe UI", system-ui, sans-serif; background: #f2f2f2; color: #000; border: 1px solid #ccc; padding: 2px 0; min-width: 200px; display: inline-block; }
+.menu .mi { display: flex; gap: 24px; padding: 3px 18px 3px 28px; white-space: pre; position: relative; }
+.menu .mi .sc { margin-left: auto; color: #444; }
+.menu .mi.popup::after { content: "›"; position: absolute; right: 8px; }
+.menu .mi.hl { background: #ffe2b8; }
+.menu .mi:hover { background: #cce4f7; }
+.menu .sep { height: 1px; background: #ccc; margin: 3px 2px 3px 28px; }
+.menu .sub { margin: 0 0 4px 20px; }
+.menu .id { color: #888; font-size: 10px; align-self: center; }
+
+/* ---- tables ---- */
+table.rows { border-collapse: collapse; width: 100%; margin-top: 16px; background: var(--panel); font-size: 12px; }
+table.rows th, table.rows td { border: 1px solid var(--line); padding: 3px 6px; vertical-align: top; text-align: left; }
+table.rows th { background: var(--bg); position: sticky; top: 46px; }
+table.rows tr.sel td { background: rgba(255,159,26,.18); }
+table.rows tr { cursor: default; }
+table.rows td.flag { white-space: nowrap; }
+table.rows .ph { color: var(--accent); font-weight: 600; }
+table.rows .nl { color: var(--muted); }
+.wrap { overflow-x: auto; }
+.shot header, .shot table.rows th { position: static; }
+.f-error { color: var(--bad); }
+.f-warn { color: var(--warn); }
+.f-info { color: var(--muted); }
+ul.findings { margin: 8px 0 0; padding-left: 18px; }
+#audit { margin-top: 16px; }
+.hint { color: var(--muted); font-size: 12px; }
+@media (max-width: 600px) { header { padding: 8px 16px; } main { padding: 12px 16px 48px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>SSP Resource Viewer</h1>
+  <label>Resource <select id="target"></select></label>
+  <span id="loc-boxes"></span>
+  <label>Zoom <select id="zoom"><option>1</option><option>1.25</option><option selected>1.5</option><option>2</option></select></label>
+  <label><input type="checkbox" id="show-hidden"> hidden controls</label>
+  <label><input type="checkbox" id="show-grid"> grid</label>
+  <label title="Emulate SSP's automatic widening of static labels (left→right, right→left, centre→both)"><input type="checkbox" id="auto-width" checked> SSP label auto-width</label>
+  <label>Font override <input type="text" id="font" placeholder="(locale default)" size="14"></label>
+  <button class="tool" id="audit-btn" title="Render every dialog of the selected locales and list text that does not fit">Audit all dialogs</button>
+</header>
+<main>
+  <p class="meta" id="meta"></p>
+  <div id="stage"></div>
+  <div id="findings"></div>
+  <div class="wrap" id="table"></div>
+  <div id="audit"></div>
+  <p class="hint">Rendering approximates Windows' dialog layout (dialog units from the font's average character width/height) with locally available fonts.
+  Red outline = text probably clipped, or a label that (after SSP's automatic label widening) overlaps another control,
+  crosses its group box or leaves the dialog; orange dashed = the control it runs into. Final check: SSP on Windows.</p>
+</main>
+<script id="data" type="application/json">/*__DATA__*/</script>
+<script>
+'use strict';
+const DATA = JSON.parse(document.getElementById('data').textContent);
+const SRC = DATA.source;
+const LOCS = DATA.locales;
+const byName = Object.fromEntries(LOCS.map(l => [l.name, l]));
+
+const FONT_STACKS = {
+  'en': '"MS Shell Dlg", "Microsoft Sans Serif", Tahoma, "Liberation Sans", Arial, sans-serif',
+  'zh-Hans': 'SimSun, "宋体", NSimSun, "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", "WenQuanYi Zen Hei", sans-serif',
+  'zh-Hant': 'PMingLiU, "新細明體", MingLiU, "Microsoft JhengHei", "Noto Sans CJK TC", "Noto Sans TC", "WenQuanYi Zen Hei", sans-serif',
+  'ja': '"MS UI Gothic", "Meiryo UI", "Yu Gothic UI", "Noto Sans CJK JP", "Noto Sans JP", sans-serif',
+  'ko': 'Gulim, "Malgun Gothic", "Noto Sans CJK KR", "Noto Sans KR", sans-serif',
+};
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
+
+function fontStack(loc) {
+  const o = $('#font').value.trim();
+  if (o) return o;
+  const tag = loc.bcp47 || 'en';
+  return FONT_STACKS[tag] || FONT_STACKS[tag.split('-')[0]] || FONT_STACKS.en;
+}
+
+// Windows: baseX = (avg width of A-Za-z + 1) / 2 rounding, baseY = tmHeight.
+const baseCache = {};
+function baseUnits(font) {
+  if (baseCache[font]) return baseCache[font];
+  const c = document.createElement('canvas').getContext('2d');
+  c.font = font;
+  const m = c.measureText('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
+  const cx = Math.floor((Math.round(m.width) / 26 + 1) / 2);
+  const asc = m.fontBoundingBoxAscent, desc = m.fontBoundingBoxDescent;
+  const cy = (asc !== undefined) ? Math.round(asc + desc) : Math.round(parseFloat(font) * 1.2);
+  return (baseCache[font] = {x: cx, y: cy});
+}
+
+// ---- text helpers ----
+function mnemonic(text, noprefix) {
+  if (text == null) return '';
+  if (noprefix) return esc(text);
+  let out = '';
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === '&') {
+      if (text[i + 1] === '&') { out += '&amp;'; i++; continue; }
+      if (i + 1 < text.length) { out += '<u>' + esc(text[i + 1]) + '</u>'; i++; continue; }
+      continue;
+    }
+    out += esc(ch);
+  }
+  return out;
+}
+function plain(text) { return (text || '').replace(/&&/g, '\u0000').replace(/&/g, '').replace(/\u0000/g, '&'); }
+function markPh(s) {
+  return esc(s).replace(/(%(?:\d+|l?[sdux])|\[[A-Z_]+\]|\\[0-9\-])/g, '<span class="ph">$1</span>')
+               .replace(/\\n/g, '<span class="nl">\\n</span><br>');
+}
+
+// ---- dialog rendering ----
+function hasStyle(c, f) { return (c.style || []).includes(f); }
+function renderDialog(loc, dlg, opts) {
+  const font = `${Math.round((dlg.font ? dlg.font.size : 9) * 96 / 72)}px ${fontStack(loc)}`;
+  const bu = baseUnits(font);
+  const X = v => Math.round(v * bu.x / 4), Y = v => Math.round(v * bu.y / 8);
+  const win = document.createElement('div');
+  win.className = 'win';
+  win.lang = loc.bcp47 || '';
+  const style = dlg.style || [];
+  const child = style.includes('WS_CHILD');
+  if (!child && style.includes('WS_CAPTION')) {
+    win.insertAdjacentHTML('beforeend', `<div class="title"><span class="t">${esc(dlg.caption || '')}</span><span class="x">✕</span></div>`);
+  } else if (dlg.caption) {
+    win.insertAdjacentHTML('beforeend', `<div class="pagecap" title="Property page title">${esc(dlg.caption)}</div>`);
+  }
+  if (dlg.menu) {
+    const m = loc.menus[dlg.menu] || loc.menus[DATA.menuAlias[dlg.menu]];
+    const bar = m ? m.items.map(it => mnemonic(it.text)).join('&nbsp;&nbsp;&nbsp;') : esc(dlg.menu);
+    win.insertAdjacentHTML('beforeend', `<div class="menubar">${bar}</div>`);
+  }
+  const client = document.createElement('div');
+  client.className = 'client';
+  client.style.width = X(dlg.w) + 'px';
+  client.style.height = Y(dlg.h) + 'px';
+  client.style.font = font;
+  client.style.lineHeight = bu.y + 'px';  // Windows draws lines tmHeight apart
+  win.appendChild(client);
+  for (const c of dlg.controls) {
+    const el = document.createElement('div');
+    const role = c.role;
+    el.className = 'ctl ' + role;
+    el.dataset.pk = c.pk;
+    el.dataset.id = c.id;
+    let h = Y(c.h);
+    if (role === 'combo') h = Math.min(h, Y(14));
+    Object.assign(el.style, {left: X(c.x) + 'px', top: Y(c.y) + 'px', width: X(c.w) + 'px', height: h + 'px'});
+    if (!c.visible) el.classList.add('hidden');
+    if (c.disabled) el.classList.add('disabled');
+    if (hasStyle(c, 'BS_MULTILINE')) el.classList.add('multiline');
+    if (hasStyle(c, 'BS_LEFTTEXT') || hasStyle(c, 'BS_RIGHTBUTTON')) el.classList.add('lefttext');
+    const noprefix = hasStyle(c, 'SS_NOPREFIX');
+    const t = mnemonic(c.text, noprefix);
+    if (role === 'static') {
+      if (c.kind === 'RTEXT' || hasStyle(c, 'SS_RIGHT')) el.classList.add('right');
+      if (c.kind === 'CTEXT' || hasStyle(c, 'SS_CENTER')) el.classList.add('center');
+      if (hasStyle(c, 'SS_LEFTNOWORDWRAP') || hasStyle(c, 'SS_SIMPLE')) el.classList.add('nowrap');
+      if (hasStyle(c, 'SS_CENTERIMAGE')) el.classList.add('vcenter');
+      if (hasStyle(c, 'SS_SUNKEN')) el.classList.add('sunken');
+      el.innerHTML = `<span class="txt">${t}</span>`;
+    } else if (role === 'check' || role === 'radio') {
+      el.innerHTML = `<span class="box"></span><span class="txt">${t}</span>`;
+    } else if (role === 'button' || role === 'defbutton') {
+      el.innerHTML = hasStyle(c, 'BS_ICON') ? '<span>◆</span>' : `<span class="txt">${t}</span>`;
+    } else if (role === 'group') {
+      el.innerHTML = `<span class="txt">${t}</span>`;
+    } else if (role === 'datetime') {
+      const timefmt = hasStyle(c, 'DTS_TIMEFORMAT') || (c.style || []).includes('8');
+      el.innerHTML = `<span class="txt">${timefmt ? '12:34:56' : '2026/10/07'}</span>`;
+      if (!hasStyle(c, 'DTS_UPDOWN')) el.classList.add('dropdown');
+    } else if (role === 'combo') {
+      el.innerHTML = '<span class="txt"></span>';
+    } else if (role === 'listview') {
+      el.innerHTML = (hasStyle(c, 'LVS_REPORT') && !hasStyle(c, 'LVS_NOCOLUMNHEADER') ? '<div class="hdr"></div>' : '') +
+        `<span class="cls">${esc(c.cls || c.kind)}</span>`;
+    } else if (role === 'tab') {
+      el.innerHTML = '<span class="txt">Tab</span>';
+    } else if (role === 'icon') {
+      el.textContent = 'ICON';
+    } else if (role === 'edit' || role === 'listbox') {
+      el.innerHTML = `<span class="cls">${esc(c.kind === 'CONTROL' ? c.cls : c.kind)}</span>`;
+    }
+    el.title = `${c.id}  (${c.kind}${c.cls ? ' ' + c.cls : ''})\n${loc.file}:${c.line}\n` +
+      `x=${c.x} y=${c.y} w=${c.w} h=${c.h}\n${(c.style || []).join(' | ')}` +
+      (c.text != null ? `\n"${c.text}"` : '') + (c.srcText != null && c.srcText !== c.text ? `\nEN: "${c.srcText}"` : '');
+    client.appendChild(el);
+  }
+  return win;
+}
+
+// ---- layout checks ----
+const rectOf = el => ({l: el.offsetLeft, t: el.offsetTop, r: el.offsetLeft + el.offsetWidth, b: el.offsetTop + el.offsetHeight});
+const overlaps = (a, b) => Math.min(a.r, b.r) - Math.max(a.l, b.l) > 1 && Math.min(a.b, b.b) - Math.max(a.t, b.t) > 1;
+const inside = (o, i) => i.l >= o.l - 1 && i.r <= o.r + 1 && i.t >= o.t - 1 && i.b <= o.b + 1;
+const measureCtx = document.createElement('canvas').getContext('2d');
+function naturalWidth(el, t) {
+  measureCtx.font = getComputedStyle(t).font;
+  const text = t.textContent.replace(/\t/g, '    ');
+  return Math.ceil(Math.max(...text.split('\n').map(line => measureCtx.measureText(line).width)));
+}
+function alignOf(el) {
+  return el.classList.contains('right') ? 'right' : el.classList.contains('center') ? 'center' : 'left';
+}
+
+// SSP widens static labels whose text does not fit: left-aligned ones grow to
+// the right, right-aligned ones to the left, centred ones to both sides.
+// Assumed rule: a label whose text already fits its box (wrapping included)
+// is left alone; otherwise it is widened to the single-line text width.
+function applyAutoWidth(win) {
+  for (const el of win.querySelectorAll('.ctl.static')) {
+    if (el.classList.contains('hidden')) continue;
+    const t = el.querySelector('.txt');
+    if (!t || !t.textContent.trim()) continue;
+    el._orig = rectOf(el);
+    if (t.scrollWidth <= t.clientWidth + 1 && t.scrollHeight <= t.clientHeight + 1) continue;
+    const need = naturalWidth(el, t);
+    const w = el.offsetWidth;
+    if (need <= w) continue;
+    const delta = need - w, align = alignOf(el);
+    const left = el.offsetLeft - (align === 'right' ? delta : align === 'center' ? Math.round(delta / 2) : 0);
+    el.style.left = left + 'px';
+    el.style.width = need + 'px';
+    el.classList.add('nowrap', 'widened');
+    el.dataset.widened = delta;
+    const o = document.createElement('div');
+    o.className = 'orig';
+    Object.assign(o.style, {left: (el._orig.l - left - 1) + 'px', width: (el._orig.r - el._orig.l) + 'px'});
+    el.appendChild(o);
+  }
+}
+
+// After the window is in the DOM: detect text that is clipped, or labels that
+// (after SSP's auto-widening) overlap other controls / leave their frame.
+function detectOverflow(win, autoWidth) {
+  if (autoWidth === undefined) autoWidth = $('#auto-width') ? $('#auto-width').checked : true;
+  const out = [];
+  const add = (el, kind, px, other) => {
+    el.classList.add('overflow');
+    if (other) other.classList.add('collide');
+    const t = el.querySelector('.txt');
+    out.push({pk: el.dataset.pk, id: el.dataset.id, text: t ? t.textContent : '', px: Math.round(px), kind,
+              other: other ? other.dataset.id : null, widened: +(el.dataset.widened || 0)});
+  };
+  if (autoWidth) applyAutoWidth(win);
+  const ctls = [...win.querySelectorAll('.ctl')].filter(e => !e.classList.contains('hidden'));
+  for (const el of ctls) {
+    const t = el.querySelector('.txt');
+    if (!t || !t.textContent.trim()) continue;
+    const role = el.classList[1];
+    let over = 0;
+    if (role === 'group') {
+      over = t.scrollWidth - (el.clientWidth - 12);
+    } else if (role === 'check' || role === 'radio' || role === 'button' || role === 'defbutton') {
+      // single line unless BS_MULTILINE; Windows centres and clips vertically
+      const box = role === 'check' || role === 'radio';
+      over = el.classList.contains('multiline')
+        ? t.scrollHeight - el.clientHeight
+        : (box ? t.scrollWidth - t.clientWidth : t.offsetWidth - el.clientWidth);
+    } else if (role === 'static') {
+      over = Math.max(t.scrollWidth - t.clientWidth, t.scrollHeight - t.clientHeight);
+    } else continue;
+    if (over > 1) add(el, 'clipped', over);
+  }
+  // collisions caused by widening
+  const client = win.querySelector('.client');
+  const W = client.clientWidth;
+  const done = new Set();
+  for (const el of ctls) {
+    if (!el.classList.contains('widened')) continue;
+    const exp = rectOf(el), orig = el._orig;
+    if (exp.l < -1 || exp.r > W + 1) {
+      add(el, 'outside', exp.l < 0 ? -exp.l : exp.r - W);
+      continue;
+    }
+    for (const other of ctls) {
+      if (other === el) continue;
+      const oNow = rectOf(other), oOrig = other._orig || oNow;
+      if (other.classList.contains('group')) {
+        if (inside(oOrig, orig) && !inside(oNow, exp)) {
+          add(el, 'frame', Math.max(oNow.l - exp.l, exp.r - oNow.r), other);
+        }
+        continue;
+      }
+      if (overlaps(exp, oNow) && !overlaps(orig, oOrig)) {
+        const key = [el.dataset.pk, other.dataset.pk].sort().join('|');
+        if (done.has(key)) continue;
+        done.add(key);
+        add(el, 'overlap', Math.min(exp.r, oNow.r) - Math.max(exp.l, oNow.l), other);
+      }
+    }
+  }
+  return out;
+}
+
+function issueText(o) {
+  return {clipped: `clipped ~${o.px}px`, overlap: `overlaps ${o.other} (~${o.px}px)`,
+          outside: `leaves dialog (~${o.px}px)`, frame: `crosses group box (~${o.px}px)`}[o.kind] || o.kind;
+}
+
+// ---- menus ----
+function renderMenuItems(items, srcItems) {
+  let h = '';
+  items.forEach((it, i) => {
+    if (it.kind === 'separator') { h += '<div class="sep"></div>'; return; }
+    const parts = (it.text || '').split('\t');
+    const label = '<span class="lb">' + mnemonic(parts[0]) + '</span>';
+    const sc = parts[1] ? `<span class="sc">${esc(parts[1])}</span>` : '';
+    if (it.kind === 'popup') {
+      h += `<div class="mi popup" title="line ${it.line}">${label}</div><div class="sub">${renderMenuItems(it.items)}</div>`;
+    } else {
+      h += `<div class="mi" data-id="${esc(it.id)}" title="${esc(it.id)} — line ${it.line}">${label}${sc}<span class="id">${esc(it.id)}</span></div>`;
+    }
+  });
+  return h;
+}
+
+// ---- views ----
+function selectedLocales() {
+  return [...document.querySelectorAll('#loc-boxes input:checked')].map(i => i.value);
+}
+
+function findingsFor(name, prefixOnly) {
+  const out = [];
+  for (const f of DATA.findings) {
+    const m = f.message;
+    if (m.startsWith(name + ':') || m.startsWith(name + '/') || m.startsWith(name + ' ') ||
+        (!prefixOnly && (m.includes(' ' + name + ' ') || m.includes('"' + name + '"')))) out.push(f);
+  }
+  return out;
+}
+
+function showFindings(list) {
+  const el = $('#findings');
+  if (!list.length) { el.innerHTML = ''; return; }
+  el.innerHTML = '<h3 style="font-size:13px;margin:14px 0 0">i18n_check findings</h3><ul class="findings">' +
+    list.map(f => `<li class="f-${f.level}"><b>${f.level.toUpperCase()}</b> ${esc(f.locale)} ` +
+      `<code>${esc(f.file)}${f.line ? ':' + f.line : ''}</code> [${esc(f.code)}] ${esc(f.message)}</li>`).join('') + '</ul>';
+}
+
+function highlight(pkOrId) {
+  document.querySelectorAll('.hl').forEach(e => e.classList.remove('hl'));
+  if (!pkOrId) return;
+  document.querySelectorAll(`.ctl[data-pk="${CSS.escape(pkOrId)}"], .ctl[data-id="${CSS.escape(pkOrId)}"], ` +
+    `.mi[data-id="${CSS.escape(pkOrId)}"], tr[data-pk="${CSS.escape(pkOrId)}"]`).forEach(e => e.classList.add('hl', 'sel'));
+  document.querySelectorAll('tr.sel').forEach(e => { if (!e.classList.contains('hl')) e.classList.remove('sel'); });
+}
+
+function viewDialog(name, hl) {
+  const stage = $('#stage');
+  stage.innerHTML = '';
+  const locs = selectedLocales();
+  const overflow = {};
+  for (const ln of locs) {
+    const loc = byName[ln];
+    const dlg = loc.dialogs[name];
+    const pane = document.createElement('div');
+    pane.className = 'pane';
+    pane.dataset.loc = ln;
+    if (!dlg) {
+      pane.innerHTML = `<h2>${esc(loc.display)} <span class="sub">${esc(ln)}</span></h2><p class="f-error">${esc(name)} is missing in this locale.</p>`;
+      stage.appendChild(pane); continue;
+    }
+    pane.innerHTML = `<h2>${esc(loc.display)} <span class="sub">${esc(loc.file)}:${dlg.line}</span> <span class="b"></span></h2>`;
+    const holder = document.createElement('div');
+    const win = renderDialog(loc, dlg);
+    holder.appendChild(win);
+    pane.appendChild(holder);
+    stage.appendChild(pane);
+    const ov = detectOverflow(win);  // measure at 1:1, then zoom for display
+    holder.style.zoom = $('#zoom').value;
+    overflow[ln] = ov;
+    pane.querySelector('.b').innerHTML = ov.length ? `<span class="badge">${ov.length} issue(s)</span>` : '<span class="badge ok">fits</span>';
+  }
+  // control table
+  const src = byName[SRC].dialogs[name];
+  const rows = [];
+  const pks = [];
+  const seen = new Set();
+  const addPk = pk => { if (!seen.has(pk)) { seen.add(pk); pks.push(pk); } };
+  if (src) src.controls.forEach(c => addPk(c.pk));
+  for (const ln of locs) { const d = byName[ln].dialogs[name]; if (d) d.controls.forEach(c => addPk(c.pk)); }
+  for (const pk of pks) {
+    const cells = locs.map(ln => {
+      const d = byName[ln].dialogs[name];
+      const c = d && d.controls.find(x => x.pk === pk);
+      if (!c) return '<td class="f-error">— missing —</td>';
+      const flags = [];
+      for (const o of (overflow[ln] || []).filter(o => o.pk === pk)) flags.push(`<span class="f-error">${esc(issueText(o))}</span>`);
+      const wEl = document.querySelector(`#stage .pane[data-loc="${CSS.escape(ln)}"] .ctl[data-pk="${CSS.escape(pk)}"]`);
+      if (wEl && wEl.dataset.widened) flags.push(`<span class="f-info">auto-widened +${wEl.dataset.widened}px</span>`);
+      if (!c.visible) flags.push('<span class="f-info">hidden</span>');
+      if (ln !== SRC && c.srcText != null && c.text === c.srcText && /[A-Za-z]{2,}/.test(c.text || '') && c.translatable) flags.push('<span class="f-info">same as EN</span>');
+      if (c.geoDiff) flags.push('<span class="f-warn">geometry≠EN</span>');
+      return `<td>${c.text != null ? markPh(c.text) : '<span class="f-info">(' + esc(c.role) + ')</span>'}` +
+        `${flags.length ? '<br>' + flags.join(' ') : ''}<br><span class="f-info">:${c.line}</span></td>`;
+    });
+    const any = (src && src.controls.find(x => x.pk === pk)) || locs.map(ln => byName[ln].dialogs[name]).filter(Boolean).map(d => d.controls.find(x => x.pk === pk)).find(Boolean);
+    rows.push(`<tr data-pk="${esc(pk)}"><td><code>${esc(any.id)}</code><br><span class="f-info">${esc(any.role)} ${any.x},${any.y},${any.w},${any.h}</span></td>${cells.join('')}</tr>`);
+  }
+  $('#table').innerHTML = `<table class="rows"><thead><tr><th>Control</th>${locs.map(l => `<th>${esc(byName[l].display)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table>`;
+  $('#table').querySelectorAll('tr[data-pk]').forEach(tr => tr.addEventListener('click', () => highlight(tr.dataset.pk)));
+  stage.querySelectorAll('.ctl').forEach(el => el.addEventListener('click', () => highlight(el.dataset.pk)));
+  showFindings(findingsFor(name, true));
+  const total = Object.values(overflow).reduce((a, b) => a + b.length, 0);
+  $('#meta').innerHTML = `Dialog <code>${esc(name)}</code> — ${src ? src.w + '×' + src.h + ' DLU' : 'not in ' + SRC} — ${total} layout issue(s) in selected locales` +
+    ($('#auto-width').checked ? ' (SSP label auto-width applied; dashed blue = original label box).' : ' (label auto-width off).');
+  window.__result = {target: name, type: 'dialog', overflow};
+  if (hl) highlight(resolvePk(name, hl));
+}
+
+function resolvePk(dlgName, id) {
+  for (const l of LOCS) {
+    const d = l.dialogs[dlgName];
+    const c = d && d.controls.find(x => x.id === id || x.pk === id);
+    if (c) return c.pk;
+  }
+  return id;
+}
+
+function viewMenu(name, hl) {
+  const stage = $('#stage');
+  stage.innerHTML = '';
+  for (const ln of selectedLocales()) {
+    const loc = byName[ln];
+    const m = loc.menus[name];
+    const pane = document.createElement('div');
+    pane.className = 'pane';
+    pane.innerHTML = m ? `<h2>${esc(loc.display)} <span class="sub">${esc(loc.file)}:${m.line}</span></h2><div class="menu" lang="${esc(loc.bcp47)}">${renderMenuItems(m.items)}</div>`
+                       : `<h2>${esc(loc.display)}</h2><p class="f-error">${esc(name)} is missing in this locale.</p>`;
+    stage.appendChild(pane);
+  }
+  stage.querySelectorAll('.mi[data-id]').forEach(el => el.addEventListener('click', () => highlight(el.dataset.id)));
+  $('#table').innerHTML = '';
+  showFindings(findingsFor(name, true));
+  $('#meta').innerHTML = `Menu <code>${esc(name)}</code>. Click an item to highlight the same command ID in every locale.`;
+  window.__result = {target: name, type: 'menu', overflow: {}};
+  if (hl) highlight(hl);
+}
+
+function viewMessages(prefix) {
+  $('#stage').innerHTML = '';
+  const locs = selectedLocales();
+  const keys = [];
+  const seen = new Set();
+  for (const l of [SRC, ...locs]) for (const k of Object.keys(byName[l].messages)) {
+    if ((k === prefix || k.startsWith(prefix)) && !seen.has(k)) { seen.add(k); keys.push(k); }
+  }
+  const rows = keys.map(k => `<tr data-pk="${esc(k)}"><td><code>${esc(k)}</code></td>` + locs.map(l => {
+    const e = byName[l].messages[k];
+    return e ? `<td lang="${esc(byName[l].bcp47)}">${markPh(e.value)}<br><span class="f-info">:${e.line}</span></td>` : '<td class="f-error">— missing —</td>';
+  }).join('') + '</tr>');
+  $('#table').innerHTML = `<table class="rows"><thead><tr><th>Key</th>${locs.map(l => `<th>${esc(byName[l].display)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table>`;
+  showFindings(DATA.findings.filter(f => f.file === 'message.txt' && keys.some(k => f.message.includes('"' + k + '"'))));
+  $('#meta').innerHTML = `message.txt keys matching <code>${esc(prefix)}</code> — ${keys.length} key(s). Placeholders are highlighted; keep them in translations.`;
+  window.__result = {target: prefix, type: 'messages', overflow: {}};
+}
+
+function route() {
+  const h = decodeURIComponent(location.hash.slice(1)) || DATA.initial.target;
+  $('#audit').innerHTML = '';
+  const [name, hl] = h.split('/');
+  const sel = $('#target');
+  if ([...sel.options].some(o => o.value === name)) sel.value = name;
+  if (name.startsWith('msg:')) return viewMessages(name.slice(4));
+  if (byName[SRC].dialogs[name] || LOCS.some(l => l.dialogs[name])) return viewDialog(name, hl);
+  if (byName[SRC].menus[name] || LOCS.some(l => l.menus[name])) return viewMenu(name, hl);
+  $('#stage').innerHTML = `<p class="f-error">Unknown resource ${esc(name)}</p>`;
+}
+
+// Render every dialog off-screen and collect clipped texts.
+function auditAll(locNames) {
+  locNames = locNames || selectedLocales();
+  const box = document.createElement('div');
+  box.style.cssText = 'position:absolute;left:-10000px;top:0';
+  document.body.appendChild(box);
+  const result = [];
+  const names = new Set();
+  LOCS.forEach(l => Object.keys(l.dialogs).forEach(n => names.add(n)));
+  for (const ln of locNames) {
+    const loc = byName[ln];
+    for (const n of names) {
+      const d = loc.dialogs[n];
+      if (!d) continue;
+      box.innerHTML = '';
+      const win = renderDialog(loc, d);
+      box.appendChild(win);
+      for (const o of detectOverflow(win)) {
+        const c = d.controls.find(x => x.pk === o.pk);
+        result.push({locale: ln, dialog: n, id: o.id, line: c ? c.line : null, px: o.px, text: o.text,
+                     kind: o.kind, other: o.other, widened: o.widened});
+      }
+    }
+  }
+  box.remove();
+  return result;
+}
+window.auditAll = auditAll;
+
+function showAudit() {
+  const res = auditAll();
+  $('#audit').innerHTML = `<h3 style="font-size:13px">Audit: ${res.length} layout issue(s)</h3>` +
+    `<table class="rows"><thead><tr><th>Locale</th><th>Dialog / control</th><th>Text</th><th>Issue</th></tr></thead><tbody>` +
+    res.map(r => `<tr><td>${esc(r.locale)}</td><td><a href="#${esc(r.dialog)}/${esc(r.id)}">${esc(r.dialog)}/${esc(r.id)}</a> <span class="f-info">:${r.line}</span></td><td>${esc(r.text)}</td><td>${esc(issueText(r))}</td></tr>`).join('') +
+    '</tbody></table>';
+}
+
+// ---- init ----
+function init() {
+  const sel = $('#target');
+  const src = byName[SRC];
+  const groups = [['Dialogs', Object.keys(src.dialogs)], ['Menus', Object.keys(src.menus)],
+                  ['Messages', DATA.messageGroups.map(g => 'msg:' + g)]];
+  const extra = new Set();
+  LOCS.forEach(l => { Object.keys(l.dialogs).forEach(n => { if (!src.dialogs[n]) extra.add(n); }); Object.keys(l.menus).forEach(n => { if (!src.menus[n]) extra.add(n); }); });
+  if (extra.size) groups.push(['Only in translations', [...extra]]);
+  sel.innerHTML = groups.map(([g, list]) => `<optgroup label="${g}">${list.map(n => `<option value="${esc(n)}">${esc(n)}</option>`).join('')}</optgroup>`).join('');
+  sel.addEventListener('change', () => { location.hash = sel.value; });
+  const boxes = $('#loc-boxes');
+  boxes.innerHTML = LOCS.map(l => `<label><input type="checkbox" value="${esc(l.name)}" ${DATA.initial.locales.includes(l.name) ? 'checked' : ''}>${esc(l.display)}</label>`).join(' ');
+  boxes.addEventListener('change', route);
+  $('#zoom').value = String(DATA.initial.zoom || 1.5);
+  $('#auto-width').checked = DATA.initial.autoWidth !== false;
+  ['#zoom', '#font', '#auto-width'].forEach(s => $(s).addEventListener('change', route));
+  $('#show-hidden').addEventListener('change', e => document.body.classList.toggle('showhidden', e.target.checked));
+  $('#show-grid').addEventListener('change', e => document.body.classList.toggle('grid', e.target.checked));
+  $('#audit-btn').addEventListener('click', showAudit);
+  window.addEventListener('hashchange', route);
+  route();
+  document.body.dataset.ready = '1';
+}
+document.fonts && document.fonts.ready ? document.fonts.ready.then(init) : init();
+</script>
+</body>
+</html>
