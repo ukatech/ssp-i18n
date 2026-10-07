@@ -801,7 +801,7 @@ END
 IDD_NETWORKEXT DIALOGEX 0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Network (2): Network connection configuration"
-FONT 9, "MS Shell Dlg", 0, 0, 0x1
+FONT 9, "MS Shell Dlg"
 BEGIN
     CONTROL         "Auto check",IDC_AUTOHEADLINE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,9,16,56,10
@@ -811,9 +811,9 @@ BEGIN
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,14,9,14
     CONTROL         "Update auto check position when headlines are executed manually",
                     IDC_HEADLINE_COUNT_MANUAL_UPDATE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,9,30,216,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,30,220,10
     EDITTEXT        IDC_HEADLINE_SOUNDPATH,9,55,140,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_HEADLINE_BROWSE,152,55,30,14
+    PUSHBUTTON      "Browse...",IDC_HEADLINE_BROWSE,149,55,33,14
     PUSHBUTTON      "None",IDC_HEADLINE_NONE,184,55,20,14
     PUSHBUTTON      "Play",IDC_HEADLINE_PLAY,206,55,20,14
     CONTROL         "List1",IDC_SSTP_LIST,"SysListView32",LVS_LIST | 
@@ -977,7 +977,7 @@ END
 IDD_SCHEDULE DIALOGEX 0, 0, 403, 310
 STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Schedule"
-FONT 9, "MS Shell Dlg", 0, 0, 0x1
+FONT 9, "MS Shell Dlg"
 BEGIN
     CONTROL         "List1",IDC_SCHEDULE_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
@@ -1018,7 +1018,7 @@ BEGIN
     LTEXT           "Details",IDC_STATIC,121,142,38,8
     LTEXT           "SakuraScript",IDC_STATIC,121,231,62,8
     LTEXT           "Type:",IDC_STATIC,121,107,38,8
-    LTEXT           "Notification sound",IDC_STATIC,121,126,38,8
+    LTEXT           "Sound:",IDC_STATIC,121,126,38,8
     GROUPBOX        "Repeat",IDC_STATIC,121,196,273,29
     CONTROL         "DateTimePicker2",IDC_SCHEDULE_DATE,"SysDateTimePick32",
                     DTS_RIGHTALIGN | WS_TABSTOP,163,38,68,14
@@ -1265,7 +1265,7 @@ BEGIN
     CONTROL         "Change FMO name",IDC_CHANGE_FMO_NAME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,6,79,10
     EDITTEXT        IDC_FMO_NAME,129,4,102,14,ES_AUTOHSCROLL
-    CONTROL         "Create update def. file and/or NAR when directory is dragged && dropped",
+    CONTROL         "Create update def. and/or NAR when directory is dragged && dropped",
                     IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     21,227,10
     CONTROL         "Backup old files when performing a network update",
@@ -1818,7 +1818,7 @@ BEGIN
     COMBOBOX        IDC_SAVESHARE_SERVICE,10,63,215,200,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     EDITTEXT        IDC_SAVESHARE_PATH,10,82,178,14,ES_AUTOHSCROLL
-    PUSHBUTTON      "Browse...",IDC_SAVESHARE_BROWSE,193,82,30,14
+    PUSHBUTTON      "Browse...",IDC_SAVESHARE_BROWSE,189,82,34,14
 END
 
 IDD_GHOSTTERMS DIALOG DISCARDABLE  0, 0, 302, 183

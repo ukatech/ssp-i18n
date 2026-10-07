@@ -49,5 +49,12 @@ jobs:
       - name: md5 chinese-traditional
         uses: Taromati2/ukagaka-mirror-md5-CI-build@v1
         with:
+          no-push: true
           dir-path: ./languages/chinese-traditional
+          build-mode: other
+
+      - name: md5 korean
+        uses: Taromati2/ukagaka-mirror-md5-CI-build@v1
+        with:
+          dir-path: ./languages/korean
           build-mode: other

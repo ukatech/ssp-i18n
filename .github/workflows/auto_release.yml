@@ -34,13 +34,14 @@ jobs:
       - name: build nars
         if: steps.gate.outputs.skip != 'true'
         run: |
-          for locale in english chinese-simplified chinese-traditional; do
+          for locale in english chinese-simplified chinese-traditional korean; do
             rm -f "./languages/${locale}/updates.txt" "./languages/${locale}/md5buildignore.txt"
           done
           cd languages
           7z a -tzip "../english.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "english" "../.nar_icon"
           7z a -tzip "../chinese-simplified.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "chinese-simplified" "../.nar_icon"
           7z a -tzip "../chinese-traditional.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "chinese-traditional" "../.nar_icon"
+          7z a -tzip "../korean.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "korean" "../.nar_icon"
 
       - name: create release
         if: steps.gate.outputs.skip != 'true'
@@ -52,9 +53,11 @@ jobs:
             [English](https://github.com/ukatech/ssp-i18n/releases/download/${{ env.TAG_NAME }}/english.nar)
             [简体中文](https://github.com/ukatech/ssp-i18n/releases/download/${{ env.TAG_NAME }}/chinese-simplified.nar)
             [繁體中文](https://github.com/ukatech/ssp-i18n/releases/download/${{ env.TAG_NAME }}/chinese-traditional.nar)
+            [한국어](https://github.com/ukatech/ssp-i18n/releases/download/${{ env.TAG_NAME }}/korean.nar)
 
             If you encounter issues, try online-updating SSP, ghosts, and language packs first.
           files: |
             english.nar
             chinese-simplified.nar
             chinese-traditional.nar
+            korean.nar

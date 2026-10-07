@@ -38,7 +38,8 @@ NAR_ICON_DIR = '.nar_icon'
 REPO_URL = 'https://github.com/ukatech/ssp-i18n'
 
 # Link labels used in the release notes (auto_release.yml); others use install.txt "name".
-RELEASE_LABELS = {'english': 'English', 'chinese-simplified': '简体中文', 'chinese-traditional': '繁體中文'}
+RELEASE_LABELS = {'english': 'English', 'chinese-simplified': '简体中文', 'chinese-traditional': '繁體中文',
+                  'korean': '한국어'}
 
 
 # ---------------------------------------------------------------------------

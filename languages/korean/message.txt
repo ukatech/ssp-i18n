@@ -1,0 +1,160 @@
+charset,UTF-8
+
+//Error Message
+error.appinit,애플리케이션을 시작하는 중에 오류가 발생했습니다.\n자세한 정보를 얻으려면 '예외 처리기' 설정을 변경하세요.
+error.apprun,실행 중 내부 오류가 발생하여 애플리케이션이 종료되었습니다.\n자세한 정보를 얻으려면 '예외 처리기' 설정을 변경하세요.
+error.cannotshowusagegraph,실행 시간이 부족하여 사용 시간 그래프를 표시할 수 없습니다. 약 1분 후에 다시 시도하세요.
+error.invalidipport,포트 번호가 잘못되었습니다. 1024에서 65535 사이의 숫자를 지정하세요.
+error.sstp.cannotlisten,해당 포트 번호로 연결을 설정하지 못했습니다.\n포트 번호가 올바른지, 다른 애플리케이션이 사용하는 포트 번호와 겹치지 않는지 확인하세요.
+error.nofile,필수 파일 또는 디렉터리를 찾을 수 없습니다.\nSSP를 다시 설치하거나 직접 복구하세요.
+error.browserexec,브라우저를 열지 못했습니다.\n'환경 설정'->'응용 프로그램'->'브라우저' 설정을 확인하세요.
+
+error.tempboot,SSP가 임시 디렉터리에서 시작되고 있습니다.
+error.uacboot,SSP가 UAC로 보호된 디렉터리에서 시작되고 있습니다.
+error.asciiboot,SSP가 문자 인코딩 문제로 접근하지 못할 수 있는 디렉터리에서 시작되고 있습니다.
+error.alreadyrunning,SSP가 이미 실행 중인 것 같습니다.
+error.bootanyway,이 상태에서는 데이터가 손실될 수 있습니다. 그래도 시작하시겠습니까?
+
+//Ask / Info
+info.threadbusy,일부 명령을 처리하는 중입니다.\n몇 분 기다린 후 다시 종료하세요.\n\n강제로 종료하시겠습니까?
+info.compatiblemode,이 고스트는 구 사양 지원이 필요할 수 있습니다.\n구 사양 지원 모드로 전환하시겠습니까?
+info.notinstalled,설치되어 있지 않습니다.\n배포 URL을 여시겠습니까?
+info.delghost,이 고스트를 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.
+info.netconnection,네트워크에 연결되어 있지 않거나, 지정한 연결 금지 시간대입니다.\n연결하시겠습니까?
+info.sstplog,SSTP 로그의 최대 크기를 지정하세요.\n로그 파일이 이 크기를 넘으면 이전 파일이 삭제됩니다.
+info.sstpport,수신할 SSTP 포트 번호를 지정하세요. (0-65535)
+info.serikowait,SERIKO의 'wait' 시간에 몇 퍼센트를 곱하시겠습니까? (100 = 보통)
+info.charset,기본 문자 인코딩을 선택하세요.
+info.vanish,제거 기능이 비활성화되어 있습니다.\n이 설정을 해제한 후 다시 시도하세요.
+info.sender,SHIORI에 전달할 Sender 문자열을 입력하세요\n(Materia: embryo  CROW: crow  기본값: 비움/ssp)
+
+info.install.overwrite,이미 있는 디렉터리에 설치하려고 합니다.\n덮어쓰시겠습니까?
+info.install.overwrite.additional,'예'를 선택하면 덮어씁니다.\n'아니요'를 선택하면 폴더 이름을 자동으로 바꿔 덮어쓰기를 피합니다.
+info.install.refresh.a,이미 있는 디렉터리에 클린(새로 고침) 설치를 하려고 합니다.\n기존 데이터가 사라집니다. 덮어쓰시겠습니까?
+
+info.install.invalidsupplement,올바르지 않은 추가 파일인 것 같습니다.\n그래도 설치하시겠습니까?
+info.install.select,설치 위치를 선택하세요.
+
+info.recommended.g-to-b.change.recommend,고스트가 권장하지 않는 벌룬을 선택했습니다.\n전환하면 고스트가 예상치 못한 동작을 할 수 있습니다.\n그래도 전환하시겠습니까?
+info.recommended.g-to-b.delete.default,다음 고스트가 표준으로 지정한 벌룬 '%2'을(를) 삭제하려고 합니다:\n%1\n그래도 삭제하시겠습니까?
+info.recommended.g-to-b.delete.recommend,다음 고스트가 권장하는 벌룬 '%2'을(를) 삭제하려고 합니다:\n%1\n삭제하면 일부 고스트가 제대로 동작하지 않을 수 있습니다.\n그래도 삭제하시겠습니까?
+
+info.recommended.b-to-g.change.recommend,이 벌룬은 다음 고스트의 권장(전용) 벌룬입니다:\n%1\n다른 고스트에서 이 벌룬을 사용하는 것은 권장하지 않습니다.\n그래도 전환하시겠습니까?
+info.recommended.b-to-g.delete.recommend,벌룬 '%1'이(가) 권장하는 고스트가 모두 삭제되었습니다.\n이 벌룬도 삭제하시겠습니까?
+
+info.toomanyselection,많은 항목을 선택했습니다.\n실행하시겠습니까?
+
+info.errorlog,오류 또는 경고가 있습니다. 클릭하면 오류 로그를 표시합니다.
+info.overwrite,이미 있습니다.\n덮어쓰시겠습니까?
+
+info.developer,나와 계약해서 개발자가 되어 줘!\n이 기능을 켜면 고스트의 중대한 스포일러 등 온갖 일을 각오해야 합니다.\n그래도 사용하시겠습니까?
+
+info.developer.exit,현재 '\- 태그로 닫기 금지' 모드입니다.\n개발 팔레트에서 설정을 변경하여 정상 동작으로 되돌리세요.
+info.developer.update,현재 '업데이트는 확인만' 모드입니다.\n개발 팔레트에서 설정을 변경하여 정상 동작으로 되돌리세요.
+
+info.virtualdesktop,캐릭터가 다른 가상 데스크톱에 표시되었습니다.
+
+info.gcsakura.found,이 고스트는 이미 등록되어 있습니다.
+info.gcsakura.deny,install.txt 또는 robots.txt 설정 때문에 등록이 거부되었습니다.
+info.gcsakura.nohomeurl,필수 항목 'homeurl'이 없습니다. 업데이트할 수 없는 고스트는 등록할 수 없습니다.
+info.gcsakura.nocraftman,craftman, craftmanw 또는 craftmanurl 항목이 없습니다. 제작자 정보가 불완전한 고스트는 등록할 수 없습니다.
+info.gcsakura.disconnect,Ghost Captor Sakura 서버에 연결할 수 없습니다.
+
+info.archivepassword.first,이 압축 파일/NAR은 비밀번호로 보호되어 있습니다.\n비밀번호를 입력하세요.
+info.archivepassword.retry,비밀번호가 틀렸습니다.\n올바른 비밀번호를 입력하세요.
+
+info.developer.testupdate,업데이트 파일 수를 입력하세요.
+
+info.developer.timemachine,'가상 시간 변경 (TimeMachine)' 기능이 켜져 있습니다.\n개발 팔레트에서 정상 동작으로 되돌리세요.
+info.url.ghostboot,열려는 URL에 지정된 고스트를 실행하시겠습니까?
+
+info.shortcut.desktop,바탕 화면에 이 고스트의 바로 가기를 만드시겠습니까?
+info.shortcut.startup,OS가 시작될 때 이 고스트를 자동으로 실행하시겠습니까?
+
+//Resource
+resource.common.yesno,예,아니요
+resource.common.okcancel,확인,취소
+resource.common.addmoddel,추가,수정,삭제
+resource.common.other,기타
+resource.common.menu,메뉴
+resource.common.sameas,이후 모든 항목에 이 선택 적용
+resource.common.dontsayagain,이 메시지를 다시 표시하지 않음
+resource.common.createnew,새로 만들기
+
+resource.listdialoglabel,이름,제작자,경로,그룹,\0 이름,\1 이름,설치일,마지막 업데이트,업데이트 결과
+resource.listdialogfind,찾을 문자열을 입력하세요.
+resource.scriptloglabel,고스트,종류,스크립트
+
+resource.biff.allaccount,모든 계정(&A)
+
+resource.browser.select,웹 브라우저 선택
+resource.mailer.select,메일 프로그램 선택
+resource.editor.select,편집기 선택
+resource.filer.select,파일 관리자 선택
+resource.svn.select,Subversion 실행 파일 선택
+resource.git.select,Git 실행 파일 선택
+
+resource.sound.select,소리 파일
+resource.schedule.date,일정:%d.%d.%d
+resource.rateofuse.menu,고스트 호출,고스트 닫기,고스트를 찾을 수 없음,이 데이터 삭제
+
+resource.setting.balloon.command,아무것도 안 함,왼쪽 클릭과 같음,스크립트 종료,방향 전환,벌룬 위치 변경,메뉴 표시,캐릭터 창 이동
+resource.setting.sstp.boot,실행 안 함,메신저만 (SSTP/1.5),가능한 한 고스트 실행 (IfGhost)
+resource.setting.sstp.close,벌룬이 사라지면 닫기,그대로 두기,닫기 타이머 설정...
+resource.setting.update,다른 클라이언트와 호환,엄격 (SSP 기본값),복구 모드 (모든 파일 확인)
+resource.aboutghost.select,고스트 정보...,셸 정보...,벌룬 정보...
+resource.explorer.select,고스트,셸,벌룬,헤드라인,플러그인
+
+resource.setting.ghostcloseduration,고스트가 닫힐 때까지의 시간
+resource.setting.title,SSP: 설정
+resource.setting.messengerlabel,사용자 이름,주소,포트,그룹
+resource.setting.dirservlabel,서비스,로그온,설명
+resource.setting.ipportlabel,포트,상태
+resource.setting.bifflabel,계정,주소,자동 확인
+
+resource.update.latest,최신 버전을 사용 중입니다. 업데이트할 필요가 없습니다.
+resource.update.exist,새 버전이 있습니다. 다운로드하시겠습니까?
+resource.update.error,SSP 버전을 확인할 수 없습니다.
+
+resource.schedule.type,이벤트,회의,약속,예약,마감,파티,데이트,업무,외출,TV,예약 녹화,CD 발매,게임 발매,비디오/DVD 발매,도서/잡지 발매,기타 발매
+
+resource.archive.initial,압축 창\n여기에 파일이나 폴더를 끌어 놓으면 압축 대기열에 추가됩니다.\n원본 파일은 삭제되거나 변경되지 않습니다.
+resource.archive.extract,압축 해제 창\n여기에서 파일이나 폴더를 자유롭게 끌어서\n압축을 풀 위치에 놓으세요.
+
+//Script
+script.biff.check,메일 확인 중...
+script.biff.result,메일이 도착했습니다.\n%1통, %2바이트.
+script.updatedata.creating,네트워크 업데이트 파일 만드는 중...
+script.updatedata.created,네트워크 업데이트 파일을 만들었습니다.
+script.nar.creating,NAR 만드는 중...
+script.nar.created,NAR을 만들었습니다.
+
+//Messenger
+messenger.info.deluser,선택한 받는 사람을 삭제합니다. 계속하시겠습니까?
+
+//POP
+biff.info.delaccount,선택한 계정을 삭제합니다. 계속하시겠습니까?
+
+//LOG
+log.definedtwice,이(가) 두 번 정의되었습니다.
+log.boundrectempty,경계 사각형이 비어 있습니다.
+log.offset,오프셋 오류.
+log.notfound,을(를) 찾을 수 없습니다.
+log.empty,이(가) 비어 있습니다.
+log.noimage,에 이미지가 없습니다.
+log.invalid,이(가) 잘못되었습니다
+log.typo,이(가) 잘못되었습니다
+log.orphan,은(는) 어디에서도 사용되지 않습니다.
+log.bracebeginnotfound,'{'을(를) 찾을 수 없습니다.
+log.braceendnotfound,'}'을(를) 찾을 수 없습니다.
+log.braceextrachar,'{' 또는 '}' 뒤에 불필요한 문자가 있습니다.
+log.newold,구 정의가 지정되어 있는데 새 정의 방식으로 작성했습니다. 또는 'descript { version,1 }'을 빠뜨렸습니다.
+log.oldnew,새 정의가 지정되어 있는데 구 정의 방식으로 작성했습니다.
+log.invalidalias,별칭(파일 이름)이 잘못되었습니다.
+log.urlslashadd,URL 끝에 '/'를 붙이세요.
+log.deletetxtconflict,은(는) delete.txt에도 있습니다
+log.compatibility,이 정의에 호환성 문제가 있습니다.
+log.moduleerror,통신 오류. 파일이 손상되었습니까?
+log.similar,-- 비슷한 로그 메시지 반복: x
+log.pngpna,이 PNA의 크기가 PNG와 다르거나, PNA가 그레이스케일이 아닙니다: 
+log.lavfilter,LAV Filters ( https://github.com/Nevcairiel/LAVFilters/releases )를 설치하고 SSP를 다시 시작하면 이 문제가 해결될 수 있습니다.

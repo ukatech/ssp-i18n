@@ -4,15 +4,12 @@
 //Language name to display language menu.
 name,Chinese-Traditional
 
-//Locale
-//Japanese
-//Chinese-Simplified
-//Chinese-Traditional
-//English
-//Hangeoul
+//Locale for PLUGIN/2.0 Language Header
+//Japanese, Chinese-Simplified, Chinese-Traditional, English, Hangeoul etc...
 locale,Chinese-Traditional
 
 //Language Identifier.
+//https://www.relief.jp/docs/001403.html
 //1028=Taiwan Chinese 3076=Hong Kong Chinese 2052=Any other Chinese except Singapore
 //1041=Japanese 1042=Korean
 //This id is used for auto-recognition of system language. these ids are categorized by languages.
@@ -29,16 +26,19 @@ messagename,message.txt
 //format is "Year-Month,day day day[CRLF]" Example, 2003-1,1 13
 holidayname,holidays.txt
 
-//Creator. Why using strange English "craftman"? Because for unification of other "descript.txt" format.
+//Creator. Because for unification of other "descript.txt" format,using strange English "craftman".
 craftman,steve02081504 base on SSP CERS
 craftmanurl,https://steve02081504.github.io/
 
 //Network Update URL
-homeurl,https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/chinese-traditional/
+homeurl,https://raw.githubusercontent.com/ukatech/ssp-i18n/main/languages/chinese-traditional/
 
 //Popup menu font name and height
-menu.font.name,²Ó©úÅé
-menu.font.height,12
+//menu.font.name,
+//menu.font.height,
+
+//relative path to the default ghost.
+//defaultghostpath,emily
 
 //Help document URL
 helpurl,http://ssp.shillest.net/ukadoc/ssphelp/

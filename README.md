@@ -9,6 +9,7 @@
 | `languages/english/`             | English             | 1033   |
 | `languages/chinese-simplified/`  | Simplified Chinese  | 2052   |
 | `languages/chinese-traditional/` | Traditional Chinese | 1028   |
+| `languages/korean/`              | Korean              | 1042   |
 
 Each locale directory is a complete SSP language pack. Drag it into SSP or package it as a `.nar` for distribution.
 
@@ -21,7 +22,8 @@ ssp-i18n/
 ├── languages/
 │   ├── english/
 │   ├── chinese-simplified/
-│   └── chinese-traditional/
+│   ├── chinese-traditional/
+│   └── korean/
 ├── scripts/
 │   ├── build-resource.ps1    # Build resource.dll for all or a single locale
 │   └── convert-legacy-rc.ps1 # One-time legacy RC conversion tool (used for zh-CN/zh-TW migration)
@@ -69,7 +71,7 @@ and no browser. See [AGENTS.md](AGENTS.md) for details.
 | `add-language.yml`      | Manual `workflow_dispatch`                              | Uses fount-CI to add a new language based on `languages/english/`                                                        |
 | `rebuild-dll.yml`       | Manual `workflow_dispatch` only                         | Rebuilds `resource.dll` for all locales, regenerates `updates.txt` (`tools/release.py`) and commits both; independent of the other workflows |
 | `md5-CI-build.yml`      | After `sync-translations` completes                     | Rebuilds `resource.dll` and updates the `updates.txt` MD5 manifest for each locale (skipped for `[i18n-manual]` heads)  |
-| `auto_release.yml`      | Tag push                                                | Packages `english.nar`, `chinese-simplified.nar`, `chinese-traditional.nar` and publishes a Release (skipped when the tagged commit contains `[i18n-manual]`) |
+| `auto_release.yml`      | Tag push                                                | Packages `english.nar`, `chinese-simplified.nar`, `chinese-traditional.nar`, `korean.nar` and publishes a Release (skipped when the tagged commit contains `[i18n-manual]`) |
 
 ### fount-CI secrets
 
