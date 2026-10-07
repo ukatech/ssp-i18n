@@ -5,8 +5,9 @@ This repository holds the language packs (UI translations) of
 [fount-CI](https://github.com/steve02081504/fount-CI) (see
 `.github/workflows/sync-translations.yml` and `add-language.yml`). This file
 describes the **same jobs** so that Claude Code, Codex or any other agent
-(or a human) can do them *semi-manually*: the agent does the work, a human
-reviews the result before it is merged.
+(or a human) can do them *semi-manually*: the agent does the work, the
+maintainer or translator reviews it. Work is done by one person at a time,
+directly on `master`/`main` (no branches or pull requests needed).
 
 ### Two modes
 
@@ -22,7 +23,9 @@ In manual mode nothing fixes things up after you push, so every push must
 leave the repository consistent: translations, `resource.dll` and
 `updates.txt` all match. Network update reads straight from the `master`
 branch (see `homeurl`), so a stale `updates.txt` on `master` breaks updates for
-users immediately. Work on a branch and merge only when Job C step 1–3 are done.
+users immediately. **Rule: whenever you push to `master`/`main`, regenerate
+`updates.txt` first** (`python tools/release.py updates`, after `resource.dll` is
+built) so that it matches the pushed files.
 
 > **The existing translations are not a reference implementation.** The current
 > packs (especially the Chinese ones, which were converted from decompiled
@@ -141,12 +144,12 @@ Equivalent of `sync-translations.yml`.
 
 * **On Windows** with Visual C++ Build Tools: `pwsh ./scripts/build-resource.ps1`
   (or `-Locale <folder>`), then commit the changed `languages/*/resource.dll`.
-* **Without Windows** (Linux/macOS/cloud agents): push the branch, then run the
-  **rebuild resource.dll** workflow on that branch (Actions → *rebuild resource.dll* →
-  *Run workflow*, or the GitHub API/`gh workflow run rebuild-dll.yml --ref <branch>`).
-  It commits the DLLs to the branch; because the head you pushed carries
-  `[i18n-manual]`, the md5 job that normally follows is skipped. `git pull` the
-  branch afterwards and continue with Job C.
+* **Without Windows** (Linux/macOS/cloud agents): push your commits (with
+  `[i18n-manual]`, and `updates.txt` regenerated for the text files), then run the
+  **rebuild resource.dll** workflow (Actions → *rebuild resource.dll* → *Run workflow*,
+  or `gh workflow run rebuild-dll.yml`). It commits the DLLs; because the head you
+  pushed carries `[i18n-manual]`, the md5 job that normally follows is skipped.
+  `git pull`, then run Job C steps 2–3 again so `updates.txt` covers the new DLLs.
 
 ## 4. Job B — add a new language
 
@@ -186,10 +189,10 @@ Replaces `md5-CI-build.yml` and `auto_release.yml` for `[i18n-manual]` work.
    `python tools/release.py verify` must print `updates.txt OK`.
    Do this **last**: any later change to a shipped file (including `resource.dll`)
    makes `updates.txt` stale again.
-3. **Commit and push.** `chore(i18n): update network update files [i18n-manual]`.
-   Open a PR for review. When merging, keep `[i18n-manual]` in the resulting head commit
-   message (squash-merge with the marker in the title, or put it in the merge commit
-   message); otherwise the CI-mode workflows run on `master` again.
+3. **Commit and push** to `master`/`main`:
+   `chore(i18n): update network update files [i18n-manual]` (it may be the same commit
+   as the translation; what matters is that the pushed head carries the marker and
+   `updates.txt` matches).
 4. **Release — only when the human asks for it, and after they confirm the tag.**
    The tag is the SSP version the packs correspond to (normally the english
    `FILEVERSION` in `resource.rc`, e.g. `2.8.91.12`); ask if unsure.
@@ -245,4 +248,4 @@ These are what reviewers check; `i18n_check.py` enforces most of them.
 > and give me a per-locale summary. Do not commit until I approve.
 
 > Read AGENTS.md. Manual mode: do Job A for all locales, build resource.dll (§3.1),
-> then Job C steps 1–3 on a branch and open a PR. Do not tag or release until I say so.
+> then Job C steps 1–3 and push to master. Do not tag or release until I say so.
