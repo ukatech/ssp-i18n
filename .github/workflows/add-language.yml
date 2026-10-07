@@ -44,12 +44,15 @@ jobs:
             Steps:
             1. Copy languages/english/ as the template into the new locale folder.
             2. Update descript.txt: name, locale, id (${{ inputs.lang_id }}), and homeurl to
-               https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/${{ inputs.locale_folder }}/
+               https://raw.githubusercontent.com/ukatech/ssp-i18n/main/languages/${{ inputs.locale_folder }}/
             3. Translate message.txt, resource.rc UI strings, surfacetable.txt, and install.txt.
             4. Add md5buildignore.txt (copy from languages/english/).
             5. Add ssp-pictures/ with localized loading images if applicable (reference languages/chinese-simplified/).
             6. Run: pwsh ./scripts/build-resource.ps1 -Locale ${{ inputs.locale_folder }}
             7. Update README.md language list with the new locale.
+            8. Follow the translation rules in AGENTS.md (section 5), then run
+               python tools/i18n_check.py ${{ inputs.locale_folder }}
+               and fix every ERROR it reports.
             Do not modify existing locales except README.md.
           max-steps: '300'
           max-time-seconds: '3600'
