@@ -2,7 +2,7 @@ name: auto md5 update
 
 on:
   workflow_run:
-    workflows: ["sync translations from english", "rebuild resource.dll"]
+    workflows: ["sync translations from english"]
     types: [completed]
   workflow_dispatch:
 

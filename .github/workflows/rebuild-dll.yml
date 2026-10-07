@@ -1,5 +1,9 @@
-name: rebuild resource.dll
+name: rebuild resource.dll and updates.txt
 
+# Manual only, and independent of the other workflows: builds resource.dll for
+# every locale with rc.exe, regenerates updates.txt (tools/release.py) and
+# commits both. Used by the semi-manual procedure in AGENTS.md when the
+# translator has no Windows build tools.
 on:
   workflow_dispatch:
 
@@ -12,7 +16,7 @@ permissions:
 
 jobs:
   rebuild:
-    name: rebuild resource.dll
+    name: rebuild resource.dll and updates.txt
     runs-on: windows-latest
     steps:
       - name: disable auto crlf
@@ -27,15 +31,22 @@ jobs:
         shell: pwsh
         run: ./scripts/build-resource.ps1
 
+      - name: regenerate updates.txt
+        shell: pwsh
+        run: |
+          python tools/release.py updates
+          python tools/release.py verify
+
       - name: commit and push
         shell: pwsh
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- 'languages/*/resource.dll'
-          if (git status --porcelain -- 'languages/*/resource.dll') {
-            git commit -m "chore: rebuild resource.dll"
+          git add -- 'languages/*/resource.dll' 'languages/*/updates.txt'
+          if (git status --porcelain -- 'languages/*/resource.dll' 'languages/*/updates.txt') {
+            # [i18n-manual]: keep the md5 update / auto release away from this commit
+            git commit -m "chore: rebuild resource.dll and updates.txt [i18n-manual]"
             git push
           } else {
-            Write-Host 'No resource.dll changes to commit.'
+            Write-Host 'No resource.dll / updates.txt changes to commit.'
           }

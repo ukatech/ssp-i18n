@@ -15,8 +15,8 @@ directly on `master`/`main` (no branches or pull requests needed).
 | --- | --- | --- |
 | How | push without the marker | the commit message of the pushed head contains `[i18n-manual]` |
 | Translation sync (`sync-translations.yml`) | fount-CI | **skipped** — the agent does Job A |
-| `resource.dll` | CI (`md5-CI-build.yml` builds it) | the agent (§3.1) |
-| `updates.txt` (MD5 list for network update) | CI (`md5-CI-build.yml`, "md5 fix~") | **skipped** — the agent (Job C) |
+| `resource.dll` | CI (`md5-CI-build.yml` builds it) | the agent on Windows, or the manual **rebuild resource.dll and updates.txt** workflow (§3.1) |
+| `updates.txt` (MD5 list for network update) | CI (`md5-CI-build.yml`, "md5 fix~") | **skipped** — the agent (Job C), or the same manual workflow |
 | Release on tag push (`auto_release.yml`) | CI | **skipped** — the agent (Job C) |
 
 In manual mode nothing fixes things up after you push, so every push must
@@ -25,7 +25,8 @@ leave the repository consistent: translations, `resource.dll` and
 branch (see `homeurl`), so a stale `updates.txt` on `master` breaks updates for
 users immediately. **Rule: whenever you push to `master`/`main`, regenerate
 `updates.txt` first** (`python tools/release.py updates`, after `resource.dll` is
-built) so that it matches the pushed files.
+built) so that it matches the pushed files. Without Windows, the manual workflow in
+§3.1 does both right after your push.
 
 > **The existing translations are not a reference implementation.** The current
 > packs (especially the Chinese ones, which were converted from decompiled
@@ -146,10 +147,13 @@ Equivalent of `sync-translations.yml`.
   (or `-Locale <folder>`), then commit the changed `languages/*/resource.dll`.
 * **Without Windows** (Linux/macOS/cloud agents): push your commits (with
   `[i18n-manual]`, and `updates.txt` regenerated for the text files), then run the
-  **rebuild resource.dll** workflow (Actions → *rebuild resource.dll* → *Run workflow*,
-  or `gh workflow run rebuild-dll.yml`). It commits the DLLs; because the head you
-  pushed carries `[i18n-manual]`, the md5 job that normally follows is skipped.
-  `git pull`, then run Job C steps 2–3 again so `updates.txt` covers the new DLLs.
+  **rebuild resource.dll and updates.txt** workflow (`rebuild-dll.yml`; Actions →
+  *Run workflow*, `gh workflow run rebuild-dll.yml`, or the GitHub API). On a
+  Windows runner it builds every `resource.dll` with rc.exe, runs
+  `tools/release.py updates` + `verify`, and commits both as
+  `chore: rebuild resource.dll and updates.txt [i18n-manual]`. It is manual only and
+  does not trigger or get triggered by any other workflow. Wait for it to finish
+  (check that it succeeded), then `git pull` before any further work.
 
 ## 4. Job B — add a new language
 

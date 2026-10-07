@@ -66,8 +66,8 @@ translated texts will still be cut off or run into other controls. See [AGENTS.m
 | ----------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
 | `sync-translations.yml` | Push to `languages/english/**` or `shared/resource_r.h` | [fount-CI](https://github.com/steve02081504/fount-CI) syncs English changes to other locales and rebuilds `resource.dll` (skipped when the head commit message contains `[i18n-manual]`) |
 | `add-language.yml`      | Manual `workflow_dispatch`                              | Uses fount-CI to add a new language based on `languages/english/`                                                        |
-| `rebuild-dll.yml`       | Manual `workflow_dispatch`                              | Rebuilds `resource.dll` for all locales and commits it (then the md5 update runs)                                        |
-| `md5-CI-build.yml`      | After `sync-translations` / `rebuild-dll` complete      | Rebuilds `resource.dll` and updates the `updates.txt` MD5 manifest for each locale (skipped for `[i18n-manual]` heads)  |
+| `rebuild-dll.yml`       | Manual `workflow_dispatch` only                         | Rebuilds `resource.dll` for all locales, regenerates `updates.txt` (`tools/release.py`) and commits both; independent of the other workflows |
+| `md5-CI-build.yml`      | After `sync-translations` completes                     | Rebuilds `resource.dll` and updates the `updates.txt` MD5 manifest for each locale (skipped for `[i18n-manual]` heads)  |
 | `auto_release.yml`      | Tag push                                                | Packages `english.nar`, `chinese-simplified.nar`, `chinese-traditional.nar` and publishes a Release (skipped when the tagged commit contains `[i18n-manual]`) |
 
 ### fount-CI secrets
