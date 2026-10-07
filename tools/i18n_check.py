@@ -120,8 +120,8 @@ def check_files(rep, en, loc):
         if not os.path.exists(os.path.join(loc['dir'], f)):
             rep.add('error', name, f, None, 'file-missing', 'required file is missing')
     for fname, tf in sorted(loc['files'].items()):
-        if tf.decode_error:
-            rep.add('warn' if fname == 'descript.txt' else 'error', name, fname, None, 'encoding', 'not valid UTF-8: %s' % tf.decode_error)
+        if tf.decode_error and fname != 'descript.txt':  # descript.txt: see check_descript
+            rep.add('error', name, fname, None, 'encoding', 'not valid UTF-8: %s' % tf.decode_error)
         if tf.bom:
             rep.add('warn', name, fname, None, 'bom', 'UTF-8 BOM present (english files have none)')
         if tf.crlf_lines and tf.lf_lines:
@@ -135,18 +135,53 @@ def check_files(rep, en, loc):
                 rep.add('warn', name, 'md5buildignore.txt', None, 'md5ignore', 'differs from english/md5buildignore.txt')
 
 
+# charset names seen in SSP files -> Python codecs
+CHARSET_CODECS = {'utf-8': 'utf-8', 'utf8': 'utf-8', 'shift_jis': 'cp932', 'sjis': 'cp932', 'cp932': 'cp932',
+                  'gb2312': 'gbk', 'gbk': 'gbk', 'gb18030': 'gb18030', 'big5': 'cp950', 'euc-kr': 'cp949',
+                  'ks_c_5601-1987': 'cp949', 'ascii': 'ascii', 'us-ascii': 'ascii', 'iso-8859-1': 'latin-1'}
+
+
+def check_descript_encoding(rep, name, raw):
+    """descript.txt: with a charset line every byte must be valid in that
+    charset; without one the file is ASCII (comments may be UTF-8)."""
+    F = 'descript.txt'
+    m = re.search(rb'^charset,[ \t]*([A-Za-z0-9_.\-]+)', raw, re.M)
+    if m:
+        cs = m.group(1).decode('ascii')
+        codec = CHARSET_CODECS.get(cs.lower(), cs)
+        try:
+            raw.decode(codec)
+        except LookupError:
+            rep.add('error', name, F, None, 'descript-charset', 'unknown charset "%s"' % cs)
+        except UnicodeDecodeError as e:
+            line = raw.count(b'\n', 0, e.start) + 1
+            rep.add('error', name, F, line, 'encoding',
+                    'contains bytes that are not valid %s (declared by charset): %s' % (cs, e.reason))
+        return
+    for no, bline in enumerate(raw.split(b'\n'), 1):
+        if all(b < 128 for b in bline):
+            continue
+        if bline.strip().startswith(b'//'):
+            try:
+                bline.decode('utf-8')
+                continue
+            except UnicodeDecodeError:
+                pass
+        try:
+            shown = bline.decode('utf-8').strip()
+        except UnicodeDecodeError:
+            shown = repr(bline.strip())
+        rep.add('error', name, F, no, 'encoding',
+                'non-ASCII text without a charset line: descript.txt must be ASCII '
+                '(or declare charset and use only that encoding): %s' % shown)
+
+
 def check_descript(rep, loc):
     name = loc['name']
     entries = loc['descript.txt'] or []
     tf = loc['files'].get('descript.txt')
     if tf:
-        for no, line in enumerate(tf.text.splitlines(), 1):
-            if line.strip().startswith('//'):
-                continue
-            if any(ord(ch) > 127 for ch in line):
-                rep.add('warn', name, 'descript.txt', no, 'descript-ascii',
-                        'descript.txt should be ASCII-only outside comments (non-ASCII values only work '
-                        'on Windows whose ANSI code page matches)')
+        check_descript_encoding(rep, name, tf.raw)
     d = sspres.kv_dict(entries)
     for key in ('name', 'locale', 'id', 'dllname', 'messagename', 'holidayname', 'homeurl'):
         if key not in d:
@@ -362,7 +397,7 @@ def check_dialog(rep, en, loc, e, r):
             rep.add('warn', name, F, line, 'ctl-geometry',
                     '%s: position/size %s differs from english %s' % (where, _geo(lc), _geo(ec)))
         if ec['id'] not in sspres.HIDDEN_KEY_IDS and sspres.control_visible(ec) != sspres.control_visible(lc):
-            rep.add('warn', name, F, line, 'ctl-visibility',
+            rep.add('error', name, F, line, 'ctl-visibility',
                     '%s: %s here but %s in english (rc.exe adds WS_VISIBLE unless "NOT WS_VISIBLE" is given)'
                     % (where, 'visible' if sspres.control_visible(lc) else 'hidden',
                        'visible' if sspres.control_visible(ec) else 'hidden'))

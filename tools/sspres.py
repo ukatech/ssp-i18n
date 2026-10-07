@@ -30,6 +30,7 @@ class TextFile(object):
 
     def __init__(self, path, data):
         self.path = path
+        self.raw = data
         self.bom = data.startswith(b'\xef\xbb\xbf')
         if self.bom:
             data = data[3:]

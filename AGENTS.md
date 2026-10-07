@@ -8,6 +8,14 @@ describes the **same two jobs** so that Claude Code, Codex or any other agent
 (or a human) can do them *semi-manually*: the agent does the work, a human
 reviews the result before it is merged.
 
+> **The existing translations are not a reference implementation.** The current
+> packs (especially the Chinese ones, which were converted from decompiled
+> resources) still contain bugs: missing resources/keys, controls that lose
+> `NOT WS_VISIBLE`, wrongly encoded `descript.txt`, clipped labels, …
+> The source of truth is always `languages/english/` plus the rules in this file.
+> Do not copy a pattern from another locale just because it is there; treat
+> `i18n_check.py` ERRORs in existing files as bugs to fix, not as a baseline.
+
 Everything below works on Linux/macOS/Windows. Only building `resource.dll`
 needs Windows (Visual C++ `rc.exe` / `link.exe`); CI does that for you.
 
@@ -31,7 +39,7 @@ Files in a locale folder:
 | `resource.rc` | UI strings only | Menus and dialogs. Structure must mirror english. |
 | `surfacetable.txt` | yes | `id,label` lines; same ids as english. |
 | `install.txt` | `name` only | `directory` must equal the folder name; `type,language`. |
-| `descript.txt` | no (fields only) | **ASCII only** outside comments. `id` = Windows LANGID (decimal). `homeurl` ends with `/languages/<folder>/`. |
+| `descript.txt` | no (fields only) | **ASCII only** unless a `charset,…` line is present, and then *every* byte must be valid in that charset. Text in any other encoding (e.g. a GBK font name with no charset line) is a bug. `id` = Windows LANGID (decimal). `homeurl` ends with `/languages/<folder>/`. |
 | `holidays.txt`, `md5buildignore.txt` | no | Copy from english. |
 | `resource.dll`, `updates.txt` | never by hand | Built/updated by CI. |
 | `ssp-pictures/` | optional | Localized loading images (see `chinese-simplified/`). |
@@ -120,7 +128,8 @@ name (e.g. `French`), Windows LANGID in decimal (e.g. `1036`).
    `resource.dll` and `updates.txt` (CI regenerates them).
 2. `descript.txt`: set `name` (ASCII display name), `locale`, `id` (LANGID),
    `homeurl` → `https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/<folder>/`.
-   Keep `craftman`/`craftmanurl` unless told otherwise. ASCII only.
+   Keep `craftman`/`craftmanurl` unless told otherwise. ASCII only (do not copy the
+   GBK/Big5 `menu.font.name` lines of the current Chinese packs — they are a known bug).
 3. `install.txt`: `name,<display name>`, `directory,<folder>`.
 4. Translate `message.txt`, all UI strings in `resource.rc`, `surfacetable.txt`.
    Work dialog by dialog; render each one with `rcview.py` as you go.
@@ -162,8 +171,9 @@ These are what reviewers check; `i18n_check.py` enforces most of them.
 * **Never change** IDs, control types, styles, `FONT`, `MENU`, or the order of controls,
   except to mirror english. Hidden controls (`NOT WS_VISIBLE`) must stay hidden:
   rc.exe adds `WS_VISIBLE` to every control unless `NOT WS_VISIBLE` is written.
-* Terminology: reuse the existing wording of the locale (grep `message.txt` and
-  `resource.rc` of that locale for the english term before inventing a new one).
+* Terminology: keep wording consistent inside a locale (grep `message.txt` and
+  `resource.rc` of that locale for the english term before inventing a new one),
+  but fix existing wording when it is wrong rather than spreading it.
   SSP-specific terms used by the existing Chinese packs: ghost = 人格, shell = 外壳/外殼,
   balloon = 对话框/對話方塊.
 
