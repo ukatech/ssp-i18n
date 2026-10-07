@@ -17,6 +17,9 @@ REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LANG_ROOT = os.path.join(REPO_ROOT, 'languages')
 SOURCE_LOCALE = 'english'
 
+# Network-update URL of a locale (descript.txt "homeurl"): files are served raw from GitHub.
+HOMEURL_FMT = 'https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/%s/'
+
 # Files that carry translatable text (relative to a locale folder).
 TRANSLATABLE_FILES = ('message.txt', 'resource.rc', 'surfacetable.txt', 'install.txt')
 

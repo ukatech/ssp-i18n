@@ -28,6 +28,7 @@ ssp-i18n/
 ├── tools/                    # Cross-platform helpers (Python 3, stdlib only)
 │   ├── i18n_check.py         # Lint locales against english; list english changes since last sync
 │   ├── rcview.py             # Render dialogs/menus/messages side by side as HTML/PNG, detect clipped text
+│   ├── release.py            # updates.txt generation/verification, .nar packaging, release notes
 │   └── sspres.py             # resource.rc / key,value parsers used by both
 ├── AGENTS.md                 # Semi-manual translation procedure for coding agents (Claude Code etc.)
 └── .github/workflows/
@@ -66,8 +67,8 @@ translated texts will still be cut off or run into other controls. See [AGENTS.m
 | `sync-translations.yml` | Push to `languages/english/**` or `shared/resource_r.h` | [fount-CI](https://github.com/steve02081504/fount-CI) syncs English changes to other locales and rebuilds `resource.dll` (skipped when the head commit message contains `[i18n-manual]`) |
 | `add-language.yml`      | Manual `workflow_dispatch`                              | Uses fount-CI to add a new language based on `languages/english/`                                                        |
 | `rebuild-dll.yml`       | Manual `workflow_dispatch`                              | Rebuilds `resource.dll` for all locales and commits it (then the md5 update runs)                                        |
-| `md5-CI-build.yml`      | Any push                                                | Updates the `updates.txt` MD5 manifest for each locale                                                                   |
-| `auto_release.yml`      | Tag push                                                | Packages `english.nar`, `chinese-simplified.nar`, `chinese-traditional.nar` and publishes a Release                      |
+| `md5-CI-build.yml`      | After `sync-translations` / `rebuild-dll` complete      | Rebuilds `resource.dll` and updates the `updates.txt` MD5 manifest for each locale (skipped for `[i18n-manual]` heads)  |
+| `auto_release.yml`      | Tag push                                                | Packages `english.nar`, `chinese-simplified.nar`, `chinese-traditional.nar` and publishes a Release (skipped when the tagged commit contains `[i18n-manual]`) |
 
 ### fount-CI secrets
 
@@ -92,3 +93,7 @@ Configure these in the repository Settings → Secrets:
 ## Release
 
 Push a version tag (e.g. `2.7.76.6`) to trigger `auto_release`. Download the corresponding `.nar` packages from GitHub Releases.
+
+**Manual mode.** When the head commit message contains `[i18n-manual]`, the translation sync, the md5 update and the
+automatic release are all skipped; the agent (or maintainer) builds `resource.dll`, regenerates `updates.txt` with
+`python tools/release.py updates`, and publishes the release with `tools/release.py nar` / `notes`. See [AGENTS.md](AGENTS.md) (Job C).

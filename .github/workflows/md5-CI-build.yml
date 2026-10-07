@@ -13,6 +13,9 @@ concurrency:
 jobs:
   md5build:
     name: auto md5 update
+    # Commits made by the semi-manual procedure in AGENTS.md ([i18n-manual]) carry
+    # their own updates.txt; do not rewrite it.
+    if: ${{ !contains(github.event.workflow_run.head_commit.message, '[i18n-manual]') }}
     runs-on: windows-latest
     steps:
       - name: disable auto crlf

@@ -22,7 +22,8 @@ permissions:
 jobs:
   sync:
     name: fount-CI sync translations
-    # Commits made by the semi-manual procedure in AGENTS.md opt out with [i18n-manual].
+    # Commits made by the semi-manual procedure in AGENTS.md opt out with [i18n-manual]
+    # (the md5 update and the automatic release skip them too).
     if: ${{ !contains(github.event.head_commit.message, '[i18n-manual]') }}
     runs-on: windows-latest
     steps:

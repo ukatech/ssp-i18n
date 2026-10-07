@@ -4,9 +4,25 @@ This repository holds the language packs (UI translations) of
 [SSP](http://ssp.shillest.net/). Translation is normally automated by
 [fount-CI](https://github.com/steve02081504/fount-CI) (see
 `.github/workflows/sync-translations.yml` and `add-language.yml`). This file
-describes the **same two jobs** so that Claude Code, Codex or any other agent
+describes the **same jobs** so that Claude Code, Codex or any other agent
 (or a human) can do them *semi-manually*: the agent does the work, a human
 reviews the result before it is merged.
+
+### Two modes
+
+| | CI mode (default) | Manual mode (`[i18n-manual]`) |
+| --- | --- | --- |
+| How | push without the marker | the commit message of the pushed head contains `[i18n-manual]` |
+| Translation sync (`sync-translations.yml`) | fount-CI | **skipped** — the agent does Job A |
+| `resource.dll` | CI (`md5-CI-build.yml` builds it) | the agent (§3.1) |
+| `updates.txt` (MD5 list for network update) | CI (`md5-CI-build.yml`, "md5 fix~") | **skipped** — the agent (Job C) |
+| Release on tag push (`auto_release.yml`) | CI | **skipped** — the agent (Job C) |
+
+In manual mode nothing fixes things up after you push, so every push must
+leave the repository consistent: translations, `resource.dll` and
+`updates.txt` all match. Network update reads straight from the `master`
+branch (see `homeurl`), so a stale `updates.txt` on `master` breaks updates for
+users immediately. Work on a branch and merge only when Job C step 1–3 are done.
 
 > **The existing translations are not a reference implementation.** The current
 > packs (especially the Chinese ones, which were converted from decompiled
@@ -17,7 +33,7 @@ reviews the result before it is merged.
 > `i18n_check.py` ERRORs in existing files as bugs to fix, not as a baseline.
 
 Everything below works on Linux/macOS/Windows. Only building `resource.dll`
-needs Windows (Visual C++ `rc.exe` / `link.exe`); CI does that for you.
+needs Windows (Visual C++ `rc.exe` / `link.exe`); see §3.1 for agents without it.
 
 ---
 
@@ -39,9 +55,10 @@ Files in a locale folder:
 | `resource.rc` | UI strings only | Menus and dialogs. Structure must mirror english. |
 | `surfacetable.txt` | yes | `id,label` lines; same ids as english. |
 | `install.txt` | `name` only | `directory` must equal the folder name; `type,language`. |
-| `descript.txt` | no (fields only) | **ASCII only** unless a `charset,…` line is present, and then *every* byte must be valid in that charset. Text in any other encoding (e.g. a GBK font name with no charset line) is a bug. `id` = Windows LANGID (decimal). `homeurl` ends with `/languages/<folder>/`. |
+| `descript.txt` | no (fields only) | **ASCII only** unless a `charset,…` line is present, and then *every* byte must be valid in that charset. Text in any other encoding (e.g. a GBK font name with no charset line) is a bug. `id` = Windows LANGID (decimal). `homeurl` must be exactly `https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/<folder>/` (network update downloads the raw files from GitHub). |
 | `holidays.txt`, `md5buildignore.txt` | no | Copy from english. |
-| `resource.dll`, `updates.txt` | never by hand | Built/updated by CI. |
+| `resource.dll` | never by hand | Built from `resource.rc` (§3.1). |
+| `updates.txt` | never by hand | MD5 list for network update. CI writes it, or `python tools/release.py updates` in manual mode. Only `updates.txt` is used (no `updates2.dau`). |
 | `ssp-pictures/` | optional | Localized loading images (see `chinese-simplified/`). |
 
 All text files are UTF-8 **without BOM**. Keep the line-ending style that the
@@ -63,6 +80,11 @@ python tools/rcview.py IDR_SAKURA_MENU         # menu
 python tools/rcview.py info.install            # message.txt keys with that prefix
 python tools/rcview.py IDD_SETUP -l french --png /tmp/setup.png   # screenshot (needs Playwright)
 python tools/rcview.py --audit -l french       # every dialog: clipped / overlapping text (needs Playwright)
+
+python tools/release.py updates [LOCALE ...]   # regenerate updates.txt (same output as the md5 CI)
+python tools/release.py verify  [LOCALE ...]   # updates.txt vs. files; exit 1 on mismatch
+python tools/release.py nar --out dist         # <locale>.nar like auto_release.yml
+python tools/release.py notes <tag>            # release notes body
 ```
 
 * `i18n_check.py` exits with status 1 when it reports an **ERROR**. Errors must
@@ -109,15 +131,22 @@ Equivalent of `sync-translations.yml`.
    * For each dialog/menu you touched: `python tools/rcview.py <ID> --png …`
      (or open the HTML) and look at it. `python tools/rcview.py --audit` must not
      list new problems in the dialogs you touched.
-5. **Build** (Windows only): `pwsh ./scripts/build-resource.ps1`. Otherwise skip;
-   after merge run the **rebuild resource.dll** workflow (it chains the md5 update).
-6. **Commit** only the translated locales (not english, not `resource.dll` unless you
-   built it on Windows). Message: `chore(i18n): sync translations from english update`.
-   If english and translations are pushed together and you do *not* want
-   fount-CI to run again on top, put `[i18n-manual]` in the head commit message
-   (the sync job is skipped; md5/DLL rebuild still runs).
+5. **Commit** only the translated locales (not english).
+   Message: `chore(i18n): sync translations from english update [i18n-manual]`.
+6. **Build `resource.dll` and update `updates.txt`** — Job C steps 1–3.
 7. Hand over to a human: summarize which keys/controls were added or
    retranslated per locale and paste remaining WARN lines with a reason.
+
+### 3.1 Building `resource.dll`
+
+* **On Windows** with Visual C++ Build Tools: `pwsh ./scripts/build-resource.ps1`
+  (or `-Locale <folder>`), then commit the changed `languages/*/resource.dll`.
+* **Without Windows** (Linux/macOS/cloud agents): push the branch, then run the
+  **rebuild resource.dll** workflow on that branch (Actions → *rebuild resource.dll* →
+  *Run workflow*, or the GitHub API/`gh workflow run rebuild-dll.yml --ref <branch>`).
+  It commits the DLLs to the branch; because the head you pushed carries
+  `[i18n-manual]`, the md5 job that normally follows is skipped. `git pull` the
+  branch afterwards and continue with Job C.
 
 ## 4. Job B — add a new language
 
@@ -125,7 +154,7 @@ Equivalent of `add-language.yml`. Inputs: folder name (e.g. `french`), display
 name (e.g. `French`), Windows LANGID in decimal (e.g. `1036`).
 
 1. `cp -r languages/english languages/<folder>` then delete the copied
-   `resource.dll` and `updates.txt` (CI regenerates them).
+   `resource.dll` and `updates.txt` (they are regenerated in step 8).
 2. `descript.txt`: set `name` (ASCII display name), `locale`, `id` (LANGID),
    `homeurl` → `https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/<folder>/`.
    Keep `craftman`/`craftmanurl` unless told otherwise. ASCII only (do not copy the
@@ -138,10 +167,42 @@ name (e.g. `French`), Windows LANGID in decimal (e.g. `1036`).
 7. Add the locale to: README language table; `auto_release.yml` (the `for locale`
    loop, the `7z` lines, release body links and `files:`); `md5-CI-build.yml`
    (one more md5 step — the **last** step is the one without `no-push`).
-   `tools/rcview.py`, `tools/i18n_check.py` and `build-resource.ps1` pick up new folders automatically.
+   `tools/*.py` and `build-resource.ps1` pick up new folders automatically
+   (add a link label to `RELEASE_LABELS` in `tools/release.py` if the install.txt
+   name is not what the release notes should show).
 8. Verify as in Job A step 4 (`python tools/i18n_check.py <folder>` must report no ERROR),
-   build (Windows) or trigger **rebuild resource.dll** after merge.
-9. Commit: `feat(i18n): add <Display name> (<folder>)`. Do not modify other locales.
+   then build `resource.dll` and write `updates.txt` (Job C steps 1–3).
+9. Commit: `feat(i18n): add <Display name> (<folder>) [i18n-manual]`. Do not modify other locales.
+
+## 4b. Job C — network update files and release (manual mode)
+
+Replaces `md5-CI-build.yml` and `auto_release.yml` for `[i18n-manual]` work.
+
+1. **Preconditions.** `python tools/i18n_check.py` reports no ERROR, and every
+   locale whose `resource.rc` changed has a freshly built `resource.dll` (§3.1).
+2. **Update files.** `python tools/release.py updates` rewrites `updates.txt` of every
+   locale whose files changed (output is byte-identical to the md5 CI: files filtered
+   by the locale's `md5buildignore.txt`, fixed date, sorted, CRLF). Then
+   `python tools/release.py verify` must print `updates.txt OK`.
+   Do this **last**: any later change to a shipped file (including `resource.dll`)
+   makes `updates.txt` stale again.
+3. **Commit and push.** `chore(i18n): update network update files [i18n-manual]`.
+   Open a PR for review. When merging, keep `[i18n-manual]` in the resulting head commit
+   message (squash-merge with the marker in the title, or put it in the merge commit
+   message); otherwise the CI-mode workflows run on `master` again.
+4. **Release — only when the human asks for it, and after they confirm the tag.**
+   The tag is the SSP version the packs correspond to (normally the english
+   `FILEVERSION` in `resource.rc`, e.g. `2.8.91.12`); ask if unsure.
+   ```sh
+   git checkout master && git pull          # head commit must contain [i18n-manual]
+   python tools/release.py verify
+   python tools/release.py nar --out dist
+   python tools/release.py notes <tag> > dist/notes.md
+   git tag <tag> && git push origin <tag>   # auto_release.yml sees the marker and does nothing
+   gh release create <tag> dist/*.nar --title <tag> --notes-file dist/notes.md
+   ```
+   Without `gh`, give the human `dist/*.nar` and `dist/notes.md` to upload on the
+   GitHub release page. Check that the release lists one `.nar` per locale.
 
 ## 5. Translation rules
 
@@ -182,3 +243,6 @@ These are what reviewers check; `i18n_check.py` enforces most of them.
 > Read AGENTS.md. Do Job A (sync translations) for all locales. Base revision: auto.
 > Show me the `--changes` list first, then apply, verify with i18n_check and rcview,
 > and give me a per-locale summary. Do not commit until I approve.
+
+> Read AGENTS.md. Manual mode: do Job A for all locales, build resource.dll (§3.1),
+> then Job C steps 1–3 on a branch and open a PR. Do not tag or release until I say so.

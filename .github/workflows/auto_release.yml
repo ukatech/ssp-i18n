@@ -21,7 +21,18 @@ jobs:
       - name: checkout
         uses: actions/checkout@v4
 
+      # Tags on commits made by the semi-manual procedure in AGENTS.md ([i18n-manual])
+      # are released by the agent (tools/release.py); skip the automatic release.
+      - name: check for manual release
+        id: gate
+        run: |
+          if git log -1 --format=%B "$GITHUB_SHA" | grep -qF '[i18n-manual]'; then
+            echo "Manual i18n release: skipping auto release."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: build nars
+        if: steps.gate.outputs.skip != 'true'
         run: |
           for locale in english chinese-simplified chinese-traditional; do
             rm -f "./languages/${locale}/updates.txt" "./languages/${locale}/md5buildignore.txt"
@@ -32,6 +43,7 @@ jobs:
           7z a -tzip "../chinese-traditional.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "chinese-traditional" "../.nar_icon"
 
       - name: create release
+        if: steps.gate.outputs.skip != 'true'
         uses: softprops/action-gh-release@v2
         with:
           tag_name: ${{ github.ref_name }}

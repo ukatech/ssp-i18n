@@ -189,10 +189,10 @@ def check_descript(rep, loc):
     if 'id' in d and not d['id'].value.strip().isdigit():
         rep.add('error', name, 'descript.txt', d['id'].line, 'descript-id', 'id must be a decimal LANGID')
     if 'homeurl' in d:
-        want = '/languages/%s/' % name
-        if not d['homeurl'].value.strip().endswith(want):
+        want = sspres.HOMEURL_FMT % name
+        if d['homeurl'].value.strip() != want:
             rep.add('error', name, 'descript.txt', d['homeurl'].line, 'descript-homeurl',
-                    'homeurl should end with "%s"' % want)
+                    'homeurl must be "%s"' % want)
     if 'dllname' in d and d['dllname'].value.strip() != 'resource.dll':
         rep.add('warn', name, 'descript.txt', d['dllname'].line, 'descript-dll', 'dllname is not resource.dll')
 
@@ -620,6 +620,22 @@ def _flat_str(x):
 # ---------------------------------------------------------------------------
 
 
+def check_updates(rep, loc):
+    """updates.txt must describe the files that are shipped (tools/release.py)."""
+    import release
+    d = loc['dir']
+    path = os.path.join(d, release.UPDATES)
+    if not os.path.exists(path):
+        rep.add('error', loc['name'], release.UPDATES, None, 'updates', 'missing (run: python tools/release.py updates %s)' % loc['name'])
+        return
+    with open(path, 'rb') as f:
+        current = f.read()
+    expected = release.render_updates([release.file_entry(d, r) for r in release.collect_files(d)])
+    if current != expected:
+        rep.add('warn', loc['name'], release.UPDATES, None, 'updates-stale',
+                'does not match the files (run: python tools/release.py updates %s before releasing)' % loc['name'])
+
+
 def run_checks(targets):
     names = sorted(set([sspres.SOURCE_LOCALE] + targets))
     locs = load_all(names)
@@ -629,6 +645,7 @@ def run_checks(targets):
         rep.add('error', en['name'], 'resource.rc', None, 'rc-parse', en['rc_error'])
     check_descript(rep, en)
     check_install(rep, en)
+    check_updates(rep, en)
     for n in targets:
         if n == sspres.SOURCE_LOCALE:
             continue
@@ -636,6 +653,7 @@ def run_checks(targets):
         check_files(rep, en, loc)
         check_descript(rep, loc)
         check_install(rep, loc)
+        check_updates(rep, loc)
         check_kv(rep, en, loc, 'message.txt')
         check_kv(rep, en, loc, 'surfacetable.txt', list_fields=False)
         check_rc(rep, en, loc)
