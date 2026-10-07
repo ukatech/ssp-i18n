@@ -49,7 +49,7 @@ needs Windows (Visual C++ `rc.exe` / `link.exe`); see §3.1 for agents without i
 | `languages/<locale>/` | One complete SSP language pack per folder. |
 | `shared/resource_r.h` | Resource ID header shared by every `resource.rc`. Generated upstream; do not edit. |
 | `scripts/build-resource.ps1` | Builds `resource.dll` (Windows only). |
-| `tools/` | Cross-platform helper tools (Python 3 stdlib only). |
+| `tools/` | Cross-platform helper tools (Python 3 stdlib; `rcview.py` also needs Pillow). |
 
 Files in a locale folder:
 
@@ -82,8 +82,8 @@ python tools/rcview.py IDD_SETUP               # dialog, english + all locales s
 python tools/rcview.py IDC_SPEEDUP             # dialog containing that control, control highlighted
 python tools/rcview.py IDR_SAKURA_MENU         # menu
 python tools/rcview.py info.install            # message.txt keys with that prefix
-python tools/rcview.py IDD_SETUP -l french --png /tmp/setup.png   # screenshot (needs Playwright)
-python tools/rcview.py --audit -l french       # every dialog: clipped / overlapping text (needs Playwright)
+python tools/rcview.py IDD_SETUP -l french --png /tmp/setup.png   # render english + french to a PNG
+python tools/rcview.py --audit -l french       # every dialog: clipped / overlapping text
 
 python tools/release.py updates [LOCALE ...]   # regenerate updates.txt (same output as the md5 CI)
 python tools/release.py verify  [LOCALE ...]   # updates.txt vs. files; exit 1 on mismatch
@@ -93,17 +93,20 @@ python tools/release.py notes <tag>            # release notes body
 
 * `i18n_check.py` exits with status 1 when it reports an **ERROR**. Errors must
   be fixed. **WARN** should be fixed or explained. **INFO** is for review.
-* `rcview.py` writes a self-contained HTML page (open it in any browser; it has
-  a selector for every dialog, menu and message group). It emulates Windows
-  dialog units with local fonts **and SSP's automatic widening of static
-  labels** (left-aligned labels grow to the right, right-aligned to the left,
-  centred to both sides), then flags text that is still clipped, labels that
-  run into another control, cross their group box or leave the dialog.
-  It is an approximation: small (1–3 px) results are noise; check the final
-  result in SSP on Windows when in doubt.
-* `--png` / `--audit` need Playwright (`pip install playwright && playwright install chromium`,
-  or a global `npm i -g playwright`). Agents that can read images should look at
-  the PNG of every dialog they changed.
+* `rcview.py` needs Pillow (`pip install -r tools/requirements.txt`), no browser. It lays out
+  dialogs like Windows (dialog units from the dialog font's base units, lines
+  `tmHeight` apart) with the locale's dialog font (SimSun, PMingLiU, MS UI Gothic,
+  Microsoft Sans Serif, … or a look-alike when that font is not installed; it
+  prints a note then) **and SSP's automatic widening of static labels**
+  (left-aligned labels grow to the right, right-aligned to the left, centred to
+  both sides), then flags text that is still clipped, labels that run into
+  another control, cross their group box or leave the dialog. `--audit` lists
+  these for every dialog, `--png` draws the dialog/menu of each shown locale
+  (`--scale 1` = Windows pixels), and the HTML page (open it in any browser; it
+  has a selector for every dialog, menu and message group) shows the same result.
+  It is a quick check, not a pixel-exact one: small (1–3 px) results are noise and fonts may differ a little; check the final
+  result in SSP on Windows when in doubt. Agents that can read images should
+  look at the PNG of every dialog they changed.
 * `IDC_HELPFILE` controls are hidden keys SSP uses to open the help page; they are
   never shown, are not checked for layout, and their text must stay identical to english.
 

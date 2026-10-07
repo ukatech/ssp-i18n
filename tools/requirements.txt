@@ -1,0 +1,2 @@
+# rcview.py (dialog layout, --audit, --png); the other tools need only the standard library
+pillow>=10.1

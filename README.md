@@ -25,7 +25,7 @@ ssp-i18n/
 ├── scripts/
 │   ├── build-resource.ps1    # Build resource.dll for all or a single locale
 │   └── convert-legacy-rc.ps1 # One-time legacy RC conversion tool (used for zh-CN/zh-TW migration)
-├── tools/                    # Cross-platform helpers (Python 3, stdlib only)
+├── tools/                    # Cross-platform helpers (Python 3; rcview needs Pillow)
 │   ├── i18n_check.py         # Lint locales against english; list english changes since last sync
 │   ├── rcview.py             # Render dialogs/menus/messages side by side as HTML/PNG, detect clipped text
 │   ├── release.py            # updates.txt generation/verification, .nar packaging, release notes
@@ -54,11 +54,12 @@ The script reads the `id` field from each locale's `descript.txt` as the LCID, a
 python tools/i18n_check.py                 # report missing/extra keys, controls, menu items, placeholder and access-key problems
 python tools/i18n_check.py --changes       # english changes since the last translation sync
 python tools/rcview.py IDD_SETUP           # open .rcview/IDD_SETUP.html: english and translations side by side
-python tools/rcview.py --audit             # list clipped/overlapping texts in every dialog (needs Playwright)
+python tools/rcview.py --audit             # list clipped/overlapping texts in every dialog
 ```
 
 `rcview` emulates Windows dialog units and SSP's automatic widening of static labels, so it shows which
-translated texts will still be cut off or run into other controls. See [AGENTS.md](AGENTS.md) for details.
+translated texts will still be cut off or run into other controls. It needs Pillow (`pip install -r tools/requirements.txt`)
+and no browser. See [AGENTS.md](AGENTS.md) for details.
 
 ## CI workflows
 

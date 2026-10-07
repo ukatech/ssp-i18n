@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """Visualize SSP language-pack resources without Windows.
 
-Renders a dialog, menu or message.txt keys of every locale side by side in a
-self-contained HTML page, flags text that will probably be clipped, and can
-save a PNG screenshot (via Playwright, if available).
+Lays out a dialog like Windows does (dialog units, the locale's dialog font,
+SSP's automatic label widening), flags text that will probably be clipped or
+run into another control, and shows it in a self-contained HTML page next to
+english and the other locales. --png renders the dialog or menu to an image
+and --audit checks every dialog. Needs Pillow (pip install pillow); no browser.
 
 Usage:
     python tools/rcview.py IDD_SETUP                    # dialog -> .rcview/IDD_SETUP.html
@@ -12,7 +14,7 @@ Usage:
     python tools/rcview.py SAKURA_MENU_UPDATE           # menu containing a command id
     python tools/rcview.py info.install                 # message.txt keys with this prefix
     python tools/rcview.py IDD_SETUP -l chinese-simplified --png out.png
-    python tools/rcview.py --audit [-l LOCALE]          # list clipped texts in every dialog (needs Playwright)
+    python tools/rcview.py --audit [-l LOCALE]          # list clipped/overlapping texts in every dialog
     python tools/rcview.py --list                       # list dialog/menu IDs
 
 The HTML page has a selector for every resource, so one file is enough to
@@ -22,15 +24,19 @@ browse the whole language pack.
 import argparse
 import json
 import os
-import shutil
-import subprocess
 import sys
-import tempfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import sspres  # noqa: E402
 import i18n_check  # noqa: E402
+
+try:
+    import dlglayout  # noqa: E402
+    import fontbook  # noqa: E402
+    from PIL import Image  # noqa: E402,F401
+except ImportError:
+    sys.exit('rcview.py needs Pillow: pip install pillow')
 
 TEMPLATE = os.path.join(HERE, 'rcview', 'viewer.html')
 DEFAULT_OUT_DIR = os.path.join(sspres.REPO_ROOT, '.rcview')
@@ -41,7 +47,7 @@ DEFAULT_OUT_DIR = os.path.join(sspres.REPO_ROOT, '.rcview')
 # ---------------------------------------------------------------------------
 
 
-def build_data(locale_names, initial_target, initial_locales, zoom, auto_width=True):
+def build_data(locale_names, initial_target, initial_locales, zoom, auto_width=True, font_name=None):
     locs = i18n_check.load_all(locale_names)
     src = locs[sspres.SOURCE_LOCALE]
     src_res = sspres.resources_by_name(src['rc']) if src['rc'] else {}
@@ -52,7 +58,12 @@ def build_data(locale_names, initial_target, initial_locales, zoom, auto_width=T
         dialogs, menus = {}, {}
         for r in rc['resources']:
             if r['type'].startswith('DIALOG'):
-                dialogs[r['name']] = dialog_json(r, src_res.get(r['name']), src, loc)
+                d = dialogs[r['name']] = dialog_json(r, src_res.get(r['name']), src, loc)
+                # layout with and without SSP's label auto-width (the viewer can toggle it)
+                d['layout'] = {
+                    'on': dlglayout.Layout(d, loc['bcp47'], True, font_name).to_json(),
+                    'off': dlglayout.Layout(d, loc['bcp47'], False, font_name).to_json(),
+                }
             elif r['type'].startswith('MENU'):
                 menus[r['name']] = {'line': r['line'], 'items': r['items']}
         messages = {}
@@ -166,95 +177,70 @@ def write_html(data, path):
 
 
 # ---------------------------------------------------------------------------
-# headless browser (optional)
+# audit / PNG
 # ---------------------------------------------------------------------------
 
-NODE_SCRIPT = r"""
-const [html, png, mode] = process.argv.slice(2);
-let pw;
-try { pw = require('playwright'); } catch (e) { pw = require('playwright-core'); }
-(async () => {
-  const opts = {};
-  if (process.env.RCVIEW_CHROMIUM) opts.executablePath = process.env.RCVIEW_CHROMIUM;
-  const browser = await pw.chromium.launch(opts);
-  const page = await browser.newPage({viewport: {width: 1700, height: 1000}, deviceScaleFactor: 1});
-  await page.goto(html);
-  await page.waitForSelector('body[data-ready="1"]', {state: 'attached'});
-  let result;
-  if (mode === 'audit') {
-    result = await page.evaluate(() => window.auditAll());
-  } else {
-    result = await page.evaluate(() => window.__result);
-    if (png) {
-      await page.evaluate(() => { document.body.classList.add('shot'); });
-      const el = await page.$(await page.evaluate(() => document.querySelector('#stage').children.length ? '#stage' : '#table'));
-      await el.screenshot({path: png});
-    }
-  }
-  process.stdout.write(JSON.stringify(result));
-  await browser.close();
-})().catch(e => { console.error(e.message || e); process.exit(2); });
-"""
+
+def audit(data, locale_names, auto_width=True):
+    """Layout issues of every dialog in the given locales."""
+    out = []
+    key = 'on' if auto_width else 'off'
+    for loc in data['locales']:
+        if loc['name'] not in locale_names:
+            continue
+        for dn, d in loc['dialogs'].items():
+            for o in d['layout'][key]['issues']:
+                out.append(dict(o, locale=loc['name'], dialog=dn))
+    return out
 
 
-def run_browser(html, png, mode):
-    """Return the page's result object. Tries Python Playwright, then Node Playwright."""
-    import pathlib
-    uri = pathlib.Path(os.path.abspath(html)).as_uri()
-    try:
-        from playwright.sync_api import sync_playwright  # type: ignore
-    except ImportError:
-        sync_playwright = None
-    if sync_playwright is not None:
-        with sync_playwright() as p:
-            opts = {}
-            if os.environ.get('RCVIEW_CHROMIUM'):
-                opts['executable_path'] = os.environ['RCVIEW_CHROMIUM']
-            browser = p.chromium.launch(**opts)
-            page = browser.new_page(viewport={'width': 1700, 'height': 1000})
-            page.goto(uri)
-            page.wait_for_selector('body[data-ready="1"]', state='attached')
-            if mode == 'audit':
-                res = page.evaluate('() => window.auditAll()')
-            else:
-                res = page.evaluate('() => window.__result')
-                if png:
-                    page.evaluate("() => { document.body.classList.add('shot'); }")
-                    sel = page.evaluate("() => document.querySelector('#stage').children.length ? '#stage' : '#table'")
-                    page.query_selector(sel).screenshot(path=png)
-            browser.close()
-            return res
-    node = shutil.which('node')
-    if not node:
-        raise RuntimeError('Playwright not found. Install it with "pip install playwright && playwright install chromium" '
-                           'or "npm i -g playwright", or open the HTML file in a browser instead.')
-    env = dict(os.environ)
-    npm = shutil.which('npm')
-    if npm:
-        try:
-            root = subprocess.check_output([npm, 'root', '-g'], stderr=subprocess.DEVNULL).decode().strip()
-            env['NODE_PATH'] = os.pathsep.join(filter(None, [env.get('NODE_PATH'), root]))
-        except (subprocess.CalledProcessError, OSError):
-            pass
-    with tempfile.NamedTemporaryFile('w', suffix='.cjs', delete=False) as f:
-        f.write(NODE_SCRIPT)
-        script = f.name
-    try:
-        p = subprocess.run([node, script, uri, png or '', mode], env=env, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    finally:
-        os.unlink(script)
-    if p.returncode != 0:
-        raise RuntimeError('headless browser failed: ' + p.stderr.decode('utf-8', 'replace').strip())
-    return json.loads(p.stdout.decode('utf-8') or 'null')
+def _menubar(data, loc, dlg):
+    if not dlg.get('menu'):
+        return None
+    m = loc['menus'].get(dlg['menu']) or loc['menus'].get(data['menuAlias'].get(str(dlg['menu']), ''))
+    return [it.get('text') or '' for it in m['items']] if m else None
+
+
+def render_png(data, hash_, path, scale=2, auto_width=True, font_name=None, show_hidden=False):
+    """Render the dialog or menu named by hash_ for every locale; return {locale: issues}."""
+    name, _, hl = hash_.partition('/')
+    panes, overflow = [], {}
+    for loc in data['locales']:
+        sub = None
+        if name in loc['dialogs']:
+            d = loc['dialogs'][name]
+            lay = dlglayout.Layout(d, loc['bcp47'], auto_width, font_name)
+            overflow[loc['name']] = lay.issues
+            body = dlglayout.render_dialog(lay, _menubar(data, loc, d), _pk_for(d, hl), show_hidden)
+            n = len(lay.issues)
+            badge = ('%d issue(s)' % n, dlglayout.BAD) if n else ('fits', dlglayout.OK)
+            sub = '%s:%s  %s %dpx' % (loc['file'], d['line'], lay.font.family, lay.px)
+        elif name in loc['menus']:
+            m = loc['menus'][name]
+            body = dlglayout.render_menu(m['items'], loc['bcp47'], hl or None)
+            badge = None
+            sub = '%s:%s' % (loc['file'], m['line'])
+        else:
+            ui = fontbook.ui_font(12)
+            body = Image.new('RGBA', (260, ui.height + 8), dlglayout.PANE_BG + (255,))
+            dlglayout.draw_text_box(body, (0, 4, 260, 4 + ui.height), ui, [(0, '%s is missing in this locale.' % name)],
+                                    color=dlglayout.BAD)
+            badge = None
+        panes.append(dlglayout.pane(body, loc['display'], sub, badge))
+    dlglayout.save_png(dlglayout.compose(panes), path, scale)
+    return overflow
+
+
+def _pk_for(d, ident):
+    """Control pk for a highlight id (IDC_... or pk)."""
+    if not ident:
+        return None
+    c = next((c for c in d['controls'] if c['id'] == ident or c['pk'] == ident), None)
+    return c['pk'] if c else ident
 
 
 def issue_text(o):
-    kind = o.get('kind') or 'clipped'
-    s = {'clipped': 'CLIPPED ~%dpx', 'overlap': 'OVERLAP ~%dpx', 'outside': 'OUTSIDE-DIALOG ~%dpx',
-         'frame': 'CROSSES-GROUPBOX ~%dpx'}.get(kind, kind.upper() + ' ~%dpx') % o['px']
-    if o.get('other'):
-        s += ' with ' + o['other']
-    return s
+    return dlglayout.issue_text(o)
 
 
 # ---------------------------------------------------------------------------
@@ -267,11 +253,14 @@ def main(argv=None):
     ap.add_argument('target', nargs='?', help='IDD_*/IDR_* resource, IDC_*/command id, or message.txt key/prefix (msg:...)')
     ap.add_argument('-l', '--locale', action='append', help='locale(s) to show next to english (default: all)')
     ap.add_argument('-o', '--out', help='output HTML path (default: .rcview/<target>.html)')
-    ap.add_argument('--png', help='also save a PNG screenshot of the rendered view (needs Playwright)')
-    ap.add_argument('--audit', action='store_true', help='report clipped texts in every dialog (needs Playwright)')
+    ap.add_argument('--png', help='also render the dialog or menu of every shown locale to a PNG file')
+    ap.add_argument('--scale', type=float, default=2, help='PNG scale factor (default 2; 1 = Windows pixels)')
+    ap.add_argument('--show-hidden', action='store_true', help='draw hidden controls (dashed) in the PNG')
+    ap.add_argument('--audit', action='store_true', help='report clipped/overlapping texts in every dialog')
     ap.add_argument('--list', action='store_true', help='list dialog and menu ids')
     ap.add_argument('--zoom', type=float, default=1.5, help='initial zoom in the HTML (default 1.5)')
     ap.add_argument('--json', action='store_true', help='print overflow/audit results as JSON')
+    ap.add_argument('--font', help='measure every locale with this font family instead of the locale default')
     ap.add_argument('--no-autowidth', action='store_true',
                     help="don't emulate SSP's automatic widening of static labels")
     args = ap.parse_args(argv)
@@ -295,8 +284,11 @@ def main(argv=None):
 
     if not args.target and not args.audit:
         ap.error('give a target id, --audit or --list')
+    if args.font and not fontbook.find_face(args.font):
+        print('warning: font "%s" is not installed; using fallback fonts' % args.font, file=sys.stderr)
 
-    data = build_data(shown, '', shown, args.zoom, not args.no_autowidth)
+    auto_width = not args.no_autowidth
+    data = build_data(shown, '', shown, args.zoom, auto_width, args.font)
     if args.target:
         hash_, kind = resolve_target(args.target, data['locales'])
         if not hash_:
@@ -308,10 +300,18 @@ def main(argv=None):
     out = args.out or os.path.join(DEFAULT_OUT_DIR, safe + '.html')
     write_html(data, out)
     print('HTML: %s  (%s: %s)' % (os.path.relpath(out), kind, hash_))
+    for loc in data['locales']:
+        f = fontbook.font_for_locale(loc['bcp47'], 12, args.font)
+        if not f.exact:
+            print('note: %s: "%s" is not installed, measured with "%s" (results are less exact)'
+                  % (loc['name'], f.requested[0], f.family), file=sys.stderr)
+        if f.missing:
+            print('note: %s: no installed font has %d of the characters used (e.g. %s); they are measured as '
+                  'full width. Install a CJK font (e.g. Noto Sans CJK) for exact results.'
+                  % (loc['name'], len(f.missing), ''.join(f.missing[:8])), file=sys.stderr)
 
     if args.audit:
-        res = run_browser(out, None, 'audit')
-        res = [r for r in res if r['locale'] in chosen or args.locale is None]
+        res = audit(data, chosen if args.locale else shown, auto_width)
         if args.json:
             print(json.dumps(res, ensure_ascii=False, indent=1))
         else:
@@ -322,9 +322,10 @@ def main(argv=None):
         return 0
 
     if args.png:
-        res = run_browser(out, args.png, 'view')
+        if hash_.startswith('msg:'):
+            sys.exit('--png renders dialogs and menus; open the HTML for message.txt keys')
+        overflow = render_png(data, hash_, args.png, args.scale, auto_width, args.font, args.show_hidden)
         print('PNG:  %s' % args.png)
-        overflow = (res or {}).get('overflow') or {}
         if args.json:
             print(json.dumps(overflow, ensure_ascii=False, indent=1))
         else:
@@ -336,3 +337,5 @@ def main(argv=None):
 
 if __name__ == '__main__':
     sys.exit(main())
+
+

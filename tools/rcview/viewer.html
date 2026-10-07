@@ -57,7 +57,7 @@ main { padding: 12px 16px 48px; }
 .client { position: relative; overflow: hidden; }
 .grid .client { background-image: linear-gradient(rgba(0,0,0,.05) 1px, transparent 1px),
   linear-gradient(90deg, rgba(0,0,0,.05) 1px, transparent 1px); }
-.ctl { position: absolute; color: #000; line-height: normal; }
+.ctl { position: absolute; color: #000; line-height: inherit; }
 .ctl .txt { display: block; width: 100%; height: 100%; overflow: hidden; }
 .ctl.static .txt { white-space: pre-wrap; overflow-wrap: normal; word-break: normal; }
 .ctl.static.nowrap .txt { white-space: pre; }
@@ -130,7 +130,6 @@ table.rows td.flag { white-space: nowrap; }
 table.rows .ph { color: var(--accent); font-weight: 600; }
 table.rows .nl { color: var(--muted); }
 .wrap { overflow-x: auto; }
-.shot header, .shot table.rows th { position: static; }
 .f-error { color: var(--bad); }
 .f-warn { color: var(--warn); }
 .f-info { color: var(--muted); }
@@ -149,7 +148,6 @@ ul.findings { margin: 8px 0 0; padding-left: 18px; }
   <label><input type="checkbox" id="show-hidden"> hidden controls</label>
   <label><input type="checkbox" id="show-grid"> grid</label>
   <label title="Emulate SSP's automatic widening of static labels (left→right, right→left, centre→both)"><input type="checkbox" id="auto-width" checked> SSP label auto-width</label>
-  <label>Font override <input type="text" id="font" placeholder="(locale default)" size="14"></label>
   <button class="tool" id="audit-btn" title="Render every dialog of the selected locales and list text that does not fit">Audit all dialogs</button>
 </header>
 <main>
@@ -158,7 +156,8 @@ ul.findings { margin: 8px 0 0; padding-left: 18px; }
   <div id="findings"></div>
   <div class="wrap" id="table"></div>
   <div id="audit"></div>
-  <p class="hint">Rendering approximates Windows' dialog layout (dialog units from the font's average character width/height) with locally available fonts.
+  <p class="hint">Layout and findings are computed by rcview.py like Windows does (dialog units from the dialog font's average character width / tmHeight,
+  text measured with that font where it is installed); the browser only draws them, so its own text rendering may differ slightly.
   Red outline = text probably clipped, or a label that (after SSP's automatic label widening) overlaps another control,
   crosses its group box or leaves the dialog; orange dashed = the control it runs into. Final check: SSP on Windows.</p>
 </main>
@@ -170,34 +169,16 @@ const SRC = DATA.source;
 const LOCS = DATA.locales;
 const byName = Object.fromEntries(LOCS.map(l => [l.name, l]));
 
-const FONT_STACKS = {
-  'en': '"MS Shell Dlg", "Microsoft Sans Serif", Tahoma, "Liberation Sans", Arial, sans-serif',
-  'zh-Hans': 'SimSun, "宋体", NSimSun, "Microsoft YaHei", "Noto Sans CJK SC", "Noto Sans SC", "WenQuanYi Zen Hei", sans-serif',
-  'zh-Hant': 'PMingLiU, "新細明體", MingLiU, "Microsoft JhengHei", "Noto Sans CJK TC", "Noto Sans TC", "WenQuanYi Zen Hei", sans-serif',
-  'ja': '"MS UI Gothic", "Meiryo UI", "Yu Gothic UI", "Noto Sans CJK JP", "Noto Sans JP", sans-serif',
-  'ko': 'Gulim, "Malgun Gothic", "Noto Sans CJK KR", "Noto Sans KR", sans-serif',
-};
 const $ = s => document.querySelector(s);
 const esc = s => String(s).replace(/[&<>"]/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;'}[c]));
 
-function fontStack(loc) {
-  const o = $('#font').value.trim();
-  if (o) return o;
-  const tag = loc.bcp47 || 'en';
-  return FONT_STACKS[tag] || FONT_STACKS[tag.split('-')[0]] || FONT_STACKS.en;
+// Layout (pixel geometry, label widening, issues) is computed by rcview.py
+// (tools/dlglayout.py) with the locale's dialog font; this page only draws it.
+function layoutOf(dlg) {
+  return dlg.layout[$('#auto-width').checked ? 'on' : 'off'];
 }
-
-// Windows: baseX = (avg width of A-Za-z + 1) / 2 rounding, baseY = tmHeight.
-const baseCache = {};
-function baseUnits(font) {
-  if (baseCache[font]) return baseCache[font];
-  const c = document.createElement('canvas').getContext('2d');
-  c.font = font;
-  const m = c.measureText('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz');
-  const cx = Math.floor((Math.round(m.width) / 26 + 1) / 2);
-  const asc = m.fontBoundingBoxAscent, desc = m.fontBoundingBoxDescent;
-  const cy = (asc !== undefined) ? Math.round(asc + desc) : Math.round(parseFloat(font) * 1.2);
-  return (baseCache[font] = {x: cx, y: cy});
+function cssFont(lay) {
+  return `${lay.px}px ${[lay.font, ...lay.fonts].map(f => '"' + f + '"').join(', ')}, sans-serif`;
 }
 
 // ---- text helpers ----
@@ -224,10 +205,7 @@ function markPh(s) {
 
 // ---- dialog rendering ----
 function hasStyle(c, f) { return (c.style || []).includes(f); }
-function renderDialog(loc, dlg, opts) {
-  const font = `${Math.round((dlg.font ? dlg.font.size : 9) * 96 / 72)}px ${fontStack(loc)}`;
-  const bu = baseUnits(font);
-  const X = v => Math.round(v * bu.x / 4), Y = v => Math.round(v * bu.y / 8);
+function renderDialog(loc, dlg, lay) {
   const win = document.createElement('div');
   win.className = 'win';
   win.lang = loc.bcp47 || '';
@@ -245,10 +223,10 @@ function renderDialog(loc, dlg, opts) {
   }
   const client = document.createElement('div');
   client.className = 'client';
-  client.style.width = X(dlg.w) + 'px';
-  client.style.height = Y(dlg.h) + 'px';
-  client.style.font = font;
-  client.style.lineHeight = bu.y + 'px';  // Windows draws lines tmHeight apart
+  client.style.width = lay.w + 'px';
+  client.style.height = lay.h + 'px';
+  client.style.font = cssFont(lay);
+  client.style.lineHeight = lay.bu[1] + 'px';  // Windows draws lines tmHeight apart
   win.appendChild(client);
   for (const c of dlg.controls) {
     const el = document.createElement('div');
@@ -256,9 +234,9 @@ function renderDialog(loc, dlg, opts) {
     el.className = 'ctl ' + role;
     el.dataset.pk = c.pk;
     el.dataset.id = c.id;
-    let h = Y(c.h);
-    if (role === 'combo') h = Math.min(h, Y(14));
-    Object.assign(el.style, {left: X(c.x) + 'px', top: Y(c.y) + 'px', width: X(c.w) + 'px', height: h + 'px'});
+    const g = lay.ctl[c.pk];
+    const [gl, gt, gw, gh] = g.r;
+    Object.assign(el.style, {left: gl + 'px', top: gt + 'px', width: gw + 'px', height: gh + 'px'});
     if (!c.visible) el.classList.add('hidden');
     if (c.disabled) el.classList.add('disabled');
     if (hasStyle(c, 'BS_MULTILINE')) el.classList.add('multiline');
@@ -297,113 +275,21 @@ function renderDialog(loc, dlg, opts) {
     el.title = `${c.id}  (${c.kind}${c.cls ? ' ' + c.cls : ''})\n${loc.file}:${c.line}\n` +
       `x=${c.x} y=${c.y} w=${c.w} h=${c.h}\n${(c.style || []).join(' | ')}` +
       (c.text != null ? `\n"${c.text}"` : '') + (c.srcText != null && c.srcText !== c.text ? `\nEN: "${c.srcText}"` : '');
+    if (g.wd) {  // SSP widened this label; dashed box = original size
+      el.classList.add('nowrap', 'widened');
+      el.dataset.widened = g.wd;
+      const o = document.createElement('div');
+      o.className = 'orig';
+      Object.assign(o.style, {left: (g.o[0] - gl - 1) + 'px', width: g.o[2] + 'px'});
+      el.appendChild(o);
+    }
     client.appendChild(el);
   }
+  for (const o of lay.issues) {
+    win.querySelectorAll(`.ctl[data-pk="${CSS.escape(o.pk)}"]`).forEach(e => e.classList.add('overflow'));
+    if (o.otherPk) win.querySelectorAll(`.ctl[data-pk="${CSS.escape(o.otherPk)}"]`).forEach(e => e.classList.add('collide'));
+  }
   return win;
-}
-
-// ---- layout checks ----
-const rectOf = el => ({l: el.offsetLeft, t: el.offsetTop, r: el.offsetLeft + el.offsetWidth, b: el.offsetTop + el.offsetHeight});
-const overlaps = (a, b) => Math.min(a.r, b.r) - Math.max(a.l, b.l) > 1 && Math.min(a.b, b.b) - Math.max(a.t, b.t) > 1;
-const inside = (o, i) => i.l >= o.l - 1 && i.r <= o.r + 1 && i.t >= o.t - 1 && i.b <= o.b + 1;
-const measureCtx = document.createElement('canvas').getContext('2d');
-function naturalWidth(el, t) {
-  measureCtx.font = getComputedStyle(t).font;
-  const text = t.textContent.replace(/\t/g, '    ');
-  return Math.ceil(Math.max(...text.split('\n').map(line => measureCtx.measureText(line).width)));
-}
-function alignOf(el) {
-  return el.classList.contains('right') ? 'right' : el.classList.contains('center') ? 'center' : 'left';
-}
-
-// SSP widens static labels whose text does not fit: left-aligned ones grow to
-// the right, right-aligned ones to the left, centred ones to both sides.
-// Assumed rule: a label whose text already fits its box (wrapping included)
-// is left alone; otherwise it is widened to the single-line text width.
-function applyAutoWidth(win) {
-  for (const el of win.querySelectorAll('.ctl.static')) {
-    if (el.classList.contains('hidden')) continue;
-    const t = el.querySelector('.txt');
-    if (!t || !t.textContent.trim()) continue;
-    el._orig = rectOf(el);
-    if (t.scrollWidth <= t.clientWidth + 1 && t.scrollHeight <= t.clientHeight + 1) continue;
-    const need = naturalWidth(el, t);
-    const w = el.offsetWidth;
-    if (need <= w) continue;
-    const delta = need - w, align = alignOf(el);
-    const left = el.offsetLeft - (align === 'right' ? delta : align === 'center' ? Math.round(delta / 2) : 0);
-    el.style.left = left + 'px';
-    el.style.width = need + 'px';
-    el.classList.add('nowrap', 'widened');
-    el.dataset.widened = delta;
-    const o = document.createElement('div');
-    o.className = 'orig';
-    Object.assign(o.style, {left: (el._orig.l - left - 1) + 'px', width: (el._orig.r - el._orig.l) + 'px'});
-    el.appendChild(o);
-  }
-}
-
-// After the window is in the DOM: detect text that is clipped, or labels that
-// (after SSP's auto-widening) overlap other controls / leave their frame.
-function detectOverflow(win, autoWidth) {
-  if (autoWidth === undefined) autoWidth = $('#auto-width') ? $('#auto-width').checked : true;
-  const out = [];
-  const add = (el, kind, px, other) => {
-    el.classList.add('overflow');
-    if (other) other.classList.add('collide');
-    const t = el.querySelector('.txt');
-    out.push({pk: el.dataset.pk, id: el.dataset.id, text: t ? t.textContent : '', px: Math.round(px), kind,
-              other: other ? other.dataset.id : null, widened: +(el.dataset.widened || 0)});
-  };
-  if (autoWidth) applyAutoWidth(win);
-  const ctls = [...win.querySelectorAll('.ctl')].filter(e => !e.classList.contains('hidden'));
-  for (const el of ctls) {
-    const t = el.querySelector('.txt');
-    if (!t || !t.textContent.trim()) continue;
-    const role = el.classList[1];
-    let over = 0;
-    if (role === 'group') {
-      over = t.scrollWidth - (el.clientWidth - 12);
-    } else if (role === 'check' || role === 'radio' || role === 'button' || role === 'defbutton') {
-      // single line unless BS_MULTILINE; Windows centres and clips vertically
-      const box = role === 'check' || role === 'radio';
-      over = el.classList.contains('multiline')
-        ? t.scrollHeight - el.clientHeight
-        : (box ? t.scrollWidth - t.clientWidth : t.offsetWidth - el.clientWidth);
-    } else if (role === 'static') {
-      over = Math.max(t.scrollWidth - t.clientWidth, t.scrollHeight - t.clientHeight);
-    } else continue;
-    if (over > 1) add(el, 'clipped', over);
-  }
-  // collisions caused by widening
-  const client = win.querySelector('.client');
-  const W = client.clientWidth;
-  const done = new Set();
-  for (const el of ctls) {
-    if (!el.classList.contains('widened')) continue;
-    const exp = rectOf(el), orig = el._orig;
-    if (exp.l < -1 || exp.r > W + 1) {
-      add(el, 'outside', exp.l < 0 ? -exp.l : exp.r - W);
-      continue;
-    }
-    for (const other of ctls) {
-      if (other === el) continue;
-      const oNow = rectOf(other), oOrig = other._orig || oNow;
-      if (other.classList.contains('group')) {
-        if (inside(oOrig, orig) && !inside(oNow, exp)) {
-          add(el, 'frame', Math.max(oNow.l - exp.l, exp.r - oNow.r), other);
-        }
-        continue;
-      }
-      if (overlaps(exp, oNow) && !overlaps(orig, oOrig)) {
-        const key = [el.dataset.pk, other.dataset.pk].sort().join('|');
-        if (done.has(key)) continue;
-        done.add(key);
-        add(el, 'overlap', Math.min(exp.r, oNow.r) - Math.max(exp.l, oNow.l), other);
-      }
-    }
-  }
-  return out;
 }
 
 function issueText(o) {
@@ -474,13 +360,16 @@ function viewDialog(name, hl) {
       pane.innerHTML = `<h2>${esc(loc.display)} <span class="sub">${esc(ln)}</span></h2><p class="f-error">${esc(name)} is missing in this locale.</p>`;
       stage.appendChild(pane); continue;
     }
-    pane.innerHTML = `<h2>${esc(loc.display)} <span class="sub">${esc(loc.file)}:${dlg.line}</span> <span class="b"></span></h2>`;
+    const lay = layoutOf(dlg);
+    const fontNote = lay.exact ? `${esc(lay.font)} ${lay.px}px`
+      : `<span class="f-warn" title="${esc(lay.fonts[0])} is not installed where rcview.py ran">${esc(lay.font)} ${lay.px}px (≠ ${esc(lay.fonts[0])})</span>`;
+    pane.innerHTML = `<h2>${esc(loc.display)} <span class="sub">${esc(loc.file)}:${dlg.line} · ${fontNote}</span> <span class="b"></span></h2>`;
     const holder = document.createElement('div');
-    const win = renderDialog(loc, dlg);
+    const win = renderDialog(loc, dlg, lay);
     holder.appendChild(win);
     pane.appendChild(holder);
     stage.appendChild(pane);
-    const ov = detectOverflow(win);  // measure at 1:1, then zoom for display
+    const ov = lay.issues;
     holder.style.zoom = $('#zoom').value;
     overflow[ln] = ov;
     pane.querySelector('.b').innerHTML = ov.length ? `<span class="badge">${ov.length} issue(s)</span>` : '<span class="badge ok">fits</span>';
@@ -518,7 +407,6 @@ function viewDialog(name, hl) {
   const total = Object.values(overflow).reduce((a, b) => a + b.length, 0);
   $('#meta').innerHTML = `Dialog <code>${esc(name)}</code> — ${src ? src.w + '×' + src.h + ' DLU' : 'not in ' + SRC} — ${total} layout issue(s) in selected locales` +
     ($('#auto-width').checked ? ' (SSP label auto-width applied; dashed blue = original label box).' : ' (label auto-width off).');
-  window.__result = {target: name, type: 'dialog', overflow};
   if (hl) highlight(resolvePk(name, hl));
 }
 
@@ -547,7 +435,6 @@ function viewMenu(name, hl) {
   $('#table').innerHTML = '';
   showFindings(findingsFor(name, true));
   $('#meta').innerHTML = `Menu <code>${esc(name)}</code>. Click an item to highlight the same command ID in every locale.`;
-  window.__result = {target: name, type: 'menu', overflow: {}};
   if (hl) highlight(hl);
 }
 
@@ -566,7 +453,6 @@ function viewMessages(prefix) {
   $('#table').innerHTML = `<table class="rows"><thead><tr><th>Key</th>${locs.map(l => `<th>${esc(byName[l].display)}</th>`).join('')}</tr></thead><tbody>${rows.join('')}</tbody></table>`;
   showFindings(DATA.findings.filter(f => f.file === 'message.txt' && keys.some(k => f.message.includes('"' + k + '"'))));
   $('#meta').innerHTML = `message.txt keys matching <code>${esc(prefix)}</code> — ${keys.length} key(s). Placeholders are highlighted; keep them in translations.`;
-  window.__result = {target: prefix, type: 'messages', overflow: {}};
 }
 
 function route() {
@@ -581,34 +467,16 @@ function route() {
   $('#stage').innerHTML = `<p class="f-error">Unknown resource ${esc(name)}</p>`;
 }
 
-// Render every dialog off-screen and collect clipped texts.
-function auditAll(locNames) {
-  locNames = locNames || selectedLocales();
-  const box = document.createElement('div');
-  box.style.cssText = 'position:absolute;left:-10000px;top:0';
-  document.body.appendChild(box);
+// Layout issues of every dialog in the selected locales (same as rcview.py --audit).
+function auditAll() {
   const result = [];
-  const names = new Set();
-  LOCS.forEach(l => Object.keys(l.dialogs).forEach(n => names.add(n)));
-  for (const ln of locNames) {
-    const loc = byName[ln];
-    for (const n of names) {
-      const d = loc.dialogs[n];
-      if (!d) continue;
-      box.innerHTML = '';
-      const win = renderDialog(loc, d);
-      box.appendChild(win);
-      for (const o of detectOverflow(win)) {
-        const c = d.controls.find(x => x.pk === o.pk);
-        result.push({locale: ln, dialog: n, id: o.id, line: c ? c.line : null, px: o.px, text: o.text,
-                     kind: o.kind, other: o.other, widened: o.widened});
-      }
+  for (const ln of selectedLocales()) {
+    for (const [n, d] of Object.entries(byName[ln].dialogs)) {
+      for (const o of layoutOf(d).issues) result.push({...o, locale: ln, dialog: n});
     }
   }
-  box.remove();
   return result;
 }
-window.auditAll = auditAll;
 
 function showAudit() {
   const res = auditAll();
@@ -634,15 +502,14 @@ function init() {
   boxes.addEventListener('change', route);
   $('#zoom').value = String(DATA.initial.zoom || 1.5);
   $('#auto-width').checked = DATA.initial.autoWidth !== false;
-  ['#zoom', '#font', '#auto-width'].forEach(s => $(s).addEventListener('change', route));
+  ['#zoom', '#auto-width'].forEach(s => $(s).addEventListener('change', route));
   $('#show-hidden').addEventListener('change', e => document.body.classList.toggle('showhidden', e.target.checked));
   $('#show-grid').addEventListener('change', e => document.body.classList.toggle('grid', e.target.checked));
   $('#audit-btn').addEventListener('click', showAudit);
   window.addEventListener('hashchange', route);
   route();
-  document.body.dataset.ready = '1';
 }
-document.fonts && document.fonts.ready ? document.fonts.ready.then(init) : init();
+init();
 </script>
 </body>
 </html>
