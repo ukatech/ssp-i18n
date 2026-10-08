@@ -32,8 +32,9 @@ import sspres  # noqa: E402
 UPDATES = 'updates.txt'
 IGNORE_FILE = 'md5buildignore.txt'
 FIXED_DATE = '2012-12-21T00:00:00'
-# Removed from the folder before packing in auto_release.yml.
-NAR_EXCLUDE = {'updates.txt', 'md5buildignore.txt'}
+# Removed from the folder before packing in auto_release.yml. The .nar otherwise holds the
+# same files as updates.txt (md5buildignore.txt filter), so ssp-pictures/ is included.
+NAR_EXCLUDE = {'updates.txt', 'md5buildignore.txt', 'resource.rc'}
 NAR_ICON_DIR = '.nar_icon'
 REPO_URL = 'https://github.com/ukatech/ssp-i18n'
 
@@ -222,11 +223,10 @@ def cmd_nar(args):
     for name, d in locale_dirs(args.locales):
         nar = os.path.join(out_dir, name + '.nar')
         files = []
-        for p in tracked_files('languages/%s' % name):
-            arc = p[len('languages/'):]
-            if os.path.basename(arc) in NAR_EXCLUDE and arc.count('/') == 1:
+        for rel in collect_files(d):
+            if rel in NAR_EXCLUDE:
                 continue
-            files.append((os.path.join(sspres.REPO_ROOT, p), arc))
+            files.append((os.path.join(d, rel), name + '/' + rel))
         for p in tracked_files(NAR_ICON_DIR):
             files.append((os.path.join(sspres.REPO_ROOT, p), p))
         if os.path.exists(nar):

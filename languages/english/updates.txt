@@ -4,4 +4,8 @@ file,holidays.txt0a54f31f921f752cdc33ab4474929ec1size=464date=2012-12-21T00:0
 file,install.txt13bcb594d762863e7639bc87b5b7cfabsize=45date=2012-12-21T00:00:00
 file,message.txt7e1fd9d523d264cd2574e8bd5ff2d262size=10178date=2012-12-21T00:00:00
 file,resource.dllac01697ec84b8549c0fe28859d168d85size=69632date=2012-12-21T00:00:00
+file,ssp-pictures/nowloading.png083db8b788b257e2042c00c8e7b71230size=2531date=2012-12-21T00:00:00
+file,ssp-pictures/nowloading_dark.png4403d913bf830f9aebd84017345e568csize=1902date=2012-12-21T00:00:00
+file,ssp-pictures/realize.png9c56cf0bce766a08778ad813c8780499size=2245date=2012-12-21T00:00:00
+file,ssp-pictures/realize_dark.png5f422af409f0ea61d1a86f7163b6f3e9size=1819date=2012-12-21T00:00:00
 file,surfacetable.txt5a9743ec7ba58c2b09e043c6c1e89e43size=206date=2012-12-21T00:00:00

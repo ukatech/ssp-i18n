@@ -29,6 +29,7 @@ ssp-i18n/
 │   └── convert-legacy-rc.ps1 # One-time legacy RC conversion tool (used for zh-CN/zh-TW migration)
 ├── tools/                    # Cross-platform helpers (Python 3; rcview needs Pillow)
 │   ├── i18n_check.py         # Lint locales against english; list english changes since last sync
+│   ├── make_pictures.py      # Generate localized ssp-pictures/ images from the english ones
 │   ├── rcview.py             # Render dialogs/menus/messages side by side as HTML/PNG, detect clipped text
 │   ├── release.py            # updates.txt generation/verification, .nar packaging, release notes
 │   └── sspres.py             # resource.rc / key,value parsers used by both

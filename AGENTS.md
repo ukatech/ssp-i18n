@@ -63,7 +63,7 @@ Files in a locale folder:
 | `holidays.txt`, `md5buildignore.txt` | no | Copy from english. |
 | `resource.dll` | never by hand | Built from `resource.rc` (§3.1). |
 | `updates.txt` | never by hand | MD5 list for network update. CI writes it, or `python tools/release.py updates` in manual mode. Only `updates.txt` is used (no `updates2.dau`). |
-| `ssp-pictures/` | optional | Localized loading images (see `chinese-simplified/`). |
+| `ssp-pictures/` | optional | Localized loading images: `nowloading.png`, `realize.png` and their `_dark` variants, same size as english (see `chinese-simplified/`). Shipped in the `.nar` and `updates.txt`. |
 
 All text files are UTF-8 **without BOM**. Keep the line-ending style that the
 file already uses (the Chinese `resource.rc` files use CRLF; english uses LF).
@@ -87,8 +87,10 @@ python tools/rcview.py --audit -l french       # every dialog: clipped / overlap
 
 python tools/release.py updates [LOCALE ...]   # regenerate updates.txt (same output as the md5 CI)
 python tools/release.py verify  [LOCALE ...]   # updates.txt vs. files; exit 1 on mismatch
-python tools/release.py nar --out dist         # <locale>.nar like auto_release.yml
+python tools/release.py nar --out dist         # <locale>.nar like auto_release.yml (updates.txt file set, no resource.rc)
 python tools/release.py notes <tag>            # release notes body
+
+python tools/make_pictures.py [LOCALE ...]     # localized ssp-pictures/ from english (texts/fonts in the script)
 ```
 
 * `i18n_check.py` exits with status 1 when it reports an **ERROR**. Errors must
@@ -173,7 +175,8 @@ name (e.g. `French`), Windows LANGID in decimal (e.g. `1036`).
 4. Translate `message.txt`, all UI strings in `resource.rc`, `surfacetable.txt`.
    Work dialog by dialog; render each one with `rcview.py` as you go.
 5. `md5buildignore.txt`, `holidays.txt`: keep the english copies.
-6. Optional `ssp-pictures/` with localized loading images (see `chinese-simplified/`).
+6. Optional `ssp-pictures/` with localized loading images: add the locale to `LOCALES` in
+   `tools/make_pictures.py`, run it and look at the four PNGs.
 7. Add the locale to: README language table; `auto_release.yml` (the `for locale`
    loop, the `7z` lines, release body links and `files:`); `md5-CI-build.yml`
    (one more md5 step — the **last** step is the one without `no-push`).

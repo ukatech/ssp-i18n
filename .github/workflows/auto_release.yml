@@ -35,7 +35,7 @@ jobs:
         if: steps.gate.outputs.skip != 'true'
         run: |
           for locale in english chinese-simplified chinese-traditional korean; do
-            rm -f "./languages/${locale}/updates.txt" "./languages/${locale}/md5buildignore.txt"
+            rm -f "./languages/${locale}/updates.txt" "./languages/${locale}/md5buildignore.txt" "./languages/${locale}/resource.rc"
           done
           cd languages
           7z a -tzip "../english.nar" -mx=9 -mmt -mm=LZMA -md=1536m -mfb=273 -mtc=off "english" "../.nar_icon"
