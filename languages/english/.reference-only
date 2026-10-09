@@ -1,0 +1,29 @@
+################################################################
+#  DO NOT EDIT / DO NOT TRANSLATE THIS FOLDER                  #
+#  ここは編集禁止・翻訳対象外です                              #
+################################################################
+
+languages/english/ is SOURCE TEXT, not a translation target.
+Together with languages/japanese/ it is one of the two source
+languages that every other language pack is translated from.
+
+  * Do not edit, translate, sync or "fix" anything here as part
+    of a translation job. Source text changes are made by the
+    maintainer only.
+  * Do not copy this file into a new language pack
+    (delete it after `cp -r languages/english ...`).
+
+このフォルダは翻訳元の原文であり、翻訳対象ではありません。
+languages/japanese/ と並ぶ、他言語パックの翻訳元(2つの原文)の一つです。
+
+  * 翻訳作業の一環としての編集・翻訳・同期・「修正」は一切しないで
+    ください。原文の変更はメンテナのみが行います。
+  * このファイルを新しい言語パックへコピーしないでください
+    (`cp -r languages/english ...` の後に削除すること)。
+
+----------------------------------------------------------------
+Folders containing this file are not translation targets for the
+tools in tools/ (only its existence matters; content is ignored).
+This file is not shipped (see md5buildignore.txt).
+このファイルが存在するフォルダはツール上の翻訳対象外になります
+(内容は無視)。このファイルは配布物に含まれません。

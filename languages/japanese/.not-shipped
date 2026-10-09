@@ -1,0 +1,23 @@
+################################################################
+#  NOT SHIPPED: never build / never release this folder        #
+#  ここはビルド・配布しません                                  #
+################################################################
+
+languages/japanese/ is not a language pack. It has no
+install.txt / surfacetable.txt and is not kept structurally in
+sync with languages/english/. Therefore:
+
+  * No resource.dll is built (scripts/build-resource.ps1 skips it).
+  * It is not listed in updates.txt (tools/release.py skips it).
+  * No .nar is released (auto_release.yml lists locales explicitly;
+    never add this folder there).
+  * tools/i18n_check.py does not lint it.
+
+このフォルダは言語パックではありません(install.txt / surfacetable.txt
+が無く、構造も english と同期されていません)。そのため、
+resource.dll のビルド、updates.txt への掲載、.nar リリース、
+i18n_check による lint のいずれも行いません。
+
+----------------------------------------------------------------
+Only the existence of this file matters; content is ignored.
+このファイルの「存在」がツールの除外条件です(内容は無視されます)。

@@ -16,6 +16,12 @@ import re
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LANG_ROOT = os.path.join(REPO_ROOT, 'languages')
 SOURCE_LOCALE = 'english'
+# Marker files (only their existence matters; their content is a notice for humans):
+#   .reference-only  source text (english, japanese): not a translation target, never edited by
+#                    the translation jobs.
+#   .not-shipped     never built, never listed in updates.txt, never released (japanese).
+REFERENCE_MARKER = '.reference-only'
+UNSHIPPED_MARKER = '.not-shipped'
 
 # Network-update URL of a locale (descript.txt "homeurl"): files are served raw from GitHub.
 HOMEURL_FMT = 'https://raw.githubusercontent.com/ukatech/ssp-i18n/main/languages/%s/'
@@ -685,13 +691,35 @@ def is_translatable_control(c):
 # ---------------------------------------------------------------------------
 
 
-def list_locales(root=None):
+def _locale_dir(name_or_dir, root=None):
+    return name_or_dir if os.path.isdir(name_or_dir) else os.path.join(root or LANG_ROOT, name_or_dir)
+
+
+def is_reference_locale(name_or_dir, root=None):
+    """Source text (english, japanese): consulted by translators, never a translation target."""
+    return os.path.isfile(os.path.join(_locale_dir(name_or_dir, root), REFERENCE_MARKER))
+
+
+def is_unshipped_locale(name_or_dir, root=None):
+    return os.path.isfile(os.path.join(_locale_dir(name_or_dir, root), UNSHIPPED_MARKER))
+
+
+def list_locales(root=None, include_unshipped=False):
+    """Locale folders that are shipped (english + the language packs); japanese is skipped."""
     root = root or LANG_ROOT
     out = []
     for name in sorted(os.listdir(root)):
-        if os.path.isfile(os.path.join(root, name, 'descript.txt')):
-            out.append(name)
+        if not os.path.isfile(os.path.join(root, name, 'descript.txt')):
+            continue
+        if not include_unshipped and is_unshipped_locale(name, root):
+            continue
+        out.append(name)
     return out
+
+
+def list_translation_targets(root=None):
+    """Shipped locales that are translations (no .reference-only)."""
+    return [n for n in list_locales(root) if not is_reference_locale(n, root)]
 
 
 def load_locale(name_or_dir, overrides=None):

@@ -41,14 +41,17 @@ jobs:
         uses: steve02081504/fount-CI@master
         with:
           task: |
-            languages/english/ is the source-of-truth locale in this SSP i18n monorepo.
+            languages/english/ and languages/japanese/ are the two source-text locales (equal rank) in this SSP i18n monorepo.
             Use git log and git diff to inspect the latest languages/english/ changes relative to the previous commit.
-            Sync equivalent changes into every other locale folder:
+            Sync equivalent changes into every translation target (locale folders without a .reference-only file):
             - message.txt: align keys with english; translate new or changed strings
             - resource.rc: mirror structural changes from languages/english/resource.rc; translate UI strings only
             - surfacetable.txt and install.txt: align structure when english changed
             Follow the translation rules in AGENTS.md (section 5).
-            Do not modify languages/english/, shared/resource_r.h, scripts/, or tools/.
+            languages/japanese/ is source text, not a language pack (never modify, build or release it);
+            translate from both english and japanese as described in AGENTS.md section 5.1.
+            Folders containing a .reference-only file are never translation targets.
+            Do not modify languages/english/, languages/japanese/, shared/resource_r.h, scripts/, or tools/.
             Run: python tools/i18n_check.py --min-level warn
             and fix every ERROR it reports for the locales you changed.
             When finished, run: pwsh ./scripts/build-resource.ps1

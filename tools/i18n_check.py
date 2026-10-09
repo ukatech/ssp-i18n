@@ -508,9 +508,7 @@ def git(*args):
 def default_base_rev():
     """Last commit that touched a translated (non-english) locale's text files."""
     paths = []
-    for n in sspres.list_locales():
-        if n == sspres.SOURCE_LOCALE:
-            continue
+    for n in sspres.list_translation_targets():
         for f in sspres.TRANSLATABLE_FILES:
             paths.append('languages/%s/%s' % (n, f))
     rev = git('log', '-1', '--format=%H', '--', *paths).strip()
@@ -687,7 +685,7 @@ def main(argv=None):
         return 0
 
     all_locales = sspres.list_locales()
-    targets = args.locales or [n for n in all_locales if n != sspres.SOURCE_LOCALE]
+    targets = args.locales or sspres.list_translation_targets()
     for t in targets:
         if t not in all_locales:
             sys.exit('unknown locale: %s (have: %s)' % (t, ', '.join(all_locales)))

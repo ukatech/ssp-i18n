@@ -80,7 +80,8 @@ def build_data(locale_names, initial_target, initial_locales, zoom, auto_width=T
     for sym, val in header.items():
         if sym.startswith('IDR_'):
             menu_alias[str(val)] = sym
-    findings = i18n_check.run_checks([n for n in locale_names if n != sspres.SOURCE_LOCALE]).items
+    findings = i18n_check.run_checks([n for n in locale_names
+                                    if not sspres.is_reference_locale(n)]).items
     groups = []
     for e in src['message.txt'] or []:
         if e.key == 'charset':
@@ -251,7 +252,8 @@ def issue_text(o):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('target', nargs='?', help='IDD_*/IDR_* resource, IDC_*/command id, or message.txt key/prefix (msg:...)')
-    ap.add_argument('-l', '--locale', action='append', help='locale(s) to show next to english (default: all)')
+    ap.add_argument('-l', '--locale', action='append', help='locale(s) to show next to english (default: all language packs; '
+                    'the reference japanese is shown only when named here)')
     ap.add_argument('-o', '--out', help='output HTML path (default: .rcview/<target>.html)')
     ap.add_argument('--png', help='also render the dialog or menu of every shown locale to a PNG file')
     ap.add_argument('--scale', type=float, default=2, help='PNG scale factor (default 2; 1 = Windows pixels)')
@@ -267,8 +269,8 @@ def main(argv=None):
     if hasattr(sys.stdout, 'reconfigure'):
         sys.stdout.reconfigure(encoding='utf-8')
 
-    all_locales = sspres.list_locales()
-    chosen = args.locale or [n for n in all_locales if n != sspres.SOURCE_LOCALE]
+    all_locales = sspres.list_locales(include_unshipped=True)
+    chosen = args.locale or sspres.list_translation_targets()
     for n in chosen:
         if n not in all_locales:
             sys.exit('unknown locale: %s (have: %s)' % (n, ', '.join(all_locales)))

@@ -32,9 +32,22 @@ built) so that it matches the pushed files. Without Windows, the manual workflow
 > packs (especially the Chinese ones, which were converted from decompiled
 > resources) still contain bugs: missing resources/keys, controls that lose
 > `NOT WS_VISIBLE`, wrongly encoded `descript.txt`, clipped labels, …
-> The source of truth is always `languages/english/` plus the rules in this file.
+> The source texts are `languages/english/` and `languages/japanese/` (§5.1) plus the
+> rules in this file.
 > Do not copy a pattern from another locale just because it is there; treat
 > `i18n_check.py` ERRORs in existing files as bugs to fix, not as a baseline.
+
+> **There are two source languages: `languages/english/` and `languages/japanese/`,
+> of equal rank** (§5.1). Both are source text: neither is ever a translation target
+> or edited by a translation job, which both folders say with a `.reference-only` file
+> (the tools skip every folder that has one when they pick what to translate; only the
+> file's existence matters, its content is a "do not edit" notice).
+> They differ technically, not in rank: `english` is a shipped pack (built, released)
+> and, being complete and kept in sync, the structural template that the tools compare
+> against; `japanese` is the original text but is **not a language pack** (no
+> `install.txt`/`surfacetable.txt`, not kept in sync structurally), so it carries a
+> second marker `.not-shipped` and is **not built, not linted, not listed in
+> `updates.txt` and not released**.
 
 Everything below works on Linux/macOS/Windows. Only building `resource.dll`
 needs Windows (Visual C++ `rc.exe` / `link.exe`); see §3.1 for agents without it.
@@ -45,8 +58,9 @@ needs Windows (Visual C++ `rc.exe` / `link.exe`); see §3.1 for agents without i
 
 | Path | Role |
 | --- | --- |
-| `languages/english/` | **Source of truth.** Never change it while translating. |
+| `languages/english/` | **Source text** (`.reference-only`) and a shipped pack. Structural template for every pack. Never change it while translating. |
 | `languages/<locale>/` | One complete SSP language pack per folder. |
+| `languages/japanese/` | **Source text** (`.reference-only`), the original Japanese text, equal in rank to english (§5.1). **Not shipped** (`.not-shipped`): never built, linted, released or translated. Not kept structurally in sync (e.g. its own `resource_r.h`, missing files). |
 | `shared/resource_r.h` | Resource ID header shared by every `resource.rc`. Generated upstream; do not edit. |
 | `scripts/build-resource.ps1` | Builds `resource.dll` (Windows only). |
 | `tools/` | Cross-platform helper tools (Python 3 stdlib; `rcview.py` also needs Pillow). |
@@ -84,6 +98,8 @@ python tools/rcview.py IDR_SAKURA_MENU         # menu
 python tools/rcview.py info.install            # message.txt keys with that prefix
 python tools/rcview.py IDD_SETUP -l french --png /tmp/setup.png   # render english + french to a PNG
 python tools/rcview.py --audit -l french       # every dialog: clipped / overlapping text
+python tools/rcview.py IDD_SETUP -l japanese   # english + the Japanese source side by side
+python tools/rcview.py info.install -l japanese  # ... message.txt keys with that prefix, english + Japanese source
 
 python tools/release.py updates [LOCALE ...]   # regenerate updates.txt (same output as the md5 CI)
 python tools/release.py verify  [LOCALE ...]   # updates.txt vs. files; exit 1 on mismatch
@@ -109,10 +125,17 @@ python tools/make_pictures.py [LOCALE ...]     # localized ssp-pictures/ from en
   It is a quick check, not a pixel-exact one: small (1–3 px) results are noise and fonts may differ a little; check the final
   result in SSP on Windows when in doubt. Agents that can read images should
   look at the PNG of every dialog they changed.
-* `IDC_HELPFILE` controls are hidden keys SSP uses to open the help page; they are
-  never shown, are not checked for layout, and their text must stay identical to english.
+* Marker files in a locale folder (only their existence matters; the content is a notice for humans):
+  `.reference-only` = source text, not a translation target, never edited by translation
+  jobs (`english`, `japanese`; `i18n_check.py`, `rcview.py` and the default targets skip it);
+  `.not-shipped` = never built, never in `updates.txt`, never released (`japanese`;
+  `release.py`, `build-resource.ps1` skip it). `rcview.py` shows `japanese` only when you
+  name it with `-l`. `.reference-only` is listed in `md5buildignore.txt`, so english does
+  not ship it.
+* `IDC_HELPFILE` (hidden `config-*.htm` controls) has been abolished in SSP and removed from
+  every `resource.rc`. Do not add it back; delete it if an old resource file still has it.
 
-## 3. Job A — sync translations after an english update
+## 3. Job A — sync translations after a source text update
 
 Equivalent of `sync-translations.yml`.
 
@@ -122,10 +145,16 @@ Equivalent of `sync-translations.yml`.
    text), added/removed resources, dialog controls whose text, geometry or style
    changed, and menu diffs. Use `git diff <rev> -- languages/english shared/resource_r.h`
    for the raw diff. If the default base looks wrong, pass a revision.
+   `--changes` only follows english; also look at what changed in the other source,
+   `git diff <rev> -- languages/japanese`, because the Japanese text may carry a change
+   that english does not have yet (or the other way round, §5.1).
 2. **Get the current gaps.** `python tools/i18n_check.py --min-level warn` shows what is
    already missing in each locale (`kv-missing`, `res-missing`, `ctl-missing`,
    `menu-missing`, …). Fix those as well; they are the same work.
-3. **Apply the changes to every non-english locale** (`languages/*/` except english):
+3. **Apply the changes to every translation target** (every `languages/*/` folder without
+   `.reference-only`, i.e. not the source folders english and japanese;
+   `python tools/i18n_check.py` lists exactly the packs to update). Translate from
+   **both** source texts (§5.1):
    * `message.txt`: add new keys at the same position as in english; retranslate
      changed values; delete removed keys.
    * `resource.rc`: mirror the structural change from english (new
@@ -140,7 +169,7 @@ Equivalent of `sync-translations.yml`.
    * For each dialog/menu you touched: `python tools/rcview.py <ID> --png …`
      (or open the HTML) and look at it. `python tools/rcview.py --audit` must not
      list new problems in the dialogs you touched.
-5. **Commit** only the translated locales (not english).
+5. **Commit** only the translated locales (never the source folders english and japanese).
    Message: `chore(i18n): sync translations from english update [i18n-manual]`.
 6. **Build `resource.dll` and update `updates.txt`** — Job C steps 1–3.
 7. Hand over to a human: summarize which keys/controls were added or
@@ -165,15 +194,18 @@ Equivalent of `sync-translations.yml`.
 Equivalent of `add-language.yml`. Inputs: folder name (e.g. `french`), display
 name (e.g. `French`), Windows LANGID in decimal (e.g. `1036`).
 
-1. `cp -r languages/english languages/<folder>` then delete the copied
-   `resource.dll` and `updates.txt` (they are regenerated in step 8).
+1. `cp -r languages/english languages/<folder>` (english is the structural template)
+   then delete the copied `.reference-only` (the new folder is a translation target!),
+   `resource.dll` and `updates.txt` (the latter two are regenerated in step 8).
 2. `descript.txt`: set `name` (ASCII display name), `locale`, `id` (LANGID),
    `homeurl` → `https://raw.githubusercontent.com/ukatech/ssp-i18n/main/languages/<folder>/`.
    Keep `craftman`/`craftmanurl` unless told otherwise. ASCII only (do not copy the
    GBK/Big5 `menu.font.name` lines of the current Chinese packs — they are a known bug).
 3. `install.txt`: `name,<display name>`, `directory,<folder>`.
 4. Translate `message.txt`, all UI strings in `resource.rc`, `surfacetable.txt`.
-   Work dialog by dialog; render each one with `rcview.py` as you go.
+   Work dialog by dialog; render each one with `rcview.py` as you go. Translate from
+   both source texts (§5.1); never copy `languages/japanese/` as the template in step 1
+   (it is not a complete pack and carries `.not-shipped`).
 5. `md5buildignore.txt`, `holidays.txt`: keep the english copies.
 6. Optional `ssp-pictures/` with localized loading images: add the locale to `LOCALES` in
    `tools/make_pictures.py`, run it and look at the four PNGs.
@@ -238,22 +270,54 @@ These are what reviewers check; `i18n_check.py` enforces most of them.
   language's own comma, e.g. `，` / `、`). Prose commas in english are followed by a
   space; list separators are not.
 * **Trailing spaces** in `message.txt` values are significant (text is concatenated).
-* **Do not translate:** `IDC_HELPFILE` texts (`config-*.htm`), placeholder captions of
+* **Do not translate:** placeholder captions of
   common controls (`Slider1`, `List1`, `Spin1`, `DateTimePicker1`, …), file names,
   protocol/product names (SSP, SSTP, SHIORI, SERIKO, NAR, FMO, IPMessenger, …),
   `(DUMMY:…)` strings.
 * **Never change** IDs, control types, styles, `FONT`, `MENU`, or the order of controls,
   except to mirror english. Hidden controls (`NOT WS_VISIBLE`) must stay hidden:
   rc.exe adds `WS_VISIBLE` to every control unless `NOT WS_VISIBLE` is written.
+* Source texts: english **and** japanese, as described in §5.1.
 * Terminology: keep wording consistent inside a locale (grep `message.txt` and
   `resource.rc` of that locale for the english term before inventing a new one),
   but fix existing wording when it is wrong rather than spreading it.
   SSP-specific terms used by the existing Chinese packs: ghost = 人格, shell = 外壳/外殼,
   balloon = 对话框/對話方塊.
 
+### 5.1 The two source texts: english and japanese
+
+`languages/english/` and `languages/japanese/` are **source texts of equal rank**.
+Japanese is the original wording of SSP; the English text is the translation made from
+it, so each can carry something the other has lost (tone, politeness, what a term really
+refers to, whether a label is a noun or a verb, what a setting actually does).
+Translate from both, not from one of them.
+
+1. **Read both for every string** you translate. Look up the same key / dialog control in
+   the other source: `python tools/rcview.py <key-prefix | IDD_… | IDC_…> -l japanese`
+   shows english and the Japanese side by side, or open `languages/japanese/message.txt` /
+   `resource.rc` at the same key / control ID.
+2. **What each is used for.** The text of both is input for the meaning. For the
+   *structure* (which keys, resources and controls exist, their IDs, geometry, styles,
+   placeholders and access keys) the tools compare with `languages/english/`, because it
+   is complete and kept in sync; the Japanese folder is not a pack and may lag behind or
+   be ahead of it. That is a technical template, not a ranking of the texts: a key or
+   control missing from japanese is not an error.
+3. **Use them to understand, not to copy.** Translate the *meaning* into the target
+   language. Do not transliterate kanji, do not carry over Japanese-only conventions
+   (full-width punctuation, `〜`, 「」, counters, honorific levels) and do not reuse
+   Japanese word order. For Chinese packs the Japanese is not a shortcut either: kanji
+   words often differ in meaning (`人格` / `外壳` / `对话框` follow the terminology in §5).
+4. **When the two disagree in meaning, do not silently pick one.** Choose a wording
+   that fits both if one exists; otherwise ask the maintainer, and list every real
+   discrepancy in the hand-over summary so the source text can be fixed.
+5. **Never change either source folder** in a translation job, add japanese to
+   `updates.txt`, release it or give it an `install.txt`. Source text changes are made by
+   the maintainer only.
+
 ## 6. Prompt template
 
 > Read AGENTS.md. Do Job A (sync translations) for all locales. Base revision: auto.
+> Translate from both source texts, english and japanese, of equal rank (§5.1).
 > Show me the `--changes` list first, then apply, verify with i18n_check and rcview,
 > and give me a per-locale summary. Do not commit until I approve.
 

@@ -50,6 +50,8 @@ function Get-LocaleDirs {
     $localeRoot = Join-Path $Root 'languages'
     if (-not (Test-Path $localeRoot)) { throw "languages/ not found at $localeRoot" }
     $dirs = Get-ChildItem $localeRoot -Directory | Where-Object {
+        # folders marked .not-shipped (languages/japanese, reference only) are never built
+        if (Test-Path (Join-Path $_.FullName '.not-shipped')) { return $false }
         $descript = Join-Path $_.FullName 'descript.txt'
         $hasDllName = (Test-Path $descript) -and (Select-String -Path $descript -Pattern '^dllname,resource\.dll' -Quiet)
         $hasRc = Test-Path (Join-Path $_.FullName 'resource.rc')

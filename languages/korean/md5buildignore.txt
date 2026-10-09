@@ -22,3 +22,4 @@ XtraStuf.mac/
 
 /md5buildignore.txt
 /resource.rc
+/.reference-only

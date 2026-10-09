@@ -1,0 +1,2244 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource_r.h"
+
+#include <windows.h>
+#include <commctrl.h>
+
+// MFC symbols formerly supplied by afxres.h
+#ifndef IDC_STATIC
+#define IDC_STATIC (-1)
+#endif
+
+#ifndef ID_EDIT_CLEAR
+#define ID_EDIT_CLEAR           0xE120
+#define ID_EDIT_CLEAR_ALL       0xE121
+#define ID_EDIT_COPY            0xE122
+#define ID_EDIT_CUT             0xE123
+#define ID_EDIT_FIND            0xE124
+#define ID_EDIT_PASTE           0xE125
+#define ID_EDIT_PASTE_LINK      0xE126
+#define ID_EDIT_PASTE_SPECIAL   0xE127
+#define ID_EDIT_REPEAT          0xE128
+#define ID_EDIT_REPLACE         0xE129
+#define ID_EDIT_SELECT_ALL      0xE12A
+#define ID_EDIT_UNDO            0xE12B
+#define ID_EDIT_REDO            0xE12C
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+// neutral resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_NEU)
+#ifdef _WIN32
+LANGUAGE 0x00, 0x00
+#endif //_WIN32
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_SAKURA_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "sakura"
+    BEGIN
+        POPUP "おすすめ(&R)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "ポータルサイト(&T)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "ネットワーク更新(&N)",        SAKURA_MENU_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "アンインストール(&U)",        SAKURA_MENU_UNINSTALL
+        MENUITEM SEPARATOR
+        POPUP "RSS/ヘッドライン(&H)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "プラグイン(&P)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "メールチェック(&M)"
+        BEGIN
+            MENUITEM SEPARATOR
+            MENUITEM "全てチェック(&A)",            SAKURA_MENU_POP_ALLCHECK
+        END
+        POPUP "シェル倍率(&E)"
+        BEGIN
+            MENUITEM "詳細設定(ゴーストごとの設定) (&D)...", 
+                                                    SAKURA_MENU_SETUP_GHOST
+            MENUITEM "その他の倍率(&O)...",         SAKURA_MENU_SCALING_FREE
+            MENUITEM SEPARATOR
+        END
+        POPUP "バルーン倍率(&D)"
+        BEGIN
+            MENUITEM "その他の倍率(&O)...",         SAKURA_MENU_SCALING_BALLOON_FREE
+
+            MENUITEM SEPARATOR
+        END
+        POPUP "機能(&F)"
+        BEGIN
+            MENUITEM "カレンダー(&C)\tCtrl+D",      SAKURA_MENU_CALENDAR
+            MENUITEM "SSPメッセンジャ(&M)\tCtrl+M", SAKURA_MENU_IM
+            MENUITEM "時刻合わせ(&N)",              SAKURA_MENU_SNTP
+            MENUITEM "エクスプローラ(&E)\tCtrl+E",  SAKURA_MENU_EXPLORER
+            MENUITEM "画像ビューワ",                SAKURA_MENU_PICTURE_VIEWER
+
+            MENUITEM "アーカイブビューワ",          SAKURA_MENU_ARCHIVE_VIEWER
+
+            MENUITEM "バックログ/発言履歴\tCtrl+B", SAKURA_MENU_BACKLOG_VIEWER
+
+            MENUITEM "本体更新をチェック(&U)",      SAKURA_MENU_CHECKUPDATE
+            MENUITEM SEPARATOR
+            MENUITEM "音声認識(&T)",                SAKURA_MENU_DICTATION
+            MENUITEM "音声合成(&V)",                SAKURA_MENU_TTS
+            MENUITEM SEPARATOR
+            MENUITEM "アドレスバー(&A)\tCtrl+Shift+U", 
+                                                    SAKURA_MENU_ADDRESSBAR
+            MENUITEM "ファイルを開く(&I)\tCtrl+O",  SAKURA_MENU_OPENFILE
+            MENUITEM "フォルダを選択する(&S)\tCtrl+F", SAKURA_MENU_OPENDIR
+            MENUITEM SEPARATOR
+            MENUITEM "スクリプトログ(&L)\tCtrl+L",  SAKURA_MENU_SCRIPTLOG
+            MENUITEM "開発用パレット(&D)\tCtrl+Shift+D", 
+                                                    SAKURA_MENU_DEVELOPER
+            MENUITEM SEPARATOR
+            MENUITEM "ゴーストキャッシュ開放(&G)",  SAKURA_MENU_PURGEGHOSTCACHE
+
+            MENUITEM "FMOの整理／更新(&F)",         SAKURA_MENU_UPDATEFMO
+            MENUITEM "動作情報再読み込み(&R)",      SAKURA_MENU_RELOADINFO
+            MENUITEM SEPARATOR
+            MENUITEM "ゴースト再読み込み(&O)",      SAKURA_MENU_RELOADGHOST
+            MENUITEM "制限モード強制解除(&P)",      SAKURA_MENU_LEAVEPASSIVE
+            MENUITEM "一時起動ゴーストを保持(&K)\tCtrl+K", 
+                                                    SAKURA_MENU_KEEPGHOST
+            MENUITEM SEPARATOR
+            MENUITEM "シェル位置初期化(&H)\tCtrl+Shift+F12", 
+                                                    SAKURA_MENU_RESETPOS
+            MENUITEM "バルーン位置初期化(&N)\tCtrl+Shift+F10", 
+                                                    SAKURA_MENU_RESETBALLOON
+            MENUITEM "バルーンを消す(&B)\tCtrl+Shift+Del", 
+                                                    SAKURA_MENU_CLOSEBALLOON
+        END
+        POPUP "設定(&O)"
+        BEGIN
+            MENUITEM "本体設定...(&P)",             SAKURA_MENU_SETUP
+            MENUITEM "ゴーストごとの設定...(&G)",   SAKURA_MENU_SETUP_GHOST
+            MENUITEM SEPARATOR
+            MENUITEM "ウインドウモード - 切",       SAKURA_MENU_WINDOWMODE_OFF
+
+            MENUITEM "ウインドウモード - 全ゴースト", 
+                                                    SAKURA_MENU_WINDOWMODE_SHARED
+
+            MENUITEM "ウインドウモード - ゴーストごと", 
+                                                    SAKURA_MENU_WINDOWMODE_PERGHOST
+
+            MENUITEM SEPARATOR
+            MENUITEM "プロキシサーバを有効にする(&X)", SAKURA_MENU_PROXY
+            MENUITEM "文字コード設定(&C)",          SAKURA_MENU_CHARSET
+            MENUITEM SEPARATOR
+            MENUITEM "[旧互換機能]",                65535, GRAYED
+            MENUITEM "話すタイミングをゴースト任せ(&L)", 
+                                                    SAKURA_MENU_TALKSHIORI
+            MENUITEM "旧仕様サポート(&O)",          SAKURA_MENU_COMPATIBLEMODE
+
+        END
+        MENUITEM SEPARATOR
+        POPUP "ゴースト切り替え(&G)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "他のゴーストを呼ぶ（&Z)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "シェル(&S)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "着せ替え(&C)"
+        BEGIN
+            MENUITEM "着せ替えエクスプローラ(&E)",  SAKURA_MENU_BIND_EXPLORER
+
+            MENUITEM SEPARATOR
+        END
+        POPUP "バルーン(&B)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "最近使ったもの(&Y)"
+        BEGIN
+            POPUP "ゴーストに切り替え(&G)"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "他のゴーストを呼ぶ(&Z)"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "バルーン(&B)"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "ヘッドライン(&H)"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+            POPUP "プラグイン(&P)"
+            BEGIN
+                MENUITEM SEPARATOR
+            END
+        END
+        MENUITEM SEPARATOR
+        POPUP "情報(&A)"
+        BEGIN
+            MENUITEM "SSPについて(&A)",             SAKURA_MENU_VERSION
+            MENUITEM "キャラクタについて(&G)",      SAKURA_MENU_GHOSTINFO
+            MENUITEM "キャラクタの利用条件(&T)",    SAKURA_MENU_GHOSTTERMS
+            MENUITEM "説明書(&H)",                  SAKURA_MENU_HELP
+            MENUITEM SEPARATOR
+            MENUITEM "AIグラフ(&I)",                SAKURA_MENU_AIGRAPH
+            MENUITEM "使用頻度表示(&R)",            SAKURA_MENU_GHOSTTIME
+            MENUITEM "システム情報を書出(&S)",      SAKURA_MENU_SYSTEMINFO
+        END
+        POPUP "&Language"
+        BEGIN
+            MENUITEM SEPARATOR
+            MENUITEM "&Use System Lang.",           SAKURA_MENU_LANG_RESET
+        END
+        MENUITEM "アイコン化(&I)\tCtrl+I",      SAKURA_MENU_MINIMIZE
+        MENUITEM SEPARATOR
+        MENUITEM "終了(&W)\tCtrl+W",            SAKURA_MENU_CLOSE
+        MENUITEM "全て終了(&X)\tCtrl+Q",        SAKURA_MENU_EXIT
+    END
+END
+
+IDR_SAKURA_CALENDAR_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Calendar"
+    BEGIN
+        MENUITEM "スケジュール編集(&E)",        SAKURA_CALENDAR_MENU_EDIT
+        MENUITEM "予定を読む(&R)",              SAKURA_CALENDAR_MENU_READEVENT
+
+        MENUITEM "今日の予定(&T)",              SAKURA_CALENDAR_MENU_TODAYSSCHEDULE
+
+        POPUP "すべて削除(&D)"
+        BEGIN
+            MENUITEM "この日(&D)",                  SAKURA_CALENDAR_MENU_DELETE
+
+            MENUITEM "この月(&M)",                  SAKURA_CALENDAR_MENU_DELETEMONTH
+
+            MENUITEM "この年(&Y)",                  SAKURA_CALENDAR_MENU_DELETEYEAR
+
+            MENUITEM "この日より前全て(&A)",        SAKURA_CALENDAR_MENU_DELETEFROMHERE
+
+            MENUITEM "ゴーストが登録した予定(&G)",  SAKURA_CALENDAR_MENU_DELETEGHOST
+
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "前月(&P)",                    SAKURA_CALENDAR_MENU_PREV
+        MENUITEM "次月(&N)",                    SAKURA_CALENDAR_MENU_NEXT
+        MENUITEM "今月(&H)",                    SAKURA_CALENDAR_MENU_TODAY
+        POPUP "表示(&V)"
+        BEGIN
+            MENUITEM "常に手前に表示(&T)",          SAKURA_CALENDAR_MENU_TOPMOST
+
+            MENUITEM "常に画面中央に表示(&C)",      SAKURA_CALENDAR_MENU_CENTER
+
+        END
+        POPUP "表示倍率(&S)"
+        BEGIN
+            MENUITEM "その他の倍率(&O)...",         SAKURA_MENU_SCALING_CALENDAR_FREE
+
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        POPUP "スキン(&K)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "スケジュールセンサ(&S)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "閉じる(&X)",                  SAKURA_CALENDAR_MENU_CLOSE
+    END
+END
+
+IDR_PICTURE_VIEWER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "画像を開く(&O)...\tCtrl+O",   PICTURE_MENU_OPEN
+        MENUITEM "再読み込み(&R)\tCtrl+R",      PICTURE_MENU_RELOAD
+        MENUITEM "名前を付けて保存(&S)...\tCtrl+S", PICTURE_MENU_SAVE
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "コピー(&C)\tCtrl+C",          PICTURE_MENU_COPY
+        MENUITEM "貼り付け(&P)\tCtrl+V",        PICTURE_MENU_PASTE
+        MENUITEM "サイズを変更(&Z)...",         PICTURE_MENU_RESIZE
+        MENUITEM SEPARATOR
+        MENUITEM "トリミング",                  PICTURE_MENU_TRIM
+    END
+    POPUP "表示(&V)"
+    BEGIN
+        MENUITEM "実際のサイズ(&A)\tCtrl+0",    PICTURE_MENU_SAME
+        MENUITEM "ズームイン(&I)\tCtrl++",      PICTURE_MENU_ZOOMIN
+        MENUITEM "ズームアウト(&O)\tCtrl+-",    PICTURE_MENU_ZOOMOUT
+        MENUITEM "ウインドウに合わせる(&W)",    PICTURE_MENU_FIT
+        MENUITEM "拡大率を指定(&Z)...",         PICTURE_MENU_ZOOMCUSTOM
+        MENUITEM SEPARATOR
+        MENUITEM "前のページ",                  PICTURE_MENU_PREV
+        MENUITEM "次のページ",                  PICTURE_MENU_NEXT
+        MENUITEM SEPARATOR
+        MENUITEM "左回転",                      PICTURE_MENU_ROTATE_LEFT
+        MENUITEM "右回転",                      PICTURE_MENU_ROTATE_RIGHT
+        MENUITEM "左右反転",                    PICTURE_MENU_FLIP_H
+        MENUITEM SEPARATOR
+        MENUITEM "黒背景",                      PICTURE_MENU_BG_BLACK
+        MENUITEM "白背景",                      PICTURE_MENU_BG_WHITE
+        MENUITEM "市松模様背景",                PICTURE_MENU_BG_CHECKER
+        MENUITEM SEPARATOR
+        MENUITEM "左上の色を透明化",            PICTURE_MENU_COLORKEY
+    END
+END
+
+IDR_ARCHIVE_VIEWER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "新規作成(&N)\tCtrl+N",        ARCHIVE_MENU_NEW
+        MENUITEM "開く(&O)...\tCtrl+O",         ARCHIVE_MENU_OPEN
+        MENUITEM SEPARATOR
+        MENUITEM "展開(&E)...",                 ARCHIVE_MENU_EXTRACT
+        MENUITEM "すべて展開(&A)...",           ARCHIVE_MENU_EXTRACTALL
+        MENUITEM SEPARATOR
+        MENUITEM "ファイルを追加(&D)...",       ARCHIVE_MENU_ADD
+        MENUITEM "フォルダを追加(&F)...",       ARCHIVE_MENU_ADDFOLDER
+        MENUITEM SEPARATOR
+        MENUITEM "名前を付けて圧縮保存(&S)...\tCtrl+S", 
+                                                ARCHIVE_MENU_COMPRESS
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "一覧から除く(&D)\tDel",       ARCHIVE_MENU_DELETE
+        MENUITEM "すべて選択(&A)\tCtrl+A",      ARCHIVE_MENU_SELECTALL
+    END
+    POPUP "表示(&V)"
+    BEGIN
+        MENUITEM "大アイコン",                  ARCHIVE_MENU_VIEW_LARGEICON
+        MENUITEM "小アイコン",                  ARCHIVE_MENU_VIEW_SMALLICON
+        MENUITEM "一覧",                        ARCHIVE_MENU_VIEW_LIST
+        MENUITEM "詳細",                        ARCHIVE_MENU_VIEW_DETAIL
+    END
+END
+
+IDR_GHOSTCONTAINER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "操作"
+    BEGIN
+        MENUITEM "ウインドウモード - 切",       CONTAINER_MENU_WM_OFF
+        MENUITEM "ウインドウモード - 全ゴースト", CONTAINER_MENU_WM_SHARED
+        MENUITEM "ウインドウモード - ゴーストごと", 
+                                                CONTAINER_MENU_WM_PERGHOST
+        MENUITEM SEPARATOR
+        MENUITEM "全画面表示\tF11",             CONTAINER_MENU_FULLSCREEN
+        MENUITEM "ウインドウ枠を表示する",      CONTAINER_MENU_FRAME
+        MENUITEM "バックログ/発話履歴 も統合",  CONTAINER_MENU_BACKLOG
+        MENUITEM SEPARATOR
+        MENUITEM "背景 - 白",                   CONTAINER_MENU_BG_WHITE
+        MENUITEM "背景 - 灰",                   CONTAINER_MENU_BG_GRAY
+        MENUITEM "背景 - 黒",                   CONTAINER_MENU_BG_BLACK
+        MENUITEM "背景 - デスクトップ",         CONTAINER_MENU_BG_DESKTOP
+        MENUITEM "背景 - 画像...",              CONTAINER_MENU_BG_IMAGE
+        MENUITEM SEPARATOR
+        MENUITEM "スクリーンショット...",       CONTAINER_MENU_SCREENSHOT
+        MENUITEM SEPARATOR
+        MENUITEM "閉じる(&C)\tCtrl+W",          CONTAINER_MENU_CLOSE
+    END
+END
+
+IDR_LISTDIALOG_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "Ghost"
+    BEGIN
+        MENUITEM "切り替え(&X)\tCtrl+H",        LIST_EXEC
+        MENUITEM "ゴーストを呼ぶ(&C)\tCtrl+G",  LIST_CALLGHOST
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        POPUP "フォルダ(グループ)移動(&M)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM "起動用ショートカットを作成(&S)", LIST_CREATE_SHORTCUT
+        MENUITEM "OS起動時にこのゴーストを自動起動する", 
+                                                LIST_CREATE_SHORTCUT_BOOTUP
+        MENUITEM "このゴースト内のシェル",      LIST_OPEN_SHELL
+        MENUITEM SEPARATOR
+        MENUITEM "デフォルトゴーストに設定(&E)", LIST_SET_DEFAULT
+        MENUITEM "喋り優先ゴーストに設定(&P)",  LIST_SET_PREFERRED
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM "RSSの更新情報を使い一括更新", LIST_UPDATE_RSS
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(確認のみ)",  LIST_UPDATE_CHECKONLY
+        MENUITEM "RSSの更新情報を使い更新確認(確認のみ)", 
+                                                LIST_UPDATE_RSS_CHECKONLY
+        MENUITEM "更新確認表示リセット",        LIST_CHECKONLY_CLEAR
+        MENUITEM SEPARATOR
+        MENUITEM "ゴーストキャプターさくらに登録(&S)", LIST_REGISTER_GHOSTS
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+    POPUP "Shell"
+    BEGIN
+        MENUITEM "切り替え(&X)\tCtrl+H",        LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+    POPUP "Balloon"
+    BEGIN
+        MENUITEM "切り替え(&X)\tCtrl+H",        LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        POPUP "フォルダ(グループ)移動(&M)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "デフォルトバルーンに設定(&E)", LIST_SET_DEFAULT
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+    POPUP "Headline"
+    BEGIN
+        MENUITEM "読み上げる(&X)\tCtrl+H",      LIST_EXEC
+        MENUITEM "Webページを表示(&J)\tCtrl+W", LIST_WEBJUMP
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        POPUP "フォルダ(グループ)移動(&M)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+    POPUP "Plugin"
+    BEGIN
+        MENUITEM "設定/実行(&X)\tCtrl+H",       LIST_EXEC
+        MENUITEM "有効/無効(&E)",               LIST_ENABLE
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        POPUP "フォルダ(グループ)移動(&M)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "呼び出しログ(&L)",            LIST_LOG_ENABLE
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+    POPUP "Language"
+    BEGIN
+        MENUITEM "切り替え(&X)\tCtrl+H",        LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+    POPUP "Calendar Skin"
+    BEGIN
+        MENUITEM "切り替え(&X)\tCtrl+H",        LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+    POPUP "Schedule Sensor"
+    BEGIN
+        MENUITEM "実行(&X)\tCtrl+H",            LIST_EXEC
+        MENUITEM SEPARATOR
+        MENUITEM "削除(&D)",                    LIST_DELETE
+        MENUITEM "フォルダを開く(&O)\tCtrl+O",  LIST_OPEN
+        MENUITEM "配布元URLを開く(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "READMEを開く(&R)",            LIST_OPEN_README
+        MENUITEM SEPARATOR
+        MENUITEM "ネットワーク更新(&N)\tCtrl+U", LIST_UPDATE
+        MENUITEM SEPARATOR
+        MENUITEM "更新ファイル作成(&U)",        LIST_UPDATE_CREATE
+        MENUITEM "NAR作成...(&A)",              LIST_CREATE_NAR
+        MENUITEM "更新/NAR両方作成(&B)",        LIST_CREATE_BOTH
+        MENUITEM "&Zip+Txt更新ファイル作成",    LIST_CREATE_ZIPTXT
+    END
+END
+
+IDR_KERO_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "kero"
+    BEGIN
+        POPUP "おすすめ(&R)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        POPUP "着せ替え(&C)"
+        BEGIN
+            MENUITEM SEPARATOR
+        END
+        MENUITEM SEPARATOR
+        MENUITEM "終了\tCtrl+W",                SAKURA_MENU_CLOSE
+        MENUITEM "全て終了(&X)\tCtrl+Q",        SAKURA_MENU_EXIT
+    END
+END
+
+IDR_MESSENGER_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "閉じる(&X)",                  IDCLOSE
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "切り取り(&T)\tCtrl+X",        ID_EDIT_CUT
+        MENUITEM "コピー(&C)\tCtrl+C",          ID_EDIT_COPY
+        MENUITEM "貼り付け(&V)\tCtlr+V",        ID_EDIT_PASTE
+        MENUITEM "削除(&D)\tDel",               ID_EDIT_CLEAR
+    END
+    POPUP "登録(&C)"
+    BEGIN
+        MENUITEM "宛先の追加(&N)",              IDC_USERNEW
+        MENUITEM "宛先の編集(&E)",              IDC_USERPROP
+        MENUITEM "宛先の削除(&D)",              IDC_USERDEL
+        MENUITEM SEPARATOR
+        MENUITEM "情報の更新(&U)",              IDC_UPDATELIST
+        MENUITEM "ログ消去(&C)",                MESSENGER_MENU_LOGDEL
+    END
+END
+
+IDR_LISTDIALOG_TOP_MENU MENU DISCARDABLE 
+BEGIN
+    POPUP "ファイル(&F)"
+    BEGIN
+        MENUITEM "再読み込み(&R)",              LIST_RELOAD
+        MENUITEM SEPARATOR
+        MENUITEM "閉じる(&C)\tAlt+F4",          IDCANCEL
+    END
+    POPUP "編集(&E)"
+    BEGIN
+        MENUITEM "コピー(&C)\tCtrl+C",          LIST_COPY
+        MENUITEM "すべて選択(&A)\tCtrl+A",      LIST_SELECTALL
+        MENUITEM SEPARATOR
+        MENUITEM "検索(&F)...\tCtrl+F",         LIST_FIND
+        MENUITEM "次を検索(&N)\tF3",            LIST_FIND_NEXT
+    END
+    POPUP "種類(&T)"
+    BEGIN
+        MENUITEM "ゴースト(&G)",                LIST_TYPE_GHOST
+        MENUITEM "シェル(&S)",                  LIST_TYPE_SHELL
+        MENUITEM "バルーン(&B)",                LIST_TYPE_BALLOON
+        MENUITEM "ヘッドライン(&H)",            LIST_TYPE_HEADLINE
+        MENUITEM "プラグイン(&P)",              LIST_TYPE_PLUGIN
+        MENUITEM "&Language",                   LIST_TYPE_LANGUAGE
+        MENUITEM "カレンダースキン(&C)",        LIST_TYPE_CALENDAR_SKIN
+        MENUITEM "スケジュールセンサ(&E)",      LIST_TYPE_SCHEDULE_SENSOR
+    END
+    MENUITEM "機能(&U)",                    65535
+    POPUP "設定(&C)"
+    BEGIN
+        MENUITEM "自動で閉じない(&A)",          LIST_PROP_AUTOCLOSE
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDR_MAINFRAME ACCELERATORS MOVEABLE PURE 
+BEGIN
+    "B",            SAKURA_MENU_BACKLOG_VIEWER, VIRTKEY, CONTROL, NOINVERT
+    "D",            SAKURA_MENU_CALENDAR,   VIRTKEY, CONTROL, NOINVERT
+    "D",            SAKURA_MENU_DEVELOPER,  VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "E",            SAKURA_MENU_EXPLORER,   VIRTKEY, CONTROL, NOINVERT
+    "F",            SAKURA_MENU_OPENDIR,    VIRTKEY, CONTROL, NOINVERT
+    "I",            SAKURA_MENU_MINIMIZE,   VIRTKEY, CONTROL, NOINVERT
+    "K",            SAKURA_MENU_KEEPGHOST,  VIRTKEY, CONTROL, NOINVERT
+    "L",            SAKURA_MENU_SCRIPTLOG,  VIRTKEY, CONTROL, NOINVERT
+    "M",            SAKURA_MENU_IM,         VIRTKEY, CONTROL, NOINVERT
+    "O",            SAKURA_MENU_OPENFILE,   VIRTKEY, CONTROL, NOINVERT
+    "Q",            SAKURA_MENU_EXIT,       VIRTKEY, CONTROL, NOINVERT
+    "S",            SAKURA_MENU_SCRIPT,     VIRTKEY, CONTROL, NOINVERT
+    "T",            SAKURA_MENU_SURFACETEST, VIRTKEY, CONTROL, NOINVERT
+    "U",            SAKURA_MENU_UPDATE,     VIRTKEY, CONTROL, NOINVERT
+    "U",            SAKURA_MENU_ADDRESSBAR, VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_DELETE,      SAKURA_MENU_CLOSEBALLOON, VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_F10,         SAKURA_MENU_NOOP,       VIRTKEY, NOINVERT
+    VK_F10,         SAKURA_MENU_CONTEXT,    VIRTKEY, SHIFT, NOINVERT
+    VK_F10,         SAKURA_MENU_RESETBALLOON, VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_F12,         SAKURA_MENU_RESETPOS,   VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_F4,          SAKURA_ACCEL_CLOSE,     VIRTKEY, CONTROL, NOINVERT
+    VK_F4,          SAKURA_ACCEL_CLOSE,     VIRTKEY, ALT, NOINVERT
+    VK_INSERT,      SAKURA_MENU_SCRIPT,     VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    VK_RETURN,      SAKURA_MENU_MINIMIZE,   VIRTKEY, SHIFT, CONTROL, 
+                                                    NOINVERT
+    "W",            SAKURA_MENU_CLOSE,      VIRTKEY, CONTROL, NOINVERT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUTBOX DIALOG DISCARDABLE  0, 0, 257, 205
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+CAPTION "About SSP..."
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_ABOUT,0,53,257,129,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_READONLY | ES_WANTRETURN | WS_VSCROLL | NOT 
+                    WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,204,186,50,16,WS_GROUP
+    LTEXT           "[URL]",IDC_ABOUTURL,5,190,132,11,SS_NOTIFY
+END
+
+IDD_FOLDER DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "フォルダ : データフォルダの設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    PUSHBUTTON      "編集...",IDC_GHOST_EDIT,121,15,50,14
+    PUSHBUTTON      "再読込",IDC_GHOST_RELOAD,176,15,50,14
+    CONTROL         "インストール時に格納するフォルダを選択する",
+                    IDC_GHOST_SELECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,33,212,10
+    CONTROL         "起動時に使用するフォルダを選択する",
+                    IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,47,212,10
+    PUSHBUTTON      "編集...",IDC_BALLOON_EDIT,121,73,50,14
+    PUSHBUTTON      "再読込",IDC_BALLOON_RELOAD,176,73,50,14
+    CONTROL         "インストール時に格納するフォルダを選択する",
+                    IDC_BALLOON_SELECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,91,212,10
+    CONTROL         "起動時に使用するフォルダを選択する",
+                    IDC_BALLOON_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,105,212,10
+    PUSHBUTTON      "編集...",IDC_HEADLINE_EDIT,121,132,50,14
+    PUSHBUTTON      "再読込",IDC_HEADLINE_RELOAD,176,132,50,14
+    CONTROL         "インストール時に格納するフォルダを選択する",
+                    IDC_HEADLINE_SELECT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,150,212,10
+    PUSHBUTTON      "編集...",IDC_PLUGIN_EDIT,121,178,50,14
+    PUSHBUTTON      "再読込",IDC_PLUGIN_RELOAD,176,178,50,14
+    CONTROL         "インストール時に格納するフォルダを選択する",
+                    IDC_PLUGIN_SELECT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,196,212,10
+    GROUPBOX        "ゴースト",IDC_STATIC,4,6,228,56
+    GROUPBOX        "バルーン",IDC_STATIC,4,64,228,56
+    GROUPBOX        "ヘッドライン",IDC_STATIC,4,123,228,43
+    GROUPBOX        "プラグイン",IDC_STATIC,4,169,228,43
+    LTEXT           "現在の読み込み数 : [NUM]",IDC_GHOST_NUM,11,18,103,8
+    LTEXT           "現在の読み込み数 : [NUM]",IDC_BALLOON_NUM,11,76,103,8
+    LTEXT           "現在の読み込み数 : [NUM]",IDC_HEADLINE_NUM,11,135,103,8
+    LTEXT           "現在の読み込み数 : [NUM]",IDC_PLUGIN_NUM,11,181,103,8
+    EDITTEXT        IDC_TEMP_PATH,4,231,168,14,ES_AUTOHSCROLL
+    LTEXT           "一時ファイル保存場所",IDC_TEMP_PATH_STATIC,4,221,66,8
+    EDITTEXT        IDC_NAR_PATH,4,262,168,14,ES_AUTOHSCROLL
+    LTEXT           "NARファイルダウンロード場所",IDC_NAR_PATH_STATIC,4,251,
+                    87,8
+    PUSHBUTTON      "参照...",IDC_TEMP_PATH_REF,204,231,28,14
+    PUSHBUTTON      "参照...",IDC_NAR_PATH_REF,204,262,28,14
+    PUSHBUTTON      "標準",IDC_NAR_PATH_DEFAULT,175,262,28,14
+    PUSHBUTTON      "標準",IDC_TEMP_PATH_DEFAULT,175,231,28,14
+END
+
+IDD_TALK DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "喋り/バルーン : ゴーストの喋りタイミングとバルーン操作"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "Slider1",IDC_TALK_SPEED,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,84,4,143,20
+    CONTROL         "Slider1",IDC_TALK_TIMEOUT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,84,35,143,20
+    CONTROL         "Slider1",IDC_SELECTION_TIMEOUT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,84,56,143,20
+    CONTROL         "Slider1",IDC_CLICK_TIMEOUT,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,84,76,143,20
+    CONTROL         "常にヘッドライン読み上げはウェイトなしで実行する",
+                    IDC_NO_WAIT_HEADLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,113,227,10
+    CONTROL         "オンライン時に常にバルーンを表示する",
+                    IDC_SHOWBALLOONONLINE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,139,227,10
+    CONTROL         "早送りキーを有効にする :",IDC_SPEEDUP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,170,101,10
+    COMBOBOX        IDC_SPEEDUP_KEY,108,168,65,94,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "バルーンにカーソルを重ねている時タイムアウトしない",
+                    IDC_MOUSEOVER_NOTIMEOUT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,152,227,10
+    EDITTEXT        IDC_TALK_SOUNDPATH,9,220,140,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_TALK_BROWSE,152,220,30,14
+    PUSHBUTTON      "なし",IDC_TALK_NONE,184,220,20,14
+    PUSHBUTTON      "再生",IDC_TALK_PLAY,206,220,20,14
+    COMBOBOX        IDC_LEFTDC_SETTING,67,259,57,62,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_RIGHT_SETTING,166,259,57,62,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Slider1",IDC_AI_INTERVAL,"msctls_trackbar32",
+                    TBS_AUTOTICKS | WS_TABSTOP,68,294,143,21
+    CONTROL         "ニュースをしゃべる",IDC_TALK_NEWS,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,315,70,10
+    LTEXT           "よくしゃべる",IDC_STATIC,194,316,34,8
+    LTEXT           "ノーウェイト",IDC_STATIC,81,25,34,8
+    LTEXT           "しゃべり頻度",IDC_STATIC,11,299,38,8
+    RTEXT           "メッセージスピード",IDC_STATIC,6,10,73,8
+    LTEXT           "まったり(200ms)",IDC_STATIC,181,25,48,8
+    LTEXT           "↑標準(50ms)",IDC_STATIC,121,25,42,8
+    LTEXT           "標準↑",IDC_STATIC,173,316,22,8
+    GROUPBOX        "旧仕様サポート - 通常は設定不要です",IDC_STATIC,4,285,
+                    227,46
+    RTEXT           "喋りタイムアウト\n(標準＝15秒)",IDC_STATIC,6,37,73,19
+    LTEXT           "しない",IDC_STATIC,90,98,19,8
+    RTEXT           "選択肢タイムアウト\n(標準＝30秒)",IDC_STATIC,6,58,73,19
+    LTEXT           "長い(150秒)",IDC_STATIC,193,98,36,8
+    GROUPBOX        "バルーンの操作",IDC_STATIC,4,248,227,30
+    LTEXT           "左ダブルクリック：",IDC_STATIC,11,261,52,8
+    LTEXT           "右クリック：",IDC_STATIC,130,261,33,8
+    GROUPBOX        "しゃべる時に鳴らす音の指定",IDC_STATIC,4,208,227,33
+    RTEXT           "クリック待ちタイムアウト\n(標準＝しない)",IDC_STATIC,6,
+                    78,73,19
+    CONTROL         "ヘッドラインを表示したバルーンはタイムアウトしない",
+                    IDC_HEADLINE_NO_TIMEOUT,"Button",BS_AUTO3STATE | 
+                    WS_TABSTOP,4,126,227,10
+END
+
+IDD_SETUP DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_VISIBLE | WS_CAPTION
+CAPTION "一般 : SSP全体の設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "SSPが更新されているか自動でチェックする",
+                    IDC_SELFUPDATE_AUTO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,4,227,10
+    CONTROL         "ファイルをSSPに関連づける",IDC_ASSOCIATEFILE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,16,227,10
+    CONTROL         "常にアンインストールメニューを表示",
+                    IDC_IGNORE_UNINSTALL_HIDE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,28,227,10
+    CONTROL         "常にタスクトレイアイコンを表示",IDC_SHOWICONALWAYS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,40,227,10
+    CONTROL         "インストール時にREADMEを表示する",IDC_INSTALL_README,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,52,227,10
+    CONTROL         "ホットキーを登録する",IDC_REGISTER_HOTKEY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,64,227,10
+    CONTROL         "透明ステータス表示ウィンドウを表示する",IDC_SHOW_STATUS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,76,227,10
+    CONTROL         "開発者用機能を有効にする [使用注意！]",
+                    IDC_DEVFUNC_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,105,227,10
+    EDITTEXT        IDC_FIRSTNAME,9,297,67,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CALLNAME,82,297,67,14,ES_AUTOHSCROLL
+    CONTROL         "DateTimePicker1",IDC_BIRTHDAY,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP,155,297,69,14
+    CONTROL         "男",IDC_SEX_MALE,"Button",BS_AUTORADIOBUTTON,30,315,31,
+                    10
+    CONTROL         "女",IDC_SEX_FEMALE,"Button",BS_AUTORADIOBUTTON,65,315,
+                    31,10
+    CONTROL         "未設定",IDC_SEX_UNDEF,"Button",BS_AUTORADIOBUTTON,99,
+                    315,41,10
+    LTEXT           "名前 :",IDC_STATIC,9,287,18,8
+    LTEXT           "呼ばれ方 :",IDC_STATIC,82,287,32,8
+    GROUPBOX        "ユーザ情報",IDC_STATIC,4,276,227,55
+    LTEXT           "誕生日 :",IDC_STATIC,155,287,25,8
+    LTEXT           "性別 :",IDC_STATIC,9,316,18,8
+    GROUPBOX        "タブレットモード切替",IDC_STATIC,4,243,227,28
+    CONTROL         "自動(OS設定)",IDC_TAB_AUTO,"Button",BS_AUTORADIOBUTTON,
+                    9,255,67,10
+    CONTROL         "常に有効",IDC_TAB_ENABLE,"Button",BS_AUTORADIOBUTTON,83,
+                    255,67,10
+    CONTROL         "常に無効",IDC_TAB_DISABLE,"Button",BS_AUTORADIOBUTTON,
+                    157,255,67,10
+    GROUPBOX        "ダークモード [SSPの再起動が必要]",IDC_STATIC,4,179,227,
+                    28
+    CONTROL         "自動(OS設定)",IDC_DARK_AUTO,"Button",BS_AUTORADIOBUTTON,
+                    9,191,67,10
+    CONTROL         "常にダーク",IDC_DARK_ENABLE,"Button",BS_AUTORADIOBUTTON,
+                    83,191,67,10
+    CONTROL         "常にライト",IDC_DARK_DISABLE,"Button",
+                    BS_AUTORADIOBUTTON,157,191,67,10
+    GROUPBOX        "センサー/位置情報利用",IDC_STATIC,4,211,227,28
+    CONTROL         "有効(OS設定)",IDC_SENSOR_ENABLE,"Button",
+                    BS_AUTORADIOBUTTON,9,223,67,10
+    CONTROL         "位置情報以外",IDC_SENSOR_LOC,"Button",
+                    BS_AUTORADIOBUTTON,83,223,67,10
+    CONTROL         "すべて無効",IDC_SENSOR_DISABLE,"Button",
+                    BS_AUTORADIOBUTTON,157,223,67,10
+    CONTROL         "ウイルスチェックを行う [Win10以降]",IDC_VIRUS_CHECK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,88,227,10
+END
+
+IDD_NETWORKEXT DIALOGEX 0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "接続(2) : ネットワーク接続まわりの設定"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "自動的にチェック",IDC_AUTOHEADLINE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,16,65,10
+    EDITTEXT        IDC_HEADLINE_INTERVAL,105,14,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_HEADLINE_INTERVAL_S,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,14,9,14
+    CONTROL         "ヘッドライン手動実行で自動巡回開始位置更新",
+                    IDC_HEADLINE_COUNT_MANUAL_UPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,30,216,10
+    EDITTEXT        IDC_HEADLINE_SOUNDPATH,9,55,140,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_HEADLINE_BROWSE,152,55,30,14
+    PUSHBUTTON      "なし",IDC_HEADLINE_NONE,184,55,20,14
+    PUSHBUTTON      "再生",IDC_HEADLINE_PLAY,206,55,20,14
+    CONTROL         "List1",IDC_SSTP_LIST,"SysListView32",LVS_LIST | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_ALIGNLEFT | 
+                    LVS_NOCOLUMNHEADER | WS_BORDER | WS_TABSTOP,9,93,161,47,
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      "追加...",IDC_SSTP_ADD,175,94,50,14
+    PUSHBUTTON      "削除",IDC_SSTP_DEL,175,110,50,14
+    PUSHBUTTON      "ON/OFF",IDC_SSTP_ONOFF,175,126,50,14
+    CONTROL         "SSTPのログを取る",IDC_SSTP_LOG,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,145,177,10
+    CONTROL         "起動していないゴーストも起動しているように見せかける",
+                    IDC_LIST_INSTALLED_TO_FMO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,157,177,10
+    CONTROL         "選択肢付きSSTPでブロックしない",IDC_NOBLOCK_CHOICE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,169,177,10
+    CONTROL         "SSTPのゴースト内フィルタ処理を完全に無効にする",
+                    IDC_NO_SSTP_TRANSLATE_EVENT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,181,177,10
+    COMBOBOX        IDC_GHOSTBOOT,63,196,134,77,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_AFTERBOOT,63,211,134,60,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_TMPGHOST_MAX,130,226,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN_TMPGHOST_MAX,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,164,226,10,14
+    EDITTEXT        IDC_TMPGHOST_INTERVAL,119,242,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SPIN_TMPGHOST_INTERVAL,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,153,242,10,14
+    LTEXT           "分",IDC_STATIC,148,18,8,8
+    RTEXT           "間隔：",IDC_STATIC,77,17,25,8
+    GROUPBOX        "ヘッドライン",IDC_STATIC,4,4,227,72
+    LTEXT           "更新時に鳴らすサウンドの指定：",IDC_STATIC,9,44,95,8
+    GROUPBOX        "SSTP通信",IDC_STATIC,4,82,227,180
+    LTEXT           "ゴースト起動：",IDC_STATIC,11,199,42,8
+    LTEXT           "起動後の処理：",IDC_STATIC,11,214,46,8
+    LTEXT           "一時起動ゴーストの最大数(0=無制限)：",IDC_STATIC,11,229,
+                    115,8
+    LTEXT           "一時起動ゴーストの最小起動間隔：",IDC_STATIC,11,245,104,
+                    8
+END
+
+IDD_NETWORK DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "接続(1) : ネットワーク接続まわりの設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    COMBOBOX        IDC_PROTOCOL,131,13,93,141,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "SSL/TLS通信でサーバの証明書を検証する",IDC_SSL_VERIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,31,215,10
+    CONTROL         "Windowsの設定を自動的に利用する",IDC_USE_SYSTEM_SETTING,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,65,215,10
+    CONTROL         "プロキシサーバを経由する",IDC_ENABLEPROXY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,77,215,10
+    COMBOBOX        IDC_PROXYTYPE,9,102,51,83,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_PROXYADDRESS,62,102,122,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXYPORT,187,102,37,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXYUSER,9,130,71,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PROXYPASS,120,130,71,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "ネットに接続されていない状態の時",IDC_CONNECTION_ASK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,164,117,10
+    CONTROL         "以下の時刻の間は常に：",IDC_CONNECTION_LIMIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,179,87,10
+    CONTROL         "DateTimePicker1",IDC_CONNECTION_LIMIT_START,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,99,175,41,15
+    CONTROL         "DateTimePicker1",IDC_CONNECTION_LIMIT_STOP,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,156,175,41,15
+    COMBOBOX        IDC_SNTPADDRESS,96,212,129,143,CBS_DROPDOWN | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_HTTPADDRESS,96,226,129,110,CBS_DROPDOWN | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SNTP_DURATION,96,244,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SNTP_DURATION_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,132,244,9,14
+    GROUPBOX        "ネットワーク接続問い合わせ",IDC_STATIC,4,153,227,42
+    LTEXT           "時間ごと",IDC_STATIC,141,247,45,8
+    GROUPBOX        "時計合わせ",IDC_STATIC,4,200,227,63
+    LTEXT           "ポート番号",IDC_STATIC,187,92,32,8
+    GROUPBOX        "プロキシサーバ(Proxy)の設定",IDC_STATIC,4,55,227,94
+    LTEXT           "サーバ名もしくはIPアドレス",IDC_STATIC,62,92,79,8
+    LTEXT           "～",IDC_STATIC,144,179,8,8
+    LTEXT           "ユーザ名(空欄可)",IDC_STATIC,9,120,54,8
+    LTEXT           "パスワード(空欄可)",IDC_STATIC,120,120,57,8
+    CONTROL         "時計合わせを自動実行 :",IDC_SNTP_AUTO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,246,87,10
+    CONTROL         "SNTPサーバ :",IDC_SNTPCHECK,"Button",BS_AUTORADIOBUTTON,
+                    9,213,57,10
+    CONTROL         "HTTPサーバ :",IDC_HTTPCHECK,"Button",BS_AUTORADIOBUTTON,
+                    9,227,57,10
+    LTEXT           "種類",IDC_STATIC,9,92,32,8
+    GROUPBOX        "全般",IDC_STATIC,4,4,227,45
+    LTEXT           "使用するネットワークプロトコル : ",IDC_STATIC,10,16,117,
+                    8
+END
+
+IDD_POP DIALOGEX 0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "メール : メールチェック機能の設定"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "メールヘッダも取得する(件名等の情報も取得)",
+                    IDC_CHECK_MAILHEADER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,4,227,10
+    CONTROL         "新着メールの数をメール件数として通知",
+                    IDC_CHECK_NOTIFYONLYNEW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,17,227,10
+    CONTROL         "新着メールがあった時のみメッセージを表示",
+                    IDC_CHECK_NOTIFYWHENNEW,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,30,227,10
+    EDITTEXT        IDC_POP_SOUNDPATH,9,61,140,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_POP_BROWSE,152,61,30,14
+    PUSHBUTTON      "なし",IDC_POP_NONE,184,61,20,14
+    PUSHBUTTON      "再生",IDC_POP_PLAY,206,61,20,14
+    CONTROL         "List1",IDC_POP_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOSORTHEADER | 
+                    WS_TABSTOP,9,237,216,71,WS_EX_CLIENTEDGE
+    PUSHBUTTON      "追加...",IDC_POP_ADD,9,311,38,14
+    PUSHBUTTON      "変更...",IDC_POP_MODIFY,50,311,38,14
+    PUSHBUTTON      "コピー",IDC_POP_COPY,91,311,38,14
+    PUSHBUTTON      "",IDC_FOLDERUP,133,311,16,14,BS_ICON
+    PUSHBUTTON      "",IDC_FOLDERDN,149,311,16,14,BS_ICON
+    PUSHBUTTON      "削除",IDC_POP_DEL,187,311,38,14
+    GROUPBOX        "アカウント設定",IDC_STATIC,4,226,227,105
+    GROUPBOX        "メール着信時に鳴らす音の指定",IDC_STATIC,4,49,227,33
+END
+
+IDD_GHOSTPROFILE DIALOG DISCARDABLE  0, 0, 302, 183
+STYLE WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "キャラクタについて"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,249,166,50,14
+    COMBOBOX        IDC_PROFILE_KIND,2,166,115,48,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_GHOSTPROFILE,2,33,297,130,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | 
+                    WS_VSCROLL
+    RTEXT           "作者名：",IDC_STATIC,2,5,30,8
+    RTEXT           "URL：",IDC_STATIC,2,19,30,8
+    CONTROL         "(N/A)",IDC_CRAFTMAN,"Static",SS_LEFTNOWORDWRAP | 
+                    SS_NOPREFIX | WS_GROUP,34,5,265,8
+    CONTROL         "(N/A)",IDC_CRAFTMANURL,"Static",SS_LEFTNOWORDWRAP | 
+                    SS_NOPREFIX | SS_NOTIFY | WS_GROUP,34,19,265,8
+    COMBOBOX        IDC_PROFILE_CHARSET,122,166,115,142,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_SCHEDULE DIALOGEX 0, 0, 403, 310
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+CAPTION "スケジュール"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_SCHEDULE_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    WS_BORDER | WS_TABSTOP,8,16,91,261,WS_EX_CLIENTEDGE
+    COMBOBOX        IDC_SCHEDULE_TYPE,163,104,86,154,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SCHEDULE_CAPTION,163,15,231,14,ES_AUTOHSCROLL
+    CONTROL         "開始時刻有効",IDC_SCHEDULE_TIME_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,307,41,78,8
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_TIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,239,38,60,
+                    14
+    CONTROL         "終了 日時 有効",IDC_SCHEDULE_TIMEEND_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,307,62,78,8
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_ENDTIME,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | DTS_UPDOWN | WS_TABSTOP | 0x8,239,59,60,
+                    14
+    EDITTEXT        IDC_SCHEDULE_SUBTITLE,120,154,274,36,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL
+    EDITTEXT        IDC_SOUND_PATH,163,123,193,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_SOUND_BROWSE,360,122,34,14
+    CONTROL         "なし(&N)",IDC_SCHEDULE_NONE,"Button",BS_AUTORADIOBUTTON,
+                    128,209,46,10
+    CONTROL         "毎週(&W)",IDC_SCHEDULE_WEEK,"Button",BS_AUTORADIOBUTTON,
+                    181,209,46,10
+    CONTROL         "毎月(&M)",IDC_SCHEDULE_MONTH,"Button",
+                    BS_AUTORADIOBUTTON,234,209,46,10
+    CONTROL         "毎年(&Y)",IDC_SCHEDULE_YEAR,"Button",BS_AUTORADIOBUTTON,
+                    287,209,46,10
+    EDITTEXT        IDC_SCHEDULE_SCRIPT,120,244,274,36,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_AUTOHSCROLL | ES_WANTRETURN | 
+                    WS_VSCROLL
+    PUSHBUTTON      "新規",IDC_SCHEDULE_NEW,8,283,40,14
+    PUSHBUTTON      "削除",IDC_SCHEDULE_DELETE,58,283,40,14,WS_DISABLED
+    DEFPUSHBUTTON   "閉じる",IDC_OKBUTTON,346,290,53,14
+    LTEXT           "タイトル:",IDC_STATIC,121,19,38,8
+    LTEXT           "詳細",IDC_STATIC,121,142,38,8
+    LTEXT           "SakuraScript",IDC_STATIC,121,231,62,8
+    LTEXT           "種類:",IDC_STATIC,121,107,38,8
+    LTEXT           "通知音声",IDC_STATIC,121,126,38,8
+    GROUPBOX        "繰り返し",IDC_STATIC,121,196,273,29
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_DATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,163,38,68,14
+    CONTROL         "DateTimePicker2",IDC_SCHEDULE_ENDDATE,"SysDateTimePick32",
+                    DTS_RIGHTALIGN | WS_TABSTOP,163,59,68,14
+    LTEXT           "開始",IDC_STATIC,121,41,38,8
+    LTEXT           "終了",IDC_STATIC,121,62,38,8
+    GROUPBOX        "0000/00/00",IDC_SCHEDULE_CURRENTDATE,3,3,103,301
+    GROUPBOX        "オプション項目",IDC_STATIC,113,89,286,197
+    GROUPBOX        "必須項目",IDC_STATIC,113,3,286,81
+END
+
+IDD_MESSENGER DIALOGEX 0, 0, 286, 147
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "SSP Instant Messenger"
+MENU IDR_MESSENGER_MENU
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "Tab1",IDC_USERTAB,"SysTabControl32",0x0,1,1,284,17
+    CONTROL         "List1",IDC_MESSAGELIST,"SysListView32",LVS_REPORT | 
+                    LVS_NOSORTHEADER | WS_TABSTOP,1,17,284,50,
+                    WS_EX_CLIENTEDGE
+    EDITTEXT        IDC_MESSAGE,1,69,284,46,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_WANTRETURN | WS_VSCROLL
+    PUSHBUTTON      "クリア(&N)",IDC_CLEAR,1,117,41,16
+    DEFPUSHBUTTON   "送信(&S)",IDC_SEND,244,117,41,16
+    PUSHBUTTON      "確認(&L)",IDC_TEST,201,117,41,16
+END
+
+IDD_MESSENGERUSER DIALOG DISCARDABLE  0, 0, 203, 97
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "宛先の追加/編集"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "アドレス指定",IDC_DIRECTIP,"Button",BS_AUTORADIOBUTTON,
+                    4,7,53,10
+    EDITTEXT        IDC_NAME,35,23,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GROUPNAME,136,23,60,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ADDRESS,35,41,161,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PORT,156,58,40,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,90,75,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,145,75,50,14
+    RTEXT           "名前:",IDC_STATIC,16,26,16,8
+    RTEXT           "グループ名:",IDC_STATIC,99,25,35,8
+    RTEXT           "アドレス:",IDC_STATIC,7,44,25,8
+    RTEXT           "ポート番号:",IDC_STATIC,119,62,34,8
+END
+
+IDD_MESSENGERSETTING DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "IM : SSPのInstant Messenger機能の設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_NAME,42,6,74,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_GROUPNAME,42,23,74,14,ES_AUTOHSCROLL
+    CONTROL         "SSTP使用時トランスレートしない",IDC_NOTRANSLATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,45,226,10
+    CONTROL         "送信後メッセージダイアログをクリアする",IDC_AUTOCLEAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,59,226,10
+    LTEXT           "名前:",IDC_STATIC,8,9,16,8
+    LTEXT           "グループ:",IDC_STATIC,8,26,28,8
+END
+
+IDD_IPMESSENGERSETTING DIALOGEX 0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "IPMessenger : IPMessenger互換機能"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "IPMessenger互換モードを利用",IDC_IPMESSENGER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,8,100,10
+    EDITTEXT        IDC_IPMSGPORT,182,6,43,14,ES_AUTOHSCROLL
+    CONTROL         "ダイヤルアップ接続(ブロードキャストが通らない）",
+                    IDC_USE_DIALUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    22,158,10
+    EDITTEXT        IDC_BROADCAST_EDIT,8,58,177,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "追加",IDC_BROADCAST_ADD,189,58,37,14
+    PUSHBUTTON      "削除",IDC_BROADCAST_DEL,122,75,37,14
+    PUSHBUTTON      "初期設定に戻す",IDC_BROADCAST_INIT,162,75,64,14
+    CONTROL         "List1",IDC_BROADCAST_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | 
+                    WS_TABSTOP,8,93,219,42,WS_EX_CLIENTEDGE
+    LTEXT           "ポート番号(2425):",IDC_STATIC,126,9,52,8
+    GROUPBOX        "ブロードキャスト/マルチキャスト/その他通信先指定",
+                    IDC_STATIC,4,44,227,96
+    LTEXT           "例：192.168.0.255/FF02::1",IDC_STATIC,11,79,73,8
+END
+
+IDD_EXTAPP DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "外部アプリ : SSPから起動するアプリケーションの設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_DEFAULT_BROWSER,10,17,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_REF_BROWSER,188,17,37,14
+    EDITTEXT        IDC_DEFAULT_FILER,10,50,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_REF_FILER,188,50,37,14
+    EDITTEXT        IDC_DEFAULT_EDITOR,10,83,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_REF_EDITOR,188,83,37,14
+    EDITTEXT        IDC_DEFAULT_MAILER,10,148,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_REF_MAILER,188,148,37,14
+    EDITTEXT        IDC_DEFAULT_MAILER_ARG,55,167,170,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_DEFAULT_SVN,10,276,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_REF_SVN,188,276,37,14
+    EDITTEXT        IDC_DEFAULT_GIT,10,300,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_REF_GIT,188,300,37,14
+    GROUPBOX        "ブラウザの設定",IDC_STATIC,4,7,227,29
+    GROUPBOX        "ファイラーの設定",IDC_STATIC,4,40,227,29
+    GROUPBOX        "エディタの設定",IDC_STATIC,4,73,227,60
+    RTEXT           "引数：",IDC_STATIC,10,170,40,8
+    LTEXT           "新規メール送信時のみ。%1は""mailto:アドレス""",
+                    IDC_STATIC,10,184,214,10
+    GROUPBOX        "メーラの設定",IDC_STATIC,4,137,227,60
+    LTEXT           "※ブラウザ・メーラ共に空欄の場合は\n　　「インターネット」コントロールパネルでの設定が利用されます。\n※ファイラーが空欄の場合はWindowsのエクスプローラです。\n※エディタが空欄の場合は.txt関連付けに従います。通常はメモ帳です。",
+                    IDC_STATIC,4,201,227,38
+    GROUPBOX        "バージョン管理ツール",IDC_STATIC,4,256,227,63
+    LTEXT           "Subversion ※空欄でTortoiseSVN自動探索",IDC_STATIC,11,
+                    267,213,8
+    LTEXT           "Git ※空欄でTortoiseGit自動探索",IDC_STATIC,11,291,213,
+                    8
+    EDITTEXT        IDC_DEFAULT_EDITOR_ARG,55,102,170,14,ES_AUTOHSCROLL
+    RTEXT           "引数：",IDC_STATIC,10,104,40,8
+    LTEXT           "%1=ファイル名(フルパス) %2=開いた時に選択している行（数値）",
+                    IDC_STATIC,10,120,214,10
+END
+
+IDD_LISTDIALOG DIALOGEX 0, 0, 210, 192
+STYLE DS_NOIDLEMSG | DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | 
+    WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "エクスプローラ"
+MENU IDR_LISTDIALOG_TOP_MENU
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "List2",IDC_DLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | WS_BORDER | 
+                    WS_TABSTOP,0,0,210,172,WS_EX_CLIENTEDGE
+    DEFPUSHBUTTON   "実行(&X)",IDOK,138,174,69,14
+    PUSHBUTTON      "閉じる(&C)",IDCANCEL,94,174,40,14
+    CONTROL         "Progress1",IDC_CACHE_PROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,3,176,86,12
+END
+
+IDD_STDINPUT DIALOG DISCARDABLE  0, 0, 187, 65
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SSP"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_ASKEDIT,4,28,179,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,79,47,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,133,47,50,14
+    LTEXT           "Message",IDC_ASKMESSAGE,4,4,179,23
+END
+
+IDD_PV_RESIZE DIALOG DISCARDABLE  0, 0, 216, 132
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "サイズを変更"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "ピクセル",IDC_PV_RESIZE_RADIO_PX,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,8,60,10
+    CONTROL         "パーセント",IDC_PV_RESIZE_RADIO_PCT,"Button",
+                    BS_AUTORADIOBUTTON,80,8,70,10
+    LTEXT           "幅",IDC_STATIC,8,26,90,8
+    LTEXT           "高さ",IDC_STATIC,120,26,90,8
+    EDITTEXT        IDC_PV_RESIZE_EDIT_W,8,36,90,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_GROUP
+    EDITTEXT        IDC_PV_RESIZE_EDIT_H,120,36,90,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER
+    CONTROL         "縦横比を保持",IDC_PV_RESIZE_KEEPRATIO,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,8,56,120,10
+    LTEXT           "現在:",IDC_PV_RESIZE_STATIC_CUR,8,76,204,9
+    LTEXT           "新規:",IDC_PV_RESIZE_STATIC_NEW,8,88,204,9
+    DEFPUSHBUTTON   "OK",IDOK,104,110,50,14,WS_GROUP
+    PUSHBUTTON      "キャンセル",IDCANCEL,158,110,50,14
+END
+
+IDD_AV_PASSWORD DIALOG DISCARDABLE  0, 0, 216, 146
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "アーカイブの解凍パスワードを設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "パスワードを入力",IDC_AV_PW_RADIO_INPUT,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,8,8,96,10
+    CONTROL         "パスワードを生成",IDC_AV_PW_RADIO_GENERATE,"Button",
+                    BS_AUTORADIOBUTTON,112,8,96,10
+    CONTROL         "アルファベット小文字",IDC_AV_PW_CHK_LOWER,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,16,26,180,10
+    CONTROL         "アルファベット大文字",IDC_AV_PW_CHK_UPPER,"Button",
+                    BS_AUTOCHECKBOX,16,38,180,10
+    CONTROL         "数字",IDC_AV_PW_CHK_DIGIT,"Button",BS_AUTOCHECKBOX,16,
+                    50,180,10
+    CONTROL         "記号",IDC_AV_PW_CHK_SYMBOL,"Button",BS_AUTOCHECKBOX,16,
+                    62,180,10
+    LTEXT           "文字数(4-64)：",IDC_STATIC,16,80,100,8
+    EDITTEXT        IDC_AV_PW_LEN_EDIT,120,77,40,14,ES_AUTOHSCROLL | 
+                    ES_NUMBER | WS_GROUP
+    CONTROL         "Spin1",IDC_AV_PW_LEN_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,155,77,10,14
+    EDITTEXT        IDC_AV_PW_EDIT,8,100,200,14,ES_AUTOHSCROLL | WS_GROUP
+    DEFPUSHBUTTON   "OK",IDOK,104,124,50,14,WS_GROUP
+    PUSHBUTTON      "キャンセル",IDCANCEL,158,124,50,14
+END
+
+IDD_LOG DIALOGEX 0, 0, 282, 145
+STYLE DS_CENTER | WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "ログ表示"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_LOG,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | 
+                    LVS_NOSORTHEADER | WS_TABSTOP,3,4,276,119,
+                    WS_EX_CLIENTEDGE
+    DEFPUSHBUTTON   "実行",IDC_EXECUTE,235,128,44,14
+    COMBOBOX        IDC_TYPE,3,128,48,84,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_LOGLINE,95,128,27,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "消去",IDC_CLEAR,129,128,32,14
+    PUSHBUTTON      "コピー",IDC_COPY,164,128,32,14
+    PUSHBUTTON      "保存...",IDC_SAVE,199,128,32,14
+    LTEXT           "ログ行数：",IDC_STATIC_LOGLINE,59,131,30,8
+END
+
+IDD_PROPERTY DIALOGEX 0, 0, 343, 376
+STYLE DS_MODALFRAME | WS_MINIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SSP:設定"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "",IDC_SHEETFRAME,"Static",SS_BLACKFRAME | NOT 
+                    WS_VISIBLE,108,17,235,335
+    DEFPUSHBUTTON   "閉じる(&C)",IDOK,289,357,50,15
+    PUSHBUTTON      "ヘルプ(&H)",IDC_HELPME,235,357,50,15
+    LTEXT           "一部の設定を除き、変更はすぐに反映されます。",
+                    IDC_STATIC,4,361,209,8
+    CONTROL         "List2",IDC_SHEETS,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | 
+                    LVS_NOSCROLL | LVS_NOCOLUMNHEADER | LVS_NOSORTHEADER | 
+                    WS_TABSTOP,4,4,101,349,WS_EX_CLIENTEDGE
+    CONTROL         " Dialog Title--",IDC_TITLEFRAME,"Static",
+                    SS_LEFTNOWORDWRAP | SS_CENTERIMAGE | WS_GROUP,110,4,229,
+                    14,WS_EX_STATICEDGE
+END
+
+IDD_SURFACETEST DIALOGEX 0, 0, 229, 127
+STYLE DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Surface:GN"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    LISTBOX         IDC_CHAR,3,15,23,94,LBS_NOINTEGRALHEIGHT | WS_TABSTOP
+    LISTBOX         IDC_SURFACE,27,15,67,94,LBS_NOINTEGRALHEIGHT | 
+                    LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_ANIMID,95,15,73,94,LBS_NOINTEGRALHEIGHT | 
+                    LBS_DISABLENOSCROLL | WS_VSCROLL | WS_TABSTOP
+    LISTBOX         IDC_COLORDER,169,15,57,94,LBS_NOINTEGRALHEIGHT | 
+                    LBS_DISABLENOSCROLL | LBS_NOSEL | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Sort",IDC_SORT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    132,114,28,10
+    CONTROL         "Copy",IDC_COPY,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    163,114,28,10
+    CONTROL         "Script",IDC_SCRIPT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,195,114,31,10
+    LTEXT           "WND",IDC_STATIC,3,3,21,8
+    LTEXT           "Surface(%d)",IDC_SURFACESTATIC,29,3,63,8
+    LTEXT           "ID(%d,desc)",IDC_ANIMIDSTATIC,95,3,56,8
+    LTEXT           "Total:%dBytes",IDC_STATUSSTATIC,24,114,69,8
+    LTEXT           "Col (%d,asc)",IDC_COLORDER_TITLE,170,3,56,8
+    PUSHBUTTON      "▼",IDC_SURFACETEST_MENU,3,111,15,13
+    PUSHBUTTON      "GO",IDC_SURFACETEST_EXEC,107,111,20,13
+END
+
+IDD_MODULECHARSET DIALOG DISCARDABLE  0, 0, 221, 138
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Charset"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    COMBOBOX        IDC_SHIORI_CHARSET,67,45,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MAKOTO_CHARSET,67,63,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PIRO_CHARSET,67,81,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SCRIPT_CHARSET,67,99,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    DEFPUSHBUTTON   "OK",IDOK,110,120,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,167,120,50,14
+    RTEXT           "SHIORI :",IDC_STATIC,4,47,56,8
+    RTEXT           "MAKOTO :",IDC_STATIC,4,65,56,8
+    RTEXT           "PIRO(OLD) :",IDC_STATIC,4,83,56,8
+    RTEXT           "SCRIPT(OLD) :",IDC_STATIC,4,101,56,8
+    LTEXT           "",IDC_CHARSET_TITLE,4,6,213,30
+END
+
+IDD_DEVELOPER DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "開発/その他 : 開発用やその他細かい設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "FMO名を変更する",IDC_CHANGE_FMO_NAME,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,6,79,10
+    EDITTEXT        IDC_FMO_NAME,129,4,102,14,ES_AUTOHSCROLL
+    CONTROL         "ディレクトリをドロップした際に更新ファイルやNARを作成",
+                    IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    21,227,10
+    CONTROL         "ネットワーク更新時に旧ファイルを残す",
+                    IDC_UPDATE_BACKUPFILES,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,33,227,10
+    CONTROL         "読み取り専用属性ファイルは更新対象にしない",
+                    IDC_UPDATE_IGNOREREADONLY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,45,227,10
+    CONTROL         "サーフィスが存在しない時に非表示とする",
+                    IDC_HIDE_SURFACEERR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,57,227,10
+    CONTROL         "Materiaが起動しているように見せかける (""sakura"" Mutex)",
+                    IDC_SAKURA_MUTEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    69,227,10
+    CONTROL         "Vanish(アンインストール)実行を抑制",IDC_DISABLE_VANISH,
+                    "Button",BS_AUTO3STATE | WS_TABSTOP,4,81,227,10
+    CONTROL         "複数起動ロックを解除(危険)",IDC_DISABLE_LOCK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,93,227,10
+    CONTROL         "利用可能な場合は更新にバージョン管理ツールを使う",
+                    IDC_TORTOISESVN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
+                    106,227,10
+    COMBOBOX        IDC_NOTIFY_ERROR,4,119,56,81,CBS_DROPDOWNLIST | 
+                    CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "例外ハンドラを使う",IDC_EXHANDLER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,135,227,10
+    CONTROL         "updates2.dauを作成",IDC_UPDATE_DAU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,231,81,10
+    CONTROL         "updates.txtを作成",IDC_UPDATE_TXT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,99,231,74,10
+    CONTROL         "毎回指定",IDC_NARPATH_ASK,"Button",BS_AUTORADIOBUTTON,9,
+                    297,43,10
+    CONTROL         "フォルダと同じ",IDC_NARPATH_SAME,"Button",
+                    BS_AUTORADIOBUTTON,63,297,58,10
+    CONTROL         "指定したフォルダ",IDC_NARPATH_USER,"Button",
+                    BS_AUTORADIOBUTTON,133,297,66,10
+    EDITTEXT        IDC_NARPATH_USER_EDIT,10,310,175,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_NARPATH_USER_ASK,188,310,37,14
+    RTEXT           "名前：",IDC_STATIC,82,7,42,8
+    GROUPBOX        "更新定義ファイル",IDC_STATIC,4,219,227,60
+    GROUPBOX        "NAR作成位置",IDC_STATIC,4,286,227,45
+    LTEXT           "レベル以上のエラー発生を通知",IDC_STATIC,67,121,149,8
+    CONTROL         "自動更新の際にテスト版も対象にする",
+                    IDC_ENABLE_TEST_UPDATE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,148,227,10
+    CONTROL         "常にUTF-8文字コードを使用する (互換性に問題あり)",
+                    IDC_UPDATE_UTF8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,
+                    246,215,10
+    CONTROL         "ファイルのハッシュ値計算処理キャッシュ",
+                    IDC_UPDATE_CACHE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,
+                    261,215,10
+END
+
+IDD_DIRECTORYDROP DIALOG DISCARDABLE  0, 0, 187, 81
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "実行する処理を選択して下さい"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "(DUMMY:EDIT IDR_LISTDIALOG_MENU)",IDC_DIR_UPDATEDEF,
+                    "Button",BS_AUTORADIOBUTTON,4,6,179,10
+    CONTROL         "(DUMMY:EDIT IDR_LISTDIALOG_MENU)",IDC_DIR_CREATENAR,
+                    "Button",BS_AUTORADIOBUTTON,4,19,179,10
+    CONTROL         "(DUMMY:EDIT IDR_LISTDIALOG_MENU)",IDC_DIR_BOTH,"Button",
+                    BS_AUTORADIOBUTTON,4,32,179,10
+    CONTROL         "無視してゴーストに通知",IDC_DIR_IGNORE,"Button",
+                    BS_AUTORADIOBUTTON,4,45,179,10
+    DEFPUSHBUTTON   "OK",IDOK,79,63,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,133,63,50,14
+END
+
+IDD_DEVPALETTE DIALOGEX 0, 0, 107, 229
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "開発"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "当たり判定を表示",IDC_SHOW_HITRECT,"Button",
+                    BS_AUTO3STATE | WS_TABSTOP,4,4,99,10
+    CONTROL         "バルーンテストモード",IDC_BALLOONTEST,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,14,99,10
+    CONTROL         "SERIKOウェイト調整",IDC_ADJUST_SERIKOWAIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,24,99,10
+    CONTROL         "更新チェックのみ",IDC_DUMMYUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,34,99,10
+    CONTROL         "SHIORIのSenderを変更",IDC_CHANGESENDER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,44,99,10
+    CONTROL         "SHIORI呼出ログ有効",IDC_SHIORI_LOG,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,54,99,10
+    CONTROL         "SHIORI内部ログ機能有効",IDC_SHIORI_LOG_NOTIFY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,64,99,10
+    CONTROL         "SHIORIデバッグ機能有効",IDC_SHIORI_DEBUG_NOTIFY,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,74,99,10
+    CONTROL         "自動切替無効",IDC_FOLDER_NOAUTO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,84,99,10
+    CONTROL         "自動チェック無効",IDC_FOLDER_NOCHECK,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,94,99,10
+    CONTROL         "自動更新無効",IDC_FOLDER_NOAUTOUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,104,99,10
+    PUSHBUTTON      "スクリプト入力 Ctrl+S",IDC_OPEN_SCRIPT,4,128,99,13
+    PUSHBUTTON      "サーフィステスト Ctrl+T",IDC_OPEN_SURFACETEST,4,142,99,
+                    13
+    PUSHBUTTON      "エラーログを表示",IDC_OPEN_ERRORLOG,4,156,99,13
+    PUSHBUTTON      "リロード",IDC_EXEC_RELOAD,4,198,99,13
+    PUSHBUTTON      "開く/実行",IDC_EXEC_OPEN,4,212,99,13
+    PUSHBUTTON      "現在時刻の仮想的変更",IDC_OPEN_TIMEMACHINE,4,170,99,13
+    PUSHBUTTON      "SERIKO Inspector",IDC_OPEN_SERIKO,4,184,99,13
+    CONTROL         "\\-タグで終了しない",IDC_SUPPRESS_EXIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,114,99,10
+END
+
+IDD_DISP DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "表示 : 画面表示まわりの設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "カーソルを変更しない(次のゴースト読み込みから有効)",
+                    IDC_DONTSETCURSOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,4,226,10
+    LTEXT           "デスクトップ下端オフセット(通常は0で問題ありません)：",
+                    IDC_STATIC,4,19,161,8
+    EDITTEXT        IDC_DESKTOP_OFFSET,172,16,37,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_DTOFFSET_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,207,16,9,14
+    CONTROL         "メニュー幅を背景画像に合わせる",IDC_EXTENDMENUWIDTH,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,33,226,10
+    CONTROL         "メニュー選択中にプレビュー画像を表示する",
+                    IDC_SHOW_THUMBNAIL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,45,226,10
+    LTEXT           "メニューの縦方向の余白設定（標準2）：",IDC_STATIC,4,62,
+                    143,8
+    EDITTEXT        IDC_MENU_HEIGHT,150,59,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_MENU_HEIGHT_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,194,59,10,14
+    CONTROL         "一部のメニューを階層化する",IDC_CREATE_SUBMENU,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,76,226,10
+    LTEXT           "ゴースト・バルーンメニューの最大文字数(5-255)：",
+                    IDC_STATIC,4,92,156,8
+    EDITTEXT        IDC_MENU_LIMIT,164,89,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_MENU_LIMIT_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,199,89,10,14
+    LTEXT           "最近使ったものメニューの最大記録数(2-255)：",IDC_STATIC,
+                    4,108,156,8
+    EDITTEXT        IDC_HISTORY_LIMIT,164,105,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_HISTORY_LIMIT_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,199,106,10,14
+    CONTROL         "Flip3D中でも表示する (Vista以上)",IDC_FLIP3D,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,122,226,10
+    CONTROL         "タスクバーにキャラクターウインドウを表示",IDC_TASKBAR,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,134,226,10
+    CONTROL         "フルスクリーンのアプリが起動した時に最小化",
+                    IDC_HIDEFULLSCREEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    4,146,226,10
+    CONTROL         "クロスフェーダを使う",IDC_CROSSFADER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,238,201,10
+    CONTROL         "ドラッグ中に透明度を上げる",IDC_DRAGDROP,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,11,251,201,10
+    CONTROL         "Slider1",IDC_ALPHA_SAKURA,"msctls_trackbar32",TBS_TOP | 
+                    TBS_NOTICKS | TBS_TOOLTIPS | WS_TABSTOP,45,276,180,16
+    CONTROL         "Slider1",IDC_ALPHA_SAKURAMSG,"msctls_trackbar32",
+                    TBS_TOP | TBS_NOTICKS | TBS_TOOLTIPS | WS_TABSTOP,45,293,
+                    180,16
+    CONTROL         "Slider1",IDC_ALPHA_CALENDAR,"msctls_trackbar32",TBS_TOP | 
+                    TBS_NOTICKS | TBS_TOOLTIPS | WS_TABSTOP,45,310,180,16
+    GROUPBOX        "半透明ウィンドウ",IDC_STATIC,4,224,226,107
+    RTEXT           "本体:",IDC_STATIC,11,280,32,8
+    RTEXT           "バルーン:",IDC_STATIC,11,297,32,8
+    RTEXT           "カレンダー:",IDC_STATIC,11,314,32,8
+    LTEXT           "透明",IDC_STATIC,45,266,15,8
+    LTEXT           "不透明",IDC_STATIC,204,266,22,8
+    CONTROL         "全ての仮想デスクトップにキャラクターウインドウ表示 (Win10以降)",
+                    IDC_PIN_VD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,158,
+                    226,10
+    CONTROL         "キャラクターをクリックするとキャラ以外のウインドウも手前に出る",
+                    IDC_BRING_OTHER_WINDOW_TO_FRONT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,170,226,10
+    CONTROL         "高DPI対応 [SSPの再起動が必要]",IDC_DPI_AWARE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,182,226,10
+    CONTROL         "画面外のウインドウを自動で画面内に移動する",
+                    IDC_AUTOMOVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,193,
+                    226,10
+END
+
+IDD_FOLDEREDIT DIALOGEX 0, 0, 323, 186
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_ACCEPTFILES
+CAPTION "読み込むフォルダ設定 : %s"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "List1",IDC_FOLDERLIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | 
+                    LVS_NOSORTHEADER | WS_TABSTOP,4,4,315,117,
+                    WS_EX_CLIENTEDGE
+    CONTROL         "ランダム切替の対象にしない",IDC_FOLDER_NORAND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,136,146,10
+    CONTROL         "自動切替しない",IDC_FOLDER_NOAUTO,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,8,148,146,10
+    CONTROL         "ヘッドライン・メール等を自動チェックしない",
+                    IDC_FOLDER_NOCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    165,136,146,10
+    CONTROL         "起動時に自動更新しない",IDC_FOLDER_NOAUTOUPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,165,148,146,10
+    PUSHBUTTON      "追加...",IDC_FOLDERADD,4,168,37,14
+    PUSHBUTTON      "変更...",IDC_FOLDERMODIFY,44,168,37,14
+    PUSHBUTTON      "編集",IDC_FOLDEREDIT,84,168,37,14
+    PUSHBUTTON      "削除",IDC_FOLDERDEL,124,168,37,14
+    PUSHBUTTON      "",IDC_FOLDERUP,166,168,14,14,BS_ICON
+    PUSHBUTTON      "",IDC_FOLDERDN,181,168,14,14,BS_ICON
+    DEFPUSHBUTTON   "OK",IDOK,217,168,48,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,269,168,50,14
+    GROUPBOX        "フォルダ個別設定",IDC_STATIC,4,125,315,38
+END
+
+IDD_NETUPDATE DIALOGEX 0, 0, 255, 176
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Network Update..."
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "キャンセル",IDCANCEL,211,31,40,14
+    CONTROL         "Progress1",IDC_UPDATE_PROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,4,33,182,11
+    CONTROL         "ゴースト : ほげほげ",IDC_NAME,"Static",
+                    SS_LEFTNOWORDWRAP | SS_NOPREFIX | WS_GROUP,4,4,247,11
+    CONTROL         "shiori.dll 5/12",IDC_STATUS,"Static",SS_LEFTNOWORDWRAP | 
+                    SS_NOPREFIX | WS_GROUP,15,18,236,11
+    CONTROL         "List1",IDC_UPDATE_RESULT,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    LVS_NOSORTHEADER | WS_BORDER | WS_TABSTOP,4,52,247,120,
+                    WS_EX_CLIENTEDGE
+    PUSHBUTTON      ">>",IDC_NEXT,189,31,20,14
+END
+
+IDD_SCALING DIALOG DISCARDABLE  0, 0, 153, 79
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "シェル倍率"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_SCALING_EDIT_X,90,5,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SCALING_SPIN_X,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,25,43,9,14
+    EDITTEXT        IDC_SCALING_EDIT_Y,90,21,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_SCALING_SPIN_Y,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,48,43,9,14
+    DEFPUSHBUTTON   "OK",IDOK,43,60,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,98,60,50,14
+    RTEXT           "Y =",IDC_STATIC,68,24,18,8
+    LTEXT           "%",IDC_STATIC,134,8,11,8
+    LTEXT           "シェル倍率 : ",IDC_SCALING_STATIC,5,8,70,29
+    RTEXT           "X =",IDC_STATIC,68,8,18,8
+    LTEXT           "%",IDC_STATIC,134,24,11,8
+    CONTROL         "X = Y",IDC_X_Y,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,90,
+                    40,32,10
+END
+
+IDD_GHOST DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "ゴースト(1) : ゴーストまわりの設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "ゴーストを1つランダムに選択して起動(前回終了時の状態は破棄)",
+                    IDC_RANDOMGHOSTBOOT,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,4,227,10
+    CONTROL         "ゴーストを起動時に選択する",IDC_SELECTGHOSTBOOT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,17,227,10
+    CONTROL         "ゴースト定義メニューを使わない(非力なマシンでON)",
+                    IDC_NOMENUMODIFY,"Button",BS_AUTO3STATE | WS_TABSTOP,4,
+                    30,227,10
+    CONTROL         "最小化時に喋らない",IDC_NOTALKMINIMIZE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,43,227,10
+    CONTROL         "画面見切れ判定をしない",IDC_MIKIRE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,56,227,10
+    CONTROL         "キャラの重なり判定をしない",IDC_KASANARI,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,69,227,10
+    CONTROL         "起動時の自動更新を有効にする",IDC_AUTO_UPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,155,109,10
+    EDITTEXT        IDC_AUTO_UPDATE_DURATION,177,153,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_AUTO_UPDATE_DURATION,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,213,151,10,14
+    CONTROL         "修復モードへの切り替えキー有効 : ",IDC_STRICT_UPDATE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,173,119,10
+    COMBOBOX        IDC_STRICT_UPDATE_KEY,131,171,50,157,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "更新実行時にバルーンやシェルの更新も同時に確認する",
+                    IDC_UPDATE_CHECKOTHER,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,10,187,213,10
+    COMBOBOX        IDC_UPDATECHECK_METHOD,78,201,146,108,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "自動切換を有効にする",IDC_AUTOCHANGE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,237,128,10
+    CONTROL         "ランダム",IDC_AUTOCHANGE_RANDOM,"Button",
+                    BS_AUTORADIOBUTTON,9,251,41,10
+    CONTROL         "順番",IDC_AUTOCHANGE_SEQUENTIAL,"Button",
+                    BS_AUTORADIOBUTTON,63,251,30,10
+    EDITTEXT        IDC_AUTOCHANGE_DURATION,177,248,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_AUTOCHANGE_DURATION,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,213,245,10,14
+    CONTROL         "ゴーストキャッシュを有効にする",IDC_CACHE_ENABLE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,283,128,10
+    EDITTEXT        IDC_CACHE_NUM,51,297,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin3",IDC_SPIN_CACHE_NUM,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,86,295,10,14
+    EDITTEXT        IDC_CACHE_DURATION,177,297,40,14,ES_AUTOHSCROLL
+    CONTROL         "Spin2",IDC_SPIN_CACHE_DURATION,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,213,295,10,14
+    GROUPBOX        "ゴースト自動切換",IDC_STATIC,4,225,227,42
+    RTEXT           "切換間隔(分)：",IDC_STATIC,130,251,43,8
+    GROUPBOX        "ゴーストキャッシュ制御",IDC_STATIC,4,271,227,60
+    RTEXT           "保持時間(分)：",IDC_STATIC,130,300,43,8
+    RTEXT           "最大保持数：",IDC_STATIC,10,300,39,8
+    LTEXT           "更新のチェック方法：",IDC_STATIC,11,203,61,8
+    GROUPBOX        "ネットワーク更新",IDC_STATIC,4,142,227,78
+    CONTROL         "ゴースト・バルーンリストキャッシュを有効にする",
+                    IDC_CACHE_LIST_ENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,315,169,10
+    RTEXT           "更新間隔(日)：",IDC_STATIC,130,156,43,8
+    CONTROL         "中クリック代用キーを使用する :",IDC_ALT_MID_CLICK,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,83,119,10
+    COMBOBOX        IDC_ALT_MID_CLICK_KEY,126,81,50,157,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "音楽再生情報をゴーストに通知する",
+                    IDC_CHECK_NOTIFY_MUSICPLAY,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,98,227,10
+END
+
+IDD_POPACCOUNT DIALOG DISCARDABLE  0, 0, 319, 276
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "メールチェック"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_POP_ACCOUNT,78,5,236,14,ES_AUTOHSCROLL
+    COMBOBOX        IDC_BIFF_TYPE,78,23,68,62,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_TABSTOP
+    EDITTEXT        IDC_POP_ADDRESS,78,46,236,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_POP_PORT,78,64,44,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "<< 標準のポート番号",IDC_POP_PORT_DEFAULT,128,64,104,14
+    EDITTEXT        IDC_POP_ID,78,88,236,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_POP_PASS,78,106,236,14,ES_PASSWORD | ES_AUTOHSCROLL
+    CONTROL         "サーバへの接続にSSL/TLSを使う（ポート番号に注意！）",
+                    IDC_POP_SSL,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,202,
+                    309,10
+    CONTROL         "SSL/TLSのサーバ証明書を検証する",IDC_POP_SSLVERIFY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,215,309,10
+    EDITTEXT        IDC_POP_INTERVAL,163,229,35,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_POP_INTERVAL_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS,194,225,10,14
+    DEFPUSHBUTTON   "OK",IDOK,207,252,50,19
+    PUSHBUTTON      "キャンセル",IDCANCEL,264,252,50,19
+    CONTROL         "自動チェック",IDC_POP_AUTO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,5,231,52,10
+    RTEXT           "アカウント名:",IDC_STATIC,5,8,67,8
+    RTEXT           "サーバ:",IDC_STATIC,5,49,67,8
+    RTEXT           "ポート番号:",IDC_STATIC,5,67,67,8
+    RTEXT           "ユーザーID:",IDC_STATIC,5,91,67,8
+    RTEXT           "パスワード:",IDC_STATIC,5,109,67,8
+    RTEXT           "チェック間隔(分) : ",IDC_STATIC,70,231,89,8
+    RTEXT           "種類:",IDC_STATIC,5,25,67,8
+    EDITTEXT        IDC_POP_MAILER_PATH,78,129,185,14,ES_AUTOHSCROLL
+    RTEXT           "起動メーラー:",IDC_STATIC,5,133,67,8
+    LTEXT           "空欄で標準のメーラーを起動 URL可",IDC_STATIC,78,147,234,
+                    8
+    PUSHBUTTON      "参照...",IDC_POP_MAILER_BROWSE,267,129,47,14
+    EDITTEXT        IDC_POP_MAILER_ARG,78,160,179,14,ES_AUTOHSCROLL
+    RTEXT           "引数:",IDC_STATIC,5,163,67,8
+    LTEXT           "新規メール送信時のみ。%1は""mailto:アドレス""",
+                    IDC_STATIC,78,178,234,10
+END
+
+IDD_INTERNATIONAL DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "国際化 : 国際化に関係する設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    PUSHBUTTON      "選択...",IDC_FONT_MENU_CHOICE,135,15,44,14
+    PUSHBUTTON      "標準設定",IDC_FONT_MENU_DEFAULT,182,15,44,14
+    PUSHBUTTON      "選択...",IDC_FONT_BALLOON_CHOICE,135,52,44,14
+    PUSHBUTTON      "標準設定",IDC_FONT_BALLOON_DEFAULT,182,52,44,14
+    GROUPBOX        "メニューフォント設定上書き",IDC_STATIC,4,4,227,32
+    LTEXT           "[FONT]",IDC_FONT_MENU_SHOW,10,16,118,13,SS_CENTERIMAGE
+    GROUPBOX        "バルーンフォント設定上書き",IDC_STATIC,4,41,227,32
+    LTEXT           "[FONT]",IDC_FONT_BALLOON_SHOW,10,53,118,13,
+                    SS_CENTERIMAGE
+    COMBOBOX        IDC_SHIORI_CHARSET,74,176,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_MAKOTO_CHARSET,74,194,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_PIRO_CHARSET,74,212,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_SCRIPT_CHARSET,74,230,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "SHIORI :",IDC_STATIC,14,178,53,8
+    RTEXT           "MAKOTO :",IDC_STATIC,14,196,53,8
+    RTEXT           "PIRO(OLD) :",IDC_STATIC,14,214,53,8
+    RTEXT           "SCRIPT(OLD) :",IDC_STATIC,14,232,53,8
+    GROUPBOX        "省略時の文字コード",IDC_STATIC,4,80,227,171
+    COMBOBOX        IDC_DEFINE_CHARSET,74,94,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_README_CHARSET,74,158,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "readme :",IDC_STATIC,14,160,53,8
+    RTEXT           "テキスト定義 :",IDC_STATIC,14,96,53,8
+    LTEXT           "descript.txt, install.txt, surfaces.txt etc...",
+                    IDC_STATIC,74,111,157,9
+    COMBOBOX        IDC_FILE_CHARSET,74,126,150,130,CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    RTEXT           "File I/O :",IDC_STATIC,14,128,53,8
+    LTEXT           "ネットワーク更新, Zip解凍, etc...",IDC_STATIC,74,143,
+                    157,9
+END
+
+IDD_GHOSTEXT DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "ゴースト(2) : ゴースト個別設定 (標準設定)"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "サウンドを鳴らさない",IDC_SOUND,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,4,227,10
+    CONTROL         "常に手前に表示",IDC_TOPMOST,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,16,227,10
+    CONTROL         "SERIKO Moveを無視(非力なマシンでON) ***",IDC_IGNOREMOVE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,28,227,10
+    CONTROL         "バルーン位置補正有効",IDC_BALLOONMOVE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,4,40,227,10
+    GROUPBOX        "開発用オプション",IDC_DEV_STATIC,4,54,227,38
+    CONTROL         "定義なしサーフィスを無視 ***",IDC_DEFINEDSURFACEONLY,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,65,216,10
+    CONTROL         "隠し指定された要素を表示する",IDC_SHOW_HIDDEN_ELEMENTS,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,77,216,10
+    GROUPBOX        "キャラクター自由移動 ***",IDC_STATIC,4,155,227,27
+    CONTROL         "常に自由移動",IDC_FORCEALIGNFREE,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,8,167,70,10
+    CONTROL         "ゴースト設定",IDC_FORCEALIGNOFF,"Button",
+                    BS_AUTORADIOBUTTON,82,167,70,10
+    CONTROL         "常に制限",IDC_FORCEALIGNLIMIT,"Button",
+                    BS_AUTORADIOBUTTON,156,167,70,10
+    GROUPBOX        "喋る時に手前に出て来る",IDC_STATIC,4,188,227,38
+    CONTROL         "出て来る",IDC_ACTIVATEWHENTALK,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP,8,198,42,10
+    CONTROL         "更新時以外",IDC_ACTIVATE_EXCEPTUPDATE,"Button",
+                    BS_AUTORADIOBUTTON,82,198,50,10
+    CONTROL         "出てこない",IDC_ACTIVATE_OFF,"Button",
+                    BS_AUTORADIOBUTTON,156,198,47,10
+    CONTROL         "喋り終わると裏へ沈む",IDC_DEACTIVATE,"Button",
+                    BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,211,216,10
+    GROUPBOX        "全ゴーストの設定を標準に戻す",IDC_RESET_STATIC,4,250,
+                    227,34
+    PUSHBUTTON      "実行",IDC_RESET,10,263,39,14
+    CONTROL         "Progress1",IDC_RESET_PROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,56,263,168,14
+    PUSHBUTTON      "標準に戻す(&R)",IDC_RESET_GHOST,71,317,50,14
+    PUSHBUTTON      "適用(&A)",IDC_APPLY_GHOST,124,317,50,14
+    PUSHBUTTON      "OK",IDOK,181,317,50,14
+    CONTROL         "<- この表示は標準設定が適用されることを意味します",
+                    IDC_CHECKBOX_SAMPLE,"Button",BS_3STATE | WS_TABSTOP,4,
+                    300,227,10
+    GROUPBOX        "シェル倍率 ***",IDC_STATIC,4,97,227,52
+    CONTROL         "バルーンも連携する",IDC_SCALING_BALLOON,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,109,136,10
+    CONTROL         "拡大/縮小時の補完処理(低速)",IDC_SCALING_DITHER,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,121,136,10
+    CONTROL         "バルーンの補完処理(やや低速)",
+                    IDC_SCALING_DITHER_BALLOON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,9,134,136,10
+    PUSHBUTTON      "シェル共通倍率設定...",IDC_SCALING_BUTTON,147,107,79,16
+    PUSHBUTTON      "バルーン共通倍率設定...",IDC_BALLOON_SCALING_BUTTON,147,
+                    127,79,16
+    LTEXT           "*** = シェル個別設定",IDC_STATIC,4,289,227,8
+END
+
+IDD_PLAYSSF DIALOGEX 0, 0, 187, 83
+STYLE DS_MODALFRAME | DS_CENTER | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Playing Sakura Script File(SSF)...."
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "Play >",IDOK,98,65,40,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,143,65,40,14
+    CONTROL         "Progress1",IDC_UPDATE_PROGRESS,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,4,49,179,11
+    CONTROL         "タイトル : ほげほげ",IDC_NAME,"Static",
+                    SS_LEFTNOWORDWRAP | SS_NOPREFIX | WS_GROUP,4,4,179,11
+    CONTROL         "Booting... せりこ",IDC_STATUS,"Static",
+                    SS_LEFTNOWORDWRAP | SS_NOPREFIX | WS_GROUP,4,18,179,11
+    LTEXT           "SSP BUGTRAQ",IDC_CREATE,4,32,179,11,SS_NOTIFY
+END
+
+IDD_TIMEMACHINE DIALOGEX 0, 0, 195, 78
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "TimeMachine"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    LTEXT           "System Time : ",IDC_STATIC,4,43,53,8,0,WS_EX_RIGHT
+    LTEXT           "Present Time : ",IDC_STATIC,4,27,53,8,0,WS_EX_RIGHT
+    LTEXT           "Dest. Time : ",IDC_STATIC,4,7,53,8,0,WS_EX_RIGHT
+    CONTROL         "DateTimePicker1",IDC_TIMEMACHINE_DEST_DATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP,63,4,65,15
+    CONTROL         "DateTimePicker2",IDC_TIMEMACHINE_DEST_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,129,4,62,15
+    PUSHBUTTON      "&Apply",IDC_TIMEMACHINE_APPLY,87,60,50,14
+    PUSHBUTTON      "&Reset",IDC_TIMEMACHINE_RESET,141,60,50,14
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_PRESENT,65,27,126,8
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_SYSTEM,65,43,126,8
+END
+
+IDD_DEVSERIKO DIALOGEX 0, 0, 187, 109
+STYLE DS_SETFOREGROUND | WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "SERIKO Inspector"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "Tree1",IDC_SERIKO_TREE,"SysTreeView32",TVS_HASBUTTONS | 
+                    TVS_HASLINES | TVS_LINESATROOT | TVS_DISABLEDRAGDROP | 
+                    TVS_SHOWSELALWAYS | TVS_FULLROWSELECT | WS_BORDER | 
+                    WS_TABSTOP,4,4,179,84
+    PUSHBUTTON      "Dump",IDC_DEVSERIKO_DUMP,144,91,39,14
+    PUSHBUTTON      "[-]Collapse",IDC_DEVSERIKO_COLLAPSE,45,91,39,14
+    PUSHBUTTON      "[+]Expand",IDC_DEVSERIKO_EXPAND,4,91,39,14
+END
+
+IDD_BIND_EXPLORER DIALOGEX 0, 0, 193, 155
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Dressup Explorer"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    CONTROL         "List2",IDC_BIND_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    WS_TABSTOP,125,4,64,147,WS_EX_CLIENTEDGE
+    CONTROL         "List1",IDC_BIND_GROUP,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    WS_TABSTOP,60,4,64,147,WS_EX_CLIENTEDGE
+    CONTROL         "List2",IDC_BIND_WND,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
+                    WS_TABSTOP,4,4,55,147,WS_EX_CLIENTEDGE
+END
+
+IDD_NOGHOST DIALOGEX 0, 0, 254, 169
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "起動エラー"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "起動続行",IDOK,200,151,50,14
+    PUSHBUTTON      "終了",IDCANCEL,145,151,50,14
+    CTEXT           "何とかして下さい。",IDC_STATIC,4,4,246,23,
+                    SS_CENTERIMAGE,WS_EX_CLIENTEDGE
+    LTEXT           "ゴーストまたはバルーンを1つも認識できなかったため、起動に失敗しました。\n起動を続けるためには、このウインドウにNARファイルをドロップするか、下のボタンでゴースト/バルーンの読み込みフォルダを指定してください。",
+                    IDC_STATIC,4,31,246,39
+    PUSHBUTTON      "フォルダ設定編集...",IDC_GHOST_EDIT,149,84,95,14
+    PUSHBUTTON      "フォルダ設定編集...",IDC_BALLOON_EDIT,149,122,95,14
+    GROUPBOX        "ゴースト",IDC_STATIC,4,73,246,31
+    GROUPBOX        "バルーン",IDC_STATIC,4,111,246,31
+    LTEXT           "現在の読み込み数 : [NUM]",IDC_GHOST_NUM,11,87,120,8
+    LTEXT           "現在の読み込み数 : [NUM]",IDC_BALLOON_NUM,11,125,120,8
+END
+
+IDD_DICTATION DIALOGEX 0, 0, 191, 74
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "音声認識"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    RTEXT           "会話相手",IDC_DICTATION_TARGET_ST,4,6,36,8
+    LTEXT           "",IDC_DICTATION_TARGET,44,4,143,13,SS_SUNKEN
+    RTEXT           "お願い",IDC_DICTATION_COMMAND_ST,4,23,36,8
+    LTEXT           "",IDC_DICTATION_COMMAND,44,21,143,13,SS_SUNKEN
+    RTEXT           "内容",IDC_DICTATION_RESULT_ST,4,40,36,8
+    CONTROL         "List2",IDC_DICTATION_RESULT,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | 
+                    LVS_NOSCROLL | LVS_NOCOLUMNHEADER | WS_TABSTOP,44,38,143,
+                    13,WS_EX_STATICEDGE
+    CONTROL         "Progress1",IDC_DICTATION_LEVEL,"msctls_progress32",
+                    PBS_SMOOTH | WS_BORDER,4,58,52,12
+    RTEXT           "",IDC_DICTATION_STATUS,61,59,126,11
+END
+
+IDD_DICTATIONSETTING DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "音声認識/合成 : SSPの音声認識・合成機能の設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    GROUPBOX        "音声認識",IDC_STATIC,4,3,226,90
+    COMBOBOX        IDC_DICTATION_ENGINE,59,16,165,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_DICTATION_INPUT,59,71,129,151,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "認識エンジン",IDC_STATIC,9,18,48,8
+    RTEXT           "音声入力元",IDC_STATIC,9,73,48,8
+    PUSHBUTTON      "認識エンジンの設定...",IDC_DICTATION_ENGINE_CONFIG,9,48,
+                    76,14
+    PUSHBUTTON      "設定...",IDC_DICTATION_INPUT_CONFIG,190,70,34,14
+    COMBOBOX        IDC_DICTATION_PROFILE,59,32,165,151,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "マイクの設定...",IDC_DICTATION_ENGINE_MIC,90,48,64,14
+    RTEXT           "プロファイル",IDC_STATIC,9,34,48,8
+    PUSHBUTTON      "トレーニング...",IDC_DICTATION_ENGINE_TRAINING,159,48,
+                    64,14
+    GROUPBOX        "音声合成",IDC_STATIC,4,98,226,210
+    COMBOBOX        IDC_TTS_VOICE_0,29,122,129,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "\\0",IDC_STATIC,9,124,17,8
+    PUSHBUTTON      "設定...",IDC_TTS_VOICE_CONFIG_0,190,121,34,14
+    COMBOBOX        IDC_TTS_OUTPUT,59,184,129,151,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "音声出力先",IDC_STATIC,9,186,48,8
+    PUSHBUTTON      "設定...",IDC_TTS_OUTPUT_CONFIG,190,183,34,14
+    CONTROL         "Slider1",IDC_TTS_SPEED,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,9,238,216,25
+    LTEXT           "喋る速度　遅い",IDC_STATIC,9,227,45,8
+    CTEXT           "標準",IDC_STATIC,105,227,23,8
+    RTEXT           "速い",IDC_STATIC,191,227,29,8
+    CONTROL         "Slider1",IDC_TTS_LEVEL,"msctls_trackbar32",
+                    TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,9,275,216,25
+    LTEXT           "音量",IDC_STATIC,9,265,15,8
+    CTEXT           "50%",IDC_STATIC,105,265,23,8
+    RTEXT           "100%",IDC_STATIC,191,265,29,8
+    COMBOBOX        IDC_TTS_VOICE_1,29,141,129,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "\\1",IDC_STATIC,9,143,17,8
+    PUSHBUTTON      "設定...",IDC_TTS_VOICE_CONFIG_1,190,140,34,14
+    COMBOBOX        IDC_TTS_VOICE_2,29,160,129,153,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "\\2～",IDC_STATIC,9,162,17,8
+    PUSHBUTTON      "設定...",IDC_TTS_VOICE_CONFIG_2,190,159,34,14
+    LTEXT           "音声の選択",IDC_STATIC,30,109,54,8
+    LTEXT           "ピッチ",IDC_STATIC,163,109,21,8
+    COMBOBOX        IDC_TTS_PITCH_0,161,122,27,195,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_TTS_PITCH_1,161,141,27,195,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    COMBOBOX        IDC_TTS_PITCH_2,161,160,27,195,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    CONTROL         "音声合成の進行速度に合わせてスクリプトの再生待ちを行う",
+                    IDC_TTS_SYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,
+                    206,213,10
+END
+
+IDD_GHOSTAT_SOUND DIALOG DISCARDABLE  0, 0, 203, 173
+STYLE WS_MINIMIZEBOX | WS_MAXIMIZEBOX | WS_POPUP | WS_CAPTION | WS_SYSMENU | 
+    WS_THICKFRAME
+CAPTION "SSP Video Window"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "",IDC_VW_FRAME,"Static",SS_BLACKFRAME,0,0,203,152
+    PUSHBUTTON      "Play",IDC_VW_PLAY,2,154,16,16,BS_ICON
+    PUSHBUTTON      "Pause",IDC_VW_PAUSE,20,154,16,16,BS_ICON
+    PUSHBUTTON      "Stop",IDC_VW_STOP,37,154,16,16,BS_ICON
+    CONTROL         "Slider1",IDC_VW_POS,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,55,153,126,15
+    CONTROL         "",IDC_VW_REPEAT,"Button",BS_AUTOCHECKBOX | BS_ICON | 
+                    BS_PUSHLIKE | WS_TABSTOP,184,154,16,16
+END
+
+IDD_ADVANCED DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION | WS_SYSMENU
+CAPTION "詳細設定 : 実験的機能を含む拡張設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+END
+
+IDD_SAVESHARE DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "セーブデータ : セーブデータ共有等の設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "セーブデータ共有を有効にする",IDC_SAVESHARE_ENABLE,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,4,227,10
+    LTEXT           "[]",IDC_SAVESHARE_DISP,4,20,227,24,SS_SUNKEN
+    GROUPBOX        "保存先の指定",IDC_STATIC,4,50,227,56
+    COMBOBOX        IDC_SAVESHARE_SERVICE,10,63,215,200,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+    EDITTEXT        IDC_SAVESHARE_PATH,10,82,178,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_SAVESHARE_BROWSE,193,82,30,14
+END
+
+IDD_GHOSTTERMS DIALOG DISCARDABLE  0, 0, 302, 183
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "利用条件 : (FILENAME)"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "受諾",IDOK,249,166,50,14
+    PUSHBUTTON      "拒否",IDCANCEL,195,166,50,14
+    EDITTEXT        IDC_GHOSTTERMS,3,33,296,127,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | ES_WANTRETURN | 
+                    WS_VSCROLL
+    ICON            IDI_NARFILE,IDC_STATIC,5,5,20,20
+    LTEXT           "このゴーストには利用条件があります。下記をよく読んで承諾できる場合のみ、\n[受諾]ボタンを押してインストールを再開してください。",
+                    IDC_STATIC,33,9,259,20
+    COMBOBOX        IDC_PROFILE_CHARSET,3,166,115,142,CBS_DROPDOWNLIST | 
+                    WS_VSCROLL | WS_TABSTOP
+END
+
+IDD_DEVSERIKODUMP DIALOG DISCARDABLE  0, 0, 295, 256
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SERIKO 画像ダンプ"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    EDITTEXT        IDC_DEVSEREIKODUMP_ID,87,8,67,14,ES_AUTOHSCROLL
+    CONTROL         "Spin1",IDC_DEVSEREIKODUMP_ID_SPIN,"msctls_updown32",
+                    UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
+                    UDS_ARROWKEYS | UDS_NOTHOUSANDS,154,10,10,14
+    EDITTEXT        IDC_DEVSEREIKODUMP_LIST,88,46,203,14,ES_AUTOHSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,185,238,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,241,238,50,14
+    RTEXT           "対象キャラクターID :",IDC_STATIC,6,11,74,8
+    RTEXT           "ダンプサーフィス一覧 :",IDC_STATIC,6,49,74,8
+    LTEXT           "\\0 = 0, \\1 = 1, \\p[2] = 2 ...",IDC_STATIC,88,28,203,
+                    8
+    LTEXT           "サーフィス番号をカンマとハイフンで区切って指定\n例：\n0-10,12,15 = 0から10、12、15番のサーフィスをダンプ",
+                    IDC_STATIC,88,83,203,36
+    EDITTEXT        IDC_DEVSEREIKODUMP_PREFIX,88,124,203,14,ES_AUTOHSCROLL
+    RTEXT           "ファイル名接頭辞 :",IDC_STATIC,6,127,74,8
+    LTEXT           "ダンプする画像のファイル名接頭辞\nデフォルト : surface (例: surface0.png)",
+                    IDC_STATIC,88,142,203,28
+    PUSHBUTTON      "現在のサーフィスを取得",IDC_DEVSEREIKODUMP_GETCURRENT,
+                    87,63,92,14
+    RTEXT           "出力先ディレクトリ :",IDC_STATIC,6,177,74,8
+    LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
+                    SS_SUNKEN
+    PUSHBUTTON      "ディレクトリ選択",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
+                    92,14
+    PUSHBUTTON      "エクスプローラで開く",IDC_DEVSEREIKODUMP_DIROPEN,183,
+                    192,108,14
+    CONTROL         "左上0,0の画像データを破棄する",
+                    IDC_DEVSEREIKODUMP_FROMZERO,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,28,214,263,15
+END
+
+IDD_SEND_SHIORI_REQUEST DIALOGEX 0, 0, 199, 129
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Send SHIORI Request..."
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Send",IDOK,4,111,147,14
+    PUSHBUTTON      "Close",IDCANCEL,163,111,32,14
+    EDITTEXT        IDC_SEND_EDIT,0,0,199,89,ES_MULTILINE | ES_AUTOVSCROLL | 
+                    ES_AUTOHSCROLL | ES_WANTRETURN
+    CONTROL         "Parse Response",IDC_CHECK_PARSE_RESPONSE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,132,94,63,10
+    CONTROL         "",IDC_SHIORI_CHARSET,"ComboBoxEx32",CBS_DROPDOWNLIST | 
+                    CBS_SORT | WS_VSCROLL | WS_TABSTOP,4,92,123,234
+END
+
+IDD_STREAMINGTOOL DIALOG DISCARDABLE  0, 0, 235, 335
+STYLE WS_CHILD | WS_CAPTION
+CAPTION "配信 : 動画配信等の補助ツールとして使うための設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    CONTROL         "キャラクターを配信ツールでキャプチャしやすくする",
+                    IDC_WINDOW_TOPLEVEL_CHAR,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,4,226,10
+    CONTROL         "バルーンも配信ツールでキャプチャしやすくする",
+                    IDC_WINDOW_TOPLEVEL_BALLOON,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,18,226,10
+    CONTROL         "音声検出時に自動で口パクする",
+                    IDC_SOUND_LEVEL_MONITOR_ENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,36,226,10
+    RTEXT           "音声入力選択 : ",IDC_STATIC,4,53,67,8
+    RTEXT           "音声レベル : ",IDC_STATIC,4,80,67,8
+    COMBOBOX        IDC_SOUND_LEVEL_MONITOR_DEVICE,74,50,156,132,
+                    CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    CONTROL         "Slider1",IDC_SOUND_LEVEL_MONITOR_LEVEL,
+                    "msctls_trackbar32",TBS_TOP | TBS_NOTICKS | WS_TABSTOP,
+                    74,84,156,15
+    CONTROL         "Progress1",IDC_SOUND_LEVEL_MONITOR_BAR,
+                    "msctls_progress32",PBS_SMOOTH,81,73,142,10
+    GROUPBOX        "ウインドウモード",IDC_STATIC,4,106,226,52
+    CONTROL         "ゴーストを1枚のウインドウの中に表示する",
+                    IDC_WINDOWMODE_ENABLE,"Button",BS_AUTOCHECKBOX | 
+                    WS_GROUP | WS_TABSTOP,11,117,212,10
+    CONTROL         "全ゴーストをまとめて1枚",IDC_WINDOWMODE_SHARED,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,20,130,203,10
+    CONTROL         "ゴーストごとに1枚",IDC_WINDOWMODE_PERGHOST,"Button",
+                    BS_AUTORADIOBUTTON,20,142,203,10
+END
+
+IDD_VOICEAPI DIALOG DISCARDABLE  0, 0, 275, 194
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "音声合成設定 : %s"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,165,176,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,221,176,50,14
+    GROUPBOX        "接続設定",IDC_STATIC,4,98,267,71
+    RTEXT           "ボイスID : ",IDC_STATIC,11,60,57,8
+    RTEXT           "ホスト名/IP : ",IDC_STATIC,11,113,57,8
+    RTEXT           "APIキー : ",IDC_STATIC,11,149,57,8
+    RTEXT           "ポート番号 : ",IDC_STATIC,11,131,57,8
+    EDITTEXT        IDC_VOICE_ID,71,57,152,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_VOICE_HOST,71,110,192,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_VOICE_PORT,71,128,192,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_VOICE_APIKEY,71,146,192,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "参照...",IDC_VOICE_VIEW,226,57,37,14
+    RTEXT           "種類 : ",IDC_STATIC,11,39,57,8
+    COMBOBOX        IDC_VOICE_TYPE,71,37,192,155,CBS_DROPDOWNLIST | CBS_SORT | 
+                    WS_VSCROLL | WS_TABSTOP
+    RTEXT           "スタイルID : ",IDC_STATIC,11,81,57,8
+    EDITTEXT        IDC_VOICE_STYLEID,71,78,192,14,ES_AUTOHSCROLL
+    LTEXT           "クラウド音声合成を使う場合のAPIキーを除き、すべて省略可能です\n必要なものだけ入力し、残りは空欄にしてください。",
+                    IDC_STATIC,11,9,259,24
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 2,9,10,3000
+ PRODUCTVERSION 2,7,0,0
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x9L
+#else
+ FILEFLAGS 0x8L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", " \0"
+            VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
+            VALUE "FileDescription", "SSP\0"
+            VALUE "FileVersion", "2, 9, 10, 3000\0"
+            VALUE "InternalName", "ssp\0"
+            VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
+            VALUE "LegalTrademarks", " \0"
+            VALUE "OriginalFilename", "ssp.exe\0"
+            VALUE "PrivateBuild", " \0"
+            VALUE "ProductName", "SSP\0"
+            VALUE "ProductVersion", "2, 7, 0, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+
+
+#endif    // neutral resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+

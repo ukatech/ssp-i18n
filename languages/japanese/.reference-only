@@ -1,0 +1,32 @@
+################################################################
+#  DO NOT EDIT / DO NOT TRANSLATE THIS FOLDER                  #
+#  ここは編集禁止・翻訳対象外です                              #
+################################################################
+
+languages/japanese/ is SOURCE TEXT, not a translation target.
+It is the original Japanese text of SSP and, together with
+languages/english/, one of the two source languages that every
+other language pack is translated from.
+
+  * Do not edit, translate, sync, rename or "fix" anything here
+    as part of a translation job. Source text changes are made by
+    the maintainer only.
+  * Do not copy this folder to create another language.
+  * This folder is not a language pack: it is not built, not
+    linted and not released (see .not-shipped).
+
+このフォルダは翻訳元の原文であり、翻訳対象ではありません。
+SSP 本来の日本語原文で、languages/english/ と並ぶ、他言語パックの
+翻訳元(2つの原文)の一つです。
+
+  * 翻訳作業の一環としての編集・翻訳・同期・リネーム・「修正」は
+    一切しないでください。原文の変更はメンテナのみが行います。
+  * このフォルダを複製して別言語を作らないでください。
+  * このフォルダは言語パックではありません。ビルド・lint・リリースの
+    対象外です(.not-shipped を参照)。
+
+----------------------------------------------------------------
+Folders containing this file are not translation targets for the
+tools in tools/ (only its existence matters; content is ignored).
+このファイルが存在するフォルダはツール上の翻訳対象外になります
+(内容は無視)。
