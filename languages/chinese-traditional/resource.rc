@@ -619,30 +619,30 @@ END
 
 IDD_FOLDER DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
-CAPTION "資料夾：讀取資料的目錄設定"
+CAPTION "資料夾：讀取資料的資料夾設定"
 FONT 9, "MS Shell Dlg"
 BEGIN
     PUSHBUTTON      "編輯...",IDC_GHOST_EDIT,121,15,50,14
     PUSHBUTTON      "重新載入",IDC_GHOST_RELOAD,176,15,50,14
-    CONTROL         "安裝時選擇目錄",IDC_GHOST_SELECT,
+    CONTROL         "安裝時選擇資料夾",IDC_GHOST_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
-    CONTROL         "啟動時顯示目錄設定視窗",
+    CONTROL         "啟動時顯示資料夾設定視窗",
                     IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,47,212,10
     PUSHBUTTON      "編輯...",IDC_BALLOON_EDIT,121,73,50,14
     PUSHBUTTON      "重新載入",IDC_BALLOON_RELOAD,176,73,50,14
-    CONTROL         "安裝時選擇目錄",IDC_BALLOON_SELECT,
+    CONTROL         "安裝時選擇資料夾",IDC_BALLOON_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,91,212,10
-    CONTROL         "啟動時顯示目錄設定視窗",
+    CONTROL         "啟動時顯示資料夾設定視窗",
                     IDC_BALLOON_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,105,212,10
     PUSHBUTTON      "編輯...",IDC_HEADLINE_EDIT,121,132,50,14
     PUSHBUTTON      "重新載入",IDC_HEADLINE_RELOAD,176,132,50,14
-    CONTROL         "安裝時選擇目錄",IDC_HEADLINE_SELECT,
+    CONTROL         "安裝時選擇資料夾",IDC_HEADLINE_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,150,212,10
     PUSHBUTTON      "編輯...",IDC_PLUGIN_EDIT,121,178,50,14
     PUSHBUTTON      "重新載入",IDC_PLUGIN_RELOAD,176,178,50,14
-    CONTROL         "安裝時選擇目錄",IDC_PLUGIN_SELECT,
+    CONTROL         "安裝時選擇資料夾",IDC_PLUGIN_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
     GROUPBOX        "人格",IDC_STATIC,4,6,228,56
     GROUPBOX        "對話方塊",IDC_STATIC,4,64,228,56
@@ -1438,7 +1438,7 @@ END
 IDD_FOLDEREDIT DIALOGEX 0, 0, 323, 186
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 EXSTYLE WS_EX_ACCEPTFILES
-CAPTION "目錄設定：%s"
+CAPTION "資料夾設定：%s"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "List1",IDC_FOLDERLIST,"SysListView32",LVS_REPORT | 
@@ -1463,7 +1463,7 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,181,168,14,14,BS_ICON
     DEFPUSHBUTTON   "確定",IDOK,217,168,48,14
     PUSHBUTTON      "取消",IDCANCEL,269,168,50,14
-    GROUPBOX        "目錄屬性",IDC_STATIC,4,125,315,38
+    GROUPBOX        "資料夾屬性",IDC_STATIC,4,125,315,38
 END
 
 IDD_GHOST DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1773,10 +1773,10 @@ BEGIN
     PUSHBUTTON      "結束",IDCANCEL,145,151,50,14
     CTEXT           "請進行處理。",IDC_STATIC,4,4,246,32,
                     SS_CENTERIMAGE,WS_EX_CLIENTEDGE
-    LTEXT           "找不到人格和/或對話方塊，啟動失敗。\n要繼續啟動，請將 NAR 檔案拖放到此視窗，\n或使用下方按鈕變更目錄設定。",
+    LTEXT           "找不到人格和/或對話方塊，啟動失敗。\n要繼續啟動，請將 NAR 檔案拖放到此視窗，\n或使用下方按鈕變更資料夾設定。",
                     IDC_STATIC,4,43,228,28
-    PUSHBUTTON      "編輯目錄清單...",IDC_GHOST_EDIT,149,84,95,14
-    PUSHBUTTON      "編輯目錄清單...",IDC_BALLOON_EDIT,149,122,95,14
+    PUSHBUTTON      "編輯資料夾清單...",IDC_GHOST_EDIT,149,84,95,14
+    PUSHBUTTON      "編輯資料夾清單...",IDC_BALLOON_EDIT,149,122,95,14
     GROUPBOX        "人格",IDC_STATIC,4,73,246,31
     GROUPBOX        "對話方塊",IDC_STATIC,4,111,246,31
     LTEXT           "共找到：[NUM]",IDC_GHOST_NUM,11,87,120,8
@@ -1839,10 +1839,10 @@ BEGIN
                     IDC_STATIC,88,142,203,28
     PUSHBUTTON      "取得目前表情",IDC_DEVSEREIKODUMP_GETCURRENT,87,
                     63,92,14
-    RTEXT           "輸出目錄：",IDC_STATIC,6,177,74,8
+    RTEXT           "輸出資料夾：",IDC_STATIC,6,177,74,8
     LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    PUSHBUTTON      "選擇目錄",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
+    PUSHBUTTON      "選擇資料夾",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
                     92,14
     PUSHBUTTON      "在檔案總管中開啟",IDC_DEVSEREIKODUMP_DIROPEN,183,192,
                     108,14

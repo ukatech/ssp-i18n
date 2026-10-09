@@ -6,12 +6,12 @@ error.apprun,由於執行中發生內部錯誤，應用程式已終止。\n如�
 error.cannotshowusagegraph,執行時間不足，無法顯示使用時間圖表。請在約 1 分鐘後重試。
 error.invalidipport,連接埠號碼無效。請指定 1024 到 65535 之間的數字。
 error.sstp.cannotlisten,無法在該連接埠號碼上建立連線。\n請確認連接埠號碼是否有效，以及是否與其他應用程式使用的連接埠號碼衝突。
-error.nofile,找不到必要的檔案和/或目錄。\n請重新安裝 SSP 或手動修復。
+error.nofile,找不到必要的檔案和/或資料夾。\n請重新安裝 SSP 或手動修復。
 error.browserexec,無法開啟瀏覽器。\n請檢查「偏好設定」->「應用程式」->「瀏覽器」中的設定。
 
-error.tempboot,SSP 正在暫存目錄中啟動。
-error.uacboot,SSP 正在受 UAC 保護的目錄中啟動。
-error.asciiboot,SSP 正在可能因字元編碼問題而無法存取的目錄中啟動。
+error.tempboot,SSP 正在暫存資料夾中啟動。
+error.uacboot,SSP 正在受 UAC 保護的資料夾中啟動。
+error.asciiboot,SSP 正在可能因字元編碼問題而無法存取的資料夾中啟動。
 error.alreadyrunning,SSP 似乎已在執行中。
 error.bootanyway,這種情況可能導致資料遺失。仍要啟動嗎？
 
@@ -28,9 +28,9 @@ info.charset,請選擇預設字元編碼。
 info.vanish,解除安裝功能已被停用。\n請關閉此設定後重試。
 info.sender,請輸入傳遞給 SHIORI 的 Sender 文字\n(Materia: embryo  CROW: crow  預設: 空白/ssp)
 
-info.install.overwrite,正在嘗試安裝到已存在的目錄。\n要覆寫嗎？
+info.install.overwrite,正在嘗試安裝到已存在的資料夾。\n要覆寫嗎？
 info.install.overwrite.additional,選擇「是」將覆寫。\n選擇「否」將自動變更資料夾名稱以避免覆寫。
-info.install.refresh.a,正在嘗試對已存在的目錄進行全新（重新整理）安裝。\n現有資料將會遺失。要覆寫嗎？
+info.install.refresh.a,正在嘗試對已存在的資料夾進行全新（重新整理）安裝。\n現有資料將會遺失。要覆寫嗎？
 
 info.install.invalidsupplement,這似乎是無效的補充檔案。\n仍要安裝嗎？
 info.install.select,請選擇安裝位置。

@@ -6,12 +6,12 @@ error.apprun,由于运行中发生内部错误，应用程序已终止。\n如�
 error.cannotshowusagegraph,运行时间不足，无法显示使用时间图表。请在约 1 分钟后重试。
 error.invalidipport,端口号无效。请指定 1024 到 65535 之间的数字。
 error.sstp.cannotlisten,无法在该端口号上建立连接。\n请确认端口号是否有效，以及是否与其他应用程序使用的端口号冲突。
-error.nofile,找不到必需的文件和/或目录。\n请重新安装 SSP 或手动修复。
+error.nofile,找不到必需的文件和/或文件夹。\n请重新安装 SSP 或手动修复。
 error.browserexec,无法打开浏览器。\n请检查“首选项”->“应用程序”->“浏览器”中的设置。
 
-error.tempboot,SSP 正在临时目录中启动。
-error.uacboot,SSP 正在受 UAC 保护的目录中启动。
-error.asciiboot,SSP 正在可能因字符编码问题而无法访问的目录中启动。
+error.tempboot,SSP 正在临时文件夹中启动。
+error.uacboot,SSP 正在受 UAC 保护的文件夹中启动。
+error.asciiboot,SSP 正在可能因字符编码问题而无法访问的文件夹中启动。
 error.alreadyrunning,SSP 似乎已在运行。
 error.bootanyway,这种情况可能导致数据丢失。仍要启动吗？
 
@@ -28,9 +28,9 @@ info.charset,请选择默认字符编码。
 info.vanish,卸载功能已被禁用。\n请关闭此设置后重试。
 info.sender,请输入传递给 SHIORI 的 Sender 文字\n(Materia: embryo  CROW: crow  默认: 空/ssp)
 
-info.install.overwrite,正在尝试安装到已存在的目录。\n要覆盖吗？
+info.install.overwrite,正在尝试安装到已存在的文件夹。\n要覆盖吗？
 info.install.overwrite.additional,选择“是”将覆盖。\n选择“否”将自动更改文件夹名称以避免覆盖。
-info.install.refresh.a,正在尝试对已存在的目录进行全新（刷新）安装。\n现有数据将会丢失。要覆盖吗？
+info.install.refresh.a,正在尝试对已存在的文件夹进行全新（刷新）安装。\n现有数据将会丢失。要覆盖吗？
 
 info.install.invalidsupplement,这似乎是无效的补充文件。\n仍要安装吗？
 info.install.select,请选择安装位置。

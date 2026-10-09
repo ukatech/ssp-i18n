@@ -619,30 +619,30 @@ END
 
 IDD_FOLDER DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
-CAPTION "文件夹：读取数据的目录设置"
+CAPTION "文件夹：读取数据的文件夹设置"
 FONT 9, "MS Shell Dlg"
 BEGIN
     PUSHBUTTON      "编辑...",IDC_GHOST_EDIT,121,15,50,14
     PUSHBUTTON      "重新载入",IDC_GHOST_RELOAD,176,15,50,14
-    CONTROL         "安装时选择目录",IDC_GHOST_SELECT,
+    CONTROL         "安装时选择文件夹",IDC_GHOST_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
-    CONTROL         "启动时显示目录设置对话框",
+    CONTROL         "启动时显示文件夹设置对话框",
                     IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,47,212,10
     PUSHBUTTON      "编辑...",IDC_BALLOON_EDIT,121,73,50,14
     PUSHBUTTON      "重新载入",IDC_BALLOON_RELOAD,176,73,50,14
-    CONTROL         "安装时选择目录",IDC_BALLOON_SELECT,
+    CONTROL         "安装时选择文件夹",IDC_BALLOON_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,91,212,10
-    CONTROL         "启动时显示目录设置对话框",
+    CONTROL         "启动时显示文件夹设置对话框",
                     IDC_BALLOON_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,105,212,10
     PUSHBUTTON      "编辑...",IDC_HEADLINE_EDIT,121,132,50,14
     PUSHBUTTON      "重新载入",IDC_HEADLINE_RELOAD,176,132,50,14
-    CONTROL         "安装时选择目录",IDC_HEADLINE_SELECT,
+    CONTROL         "安装时选择文件夹",IDC_HEADLINE_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,150,212,10
     PUSHBUTTON      "编辑...",IDC_PLUGIN_EDIT,121,178,50,14
     PUSHBUTTON      "重新载入",IDC_PLUGIN_RELOAD,176,178,50,14
-    CONTROL         "安装时选择目录",IDC_PLUGIN_SELECT,
+    CONTROL         "安装时选择文件夹",IDC_PLUGIN_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
     GROUPBOX        "人格",IDC_STATIC,4,6,228,56
     GROUPBOX        "对话框",IDC_STATIC,4,64,228,56
@@ -1438,7 +1438,7 @@ END
 IDD_FOLDEREDIT DIALOGEX 0, 0, 323, 186
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 EXSTYLE WS_EX_ACCEPTFILES
-CAPTION "目录设置：%s"
+CAPTION "文件夹设置：%s"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "List1",IDC_FOLDERLIST,"SysListView32",LVS_REPORT | 
@@ -1463,7 +1463,7 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,181,168,14,14,BS_ICON
     DEFPUSHBUTTON   "确定",IDOK,217,168,48,14
     PUSHBUTTON      "取消",IDCANCEL,269,168,50,14
-    GROUPBOX        "目录属性",IDC_STATIC,4,125,315,38
+    GROUPBOX        "文件夹属性",IDC_STATIC,4,125,315,38
 END
 
 IDD_GHOST DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1773,10 +1773,10 @@ BEGIN
     PUSHBUTTON      "退出",IDCANCEL,145,151,50,14
     CTEXT           "请进行处理。",IDC_STATIC,4,4,246,32,
                     SS_CENTERIMAGE,WS_EX_CLIENTEDGE
-    LTEXT           "未找到人格和/或对话框，启动失败。\n要继续启动，请将 NAR 文件拖放到此窗口，\n或使用下方按钮更改目录设置。",
+    LTEXT           "未找到人格和/或对话框，启动失败。\n要继续启动，请将 NAR 文件拖放到此窗口，\n或使用下方按钮更改文件夹设置。",
                     IDC_STATIC,4,43,228,28
-    PUSHBUTTON      "编辑目录列表...",IDC_GHOST_EDIT,149,84,95,14
-    PUSHBUTTON      "编辑目录列表...",IDC_BALLOON_EDIT,149,122,95,14
+    PUSHBUTTON      "编辑文件夹列表...",IDC_GHOST_EDIT,149,84,95,14
+    PUSHBUTTON      "编辑文件夹列表...",IDC_BALLOON_EDIT,149,122,95,14
     GROUPBOX        "人格",IDC_STATIC,4,73,246,31
     GROUPBOX        "对话框",IDC_STATIC,4,111,246,31
     LTEXT           "共找到：[NUM]",IDC_GHOST_NUM,11,87,120,8
@@ -1839,10 +1839,10 @@ BEGIN
                     IDC_STATIC,88,142,203,28
     PUSHBUTTON      "获取当前表情",IDC_DEVSEREIKODUMP_GETCURRENT,87,
                     63,92,14
-    RTEXT           "输出目录：",IDC_STATIC,6,177,74,8
+    RTEXT           "输出文件夹：",IDC_STATIC,6,177,74,8
     LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    PUSHBUTTON      "选择目录",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
+    PUSHBUTTON      "选择文件夹",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
                     92,14
     PUSHBUTTON      "在资源管理器中打开",IDC_DEVSEREIKODUMP_DIROPEN,183,192,
                     108,14
