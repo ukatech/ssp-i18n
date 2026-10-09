@@ -24,6 +24,9 @@ messagename,message.txt
 
 //Calendar holiday settings except Sundays.
 //format is "Year-Month,day day day[CRLF]" Example, 2003-1,1 13
+//Country specific table is searched first by inserting "-" and the ISO 3166 country code
+//of the Windows region setting before the extension (holidays.txt -> holidays-GB.txt).
+//If it does not exist, the file specified here is used.
 holidayname,holidays.txt
 
 //Creator. Because for unification of other "descript.txt" format,using strange English "craftman".

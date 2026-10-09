@@ -1,6 +1,11 @@
 charset,UTF-8
-file,descript.txt46fb5f831f5809095038204426eadf38size=1494date=2012-12-21T00:00:00
-file,holidays.txt0a54f31f921f752cdc33ab4474929ec1size=464date=2012-12-21T00:00:00
+file,descript.txt5fe9cea9af04661005179f53dfc6793esize=1729date=2012-12-21T00:00:00
+file,holidays-AU.txt492c9223754ec50910f279cf97b7025esize=652date=2012-12-21T00:00:00
+file,holidays-CA.txt4cd250142601d59d7a11bf4791efc419size=1130date=2012-12-21T00:00:00
+file,holidays-GB.txtdc38f34bb2215d8a8c97c4d392c80991size=824date=2012-12-21T00:00:00
+file,holidays-IE.txtd010bb78732ddbe5d3accc52335cdbeasize=1099date=2012-12-21T00:00:00
+file,holidays-NZ.txtc070b006674183975d036c1d84633ce7size=1046date=2012-12-21T00:00:00
+file,holidays.txt3f234855c67e653f104b26acce90c2dcsize=1320date=2012-12-21T00:00:00
 file,install.txt13bcb594d762863e7639bc87b5b7cfabsize=45date=2012-12-21T00:00:00
 file,message.txt03b213a98710563480b2e431dc4d6dc6size=10160date=2012-12-21T00:00:00
 file,resource.dll34ced32a82a7da917d7698f04d9d0337size=59904date=2012-12-21T00:00:00

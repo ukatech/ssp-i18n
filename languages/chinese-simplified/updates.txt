@@ -1,6 +1,7 @@
 charset,UTF-8
-file,descript.txt095981eb922a9f644711e7e8de2f7936size=1553date=2012-12-21T00:00:00
-file,holidays.txt0a54f31f921f752cdc33ab4474929ec1size=464date=2012-12-21T00:00:00
+file,descript.txt9b21dc8c73871a1b1bf58ebb6f6ddcc1size=1788date=2012-12-21T00:00:00
+file,holidays-SG.txt793d0b535cad85f0924677b45e0f3fadsize=1148date=2012-12-21T00:00:00
+file,holidays.txt6a472fed99912b14bd6031237cbd9e89size=1538date=2012-12-21T00:00:00
 file,install.txtea41ff06748b8a74403ddd1006729c3dsize=67date=2012-12-21T00:00:00
 file,message.txte18f69b4a12a0689be11cd48666a80c2size=9275date=2012-12-21T00:00:00
 file,resource.dll27d0fd026ff8eac69bb64bace724cbf5size=44032date=2012-12-21T00:00:00
