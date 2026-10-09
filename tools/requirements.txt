@@ -1,2 +1,4 @@
-# rcview.py (dialog layout, --audit, --png); the other tools need only the standard library
+# rcview.py (dialog layout, --audit, --png) and make_pictures.py
 pillow>=10.1
+# make_holidays.py (holiday tables)
+holidays>=0.106

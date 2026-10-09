@@ -1,4 +1,4 @@
-//Singapore public holidays (with observed days; lunar and Islamic dates from 2028 are estimated)
+//Singapore public holidays (with observed days; future lunar and Islamic dates are estimated)
 //format is "Year-Month,day day day". Example, 2026-1,1 19
 2020-1,1 25 26 27
 2020-4,10

@@ -43,7 +43,8 @@ jobs:
 
             Steps:
             1. Copy languages/english/ as the template into the new locale folder, then delete the copied
-               .reference-only file (the new folder is a translation target), resource.dll and updates.txt.
+               .reference-only file (the new folder is a translation target), resource.dll, updates.txt and
+               holidays-*.txt (keep holidays.txt; holiday tables are generated later, AGENTS.md Job D).
             2. Update descript.txt: name, locale, id (${{ inputs.lang_id }}), and homeurl to
                https://raw.githubusercontent.com/ukatech/ssp-i18n/main/languages/${{ inputs.locale_folder }}/
             3. Translate message.txt, resource.rc UI strings, surfacetable.txt, and install.txt.
@@ -55,7 +56,7 @@ jobs:
                python tools/i18n_check.py ${{ inputs.locale_folder }}
                and fix every ERROR it reports.
             languages/japanese/ is source text, not a language pack (never copy, modify or build it);
-            translate from both english and japanese as described in AGENTS.md section 5.1.
+            translate from both english and japanese as described in AGENTS.md section 5.2.
             Do not modify existing locales except README.md.
           max-steps: '300'
           max-time-seconds: '3600'

@@ -1,5 +1,5 @@
-//China (mainland) public holidays. 2020-2026: State Council holiday arrangements (whole blocks).
-//2027-2030: statutory holidays only, until the State Council publishes the arrangements. Adjusted working days are not expressible.
+//China (mainland) public holidays. Until 2026: State Council holiday arrangements (whole blocks).
+//Later years: statutory holidays only, until the State Council publishes the arrangements. Adjusted working days are not expressible.
 //Default table. Country specific tables are holidays-XX.txt (XX = ISO 3166 country code of the Windows region setting).
 //format is "Year-Month,day day day". Example, 2026-1,1 19
 2020-1,1 24 25 26 27 28 29 30 31

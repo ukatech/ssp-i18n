@@ -49,7 +49,7 @@ jobs:
             - surfacetable.txt and install.txt: align structure when english changed
             Follow the translation rules in AGENTS.md (section 5).
             languages/japanese/ is source text, not a language pack (never modify, build or release it);
-            translate from both english and japanese as described in AGENTS.md section 5.1.
+            translate from both english and japanese as described in AGENTS.md section 5.2.
             Folders containing a .reference-only file are never translation targets.
             Do not modify languages/english/, languages/japanese/, shared/resource_r.h, scripts/, or tools/.
             Run: python tools/i18n_check.py --min-level warn

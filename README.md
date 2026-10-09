@@ -13,7 +13,7 @@
 
 Each locale directory is a complete SSP language pack. Drag it into SSP or package it as a `.nar` for distribution.
 
-`languages/english/` and `languages/japanese/` are the two source texts every other pack is translated from (equal rank; both carry a `.reference-only` file and are never translation targets). `japanese` is the original Japanese text and is not a language pack: it is never built, checked or released (`.not-shipped`). See [AGENTS.md](AGENTS.md) §5.1.
+`languages/english/` and `languages/japanese/` are the two source texts every other pack is translated from (equal rank; both carry a `.reference-only` file and are never translation targets). `japanese` is the original Japanese text and is not a language pack: it is never built, checked or released (`.not-shipped`). See [AGENTS.md](AGENTS.md) §5.2.
 
 ## Directory layout
 
@@ -29,8 +29,9 @@ ssp-i18n/
 ├── scripts/
 │   ├── build-resource.ps1    # Build resource.dll for all or a single locale
 │   └── convert-legacy-rc.ps1 # One-time legacy RC conversion tool (used for zh-CN/zh-TW migration)
-├── tools/                    # Cross-platform helpers (Python 3; rcview needs Pillow)
+├── tools/                    # Cross-platform helpers (Python 3; see tools/requirements.txt)
 │   ├── i18n_check.py         # Lint locales against english; list english changes since last sync
+│   ├── make_holidays.py      # Generate the holiday tables (holidays*.txt) of the translated packs
 │   ├── make_pictures.py      # Generate localized ssp-pictures/ images from the english ones
 │   ├── rcview.py             # Render dialogs/menus/messages side by side as HTML/PNG, detect clipped text
 │   ├── release.py            # updates.txt generation/verification, .nar packaging, release notes
