@@ -6,12 +6,12 @@ error.apprun,The application was terminated because an internal error occurred d
 error.cannotshowusagegraph,Graph of usage time cannot be displayed because running time is insufficient. Please try again after about 1 minute passes.
 error.invalidipport,The port number is invalid. Please pick a number between 1024 and 65535.
 error.sstp.cannotlisten,Failed to set up a connection on that port number.\nPlease check that the port number is not invalid, and does not overlap with a port number used by another application.
-error.nofile,An essential file and/or directory was not found.\nPlease re-install SSP or fix it manually.
+error.nofile,An essential file and/or folder was not found.\nPlease re-install SSP or fix it manually.
 error.browserexec,Failed to open browser.\nPlease check the setting in "Preferences"->"Applications"->"Browser"
 
-error.tempboot,SSP is booting in a temporary directory.
-error.uacboot,SSP is booting in a UAC protected directory.
-error.asciiboot,SSP is booting in a directory that may not be accessible due to character encoding problems.
+error.tempboot,SSP is booting in a temporary folder.
+error.uacboot,SSP is booting in a UAC protected folder.
+error.asciiboot,SSP is booting in a folder that may not be accessible due to character encoding problems.
 error.alreadyrunning,SSP seems to already be running.
 error.bootanyway,This situation may cause data loss. Do you want to boot anyway?
 
@@ -28,9 +28,9 @@ info.charset,Please choose a default character encoding.
 info.vanish,Uninstall function is disabled.\nPlease disable this setting and try again.
 info.sender,Please input the Sender text to be passed to SHIORI\n(Materia: embryo  CROW: crow  Default: empty/ssp)
 
-info.install.overwrite,Trying to install to an existing directory.\nDo you want to overwrite it?
+info.install.overwrite,Trying to install to an existing folder.\nDo you want to overwrite it?
 info.install.overwrite.additional,Choose "Yes" to overwrite it.\nChoose "No" to automatically change the folder name and avoid overwriting.
-info.install.refresh.a,Trying to do a clean (refresh) install in an existing directory.\nExisting data will be lost. Do you want to overwrite it?
+info.install.refresh.a,Trying to do a clean (refresh) install in an existing folder.\nExisting data will be lost. Do you want to overwrite it?
 
 info.install.invalidsupplement,This seems to be an invalid supplement file.\nInstall it anyway?
 info.install.select,Please select an install destination.

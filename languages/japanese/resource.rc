@@ -1367,7 +1367,7 @@ BEGIN
     CONTROL         "FMO名を変更する",IDC_CHANGE_FMO_NAME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,6,79,10
     EDITTEXT        IDC_FMO_NAME,129,4,102,14,ES_AUTOHSCROLL
-    CONTROL         "ディレクトリをドロップした際に更新ファイルやNARを作成",
+    CONTROL         "フォルダをドロップした際に更新ファイルやNARを作成",
                     IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     21,227,10
     CONTROL         "ネットワーク更新時に旧ファイルを残す",
@@ -2095,10 +2095,10 @@ BEGIN
                     IDC_STATIC,88,142,203,28
     PUSHBUTTON      "現在のサーフィスを取得",IDC_DEVSEREIKODUMP_GETCURRENT,
                     87,63,92,14
-    RTEXT           "出力先ディレクトリ :",IDC_STATIC,6,177,74,8
+    RTEXT           "出力先フォルダ :",IDC_STATIC,6,177,74,8
     LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    PUSHBUTTON      "ディレクトリ選択",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
+    PUSHBUTTON      "フォルダ選択",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
                     92,14
     PUSHBUTTON      "エクスプローラで開く",IDC_DEVSEREIKODUMP_DIROPEN,183,
                     192,108,14

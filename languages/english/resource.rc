@@ -624,25 +624,25 @@ FONT 9, "MS Shell Dlg"
 BEGIN
     PUSHBUTTON      "Edit...",IDC_GHOST_EDIT,121,15,50,14
     PUSHBUTTON      "Reload",IDC_GHOST_RELOAD,176,15,50,14
-    CONTROL         "Select directory when installing",IDC_GHOST_SELECT,
+    CONTROL         "Select folder when installing",IDC_GHOST_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
-    CONTROL         "Show directory configuration dialog when booting",
+    CONTROL         "Show folder configuration dialog when booting",
                     IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,47,212,10
     PUSHBUTTON      "Edit...",IDC_BALLOON_EDIT,121,73,50,14
     PUSHBUTTON      "Reload",IDC_BALLOON_RELOAD,176,73,50,14
-    CONTROL         "Select directory when installing",IDC_BALLOON_SELECT,
+    CONTROL         "Select folder when installing",IDC_BALLOON_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,91,212,10
-    CONTROL         "Show directory configuration dialog when booting",
+    CONTROL         "Show folder configuration dialog when booting",
                     IDC_BALLOON_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,105,212,10
     PUSHBUTTON      "Edit...",IDC_HEADLINE_EDIT,121,132,50,14
     PUSHBUTTON      "Reload",IDC_HEADLINE_RELOAD,176,132,50,14
-    CONTROL         "Select directory when installing",IDC_HEADLINE_SELECT,
+    CONTROL         "Select folder when installing",IDC_HEADLINE_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,150,212,10
     PUSHBUTTON      "Edit...",IDC_PLUGIN_EDIT,121,178,50,14
     PUSHBUTTON      "Reload",IDC_PLUGIN_RELOAD,176,178,50,14
-    CONTROL         "Select directory when installing",IDC_PLUGIN_SELECT,
+    CONTROL         "Select folder when installing",IDC_PLUGIN_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
     GROUPBOX        "Ghost",IDC_STATIC,4,6,228,56
     GROUPBOX        "Balloon",IDC_STATIC,4,64,228,56
@@ -1248,7 +1248,7 @@ BEGIN
     CONTROL         "Change FMO name",IDC_CHANGE_FMO_NAME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,6,79,10
     EDITTEXT        IDC_FMO_NAME,129,4,102,14,ES_AUTOHSCROLL
-    CONTROL         "Create update def. and/or NAR when directory is dragged && dropped",
+    CONTROL         "Create update def. and/or NAR when folder is dragged && dropped",
                     IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     21,227,10
     CONTROL         "Backup old files when performing a network update",
@@ -1438,7 +1438,7 @@ END
 IDD_FOLDEREDIT DIALOGEX 0, 0, 323, 186
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION
 EXSTYLE WS_EX_ACCEPTFILES
-CAPTION "Directory settings: %s"
+CAPTION "Folder settings: %s"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "List1",IDC_FOLDERLIST,"SysListView32",LVS_REPORT | 
@@ -1463,7 +1463,7 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,181,168,14,14,BS_ICON
     DEFPUSHBUTTON   "OK",IDOK,217,168,48,14
     PUSHBUTTON      "Cancel",IDCANCEL,269,168,50,14
-    GROUPBOX        "Directory property",IDC_STATIC,4,125,315,38
+    GROUPBOX        "Folder property",IDC_STATIC,4,125,315,38
 END
 
 IDD_GHOST DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1773,10 +1773,10 @@ BEGIN
     PUSHBUTTON      "Exit",IDCANCEL,145,151,50,14
     CTEXT           "Please do something.",IDC_STATIC,4,4,246,32,
                     SS_CENTERIMAGE,WS_EX_CLIENTEDGE
-    LTEXT           "Boot sequence failed because Ghosts and/or Balloons weren't found.\nTo continue boot sequence, drag and drop NAR archives onto this window\nor change the directory configuration using the buttons below.",
+    LTEXT           "Boot sequence failed because Ghosts and/or Balloons weren't found.\nTo continue boot sequence, drag and drop NAR archives onto this window\nor change the folder configuration using the buttons below.",
                     IDC_STATIC,4,43,228,28
-    PUSHBUTTON      "Edit directory list...",IDC_GHOST_EDIT,149,84,95,14
-    PUSHBUTTON      "Edit directory list...",IDC_BALLOON_EDIT,149,122,95,14
+    PUSHBUTTON      "Edit folder list...",IDC_GHOST_EDIT,149,84,95,14
+    PUSHBUTTON      "Edit folder list...",IDC_BALLOON_EDIT,149,122,95,14
     GROUPBOX        "Ghost",IDC_STATIC,4,73,246,31
     GROUPBOX        "Balloon",IDC_STATIC,4,111,246,31
     LTEXT           "Total found: [NUM]",IDC_GHOST_NUM,11,87,120,8
@@ -1839,10 +1839,10 @@ BEGIN
                     IDC_STATIC,88,142,203,28
     PUSHBUTTON      "Get Current Surface",IDC_DEVSEREIKODUMP_GETCURRENT,87,
                     63,92,14
-    RTEXT           "Output Directory :",IDC_STATIC,6,177,74,8
+    RTEXT           "Output folder :",IDC_STATIC,6,177,74,8
     LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    PUSHBUTTON      "Select Directory",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
+    PUSHBUTTON      "Select folder",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
                     92,14
     PUSHBUTTON      "Open in Explorer",IDC_DEVSEREIKODUMP_DIROPEN,183,192,
                     108,14
@@ -1934,7 +1934,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,91,12
+ FILEVERSION 2,8,91,13
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1953,7 +1953,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 91, 12\0"
+            VALUE "FileVersion", "2, 8, 91, 13\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"
