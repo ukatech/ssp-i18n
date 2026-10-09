@@ -37,6 +37,9 @@ LANG_DIR = os.path.join(REPO_ROOT, 'languages')
 SRC = os.path.join(LANG_DIR, 'english', 'ssp-pictures')
 
 # light: realize title; regular: realize subtitle and nowloading text.
+# A locale may set wait_weight='bold' (needs a 'bold' stack) and smooth=N, which
+# renders the nowloading text at N times the size and scales it down (smoother
+# than FreeType's hinted rendering at small sizes).
 STACKS = {
     'zh-Hans': {
         'light': ['Microsoft YaHei Light', 'Noto Sans CJK SC Light', 'Noto Sans SC Light',
@@ -55,13 +58,16 @@ STACKS = {
                   'Source Han Sans KR Light', 'Apple SD Gothic Neo Light', 'NanumGothic Light'],
         'regular': ['Malgun Gothic', 'Noto Sans CJK KR', 'Noto Sans KR', 'Source Han Sans KR',
                     'Apple SD Gothic Neo', 'NanumGothic', 'UnDotum'],
+        'bold': ['Malgun Gothic Bold', 'Noto Sans CJK KR Bold', 'Noto Sans KR Bold',
+                 'Source Han Sans KR Bold', 'Apple SD Gothic Neo Bold', 'NanumGothic Bold'],
     },
 }
 
 LOCALES = {
     'chinese-simplified': dict(lang='zh-Hans', title='统计', subtitle='使用率图表', wait='请稍候...'),
     'chinese-traditional': dict(lang='zh-Hant', title='統計', subtitle='使用率圖表', wait='請稍候...'),
-    'korean': dict(lang='ko', title='통계', subtitle='사용률 그래프', wait='잠시만요...'),
+    'korean': dict(lang='ko', title='통계', subtitle='사용률 그래프', wait='처리 중...',
+                   wait_weight='bold', smooth=4),
 }
 
 
@@ -92,22 +98,27 @@ def find_font(names, text, light):
 
 def load_font(lang, weight, text, px):
     names = STACKS[lang][weight]
-    if weight == 'light':
-        names = names + STACKS[lang]['regular']  # no light face: regular is close enough
-    face, name = find_font(names, text, weight == 'light')
+    if weight in ('light', 'bold'):
+        names = names + STACKS[lang]['regular']  # no light/bold face: regular is close enough
+    face, name = find_font(names, text, weight in ('light', 'bold'))
     if face is None:
         sys.exit('no font for %s (%s); install one of: %s' % (lang, weight, ', '.join(STACKS[lang][weight])))
     return ImageFont.truetype(face.path, px, index=face.index), name
 
 
-def text_mask(text, font, tracking):
-    """Render *text* with *tracking* extra pixels after each glyph; ink-cropped L mask."""
-    m = Image.new('L', (2000, 200), 0)
+def text_mask(text, font, tracking, scale=1):
+    """Render *text* with *tracking* extra pixels after each glyph; ink-cropped L mask.
+
+    With scale > 1, *font* is *scale* times the wanted size and the mask is scaled down."""
+    m = Image.new('L', (2000 * scale, 200 * scale), 0)
     d = ImageDraw.Draw(m)
-    x = 10
+    x = 10 * scale
     for ch in text:
-        d.text((x, 50), ch, font=font, fill=255)
-        x += font.getlength(ch) + tracking
+        d.text((x, 50 * scale), ch, font=font, fill=255)
+        x += font.getlength(ch) + tracking * scale
+    if scale > 1:
+        w, h = m.size
+        m = m.resize((w // scale, h // scale), Image.LANCZOS)
     return m.crop(m.getbbox())
 
 
@@ -123,7 +134,8 @@ def build(cfg, out_dir):
     lang = cfg['lang']
     title_font, n1 = load_font(lang, 'light', cfg['title'], 22)
     sub_font, n2 = load_font(lang, 'regular', cfg['subtitle'], 12)
-    wait_font, n3 = load_font(lang, 'regular', cfg['wait'], 18)
+    smooth = cfg.get('smooth', 1)
+    wait_font, n3 = load_font(lang, cfg.get('wait_weight', 'regular'), cfg['wait'], 18 * smooth)
     os.makedirs(out_dir, exist_ok=True)
     for dark in (False, True):
         sfx = '_dark' if dark else ''
@@ -140,7 +152,7 @@ def build(cfg, out_dir):
         im = Image.open(os.path.join(SRC, 'nowloading%s.png' % sfx)).convert('L')
         d = ImageDraw.Draw(im)
         d.rectangle((90, 0, 260, 26), fill=bg)
-        place(im, text_mask(cfg['wait'], wait_font, 0), 255, 23, ink)
+        place(im, text_mask(cfg['wait'], wait_font, 0, smooth), 255, 23, ink)
         im.save(os.path.join(out_dir, 'nowloading%s.png' % sfx), optimize=True)
     return sorted({n1, n2, n3})
 

@@ -75,28 +75,28 @@ BEGIN
             MENUITEM SEPARATOR
             MENUITEM "모든 계정 확인(&A)",         SAKURA_MENU_POP_ALLCHECK
         END
-        POPUP "쉘 배율(&E)"
+        POPUP "쉘 크기 조정(&E)"
         BEGIN
             MENUITEM "상세 설정 (고스트별 설정과 동일)", 
                                                     SAKURA_MENU_SETUP_GHOST
-            MENUITEM "기타 배율(&O)...",        SAKURA_MENU_SCALING_FREE
+            MENUITEM "기타 크기(&O)...",        SAKURA_MENU_SCALING_FREE
             MENUITEM SEPARATOR
         END
-        POPUP "말풍선 배율(&D)"
+        POPUP "말풍선 크기 조정(&D)"
         BEGIN
-            MENUITEM "기타 배율(&O)...",        SAKURA_MENU_SCALING_BALLOON_FREE
+            MENUITEM "기타 크기(&O)...",        SAKURA_MENU_SCALING_BALLOON_FREE
 
             MENUITEM SEPARATOR
         END
         POPUP "기능(&F)"
         BEGIN
-            MENUITEM "캘린더(&C)\tCtrl+D",           SAKURA_MENU_CALENDAR
+            MENUITEM "달력(&C)\tCtrl+D",           SAKURA_MENU_CALENDAR
             MENUITEM "SSP 메신저(&M)\tCtrl+M",      SAKURA_MENU_IM
-            MENUITEM "NTP 시간 동기화(&N)",              SAKURA_MENU_SNTP
+            MENUITEM "시각 맞추기(&N)",              SAKURA_MENU_SNTP
             MENUITEM "탐색기(&E)\tCtrl+E",           SAKURA_MENU_EXPLORER
             MENUITEM "이미지 뷰어",              SAKURA_MENU_PICTURE_VIEWER
 
-            MENUITEM "압축 파일 뷰어",              SAKURA_MENU_ARCHIVE_VIEWER
+            MENUITEM "아카이브 뷰어",              SAKURA_MENU_ARCHIVE_VIEWER
 
             MENUITEM "백로그/대화 기록\tCtrl+B",     SAKURA_MENU_BACKLOG_VIEWER
 
@@ -116,9 +116,9 @@ BEGIN
             MENUITEM "고스트 캐시 해제(&G)",          SAKURA_MENU_PURGEGHOSTCACHE
 
             MENUITEM "FMO 정리/업데이트(&F)",                 SAKURA_MENU_UPDATEFMO
-            MENUITEM "모든 폴더 정보 다시 읽기(&R)",         SAKURA_MENU_RELOADINFO
+            MENUITEM "모든 폴더 정보 다시 불러오기(&R)",         SAKURA_MENU_RELOADINFO
             MENUITEM SEPARATOR
-            MENUITEM "고스트 다시 읽기(&O)",               SAKURA_MENU_RELOADGHOST
+            MENUITEM "고스트 다시 불러오기(&O)",               SAKURA_MENU_RELOADGHOST
             MENUITEM "제한(패시브) 모드 강제 해제(&P)",         SAKURA_MENU_LEAVEPASSIVE
             MENUITEM "임시 실행 고스트 유지(&K)\tCtrl+K", SAKURA_MENU_KEEPGHOST
             MENUITEM SEPARATOR
@@ -145,16 +145,16 @@ BEGIN
             MENUITEM "기본 문자 인코딩 설정(&C)",        SAKURA_MENU_CHARSET
             MENUITEM SEPARATOR
             MENUITEM "[호환성]",             IDC_STATIC, GRAYED
-            MENUITEM "토크 타이밍을 고스트에 맡김(&S)",  SAKURA_MENU_TALKSHIORI
+            MENUITEM "토크 타이밍을 고스트에게 맡김(&S)",  SAKURA_MENU_TALKSHIORI
             MENUITEM "구 사양 지원(&O)",  SAKURA_MENU_COMPATIBLEMODE
 
         END
         MENUITEM SEPARATOR
-        POPUP "고스트 전환(&G)"
+        POPUP "고스트 바꾸기(&G)"
         BEGIN
             MENUITEM SEPARATOR
         END
-        POPUP "다른 고스트 호출(&Z)"
+        POPUP "다른 고스트 부르기(&Z)"
         BEGIN
             MENUITEM SEPARATOR
         END
@@ -174,11 +174,11 @@ BEGIN
         END
         POPUP "최근 사용(&Y)"
         BEGIN
-            POPUP "고스트 전환(&G)"
+            POPUP "고스트 바꾸기(&G)"
             BEGIN
                 MENUITEM SEPARATOR
             END
-            POPUP "다른 고스트 호출(&Z)"
+            POPUP "다른 고스트 부르기(&Z)"
             BEGIN
                 MENUITEM SEPARATOR
             END
@@ -221,7 +221,7 @@ END
 
 IDR_SAKURA_CALENDAR_MENU MENU DISCARDABLE 
 BEGIN
-    POPUP "캘린더"
+    POPUP "달력"
     BEGIN
         MENUITEM "일정 편집(&E)",              SAKURA_CALENDAR_MENU_EDIT
         MENUITEM "일정 읽어 주기(&R)",              SAKURA_CALENDAR_MENU_READEVENT
@@ -253,9 +253,9 @@ BEGIN
             MENUITEM "항상 화면 가운데에 표시(&C)",      SAKURA_CALENDAR_MENU_CENTER
 
         END
-        POPUP "표시 배율(&S)"
+        POPUP "표시 크기 조정(&S)"
         BEGIN
-            MENUITEM "기타 배율(&O)...",        SAKURA_MENU_SCALING_CALENDAR_FREE
+            MENUITEM "기타 크기(&O)...",        SAKURA_MENU_SCALING_CALENDAR_FREE
 
             MENUITEM SEPARATOR
         END
@@ -278,7 +278,7 @@ BEGIN
     POPUP "파일(&F)"
     BEGIN
         MENUITEM "이미지 열기(&O)...\tCtrl+O",      PICTURE_MENU_OPEN
-        MENUITEM "다시 읽기(&R)\tCtrl+R",             PICTURE_MENU_RELOAD
+        MENUITEM "다시 불러오기(&R)\tCtrl+R",             PICTURE_MENU_RELOAD
         MENUITEM "다른 이름으로 저장(&S)...\tCtrl+S",         PICTURE_MENU_SAVE
     END
     POPUP "편집(&E)"
@@ -369,19 +369,19 @@ IDR_LISTDIALOG_MENU MENU DISCARDABLE
 BEGIN
     POPUP "고스트"
     BEGIN
-        MENUITEM "전환(&X)\tCtrl+H",         LIST_EXEC
-        MENUITEM "고스트 호출(&C)\tCtrl+G",               LIST_CALLGHOST
+        MENUITEM "바꾸기(&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM "고스트 부르기(&C)\tCtrl+G",               LIST_CALLGHOST
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        POPUP "폴더(그룹)로 이동(&M)..."
+        POPUP "폴더(그룹) 이동(&M)..."
         BEGIN
             MENUITEM SEPARATOR
         END
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM "실행용 바로 가기 만들기(&S)",            LIST_CREATE_SHORTCUT
-        MENUITEM "OS 시작 시 이 고스트를 자동 실행", 
+        MENUITEM "OS를 부팅할 때 이 고스트 자동 실행", 
                                                 LIST_CREATE_SHORTCUT_BOOTUP
         MENUITEM "이 고스트의 쉘 목록 열기", LIST_OPEN_SHELL
         MENUITEM SEPARATOR
@@ -389,10 +389,10 @@ BEGIN
         MENUITEM "토크 우선 고스트로 설정(&P)", LIST_SET_PREFERRED
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트(&N)\tCtrl+U",     LIST_UPDATE
-        MENUITEM "RSS로 일괄 업데이트",       LIST_UPDATE_RSS
+        MENUITEM "RSS로 한꺼번에 업데이트",       LIST_UPDATE_RSS
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트 (확인만)", LIST_UPDATE_CHECKONLY
-        MENUITEM "RSS로 일괄 업데이트 (확인만)", 
+        MENUITEM "RSS로 한꺼번에 업데이트 (확인만)", 
                                                 LIST_UPDATE_RSS_CHECKONLY
         MENUITEM "업데이트 확인 표시 초기화",     LIST_CHECKONLY_CLEAR
         MENUITEM SEPARATOR
@@ -405,11 +405,11 @@ BEGIN
     END
     POPUP "쉘"
     BEGIN
-        MENUITEM "전환(&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM "바꾸기(&X)\tCtrl+H",         LIST_EXEC
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트(&N)\tCtrl+U",     LIST_UPDATE
@@ -421,15 +421,15 @@ BEGIN
     END
     POPUP "말풍선"
     BEGIN
-        MENUITEM "전환(&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM "바꾸기(&X)\tCtrl+H",         LIST_EXEC
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        POPUP "폴더(그룹)로 이동(&M)..."
+        POPUP "폴더(그룹) 이동(&M)..."
         BEGIN
             MENUITEM SEPARATOR
         END
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
         MENUITEM "기본 말풍선으로 설정(&E)", LIST_SET_DEFAULT
@@ -448,11 +448,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        POPUP "폴더(그룹)로 이동(&M)..."
+        POPUP "폴더(그룹) 이동(&M)..."
         BEGIN
             MENUITEM SEPARATOR
         END
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트(&N)\tCtrl+U",     LIST_UPDATE
@@ -469,11 +469,11 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        POPUP "폴더(그룹)로 이동(&M)..."
+        POPUP "폴더(그룹) 이동(&M)..."
         BEGIN
             MENUITEM SEPARATOR
         END
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트(&N)\tCtrl+U",     LIST_UPDATE
@@ -487,11 +487,11 @@ BEGIN
     END
     POPUP "언어"
     BEGIN
-        MENUITEM "전환(&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM "바꾸기(&X)\tCtrl+H",         LIST_EXEC
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트(&N)\tCtrl+U",     LIST_UPDATE
@@ -501,13 +501,13 @@ BEGIN
         MENUITEM "업데이트 파일/NAR 둘 다 만들기(&B)...",             LIST_CREATE_BOTH
         MENUITEM "zip+txt 업데이트 패키지 만들기(&Z)", LIST_CREATE_ZIPTXT
     END
-    POPUP "캘린더 스킨"
+    POPUP "달력 스킨"
     BEGIN
-        MENUITEM "전환(&X)\tCtrl+H",         LIST_EXEC
+        MENUITEM "바꾸기(&X)\tCtrl+H",         LIST_EXEC
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트(&N)\tCtrl+U",     LIST_UPDATE
@@ -523,7 +523,7 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "삭제(&D)",                     LIST_DELETE
         MENUITEM "폴더 열기(&O)\tCtrl+O",        LIST_OPEN
-        MENUITEM "배포처 URL 열기(&J)\tCtrl+J", LIST_URLJUMP
+        MENUITEM "제작자 사이트 열기(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "README 열기(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
         MENUITEM "네트워크 업데이트(&N)\tCtrl+U",     LIST_UPDATE
@@ -581,7 +581,7 @@ IDR_LISTDIALOG_TOP_MENU MENU DISCARDABLE
 BEGIN
     POPUP "파일(&F)"
     BEGIN
-        MENUITEM "다시 읽기(&R)",                     LIST_RELOAD
+        MENUITEM "다시 불러오기(&R)",                     LIST_RELOAD
         MENUITEM SEPARATOR
         MENUITEM "닫기(&C)\tAlt+F4",              IDCANCEL
     END
@@ -601,7 +601,7 @@ BEGIN
         MENUITEM "헤드라인(&H)",                   LIST_TYPE_HEADLINE
         MENUITEM "플러그인(&P)",                     LIST_TYPE_PLUGIN
         MENUITEM "언어(&L)",                   LIST_TYPE_LANGUAGE
-        MENUITEM "캘린더 스킨(&C)",              LIST_TYPE_CALENDAR_SKIN
+        MENUITEM "달력 스킨(&C)",              LIST_TYPE_CALENDAR_SKIN
         MENUITEM "일정 센서(&E)",            LIST_TYPE_SCHEDULE_SENSOR
     END
     MENUITEM "기능(&U)",                   65535
@@ -623,25 +623,25 @@ CAPTION "폴더: 데이터 폴더 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
     PUSHBUTTON      "편집...",IDC_GHOST_EDIT,121,15,50,14
-    PUSHBUTTON      "다시 읽기",IDC_GHOST_RELOAD,176,15,50,14
+    PUSHBUTTON      "다시 불러오기",IDC_GHOST_RELOAD,176,15,50,14
     CONTROL         "설치할 때 폴더 선택",IDC_GHOST_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
     CONTROL         "시작할 때 사용할 폴더 선택 창 표시",
                     IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,47,212,10
     PUSHBUTTON      "편집...",IDC_BALLOON_EDIT,121,73,50,14
-    PUSHBUTTON      "다시 읽기",IDC_BALLOON_RELOAD,176,73,50,14
+    PUSHBUTTON      "다시 불러오기",IDC_BALLOON_RELOAD,176,73,50,14
     CONTROL         "설치할 때 폴더 선택",IDC_BALLOON_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,91,212,10
     CONTROL         "시작할 때 사용할 폴더 선택 창 표시",
                     IDC_BALLOON_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,105,212,10
     PUSHBUTTON      "편집...",IDC_HEADLINE_EDIT,121,132,50,14
-    PUSHBUTTON      "다시 읽기",IDC_HEADLINE_RELOAD,176,132,50,14
+    PUSHBUTTON      "다시 불러오기",IDC_HEADLINE_RELOAD,176,132,50,14
     CONTROL         "설치할 때 폴더 선택",IDC_HEADLINE_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,150,212,10
     PUSHBUTTON      "편집...",IDC_PLUGIN_EDIT,121,178,50,14
-    PUSHBUTTON      "다시 읽기",IDC_PLUGIN_RELOAD,176,178,50,14
+    PUSHBUTTON      "다시 불러오기",IDC_PLUGIN_RELOAD,176,178,50,14
     CONTROL         "설치할 때 폴더 선택",IDC_PLUGIN_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
     GROUPBOX        "고스트",IDC_STATIC,4,6,228,56
@@ -731,24 +731,24 @@ STYLE WS_CHILD | WS_VISIBLE | WS_CAPTION
 CAPTION "일반: SSP 전체 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
-    CONTROL         "SSP가 업데이트되었는지 자동으로 확인",
+    CONTROL         "SSP 업데이트 자동 확인",
                     IDC_SELFUPDATE_AUTO,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,4,227,10
     CONTROL         "관련 파일 확장자를 SSP에 연결",
                     IDC_ASSOCIATEFILE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     4,16,227,10
-    CONTROL         "메뉴에 제거 항목을 항상 표시",
+    CONTROL         "항상 오른쪽 메뉴에 '제거' 항목을 표시",
                     IDC_IGNORE_UNINSTALL_HIDE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,28,227,10
-    CONTROL         "작업 표시줄 알림 영역 아이콘 항상 표시",IDC_SHOWICONALWAYS,"Button",
+    CONTROL         "항상 작업 표시줄 알림 영역에 아이콘 표시",IDC_SHOWICONALWAYS,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,40,227,10
-    CONTROL         "설치 후 readme 표시",IDC_INSTALL_README,"Button",
+    CONTROL         "설치 뒤 readme 표시",IDC_INSTALL_README,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,52,227,10
     CONTROL         "단축키 등록",IDC_REGISTER_HOTKEY,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,64,227,10
-    CONTROL         "투명 상태 표시 창 표시",IDC_SHOW_STATUS,
+    CONTROL         "투명 상태창 표시",IDC_SHOW_STATUS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,76,227,10
-    CONTROL         "개발자용 기능 사용 [주의!]",
+    CONTROL         "개발자용 기능 활성화 [사용 시 주의!]",
                     IDC_DEVFUNC_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     4,105,227,10
     EDITTEXT        IDC_FIRSTNAME,9,297,67,14,ES_AUTOHSCROLL
@@ -762,7 +762,7 @@ BEGIN
     CONTROL         "미지정",IDC_SEX_UNDEF,"Button",BS_AUTORADIOBUTTON,
                     144,315,48,10
     LTEXT           "이름:",IDC_STATIC,9,287,39,8
-    LTEXT           "호칭:",IDC_STATIC,82,287,43,8
+    LTEXT           "애칭:",IDC_STATIC,82,287,43,8
     GROUPBOX        "사용자 정보",IDC_STATIC,4,276,227,55
     LTEXT           "생일:",IDC_STATIC,155,287,42,8
     LTEXT           "성별:",IDC_STATIC,9,316,30,8
@@ -784,7 +784,7 @@ BEGIN
     GROUPBOX        "센서/위치 정보 사용",IDC_STATIC,4,211,227,28
     CONTROL         "자동(OS 설정)",IDC_SENSOR_ENABLE,"Button",
                     BS_AUTORADIOBUTTON,9,223,67,10
-    CONTROL         "위치 정보 이외",IDC_SENSOR_LOC,"Button",
+    CONTROL         "위치 제외",IDC_SENSOR_LOC,"Button",
                     BS_AUTORADIOBUTTON,83,223,67,10
     CONTROL         "모두 끄기",IDC_SENSOR_DISABLE,"Button",
                     BS_AUTORADIOBUTTON,157,223,67,10
@@ -1349,7 +1349,7 @@ BEGIN
     PUSHBUTTON      "스크립트 입력 Ctrl+S",IDC_OPEN_SCRIPT,4,127,99,13
     PUSHBUTTON      "서피스 테스트 Ctrl+T",IDC_OPEN_SURFACETEST,4,141,99,13
     PUSHBUTTON      "오류 로그 표시",IDC_OPEN_ERRORLOG,4,155,99,13
-    PUSHBUTTON      "다시 읽기...",IDC_EXEC_RELOAD,4,197,99,13
+    PUSHBUTTON      "다시 불러오기...",IDC_EXEC_RELOAD,4,197,99,13
     PUSHBUTTON      "열기/실행...",IDC_EXEC_OPEN,4,212,99,13
     PUSHBUTTON      "현재 시각의 가상 변경",IDC_OPEN_TIMEMACHINE,4,169,99,13
     PUSHBUTTON      "SERIKO 인스펙터",IDC_OPEN_SERIKO,4,183,99,13
@@ -1418,7 +1418,7 @@ BEGIN
     GROUPBOX        "반투명 창",IDC_STATIC,4,227,227,104
     RTEXT           "캐릭터:",IDC_STATIC,11,280,32,8
     RTEXT           "말풍선:",IDC_STATIC,11,297,32,8
-    RTEXT           "캘린더:",IDC_STATIC,11,314,32,8
+    RTEXT           "달력:",IDC_STATIC,11,314,32,8
     LTEXT           "투명",IDC_STATIC,45,266,47,8
     RTEXT           "불투명",IDC_STATIC,193,266,34,8
     CONTROL         "모든 가상 데스크톱에 캐릭터 창 표시 (Win10 이상)",
@@ -1648,9 +1648,9 @@ CAPTION "국제화: 국제화 관련 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
     PUSHBUTTON      "선택...",IDC_FONT_MENU_CHOICE,135,15,44,14
-    PUSHBUTTON      "초기화(&R)",IDC_FONT_MENU_DEFAULT,182,15,44,14
+    PUSHBUTTON      "기본값(&R)",IDC_FONT_MENU_DEFAULT,182,15,44,14
     PUSHBUTTON      "선택...",IDC_FONT_BALLOON_CHOICE,135,52,44,14
-    PUSHBUTTON      "초기화(&R)",IDC_FONT_BALLOON_DEFAULT,182,52,44,14
+    PUSHBUTTON      "기본값(&R)",IDC_FONT_BALLOON_DEFAULT,182,52,44,14
     GROUPBOX        "메뉴 글꼴 설정 덮어쓰기",IDC_STATIC,4,4,227,32
     LTEXT           "[FONT]",IDC_FONT_MENU_SHOW,10,16,118,13,SS_CENTERIMAGE
     GROUPBOX        "말풍선 글꼴 설정 덮어쓰기",IDC_STATIC,4,41,227,32
@@ -1668,7 +1668,7 @@ BEGIN
     RTEXT           "MAKOTO:",IDC_STATIC,14,196,53,8
     RTEXT           "PIRO (OLD):",IDC_STATIC,14,214,53,8
     RTEXT           "SCRIPT (OLD):",IDC_STATIC,14,232,53,8
-    GROUPBOX        "생략 시 문자 인코딩",IDC_STATIC,4,80,227,171
+    GROUPBOX        "기본 문자 인코딩",IDC_STATIC,4,80,227,171
     COMBOBOX        IDC_DEFINE_CHARSET,74,94,150,130,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_README_CHARSET,74,158,150,130,CBS_DROPDOWNLIST | 
@@ -1785,7 +1785,7 @@ END
 
 IDD_SAVESHARE DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
-CAPTION "세이브 데이터: 세이브 데이터 공유 등 설정"
+CAPTION "세이브 데이터: 세이브 데이터 공유 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
     CONTROL         "세이브 데이터 공유 사용",IDC_SAVESHARE_ENABLE,"Button",
@@ -1869,19 +1869,20 @@ END
 
 IDD_STREAMINGTOOL DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
-CAPTION "방송: 동영상 방송 등의 보조 도구로 사용하기 위한 설정"
+CAPTION "방송: 라이브 방송 보조 도구로 쓸 때 설정"
 
 FONT 9, "MS Shell Dlg"
 BEGIN
-    CONTROL         "캐릭터를 방송 도구에서 캡처하기 쉽게 함",
+    CONTROL         "캐릭터를 방송 툴에서 캡처하기 쉽게 함",
                     IDC_WINDOW_TOPLEVEL_CHAR,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,4,226,10
-    CONTROL         "말풍선도 방송 도구에서 캡처하기 쉽게 함",
+    CONTROL         "말풍선도 방송 툴에서 캡처하기 쉽게 함",
                     IDC_WINDOW_TOPLEVEL_BALLOON,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,18,226,10
     CONTROL         "음성 감지 시 자동 립싱크 사용",
                     IDC_SOUND_LEVEL_MONITOR_ENABLE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,36,226,10
+    RTEXT           "오디오 입력 선택:",IDC_STATIC,4,53,67,8
     RTEXT           "오디오 레벨:",IDC_STATIC,4,80,67,8
     COMBOBOX        IDC_SOUND_LEVEL_MONITOR_DEVICE,74,50,156,132,
                     CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
@@ -1891,10 +1892,10 @@ BEGIN
     CONTROL         "Progress1",IDC_SOUND_LEVEL_MONITOR_BAR,
                     "msctls_progress32",PBS_SMOOTH,81,73,142,10
     GROUPBOX        "창 모드",IDC_STATIC,4,106,226,52
-    CONTROL         "고스트를 창 하나 안에 표시",
+    CONTROL         "고스트를 하나의 창 안에 표시",
                     IDC_WINDOWMODE_ENABLE,"Button",BS_AUTOCHECKBOX | 
                     WS_GROUP | WS_TABSTOP,11,117,212,10
-    CONTROL         "모든 고스트를 하나로 통합",IDC_WINDOWMODE_SHARED,"Button",
+    CONTROL         "모든 고스트가 창 하나를 공유",IDC_WINDOWMODE_SHARED,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,20,130,203,10
     CONTROL         "고스트마다 창 하나씩",IDC_WINDOWMODE_PERGHOST,"Button",
                     BS_AUTORADIOBUTTON,20,142,203,10

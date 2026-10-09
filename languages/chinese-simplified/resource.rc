@@ -748,7 +748,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,64,227,10
     CONTROL         "显示透明状态窗口",IDC_SHOW_STATUS,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,76,227,10
-    CONTROL         "启用开发者功能 [注意！]",
+    CONTROL         "启用开发者功能 [谨慎使用！]",
                     IDC_DEVFUNC_ENABLE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     4,105,227,10
     EDITTEXT        IDC_FIRSTNAME,9,297,67,14,ES_AUTOHSCROLL
@@ -1882,6 +1882,7 @@ BEGIN
     CONTROL         "检测到声音时自动对口型",
                     IDC_SOUND_LEVEL_MONITOR_ENABLE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,36,226,10
+    RTEXT           "音频输入：",IDC_STATIC,4,53,67,8
     RTEXT           "音频电平：",IDC_STATIC,4,80,67,8
     COMBOBOX        IDC_SOUND_LEVEL_MONITOR_DEVICE,74,50,156,132,
                     CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP

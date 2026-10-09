@@ -81,7 +81,7 @@ resource.common.sameas,이후 항목에도 같은 처리 적용
 resource.common.dontsayagain,이후 이 알림을 표시하지 않음
 resource.common.createnew,새로 만들기
 
-resource.listdialoglabel,이름,제작자,경로,그룹,\0 이름,\1 이름,설치 일시,업데이트 일시,업데이트 결과
+resource.listdialoglabel,이름,제작자,경로,그룹,\0 이름,\1 이름,설치 날짜,업데이트 날짜,업데이트 결과
 resource.listdialogfind,검색할 텍스트를 입력하세요.
 resource.scriptloglabel,고스트,종류,스크립트
 
@@ -96,7 +96,7 @@ resource.git.select,Git 실행 파일 선택
 
 resource.sound.select,사운드 파일
 resource.schedule.date,%d년 %d월 %d일 일정
-resource.rateofuse.menu,고스트 호출,고스트 종료,설치되어 있지 않음,데이터 삭제
+resource.rateofuse.menu,고스트 부르기,고스트 종료,설치되어 있지 않음,데이터 삭제
 
 resource.setting.balloon.command,아무것도 안 함,왼쪽 클릭과 같음,스크립트 중단,말풍선 좌우 전환,말풍선 위치 조정,메뉴 표시,고스트 본체 이동
 resource.setting.sstp.boot,일절 실행하지 않음,메신저(SSTP/1.5)만,가능한 한 지정한 고스트로 실행(IfGhost)
