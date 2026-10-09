@@ -2,8 +2,8 @@ charset,UTF-8
 file,descript.txt27a29b1f0bf272809f4ab3f900577631size=1490date=2012-12-21T00:00:00
 file,holidays.txt0a54f31f921f752cdc33ab4474929ec1size=464date=2012-12-21T00:00:00
 file,install.txtad2def7513b3094d6e198a87dd7df0e9size=43date=2012-12-21T00:00:00
-file,message.txt96604f95b63c85ce844e48799cf493absize=11537date=2012-12-21T00:00:00
-file,resource.dllee4ca4a51132180d8880372b415c8deasize=57344date=2012-12-21T00:00:00
+file,message.txt2692e7854d489f51d6808431d4dbe0a3size=12162date=2012-12-21T00:00:00
+file,resource.dll1d0bb402764b3922a804d9fe5c834ab9size=48640date=2012-12-21T00:00:00
 file,ssp-pictures/nowloading.png9450c509a06f426fc025335c57af5562size=2186date=2012-12-21T00:00:00
 file,ssp-pictures/nowloading_dark.png6901b81d2d4d1c08c22c7e1bbb787a40size=1510date=2012-12-21T00:00:00
 file,ssp-pictures/realize.png6f1b85ab4422d4f1d478b50aefeed3f3size=1309date=2012-12-21T00:00:00
