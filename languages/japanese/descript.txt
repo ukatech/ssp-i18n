@@ -24,6 +24,7 @@ messagename,message.txt
 
 //Calendar holiday settings except Sundays.
 //format is "Year-Month,day day day[CRLF]" Example, 2003-1,1 13
+//Optional "Year-Month-Day,name" lines give the name of each holiday. Example, 2003-1-1,New Year's Day
 holidayname,holidays.txt
 
 //Creator. Because for unification of other "descript.txt" format,using strange English "craftman".

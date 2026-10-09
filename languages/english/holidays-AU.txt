@@ -1,39 +1,132 @@
+charset,UTF-8
 //Australia national public holidays (state holidays are not included)
 //format is "Year-Month,day day day". Example, 2026-1,1 19
+//"Year-Month-Day,name" is the name of the holiday. Example, 2026-1-1,New Year's Day
 2020-1,1 26 27
+2020-1-1,New Year's Day
+2020-1-26,Australia Day
+2020-1-27,Australia Day (substitute day)
 2020-4,10 13 25
+2020-4-10,Good Friday
+2020-4-13,Easter Monday
+2020-4-25,Anzac Day
 2020-12,25 26 28
+2020-12-25,Christmas Day
+2020-12-26,Boxing Day
+2020-12-28,Boxing Day (substitute day)
 2021-1,1 26
+2021-1-1,New Year's Day
+2021-1-26,Australia Day
 2021-4,2 5 25
+2021-4-2,Good Friday
+2021-4-5,Easter Monday
+2021-4-25,Anzac Day
 2021-12,25 26 27 28
+2021-12-25,Christmas Day
+2021-12-26,Boxing Day
+2021-12-27,Christmas Day (substitute day)
+2021-12-28,Boxing Day (substitute day)
 2022-1,1 3 26
+2022-1-1,New Year's Day
+2022-1-3,New Year's Day (substitute day)
+2022-1-26,Australia Day
 2022-4,15 18 25
+2022-4-15,Good Friday
+2022-4-18,Easter Monday
+2022-4-25,Anzac Day
 2022-9,22
+2022-9-22,National Day of Mourning for Queen Elizabeth II
 2022-12,25 26 27
+2022-12-25,Christmas Day
+2022-12-26,Boxing Day
+2022-12-27,Christmas Day (substitute day)
 2023-1,1 2 26
+2023-1-1,New Year's Day
+2023-1-2,New Year's Day (substitute day)
+2023-1-26,Australia Day
 2023-4,7 10 25
+2023-4-7,Good Friday
+2023-4-10,Easter Monday
+2023-4-25,Anzac Day
 2023-12,25 26
+2023-12-25,Christmas Day
+2023-12-26,Boxing Day
 2024-1,1 26
+2024-1-1,New Year's Day
+2024-1-26,Australia Day
 2024-3,29
+2024-3-29,Good Friday
 2024-4,1 25
+2024-4-1,Easter Monday
+2024-4-25,Anzac Day
 2024-12,25 26
+2024-12-25,Christmas Day
+2024-12-26,Boxing Day
 2025-1,1 26 27
+2025-1-1,New Year's Day
+2025-1-26,Australia Day
+2025-1-27,Australia Day (substitute day)
 2025-4,18 21 25
+2025-4-18,Good Friday
+2025-4-21,Easter Monday
+2025-4-25,Anzac Day
 2025-12,25 26
+2025-12-25,Christmas Day
+2025-12-26,Boxing Day
 2026-1,1 26
+2026-1-1,New Year's Day
+2026-1-26,Australia Day
 2026-4,3 6 25
+2026-4-3,Good Friday
+2026-4-6,Easter Monday
+2026-4-25,Anzac Day
 2026-12,25 26 28
+2026-12-25,Christmas Day
+2026-12-26,Boxing Day
+2026-12-28,Boxing Day (substitute day)
 2027-1,1 26
+2027-1-1,New Year's Day
+2027-1-26,Australia Day
 2027-3,26 29
+2027-3-26,Good Friday
+2027-3-29,Easter Monday
 2027-4,25
+2027-4-25,Anzac Day
 2027-12,25 26 27 28
+2027-12-25,Christmas Day
+2027-12-26,Boxing Day
+2027-12-27,Christmas Day (substitute day)
+2027-12-28,Boxing Day (substitute day)
 2028-1,1 3 26
+2028-1-1,New Year's Day
+2028-1-3,New Year's Day (substitute day)
+2028-1-26,Australia Day
 2028-4,14 17 25
+2028-4-14,Good Friday
+2028-4-17,Easter Monday
+2028-4-25,Anzac Day
 2028-12,25 26
+2028-12-25,Christmas Day
+2028-12-26,Boxing Day
 2029-1,1 26
+2029-1-1,New Year's Day
+2029-1-26,Australia Day
 2029-3,30
+2029-3-30,Good Friday
 2029-4,2 25
+2029-4-2,Easter Monday
+2029-4-25,Anzac Day
 2029-12,25 26
+2029-12-25,Christmas Day
+2029-12-26,Boxing Day
 2030-1,1 26 28
+2030-1-1,New Year's Day
+2030-1-26,Australia Day
+2030-1-28,Australia Day (substitute day)
 2030-4,19 22 25
+2030-4-19,Good Friday
+2030-4-22,Easter Monday
+2030-4-25,Anzac Day
 2030-12,25 26
+2030-12-25,Christmas Day
+2030-12-26,Boxing Day

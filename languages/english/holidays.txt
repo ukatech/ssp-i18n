@@ -1,101 +1,239 @@
+charset,UTF-8
 //United States federal holidays (with observed days)
 //Default table. Country specific tables are holidays-XX.txt (XX = ISO 3166 country code of the Windows region setting).
 //format is "Year-Month,day day day". Example, 2026-1,1 19
+//"Year-Month-Day,name" is the name of the holiday. Example, 2026-1-1,New Year's Day
 2020-1,1 20
+2020-1-1,New Year's Day
+2020-1-20,Birthday of Martin Luther King, Jr.
 2020-2,17
+2020-2-17,Washington's Birthday
 2020-5,25
+2020-5-25,Memorial Day
 2020-7,3 4
+2020-7-3,Independence Day (observed)
+2020-7-4,Independence Day
 2020-9,7
+2020-9-7,Labor Day
 2020-10,12
+2020-10-12,Columbus Day
 2020-11,11 26
+2020-11-11,Veterans Day
+2020-11-26,Thanksgiving Day
 2020-12,25
+2020-12-25,Christmas Day
 2021-1,1 18
+2021-1-1,New Year's Day
+2021-1-18,Birthday of Martin Luther King, Jr.
 2021-2,15
+2021-2-15,Washington's Birthday
 2021-5,31
+2021-5-31,Memorial Day
 2021-6,18 19
+2021-6-18,Juneteenth National Independence Day (observed)
+2021-6-19,Juneteenth National Independence Day
 2021-7,4 5
+2021-7-4,Independence Day
+2021-7-5,Independence Day (observed)
 2021-9,6
+2021-9-6,Labor Day
 2021-10,11
+2021-10-11,Columbus Day
 2021-11,11 25
+2021-11-11,Veterans Day
+2021-11-25,Thanksgiving Day
 2021-12,24 25 31
+2021-12-24,Christmas Day (observed)
+2021-12-25,Christmas Day
+2021-12-31,New Year's Day (observed)
 2022-1,1 17
+2022-1-1,New Year's Day
+2022-1-17,Birthday of Martin Luther King, Jr.
 2022-2,21
+2022-2-21,Washington's Birthday
 2022-5,30
+2022-5-30,Memorial Day
 2022-6,19 20
+2022-6-19,Juneteenth National Independence Day
+2022-6-20,Juneteenth National Independence Day (observed)
 2022-7,4
+2022-7-4,Independence Day
 2022-9,5
+2022-9-5,Labor Day
 2022-10,10
+2022-10-10,Columbus Day
 2022-11,11 24
+2022-11-11,Veterans Day
+2022-11-24,Thanksgiving Day
 2022-12,25 26
+2022-12-25,Christmas Day
+2022-12-26,Christmas Day (observed)
 2023-1,1 2 16
+2023-1-1,New Year's Day
+2023-1-2,New Year's Day (observed)
+2023-1-16,Birthday of Martin Luther King, Jr.
 2023-2,20
+2023-2-20,Washington's Birthday
 2023-5,29
+2023-5-29,Memorial Day
 2023-6,19
+2023-6-19,Juneteenth National Independence Day
 2023-7,4
+2023-7-4,Independence Day
 2023-9,4
+2023-9-4,Labor Day
 2023-10,9
+2023-10-9,Columbus Day
 2023-11,10 11 23
+2023-11-10,Veterans Day (observed)
+2023-11-11,Veterans Day
+2023-11-23,Thanksgiving Day
 2023-12,25
+2023-12-25,Christmas Day
 2024-1,1 15
+2024-1-1,New Year's Day
+2024-1-15,Birthday of Martin Luther King, Jr.
 2024-2,19
+2024-2-19,Washington's Birthday
 2024-5,27
+2024-5-27,Memorial Day
 2024-6,19
+2024-6-19,Juneteenth National Independence Day
 2024-7,4
+2024-7-4,Independence Day
 2024-9,2
+2024-9-2,Labor Day
 2024-10,14
+2024-10-14,Columbus Day
 2024-11,11 28
+2024-11-11,Veterans Day
+2024-11-28,Thanksgiving Day
 2024-12,25
+2024-12-25,Christmas Day
 2025-1,1 20
+2025-1-1,New Year's Day
+2025-1-20,Birthday of Martin Luther King, Jr.
 2025-2,17
+2025-2-17,Washington's Birthday
 2025-5,26
+2025-5-26,Memorial Day
 2025-6,19
+2025-6-19,Juneteenth National Independence Day
 2025-7,4
+2025-7-4,Independence Day
 2025-9,1
+2025-9-1,Labor Day
 2025-10,13
+2025-10-13,Columbus Day
 2025-11,11 27
+2025-11-11,Veterans Day
+2025-11-27,Thanksgiving Day
 2025-12,25
+2025-12-25,Christmas Day
 2026-1,1 19
+2026-1-1,New Year's Day
+2026-1-19,Birthday of Martin Luther King, Jr.
 2026-2,16
+2026-2-16,Washington's Birthday
 2026-5,25
+2026-5-25,Memorial Day
 2026-6,19
+2026-6-19,Juneteenth National Independence Day
 2026-7,3 4
+2026-7-3,Independence Day (observed)
+2026-7-4,Independence Day
 2026-9,7
+2026-9-7,Labor Day
 2026-10,12
+2026-10-12,Columbus Day
 2026-11,11 26
+2026-11-11,Veterans Day
+2026-11-26,Thanksgiving Day
 2026-12,25
+2026-12-25,Christmas Day
 2027-1,1 18
+2027-1-1,New Year's Day
+2027-1-18,Birthday of Martin Luther King, Jr.
 2027-2,15
+2027-2-15,Washington's Birthday
 2027-5,31
+2027-5-31,Memorial Day
 2027-6,18 19
+2027-6-18,Juneteenth National Independence Day (observed)
+2027-6-19,Juneteenth National Independence Day
 2027-7,4 5
+2027-7-4,Independence Day
+2027-7-5,Independence Day (observed)
 2027-9,6
+2027-9-6,Labor Day
 2027-10,11
+2027-10-11,Columbus Day
 2027-11,11 25
+2027-11-11,Veterans Day
+2027-11-25,Thanksgiving Day
 2027-12,24 25 31
+2027-12-24,Christmas Day (observed)
+2027-12-25,Christmas Day
+2027-12-31,New Year's Day (observed)
 2028-1,1 17
+2028-1-1,New Year's Day
+2028-1-17,Birthday of Martin Luther King, Jr.
 2028-2,21
+2028-2-21,Washington's Birthday
 2028-5,29
+2028-5-29,Memorial Day
 2028-6,19
+2028-6-19,Juneteenth National Independence Day
 2028-7,4
+2028-7-4,Independence Day
 2028-9,4
+2028-9-4,Labor Day
 2028-10,9
+2028-10-9,Columbus Day
 2028-11,10 11 23
+2028-11-10,Veterans Day (observed)
+2028-11-11,Veterans Day
+2028-11-23,Thanksgiving Day
 2028-12,25
+2028-12-25,Christmas Day
 2029-1,1 15
+2029-1-1,New Year's Day
+2029-1-15,Birthday of Martin Luther King, Jr.
 2029-2,19
+2029-2-19,Washington's Birthday
 2029-5,28
+2029-5-28,Memorial Day
 2029-6,19
+2029-6-19,Juneteenth National Independence Day
 2029-7,4
+2029-7-4,Independence Day
 2029-9,3
+2029-9-3,Labor Day
 2029-10,8
+2029-10-8,Columbus Day
 2029-11,11 12 22
+2029-11-11,Veterans Day
+2029-11-12,Veterans Day (observed)
+2029-11-22,Thanksgiving Day
 2029-12,25
+2029-12-25,Christmas Day
 2030-1,1 21
+2030-1-1,New Year's Day
+2030-1-21,Birthday of Martin Luther King, Jr.
 2030-2,18
+2030-2-18,Washington's Birthday
 2030-5,27
+2030-5-27,Memorial Day
 2030-6,19
+2030-6-19,Juneteenth National Independence Day
 2030-7,4
+2030-7-4,Independence Day
 2030-9,2
+2030-9-2,Labor Day
 2030-10,14
+2030-10-14,Columbus Day
 2030-11,11 28
+2030-11-11,Veterans Day
+2030-11-28,Thanksgiving Day
 2030-12,25
+2030-12-25,Christmas Day

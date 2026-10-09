@@ -2098,8 +2098,7 @@ BEGIN
     RTEXT           "出力先フォルダ :",IDC_STATIC,6,177,74,8
     LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    PUSHBUTTON      "フォルダ選択",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
-                    92,14
+    PUSHBUTTON      "フォルダ選択",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,92,14
     PUSHBUTTON      "エクスプローラで開く",IDC_DEVSEREIKODUMP_DIROPEN,183,
                     192,108,14
     CONTROL         "左上0,0の画像データを破棄する",
@@ -2190,7 +2189,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,9,10,3000
+ FILEVERSION 2,9,11,3000
  PRODUCTVERSION 2,7,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -2209,7 +2208,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "SSP\0"
-            VALUE "FileVersion", "2, 9, 10, 3000\0"
+            VALUE "FileVersion", "2, 9, 11, 3000\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"

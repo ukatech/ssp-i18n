@@ -286,10 +286,13 @@ the Windows region setting inserted before the extension (`holidays.txt` →
 `holidays-GB.txt`). If that file does not exist, `holidays.txt` is used, so
 `holidays.txt` is the table of the language's main country.
 
-Format: header comments (`//`, ASCII), then one line per month,
-`Year-Month,day day day` (no zero padding, days ascending), e.g. `2026-1,1 19`.
-Holidays that fall on a Saturday or Sunday are listed too, and so are
-substitute/observed days. The tables are shipped (in `updates.txt` and the `.nar`).
+Format: `charset,UTF-8`, header comments (`//`), then one line per month,
+`Year-Month,day day day` (no zero padding, days ascending), e.g. `2026-1,1 19`,
+each followed by one `Year-Month-Day,name` line per day of that month, e.g.
+`2026-1-1,元旦` (the name SSP shows; in the language of the pack, several names of
+one day joined with `、`, or `, ` in Korean). Holidays that fall on a Saturday or
+Sunday are listed too, and so are substitute/observed days. The tables are
+shipped (in `updates.txt` and the `.nar`).
 
 | Pack | `holidays.txt` | Country tables |
 | --- | --- | --- |

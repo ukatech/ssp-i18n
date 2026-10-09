@@ -1,90 +1,220 @@
+charset,UTF-8
 //Canada federal general holidays under the Canada Labour Code (with substitute days)
 //format is "Year-Month,day day day". Example, 2026-1,1 19
+//"Year-Month-Day,name" is the name of the holiday. Example, 2026-1-1,New Year's Day
 2020-1,1
+2020-1-1,New Year's Day
 2020-4,10
+2020-4-10,Good Friday
 2020-5,18
+2020-5-18,Victoria Day
 2020-7,1
+2020-7-1,Canada Day
 2020-9,7
+2020-9-7,Labour Day
 2020-10,12
+2020-10-12,Thanksgiving
 2020-11,11
+2020-11-11,Remembrance Day
 2020-12,25 26 28
+2020-12-25,Christmas Day
+2020-12-26,Boxing Day
+2020-12-28,Boxing Day (substitute day)
 2021-1,1
+2021-1-1,New Year's Day
 2021-4,2
+2021-4-2,Good Friday
 2021-5,24
+2021-5-24,Victoria Day
 2021-7,1
+2021-7-1,Canada Day
 2021-9,6 30
+2021-9-6,Labour Day
+2021-9-30,National Day for Truth and Reconciliation
 2021-10,11
+2021-10-11,Thanksgiving
 2021-11,11
+2021-11-11,Remembrance Day
 2021-12,25 26 27 28
+2021-12-25,Christmas Day
+2021-12-26,Boxing Day
+2021-12-27,Christmas Day (substitute day)
+2021-12-28,Boxing Day (substitute day)
 2022-1,1 3
+2022-1-1,New Year's Day
+2022-1-3,New Year's Day (substitute day)
 2022-4,15
+2022-4-15,Good Friday
 2022-5,23
+2022-5-23,Victoria Day
 2022-7,1
+2022-7-1,Canada Day
 2022-9,5 30
+2022-9-5,Labour Day
+2022-9-30,National Day for Truth and Reconciliation
 2022-10,10
+2022-10-10,Thanksgiving
 2022-11,11
+2022-11-11,Remembrance Day
 2022-12,25 26 27
+2022-12-25,Christmas Day
+2022-12-26,Boxing Day
+2022-12-27,Christmas Day (substitute day)
 2023-1,1 2
+2023-1-1,New Year's Day
+2023-1-2,New Year's Day (substitute day)
 2023-4,7
+2023-4-7,Good Friday
 2023-5,22
+2023-5-22,Victoria Day
 2023-7,1 3
+2023-7-1,Canada Day
+2023-7-3,Canada Day (substitute day)
 2023-9,4 30
+2023-9-4,Labour Day
+2023-9-30,National Day for Truth and Reconciliation
 2023-10,2 9
+2023-10-2,National Day for Truth and Reconciliation (substitute day)
+2023-10-9,Thanksgiving
 2023-11,11 13
+2023-11-11,Remembrance Day
+2023-11-13,Remembrance Day (substitute day)
 2023-12,25 26
+2023-12-25,Christmas Day
+2023-12-26,Boxing Day
 2024-1,1
+2024-1-1,New Year's Day
 2024-3,29
+2024-3-29,Good Friday
 2024-5,20
+2024-5-20,Victoria Day
 2024-7,1
+2024-7-1,Canada Day
 2024-9,2 30
+2024-9-2,Labour Day
+2024-9-30,National Day for Truth and Reconciliation
 2024-10,14
+2024-10-14,Thanksgiving
 2024-11,11
+2024-11-11,Remembrance Day
 2024-12,25 26
+2024-12-25,Christmas Day
+2024-12-26,Boxing Day
 2025-1,1
+2025-1-1,New Year's Day
 2025-4,18
+2025-4-18,Good Friday
 2025-5,19
+2025-5-19,Victoria Day
 2025-7,1
+2025-7-1,Canada Day
 2025-9,1 30
+2025-9-1,Labour Day
+2025-9-30,National Day for Truth and Reconciliation
 2025-10,13
+2025-10-13,Thanksgiving
 2025-11,11
+2025-11-11,Remembrance Day
 2025-12,25 26
+2025-12-25,Christmas Day
+2025-12-26,Boxing Day
 2026-1,1
+2026-1-1,New Year's Day
 2026-4,3
+2026-4-3,Good Friday
 2026-5,18
+2026-5-18,Victoria Day
 2026-7,1
+2026-7-1,Canada Day
 2026-9,7 30
+2026-9-7,Labour Day
+2026-9-30,National Day for Truth and Reconciliation
 2026-10,12
+2026-10-12,Thanksgiving
 2026-11,11
+2026-11-11,Remembrance Day
 2026-12,25 26 28
+2026-12-25,Christmas Day
+2026-12-26,Boxing Day
+2026-12-28,Boxing Day (substitute day)
 2027-1,1
+2027-1-1,New Year's Day
 2027-3,26
+2027-3-26,Good Friday
 2027-5,24
+2027-5-24,Victoria Day
 2027-7,1
+2027-7-1,Canada Day
 2027-9,6 30
+2027-9-6,Labour Day
+2027-9-30,National Day for Truth and Reconciliation
 2027-10,11
+2027-10-11,Thanksgiving
 2027-11,11
+2027-11-11,Remembrance Day
 2027-12,25 26 27 28
+2027-12-25,Christmas Day
+2027-12-26,Boxing Day
+2027-12-27,Christmas Day (substitute day)
+2027-12-28,Boxing Day (substitute day)
 2028-1,1 3
+2028-1-1,New Year's Day
+2028-1-3,New Year's Day (substitute day)
 2028-4,14
+2028-4-14,Good Friday
 2028-5,22
+2028-5-22,Victoria Day
 2028-7,1 3
+2028-7-1,Canada Day
+2028-7-3,Canada Day (substitute day)
 2028-9,4 30
+2028-9-4,Labour Day
+2028-9-30,National Day for Truth and Reconciliation
 2028-10,2 9
+2028-10-2,National Day for Truth and Reconciliation (substitute day)
+2028-10-9,Thanksgiving
 2028-11,11 13
+2028-11-11,Remembrance Day
+2028-11-13,Remembrance Day (substitute day)
 2028-12,25 26
+2028-12-25,Christmas Day
+2028-12-26,Boxing Day
 2029-1,1
+2029-1-1,New Year's Day
 2029-3,30
+2029-3-30,Good Friday
 2029-5,21
+2029-5-21,Victoria Day
 2029-7,1 2
+2029-7-1,Canada Day
+2029-7-2,Canada Day (substitute day)
 2029-9,3 30
+2029-9-3,Labour Day
+2029-9-30,National Day for Truth and Reconciliation
 2029-10,1 8
+2029-10-1,National Day for Truth and Reconciliation (substitute day)
+2029-10-8,Thanksgiving
 2029-11,11 12
+2029-11-11,Remembrance Day
+2029-11-12,Remembrance Day (substitute day)
 2029-12,25 26
+2029-12-25,Christmas Day
+2029-12-26,Boxing Day
 2030-1,1
+2030-1-1,New Year's Day
 2030-4,19
+2030-4-19,Good Friday
 2030-5,20
+2030-5-20,Victoria Day
 2030-7,1
+2030-7-1,Canada Day
 2030-9,2 30
+2030-9-2,Labour Day
+2030-9-30,National Day for Truth and Reconciliation
 2030-10,14
+2030-10-14,Thanksgiving
 2030-11,11
+2030-11-11,Remembrance Day
 2030-12,25 26
+2030-12-25,Christmas Day
+2030-12-26,Boxing Day
