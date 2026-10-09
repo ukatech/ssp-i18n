@@ -177,7 +177,6 @@
 #define IDC_HEADLINE_RELOAD             1134
 #define IDC_HEADLINE_SELECT             1135
 #define IDC_HEADLINE_SOUNDPATH          1136
-#define IDC_HELPFILE                    1137
 #define IDC_HELPME                      1138
 #define IDC_HIDE_SURFACEERR             1139
 #define IDC_HIDEFULLSCREEN              1140

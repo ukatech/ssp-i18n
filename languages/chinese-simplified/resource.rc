@@ -652,8 +652,6 @@ BEGIN
     LTEXT           "共找到：[NUM]",IDC_BALLOON_NUM,11,76,103,8
     LTEXT           "共找到：[NUM]",IDC_HEADLINE_NUM,11,135,103,8
     LTEXT           "共找到：[NUM]",IDC_PLUGIN_NUM,11,181,103,8
-    LTEXT           "config-folder.htm",IDC_HELPFILE,181,323,51,8,NOT 
-                    WS_VISIBLE
     EDITTEXT        IDC_TEMP_PATH,4,231,168,14,ES_AUTOHSCROLL
     LTEXT           "临时文件路径",IDC_TEMP_PATH_STATIC,4,221,66,8
     EDITTEXT        IDC_NAR_PATH,4,262,168,14,ES_AUTOHSCROLL
@@ -719,8 +717,6 @@ BEGIN
     GROUPBOX        "对话框设置",IDC_STATIC,4,248,227,30
     RTEXT           "双击：",IDC_STATIC,11,261,47,8
     RTEXT           "右键单击：",IDC_STATIC,119,261,47,8
-    LTEXT           "config-talk.htm",IDC_HELPFILE,172,327,45,8,NOT 
-                    WS_VISIBLE
     LTEXT           "点击等待超时\n(默认 = 禁用)",IDC_STATIC,11,76,
                     67,19
     GROUPBOX        "对话脚本开始时的提示音",
@@ -768,8 +764,6 @@ BEGIN
     LTEXT           "名字：",IDC_STATIC,9,287,39,8
     LTEXT           "昵称：",IDC_STATIC,82,287,43,8
     GROUPBOX        "用户信息",IDC_STATIC,4,276,227,55
-    LTEXT           "config-ippan.htm",IDC_HELPFILE,158,327,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "生日：",IDC_STATIC,155,287,42,8
     LTEXT           "性别：",IDC_STATIC,9,316,30,8
     GROUPBOX        "平板模式",IDC_STATIC,4,243,227,28
@@ -851,8 +845,6 @@ BEGIN
     GROUPBOX        "新闻",IDC_STATIC,4,4,227,72
     LTEXT           "更新时播放声音",IDC_STATIC,9,44,112,8
     GROUPBOX        "SSTP 设置",IDC_STATIC,4,82,227,180
-    LTEXT           "config-conn2.htm",IDC_HELPFILE,157,327,51,8,NOT 
-                    WS_VISIBLE
     LTEXT           "人格启动：",IDC_STATIC,11,199,50,8
     LTEXT           "启动后：",IDC_STATIC,11,214,50,8
     LTEXT           "临时人格最大数量 (0 = 无限制)",IDC_STATIC,
@@ -907,8 +899,6 @@ BEGIN
     LTEXT           " -",IDC_STATIC,154,179,8,8
     LTEXT           "用户名 (可留空)",IDC_STATIC,9,120,84,8
     LTEXT           "密码 (可留空)",IDC_STATIC,120,120,77,8
-    LTEXT           "config-conn1.htm",IDC_HELPFILE,180,323,51,8,NOT 
-                    WS_VISIBLE
     CONTROL         "自动执行间隔：",IDC_SNTP_AUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,246,99,10
     CONTROL         "SNTP 服务器",IDC_SNTPCHECK,"Button",BS_AUTORADIOBUTTON,
@@ -947,8 +937,6 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,149,311,16,14,BS_ICON
     PUSHBUTTON      "删除",IDC_POP_DEL,187,311,38,14
     GROUPBOX        "账户设置",IDC_STATIC,4,226,227,105
-    LTEXT           "config-pop.htm",IDC_HELPFILE,162,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "新邮件提示音",IDC_STATIC,4,49,227,
                     33
 END
@@ -1081,7 +1069,6 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,59,226,10
     LTEXT           "名字：",IDC_STATIC,8,9,29,8
     LTEXT           "分组：",IDC_STATIC,8,26,29,8
-    LTEXT           "config-im.htm",IDC_HELPFILE,157,327,41,8,NOT WS_VISIBLE
 END
 
 IDD_IPMESSENGERSETTING DIALOGEX 0, 0, 235, 335
@@ -1106,8 +1093,6 @@ BEGIN
     GROUPBOX        "广播/组播/单播目标",IDC_STATIC,4,44,
                     227,96
     LTEXT           "例：192.168.0.255/FF02::1",IDC_STATIC,11,79,73,8
-    LTEXT           "config-ipmes.htm",IDC_HELPFILE,160,327,51,8,NOT 
-                    WS_VISIBLE
 END
 
 IDD_EXTAPP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1137,8 +1122,6 @@ BEGIN
     GROUPBOX        "邮件程序",IDC_STATIC,4,137,227,60
     LTEXT           "浏览器/邮件程序留空时使用控制面板的“Internet 选项”设置。\n文件管理器留空时使用资源管理器。\n编辑器留空时使用 notepad.exe。",
                     IDC_STATIC,4,201,227,38
-    LTEXT           "config-extprog.htm",IDC_HELPFILE,174,327,56,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "版本控制系统",IDC_STATIC,4,256,227,63
     LTEXT           "Subversion (留空则使用 TortoiseSVN)",
                     IDC_STATIC,11,267,213,8
@@ -1305,8 +1288,6 @@ BEGIN
     EDITTEXT        IDC_NARPATH_USER_EDIT,10,310,175,14,ES_AUTOHSCROLL
     PUSHBUTTON      "浏览...",IDC_NARPATH_USER_ASK,188,310,37,14
     RTEXT           "名字：",IDC_STATIC,88,7,37,8
-    LTEXT           "config-dev.htm",IDC_HELPFILE,158,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "创建更新定义文件",IDC_STATIC,4,219,227,
                     60
     GROUPBOX        "NAR 创建路径",IDC_STATIC,4,286,227,45
@@ -1440,8 +1421,6 @@ BEGIN
     RTEXT           "日历：",IDC_STATIC,11,314,32,8
     LTEXT           "透明",IDC_STATIC,45,266,47,8
     RTEXT           "不透明",IDC_STATIC,193,266,34,8
-    LTEXT           "config-disp.htm",IDC_HELPFILE,170,327,46,8,NOT 
-                    WS_VISIBLE
     CONTROL         "在所有虚拟桌面上显示角色 (Win10 或更高版本)",
                     IDC_PIN_VD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,158,
                     227,10
@@ -1547,8 +1526,6 @@ BEGIN
     GROUPBOX        "人格缓存控制",IDC_STATIC,4,271,227,60
     RTEXT           "保留时间 (分钟)",IDC_STATIC,121,300,52,8
     RTEXT           "最大数量",IDC_STATIC,10,300,43,8
-    LTEXT           "config-ghost.htm",IDC_HELPFILE,181,323,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "更新方式：",IDC_STATIC,11,203,54,8
     GROUPBOX        "网络更新",IDC_STATIC,4,142,227,78
     CONTROL         "启用人格/对话框列表缓存",IDC_CACHE_LIST_ENABLE,

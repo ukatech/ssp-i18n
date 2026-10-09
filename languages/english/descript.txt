@@ -42,4 +42,3 @@ homeurl,https://raw.githubusercontent.com/ukatech/ssp-i18n/master/languages/engl
 
 //Help document URL
 helpurl,http://ssp.shillest.net/ukadoc/ssphelp/
-

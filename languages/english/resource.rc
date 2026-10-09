@@ -652,8 +652,6 @@ BEGIN
     LTEXT           "Total found: [NUM]",IDC_BALLOON_NUM,11,76,103,8
     LTEXT           "Total found: [NUM]",IDC_HEADLINE_NUM,11,135,103,8
     LTEXT           "Total found: [NUM]",IDC_PLUGIN_NUM,11,181,103,8
-    LTEXT           "config-folder.htm",IDC_HELPFILE,181,323,51,8,NOT 
-                    WS_VISIBLE
     EDITTEXT        IDC_TEMP_PATH,4,231,168,14,ES_AUTOHSCROLL
     LTEXT           "Temporary file path",IDC_TEMP_PATH_STATIC,4,221,66,8
     EDITTEXT        IDC_NAR_PATH,4,262,168,14,ES_AUTOHSCROLL
@@ -719,8 +717,6 @@ BEGIN
     GROUPBOX        "Balloon config",IDC_STATIC,4,248,227,30
     RTEXT           "Double click:",IDC_STATIC,11,261,47,8
     RTEXT           "Right click:",IDC_STATIC,119,261,47,8
-    LTEXT           "config-talk.htm",IDC_HELPFILE,172,327,45,8,NOT 
-                    WS_VISIBLE
     LTEXT           "Click timeout\n(Default = Disabled)",IDC_STATIC,11,76,
                     67,19
     GROUPBOX        "Notification sound when a dialogue script starts",
@@ -768,8 +764,6 @@ BEGIN
     LTEXT           "Name:",IDC_STATIC,9,287,39,8
     LTEXT           "Nickname:",IDC_STATIC,82,287,43,8
     GROUPBOX        "User information",IDC_STATIC,4,276,227,55
-    LTEXT           "config-ippan.htm",IDC_HELPFILE,158,327,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "Birthday:",IDC_STATIC,155,287,42,8
     LTEXT           "Sex:",IDC_STATIC,9,316,30,8
     GROUPBOX        "Tablet mode",IDC_STATIC,4,243,227,28
@@ -851,8 +845,6 @@ BEGIN
     GROUPBOX        "Headlines",IDC_STATIC,4,4,227,72
     LTEXT           "Play sound when updating",IDC_STATIC,9,44,112,8
     GROUPBOX        "SSTP settings",IDC_STATIC,4,82,227,180
-    LTEXT           "config-conn2.htm",IDC_HELPFILE,157,327,51,8,NOT 
-                    WS_VISIBLE
     LTEXT           "Ghost boot:",IDC_STATIC,11,199,50,8
     LTEXT           "After booted:",IDC_STATIC,11,214,50,8
     LTEXT           "Max. number of temp. ghosts (0 = No limit)",IDC_STATIC,
@@ -907,8 +899,6 @@ BEGIN
     LTEXT           " -",IDC_STATIC,154,179,8,8
     LTEXT           "Username (Can be empty)",IDC_STATIC,9,120,84,8
     LTEXT           "Password (Can be empty)",IDC_STATIC,120,120,77,8
-    LTEXT           "config-conn1.htm",IDC_HELPFILE,180,323,51,8,NOT 
-                    WS_VISIBLE
     CONTROL         "Auto execute every:",IDC_SNTP_AUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,246,99,10
     CONTROL         "SNTP server:",IDC_SNTPCHECK,"Button",BS_AUTORADIOBUTTON,
@@ -947,8 +937,6 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,149,311,16,14,BS_ICON
     PUSHBUTTON      "Delete",IDC_POP_DEL,187,311,38,14
     GROUPBOX        "Account settings",IDC_STATIC,4,226,227,105
-    LTEXT           "config-pop.htm",IDC_HELPFILE,162,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "Notification sound for new emails",IDC_STATIC,4,49,227,
                     33
 END
@@ -1081,7 +1069,6 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,59,226,10
     LTEXT           "Name:",IDC_STATIC,8,9,29,8
     LTEXT           "Group:",IDC_STATIC,8,26,29,8
-    LTEXT           "config-im.htm",IDC_HELPFILE,157,327,41,8,NOT WS_VISIBLE
 END
 
 IDD_IPMESSENGERSETTING DIALOGEX 0, 0, 235, 335
@@ -1106,8 +1093,6 @@ BEGIN
     GROUPBOX        "Broadcast/Multicast/Unicast targets",IDC_STATIC,4,44,
                     227,96
     LTEXT           "?:192.168.0.255/FF02::1",IDC_STATIC,11,79,73,8
-    LTEXT           "config-ipmes.htm",IDC_HELPFILE,160,327,51,8,NOT 
-                    WS_VISIBLE
 END
 
 IDD_EXTAPP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1137,8 +1122,6 @@ BEGIN
     GROUPBOX        "Mailer",IDC_STATIC,4,137,227,60
     LTEXT           "Leave the browser/mailer boxes empty to use control panel's ""Internet"" settings.\nLeave the file manager box empty to use Explorer.\nLeave the editor box empty to use notepad.exe.",
                     IDC_STATIC,4,201,227,38
-    LTEXT           "config-extprog.htm",IDC_HELPFILE,174,327,56,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "Version control system",IDC_STATIC,4,256,227,63
     LTEXT           "Subversion (Leave empty to use TortoiseSVN.)",
                     IDC_STATIC,11,267,213,8
@@ -1305,8 +1288,6 @@ BEGIN
     EDITTEXT        IDC_NARPATH_USER_EDIT,10,310,175,14,ES_AUTOHSCROLL
     PUSHBUTTON      "Browse...",IDC_NARPATH_USER_ASK,188,310,37,14
     RTEXT           "Name:",IDC_STATIC,88,7,37,8
-    LTEXT           "config-dev.htm",IDC_HELPFILE,158,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "Update definition file creation",IDC_STATIC,4,219,227,
                     60
     GROUPBOX        "NAR creation path",IDC_STATIC,4,286,227,45
@@ -1440,8 +1421,6 @@ BEGIN
     RTEXT           "Calendar:",IDC_STATIC,11,314,32,8
     LTEXT           "Transparent",IDC_STATIC,45,266,47,8
     RTEXT           "Opaque",IDC_STATIC,193,266,34,8
-    LTEXT           "config-disp.htm",IDC_HELPFILE,170,327,46,8,NOT 
-                    WS_VISIBLE
     CONTROL         "Show character on all virtual desktops (Win10 or later)",
                     IDC_PIN_VD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,158,
                     227,10
@@ -1547,8 +1526,6 @@ BEGIN
     GROUPBOX        "Ghost cache control",IDC_STATIC,4,271,227,60
     RTEXT           "Duration (Min.)",IDC_STATIC,121,300,52,8
     RTEXT           "Max count",IDC_STATIC,10,300,43,8
-    LTEXT           "config-ghost.htm",IDC_HELPFILE,181,323,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "Method of update:",IDC_STATIC,11,203,54,8
     GROUPBOX        "Network update",IDC_STATIC,4,142,227,78
     CONTROL         "Enable ghost/balloon list cache",IDC_CACHE_LIST_ENABLE,

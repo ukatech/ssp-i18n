@@ -652,8 +652,6 @@ BEGIN
     LTEXT           "찾은 수: [NUM]",IDC_BALLOON_NUM,11,76,103,8
     LTEXT           "찾은 수: [NUM]",IDC_HEADLINE_NUM,11,135,103,8
     LTEXT           "찾은 수: [NUM]",IDC_PLUGIN_NUM,11,181,103,8
-    LTEXT           "config-folder.htm",IDC_HELPFILE,181,323,51,8,NOT 
-                    WS_VISIBLE
     EDITTEXT        IDC_TEMP_PATH,4,231,168,14,ES_AUTOHSCROLL
     LTEXT           "임시 파일 경로",IDC_TEMP_PATH_STATIC,4,221,66,8
     EDITTEXT        IDC_NAR_PATH,4,262,168,14,ES_AUTOHSCROLL
@@ -719,8 +717,6 @@ BEGIN
     GROUPBOX        "벌룬 설정",IDC_STATIC,4,248,227,30
     RTEXT           "더블 클릭:",IDC_STATIC,11,261,47,8
     RTEXT           "오른쪽 클릭:",IDC_STATIC,119,261,47,8
-    LTEXT           "config-talk.htm",IDC_HELPFILE,172,327,45,8,NOT 
-                    WS_VISIBLE
     LTEXT           "클릭 대기 시간 초과\n(기본 = 사용 안 함)",IDC_STATIC,11,76,
                     67,19
     GROUPBOX        "대화 스크립트 시작 시 알림음",
@@ -768,8 +764,6 @@ BEGIN
     LTEXT           "이름:",IDC_STATIC,9,287,39,8
     LTEXT           "애칭:",IDC_STATIC,82,287,43,8
     GROUPBOX        "사용자 정보",IDC_STATIC,4,276,227,55
-    LTEXT           "config-ippan.htm",IDC_HELPFILE,158,327,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "생일:",IDC_STATIC,155,287,42,8
     LTEXT           "성별:",IDC_STATIC,9,316,30,8
     GROUPBOX        "태블릿 모드",IDC_STATIC,4,243,227,28
@@ -851,8 +845,6 @@ BEGIN
     GROUPBOX        "헤드라인",IDC_STATIC,4,4,227,72
     LTEXT           "업데이트 시 소리 재생",IDC_STATIC,9,44,112,8
     GROUPBOX        "SSTP 설정",IDC_STATIC,4,82,227,180
-    LTEXT           "config-conn2.htm",IDC_HELPFILE,157,327,51,8,NOT 
-                    WS_VISIBLE
     LTEXT           "고스트 실행:",IDC_STATIC,11,199,50,8
     LTEXT           "실행 후:",IDC_STATIC,11,214,50,8
     LTEXT           "임시 고스트 최대 수 (0 = 무제한)",IDC_STATIC,
@@ -907,8 +899,6 @@ BEGIN
     LTEXT           " -",IDC_STATIC,154,179,8,8
     LTEXT           "사용자 이름 (생략 가능)",IDC_STATIC,9,120,84,8
     LTEXT           "비밀번호 (생략 가능)",IDC_STATIC,120,120,77,8
-    LTEXT           "config-conn1.htm",IDC_HELPFILE,180,323,51,8,NOT 
-                    WS_VISIBLE
     CONTROL         "자동 실행 간격:",IDC_SNTP_AUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,246,99,10
     CONTROL         "SNTP 서버:",IDC_SNTPCHECK,"Button",BS_AUTORADIOBUTTON,
@@ -947,8 +937,6 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,149,311,16,14,BS_ICON
     PUSHBUTTON      "삭제",IDC_POP_DEL,187,311,38,14
     GROUPBOX        "계정 설정",IDC_STATIC,4,226,227,105
-    LTEXT           "config-pop.htm",IDC_HELPFILE,162,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "새 메일 알림음",IDC_STATIC,4,49,227,
                     33
 END
@@ -1081,7 +1069,6 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,59,226,10
     LTEXT           "이름:",IDC_STATIC,8,9,29,8
     LTEXT           "그룹:",IDC_STATIC,8,26,29,8
-    LTEXT           "config-im.htm",IDC_HELPFILE,157,327,41,8,NOT WS_VISIBLE
 END
 
 IDD_IPMESSENGERSETTING DIALOGEX 0, 0, 235, 335
@@ -1106,8 +1093,6 @@ BEGIN
     GROUPBOX        "브로드캐스트/멀티캐스트/유니캐스트 대상",IDC_STATIC,4,44,
                     227,96
     LTEXT           "예: 192.168.0.255/FF02::1",IDC_STATIC,11,79,73,8
-    LTEXT           "config-ipmes.htm",IDC_HELPFILE,160,327,51,8,NOT 
-                    WS_VISIBLE
 END
 
 IDD_EXTAPP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1137,8 +1122,6 @@ BEGIN
     GROUPBOX        "메일 프로그램",IDC_STATIC,4,137,227,60
     LTEXT           "브라우저/메일 프로그램을 비워 두면 제어판의 '인터넷 옵션' 설정을 사용합니다.\n파일 관리자를 비워 두면 탐색기를 사용합니다.\n편집기를 비워 두면 notepad.exe를 사용합니다.",
                     IDC_STATIC,4,201,227,38
-    LTEXT           "config-extprog.htm",IDC_HELPFILE,174,327,56,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "버전 관리 시스템",IDC_STATIC,4,256,227,63
     LTEXT           "Subversion (비워 두면 TortoiseSVN 사용)",
                     IDC_STATIC,11,267,213,8
@@ -1305,8 +1288,6 @@ BEGIN
     EDITTEXT        IDC_NARPATH_USER_EDIT,10,310,175,14,ES_AUTOHSCROLL
     PUSHBUTTON      "찾기...",IDC_NARPATH_USER_ASK,188,310,37,14
     RTEXT           "이름:",IDC_STATIC,88,7,37,8
-    LTEXT           "config-dev.htm",IDC_HELPFILE,158,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "업데이트 정의 파일 생성",IDC_STATIC,4,219,227,
                     60
     GROUPBOX        "NAR 생성 경로",IDC_STATIC,4,286,227,45
@@ -1440,8 +1421,6 @@ BEGIN
     RTEXT           "캘린더:",IDC_STATIC,11,314,32,8
     LTEXT           "투명",IDC_STATIC,45,266,47,8
     RTEXT           "불투명",IDC_STATIC,193,266,34,8
-    LTEXT           "config-disp.htm",IDC_HELPFILE,170,327,46,8,NOT 
-                    WS_VISIBLE
     CONTROL         "모든 가상 데스크톱에 캐릭터 표시 (Win10 이상)",
                     IDC_PIN_VD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,158,
                     227,10
@@ -1547,8 +1526,6 @@ BEGIN
     GROUPBOX        "고스트 캐시 관리",IDC_STATIC,4,271,227,60
     RTEXT           "유지 시간 (분)",IDC_STATIC,121,300,52,8
     RTEXT           "최대 수",IDC_STATIC,10,300,43,8
-    LTEXT           "config-ghost.htm",IDC_HELPFILE,181,323,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "업데이트 방식:",IDC_STATIC,11,203,54,8
     GROUPBOX        "네트워크 업데이트",IDC_STATIC,4,142,227,78
     CONTROL         "고스트/벌룬 목록 캐시 사용",IDC_CACHE_LIST_ENABLE,

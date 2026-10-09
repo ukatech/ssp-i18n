@@ -652,8 +652,6 @@ BEGIN
     LTEXT           "共找到：[NUM]",IDC_BALLOON_NUM,11,76,103,8
     LTEXT           "共找到：[NUM]",IDC_HEADLINE_NUM,11,135,103,8
     LTEXT           "共找到：[NUM]",IDC_PLUGIN_NUM,11,181,103,8
-    LTEXT           "config-folder.htm",IDC_HELPFILE,181,323,51,8,NOT 
-                    WS_VISIBLE
     EDITTEXT        IDC_TEMP_PATH,4,231,168,14,ES_AUTOHSCROLL
     LTEXT           "暫存檔案路徑",IDC_TEMP_PATH_STATIC,4,221,66,8
     EDITTEXT        IDC_NAR_PATH,4,262,168,14,ES_AUTOHSCROLL
@@ -719,8 +717,6 @@ BEGIN
     GROUPBOX        "對話方塊設定",IDC_STATIC,4,248,227,30
     RTEXT           "按兩下：",IDC_STATIC,11,261,47,8
     RTEXT           "按右鍵：",IDC_STATIC,119,261,47,8
-    LTEXT           "config-talk.htm",IDC_HELPFILE,172,327,45,8,NOT 
-                    WS_VISIBLE
     LTEXT           "點擊等待逾時\n(預設 = 停用)",IDC_STATIC,11,76,
                     67,19
     GROUPBOX        "對話腳本開始時的提示音",
@@ -768,8 +764,6 @@ BEGIN
     LTEXT           "名字：",IDC_STATIC,9,287,39,8
     LTEXT           "暱稱：",IDC_STATIC,82,287,43,8
     GROUPBOX        "使用者資訊",IDC_STATIC,4,276,227,55
-    LTEXT           "config-ippan.htm",IDC_HELPFILE,158,327,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "生日：",IDC_STATIC,155,287,42,8
     LTEXT           "性別：",IDC_STATIC,9,316,30,8
     GROUPBOX        "平板模式",IDC_STATIC,4,243,227,28
@@ -851,8 +845,6 @@ BEGIN
     GROUPBOX        "新聞",IDC_STATIC,4,4,227,72
     LTEXT           "更新時播放音效",IDC_STATIC,9,44,112,8
     GROUPBOX        "SSTP 設定",IDC_STATIC,4,82,227,180
-    LTEXT           "config-conn2.htm",IDC_HELPFILE,157,327,51,8,NOT 
-                    WS_VISIBLE
     LTEXT           "人格啟動：",IDC_STATIC,11,199,50,8
     LTEXT           "啟動後：",IDC_STATIC,11,214,50,8
     LTEXT           "臨時人格最大數量 (0 = 無限制)",IDC_STATIC,
@@ -907,8 +899,6 @@ BEGIN
     LTEXT           " -",IDC_STATIC,154,179,8,8
     LTEXT           "使用者名稱 (可留空)",IDC_STATIC,9,120,84,8
     LTEXT           "密碼 (可留空)",IDC_STATIC,120,120,77,8
-    LTEXT           "config-conn1.htm",IDC_HELPFILE,180,323,51,8,NOT 
-                    WS_VISIBLE
     CONTROL         "自動執行間隔：",IDC_SNTP_AUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,246,99,10
     CONTROL         "SNTP 伺服器",IDC_SNTPCHECK,"Button",BS_AUTORADIOBUTTON,
@@ -947,8 +937,6 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,149,311,16,14,BS_ICON
     PUSHBUTTON      "刪除",IDC_POP_DEL,187,311,38,14
     GROUPBOX        "帳戶設定",IDC_STATIC,4,226,227,105
-    LTEXT           "config-pop.htm",IDC_HELPFILE,162,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "新郵件提示音",IDC_STATIC,4,49,227,
                     33
 END
@@ -1081,7 +1069,6 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,59,226,10
     LTEXT           "名字：",IDC_STATIC,8,9,29,8
     LTEXT           "群組：",IDC_STATIC,8,26,29,8
-    LTEXT           "config-im.htm",IDC_HELPFILE,157,327,41,8,NOT WS_VISIBLE
 END
 
 IDD_IPMESSENGERSETTING DIALOGEX 0, 0, 235, 335
@@ -1106,8 +1093,6 @@ BEGIN
     GROUPBOX        "廣播/多點傳送/單點傳送目標",IDC_STATIC,4,44,
                     227,96
     LTEXT           "例：192.168.0.255/FF02::1",IDC_STATIC,11,79,73,8
-    LTEXT           "config-ipmes.htm",IDC_HELPFILE,160,327,51,8,NOT 
-                    WS_VISIBLE
 END
 
 IDD_EXTAPP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1137,8 +1122,6 @@ BEGIN
     GROUPBOX        "郵件程式",IDC_STATIC,4,137,227,60
     LTEXT           "瀏覽器/郵件程式留空時使用控制台的「網際網路選項」設定。\n檔案管理員留空時使用檔案總管。\n編輯器留空時使用 notepad.exe。",
                     IDC_STATIC,4,201,227,38
-    LTEXT           "config-extprog.htm",IDC_HELPFILE,174,327,56,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "版本控制系統",IDC_STATIC,4,256,227,63
     LTEXT           "Subversion (留空則使用 TortoiseSVN)",
                     IDC_STATIC,11,267,213,8
@@ -1305,8 +1288,6 @@ BEGIN
     EDITTEXT        IDC_NARPATH_USER_EDIT,10,310,175,14,ES_AUTOHSCROLL
     PUSHBUTTON      "瀏覽...",IDC_NARPATH_USER_ASK,188,310,37,14
     RTEXT           "名字：",IDC_STATIC,88,7,37,8
-    LTEXT           "config-dev.htm",IDC_HELPFILE,158,327,44,8,NOT 
-                    WS_VISIBLE
     GROUPBOX        "建立更新定義檔",IDC_STATIC,4,219,227,
                     60
     GROUPBOX        "NAR 建立路徑",IDC_STATIC,4,286,227,45
@@ -1440,8 +1421,6 @@ BEGIN
     RTEXT           "行事曆：",IDC_STATIC,11,314,32,8
     LTEXT           "透明",IDC_STATIC,45,266,47,8
     RTEXT           "不透明",IDC_STATIC,193,266,34,8
-    LTEXT           "config-disp.htm",IDC_HELPFILE,170,327,46,8,NOT 
-                    WS_VISIBLE
     CONTROL         "在所有虛擬桌面上顯示角色 (Win10 或更新版本)",
                     IDC_PIN_VD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,158,
                     227,10
@@ -1547,8 +1526,6 @@ BEGIN
     GROUPBOX        "人格快取控制",IDC_STATIC,4,271,227,60
     RTEXT           "保留時間 (分鐘)",IDC_STATIC,121,300,52,8
     RTEXT           "最大數量",IDC_STATIC,10,300,43,8
-    LTEXT           "config-ghost.htm",IDC_HELPFILE,181,323,50,8,NOT 
-                    WS_VISIBLE
     LTEXT           "更新方式：",IDC_STATIC,11,203,54,8
     GROUPBOX        "網路更新",IDC_STATIC,4,142,227,78
     CONTROL         "啟用人格/對話方塊清單快取",IDC_CACHE_LIST_ENABLE,
