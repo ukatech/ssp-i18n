@@ -1883,7 +1883,7 @@ BEGIN
                     IDC_SOUND_LEVEL_MONITOR_ENABLE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,36,226,10
     RTEXT           "Audio input :",IDC_STATIC,4,53,67,8
-    RTEXT           "Audio Level :",IDC_STATIC,4,80,67,8
+    RTEXT           "Audio level :",IDC_STATIC,4,80,67,8
     COMBOBOX        IDC_SOUND_LEVEL_MONITOR_DEVICE,74,50,156,132,
                     CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
     CONTROL         "Slider1",IDC_SOUND_LEVEL_MONITOR_LEVEL,
