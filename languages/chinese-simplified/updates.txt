@@ -3,8 +3,8 @@ file,descript.txt42e5623f5db6cbff77bd5d503268652esize=1891date=2012-12-21T00:
 file,holidays-SG.txtff7cd82f8d3b9a1d2ffddb8a0340ae76size=4609date=2012-12-21T00:00:00
 file,holidays.txtf3ea2d2146dbc573c98d0e1fc4b7fc30size=8492date=2012-12-21T00:00:00
 file,install.txtea41ff06748b8a74403ddd1006729c3dsize=67date=2012-12-21T00:00:00
-file,message.txte18f69b4a12a0689be11cd48666a80c2size=9275date=2012-12-21T00:00:00
-file,resource.dll27d0fd026ff8eac69bb64bace724cbf5size=44032date=2012-12-21T00:00:00
+file,message.txt1abcfa2b8a74c3cd35f3b9477cad42absize=9281date=2012-12-21T00:00:00
+file,resource.dll8401c9a4e2c84a71cdbd173a76a78a14size=44032date=2012-12-21T00:00:00
 file,ssp-pictures/nowloading.png7fcb98165c82e81356220042c774ddf6size=2508date=2012-12-21T00:00:00
 file,ssp-pictures/nowloading_dark.pngc2a5629c5f6c9263401a84822129acccsize=1810date=2012-12-21T00:00:00
 file,ssp-pictures/realize.pngd1bc906506029bbbc9977f4d1a5d319dsize=1805date=2012-12-21T00:00:00

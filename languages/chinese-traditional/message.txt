@@ -103,7 +103,7 @@ resource.setting.sstp.boot,不啟動,僅限 Messenger (SSTP/1.5),盡可能啟動
 resource.setting.sstp.close,對話方塊消失時關閉,保留,設定關閉計時器...
 resource.setting.update,與其他用戶端相容,嚴格 (SSP 預設),復原模式 (檢查所有檔案)
 resource.aboutghost.select,人格資訊...,外殼資訊...,對話方塊資訊...
-resource.explorer.select,人格,外殼,對話方塊,新聞,外掛程式
+resource.explorer.select,人格,外殼,對話方塊,線上新聞,外掛程式
 
 resource.setting.ghostcloseduration,人格關閉前的時間
 resource.setting.title,SSP：設定
@@ -124,8 +124,8 @@ resource.archive.extract,解壓縮視窗\n請將檔案或資料夾從此處自�
 //Script
 script.biff.check,正在檢查郵件...
 script.biff.result,收到了郵件。\n%1 封，%2 位元組。
-script.updatedata.creating,正在建立網路更新檔案...
-script.updatedata.created,網路更新檔案已建立。
+script.updatedata.creating,正在建立線上更新檔案...
+script.updatedata.created,線上更新檔案已建立。
 script.nar.creating,正在建立 NAR...
 script.nar.created,NAR 已建立。
 

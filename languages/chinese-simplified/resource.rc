@@ -58,11 +58,11 @@ BEGIN
         BEGIN
             MENUITEM SEPARATOR
         END
-        MENUITEM "网络更新(&N)\tCtrl+U",     SAKURA_MENU_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     SAKURA_MENU_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "卸载(&U)",                  SAKURA_MENU_UNINSTALL
         MENUITEM SEPARATOR
-        POPUP "RSS/新闻(&H)"
+        POPUP "RSS/在线新闻(&H)"
         BEGIN
             MENUITEM SEPARATOR
         END
@@ -145,7 +145,7 @@ BEGIN
             MENUITEM "设置默认字符编码(&C)",        SAKURA_MENU_CHARSET
             MENUITEM SEPARATOR
             MENUITEM "[兼容性]",             IDC_STATIC, GRAYED
-            MENUITEM "由 SHIORI 触发随机对话(&S)",  SAKURA_MENU_TALKSHIORI
+            MENUITEM "由 SHIORI 决定对话时机(&S)",  SAKURA_MENU_TALKSHIORI
             MENUITEM "旧规格支持(&O)",  SAKURA_MENU_COMPATIBLEMODE
 
         END
@@ -186,7 +186,7 @@ BEGIN
             BEGIN
                 MENUITEM SEPARATOR
             END
-            POPUP "新闻(&H)"
+            POPUP "在线新闻(&H)"
             BEGIN
                 MENUITEM SEPARATOR
             END
@@ -388,10 +388,10 @@ BEGIN
         MENUITEM "设为默认人格(&E)", LIST_SET_DEFAULT
         MENUITEM "设为优先对话人格(&P)", LIST_SET_PREFERRED
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM "通过 RSS 智能更新",       LIST_UPDATE_RSS
         MENUITEM SEPARATOR
-        MENUITEM "网络更新（仅检查）", LIST_UPDATE_CHECKONLY
+        MENUITEM "在线更新（仅检查）", LIST_UPDATE_CHECKONLY
         MENUITEM "通过 RSS 智能更新（仅检查）", 
                                                 LIST_UPDATE_RSS_CHECKONLY
         MENUITEM "清除更新检查标记",     LIST_CHECKONLY_CLEAR
@@ -412,7 +412,7 @@ BEGIN
         MENUITEM "访问作者网站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "打开说明文档(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "创建更新文件(&U)",         LIST_UPDATE_CREATE
         MENUITEM "创建 NAR(&N)...",              LIST_CREATE_NAR
@@ -434,14 +434,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "设为默认对话框(&E)", LIST_SET_DEFAULT
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "创建更新文件(&U)",         LIST_UPDATE_CREATE
         MENUITEM "创建 NAR(&N)...",              LIST_CREATE_NAR
         MENUITEM "同时创建两者(&B)...",             LIST_CREATE_BOTH
         MENUITEM "创建 zip+txt 更新包(&Z)", LIST_CREATE_ZIPTXT
     END
-    POPUP "新闻"
+    POPUP "在线新闻"
     BEGIN
         MENUITEM "阅读(&X)\tCtrl+H",           LIST_EXEC
         MENUITEM "访问网站\tCtrl+W",     LIST_WEBJUMP
@@ -455,7 +455,7 @@ BEGIN
         MENUITEM "访问作者网站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "打开说明文档(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "创建更新文件(&U)",         LIST_UPDATE_CREATE
         MENUITEM "创建 NAR(&N)...",              LIST_CREATE_NAR
@@ -476,7 +476,7 @@ BEGIN
         MENUITEM "访问作者网站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "打开说明文档(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "启用日志(&L)",             LIST_LOG_ENABLE
         MENUITEM SEPARATOR
@@ -494,7 +494,7 @@ BEGIN
         MENUITEM "访问作者网站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "打开说明文档(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "创建更新文件(&U)",         LIST_UPDATE_CREATE
         MENUITEM "创建 NAR(&N)...",              LIST_CREATE_NAR
@@ -510,7 +510,7 @@ BEGIN
         MENUITEM "访问作者网站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "打开说明文档(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "创建更新文件(&U)",         LIST_UPDATE_CREATE
         MENUITEM "创建 NAR(&N)...",              LIST_CREATE_NAR
@@ -526,7 +526,7 @@ BEGIN
         MENUITEM "访问作者网站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "打开说明文档(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "网络更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "在线更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "创建更新文件(&U)",         LIST_UPDATE_CREATE
         MENUITEM "创建 NAR(&N)...",              LIST_CREATE_NAR
@@ -566,7 +566,7 @@ BEGIN
         MENUITEM "粘贴(&V)\tCtrl+V",          ID_EDIT_PASTE
         MENUITEM "删除(&D)\tDel",                ID_EDIT_CLEAR
     END
-    POPUP "登记(&C)"
+    POPUP "收件人(&C)"
     BEGIN
         MENUITEM "添加收件人(&N)",           IDC_USERNEW
         MENUITEM "编辑收件人(&E)",             IDC_USERPROP
@@ -598,7 +598,7 @@ BEGIN
         MENUITEM "人格(&G)",                      LIST_TYPE_GHOST
         MENUITEM "外壳(&S)",                      LIST_TYPE_SHELL
         MENUITEM "对话框(&B)",                    LIST_TYPE_BALLOON
-        MENUITEM "新闻(&H)",                   LIST_TYPE_HEADLINE
+        MENUITEM "在线新闻(&H)",                   LIST_TYPE_HEADLINE
         MENUITEM "插件(&P)",                     LIST_TYPE_PLUGIN
         MENUITEM "语言(&L)",                   LIST_TYPE_LANGUAGE
         MENUITEM "日历皮肤(&C)",              LIST_TYPE_CALENDAR_SKIN
@@ -646,7 +646,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
     GROUPBOX        "人格",IDC_STATIC,4,6,228,56
     GROUPBOX        "对话框",IDC_STATIC,4,64,228,56
-    GROUPBOX        "新闻",IDC_STATIC,4,123,228,43
+    GROUPBOX        "在线新闻",IDC_STATIC,4,123,228,43
     GROUPBOX        "插件",IDC_STATIC,4,169,228,43
     LTEXT           "共找到：[NUM]",IDC_GHOST_NUM,11,18,103,8
     LTEXT           "共找到：[NUM]",IDC_BALLOON_NUM,11,76,103,8
@@ -675,7 +675,7 @@ BEGIN
                     TBS_AUTOTICKS | WS_TABSTOP,78,56,143,20
     CONTROL         "Slider1",IDC_CLICK_TIMEOUT,"msctls_trackbar32",
                     TBS_AUTOTICKS | WS_TABSTOP,78,76,143,20
-    CONTROL         "读取新闻时总是立即显示文字",
+    CONTROL         "读取在线新闻时总是立即显示文字",
                     IDC_NO_WAIT_HEADLINE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,113,227,10
     CONTROL         "在线时总是显示对话框",
@@ -721,7 +721,7 @@ BEGIN
                     67,19
     GROUPBOX        "对话脚本开始时的提示音",
                     IDC_STATIC,4,208,227,33
-    CONTROL         "显示新闻时不超时",
+    CONTROL         "显示在线新闻时不超时",
                     IDC_HEADLINE_NO_TIMEOUT,"Button",BS_AUTO3STATE | 
                     WS_TABSTOP,4,126,227,10
 END
@@ -803,7 +803,7 @@ BEGIN
     CONTROL         "Spin1",IDC_HEADLINE_INTERVAL_S,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,14,9,14
-    CONTROL         "手动执行新闻时也更新自动检查的时间点",
+    CONTROL         "手动执行在线新闻时也更新自动检查的时间点",
                     IDC_HEADLINE_COUNT_MANUAL_UPDATE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,30,220,10
     EDITTEXT        IDC_HEADLINE_SOUNDPATH,9,55,140,14,ES_AUTOHSCROLL
@@ -840,9 +840,9 @@ BEGIN
     CONTROL         "Spin1",IDC_SPIN_TMPGHOST_INTERVAL,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,185,242,10,14
-    LTEXT           "分",IDC_STATIC,148,18,12,8
+    LTEXT           "分钟",IDC_STATIC,148,18,12,8
     RTEXT           "每隔",IDC_STATIC,68,17,34,8
-    GROUPBOX        "新闻",IDC_STATIC,4,4,227,72
+    GROUPBOX        "在线新闻",IDC_STATIC,4,4,227,72
     LTEXT           "更新时播放声音",IDC_STATIC,9,44,112,8
     GROUPBOX        "SSTP 设置",IDC_STATIC,4,82,227,180
     LTEXT           "人格启动：",IDC_STATIC,11,199,50,8
@@ -1251,7 +1251,7 @@ BEGIN
     CONTROL         "拖放文件夹时创建更新定义文件和/或 NAR",
                     IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     21,227,10
-    CONTROL         "网络更新时备份旧文件",
+    CONTROL         "在线更新时备份旧文件",
                     IDC_UPDATE_BACKUPFILES,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,33,227,10
     CONTROL         "不更新只读文件",IDC_UPDATE_IGNOREREADONLY,
@@ -1450,7 +1450,7 @@ BEGIN
                     8,136,146,10
     CONTROL         "禁用自动 (随机) 切换",IDC_FOLDER_NOAUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,8,148,146,10
-    CONTROL         "禁用自动 (新闻和 POP) 检查",
+    CONTROL         "禁用自动 (在线新闻和 POP) 检查",
                     IDC_FOLDER_NOCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     165,136,146,10
     CONTROL         "禁用自动更新",IDC_FOLDER_NOAUTOUPDATE,"Button",
@@ -1527,7 +1527,7 @@ BEGIN
     RTEXT           "保留时间 (分钟)",IDC_STATIC,121,300,52,8
     RTEXT           "最大数量",IDC_STATIC,10,300,43,8
     LTEXT           "更新方式：",IDC_STATIC,11,203,54,8
-    GROUPBOX        "网络更新",IDC_STATIC,4,142,227,78
+    GROUPBOX        "在线更新",IDC_STATIC,4,142,227,78
     CONTROL         "启用人格/对话框列表缓存",IDC_CACHE_LIST_ENABLE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,315,169,10
     RTEXT           "间隔 (天)",IDC_STATIC,119,156,55,8
@@ -1680,7 +1680,7 @@ BEGIN
     COMBOBOX        IDC_FILE_CHARSET,74,126,150,130,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     RTEXT           "文件读写：",IDC_STATIC,14,128,53,8
-    LTEXT           "网络更新、zip 解压等",IDC_STATIC,74,143,
+    LTEXT           "在线更新、zip 解压等",IDC_STATIC,74,143,
                     157,9
 END
 
@@ -1771,7 +1771,7 @@ FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "继续",IDOK,200,151,50,14
     PUSHBUTTON      "退出",IDCANCEL,145,151,50,14
-    CTEXT           "请进行处理。",IDC_STATIC,4,4,246,32,
+    CTEXT           "请想想办法。",IDC_STATIC,4,4,246,32,
                     SS_CENTERIMAGE,WS_EX_CLIENTEDGE
     LTEXT           "未找到人格和/或对话框，启动失败。\n要继续启动，请将 NAR 文件拖放到此窗口，\n或使用下方按钮更改文件夹设置。",
                     IDC_STATIC,4,43,228,28

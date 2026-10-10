@@ -103,7 +103,7 @@ resource.setting.sstp.boot,不启动,仅限 Messenger (SSTP/1.5),尽可能启动
 resource.setting.sstp.close,对话框消失时关闭,保留,设置关闭计时器...
 resource.setting.update,与其他客户端兼容,严格 (SSP 默认),恢复模式 (检查所有文件)
 resource.aboutghost.select,人格信息...,外壳信息...,对话框信息...
-resource.explorer.select,人格,外壳,对话框,新闻,插件
+resource.explorer.select,人格,外壳,对话框,在线新闻,插件
 
 resource.setting.ghostcloseduration,人格关闭前的时间
 resource.setting.title,SSP：设置
@@ -124,8 +124,8 @@ resource.archive.extract,解压窗口\n请将文件或文件夹从此处自由�
 //Script
 script.biff.check,正在检查邮件...
 script.biff.result,收到了邮件。\n%1 封，%2 字节。
-script.updatedata.creating,正在创建网络更新文件...
-script.updatedata.created,网络更新文件已创建。
+script.updatedata.creating,正在创建在线更新文件...
+script.updatedata.created,在线更新文件已创建。
 script.nar.creating,正在创建 NAR...
 script.nar.created,NAR 已创建。
 

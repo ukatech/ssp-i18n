@@ -4,8 +4,8 @@ file,holidays-HK.txt35243c2767ba682022d679f000f91a55size=7025date=2012-12-21T
 file,holidays-MO.txtac6ed140decdbac8c98990b7fb69e04asize=9943date=2012-12-21T00:00:00
 file,holidays.txt775938c7093ac832ebc2904d04a89b64size=7234date=2012-12-21T00:00:00
 file,install.txt0b1cc87ad7c0f1aa2b27097ee63f58b9size=69date=2012-12-21T00:00:00
-file,message.txtd77103742d421f44431fe4e6f077c239size=9377date=2012-12-21T00:00:00
-file,resource.dll2c3ab74c8d555684d538ceed3b22b7e0size=44544date=2012-12-21T00:00:00
+file,message.txtd73402c667fabfb1c6c12c0ce2cd7a37size=9383date=2012-12-21T00:00:00
+file,resource.dll915f7ddc8e87e095a0d805d0fffdd22bsize=44544date=2012-12-21T00:00:00
 file,ssp-pictures/nowloading.png21acd38bef084f7565fea91e7d21e4c7size=2408date=2012-12-21T00:00:00
 file,ssp-pictures/nowloading_dark.png01f74284072df5141f17cc7903a61697size=1756date=2012-12-21T00:00:00
 file,ssp-pictures/realize.png68832c14b699b38ffeb5fdc7f4712a6esize=1639date=2012-12-21T00:00:00

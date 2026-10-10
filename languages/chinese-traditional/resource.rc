@@ -58,11 +58,11 @@ BEGIN
         BEGIN
             MENUITEM SEPARATOR
         END
-        MENUITEM "網路更新(&N)\tCtrl+U",     SAKURA_MENU_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     SAKURA_MENU_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "解除安裝(&U)",                  SAKURA_MENU_UNINSTALL
         MENUITEM SEPARATOR
-        POPUP "RSS/新聞(&H)"
+        POPUP "RSS/線上新聞(&H)"
         BEGIN
             MENUITEM SEPARATOR
         END
@@ -145,7 +145,7 @@ BEGIN
             MENUITEM "設定預設字元編碼(&C)",        SAKURA_MENU_CHARSET
             MENUITEM SEPARATOR
             MENUITEM "[相容性]",             IDC_STATIC, GRAYED
-            MENUITEM "由 SHIORI 觸發隨機對話(&S)",  SAKURA_MENU_TALKSHIORI
+            MENUITEM "由 SHIORI 決定對話時機(&S)",  SAKURA_MENU_TALKSHIORI
             MENUITEM "舊規格支援(&O)",  SAKURA_MENU_COMPATIBLEMODE
 
         END
@@ -186,7 +186,7 @@ BEGIN
             BEGIN
                 MENUITEM SEPARATOR
             END
-            POPUP "新聞(&H)"
+            POPUP "線上新聞(&H)"
             BEGIN
                 MENUITEM SEPARATOR
             END
@@ -388,10 +388,10 @@ BEGIN
         MENUITEM "設為預設人格(&E)", LIST_SET_DEFAULT
         MENUITEM "設為優先對話人格(&P)", LIST_SET_PREFERRED
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM "透過 RSS 智慧更新",       LIST_UPDATE_RSS
         MENUITEM SEPARATOR
-        MENUITEM "網路更新（僅檢查）", LIST_UPDATE_CHECKONLY
+        MENUITEM "線上更新（僅檢查）", LIST_UPDATE_CHECKONLY
         MENUITEM "透過 RSS 智慧更新（僅檢查）", 
                                                 LIST_UPDATE_RSS_CHECKONLY
         MENUITEM "清除更新檢查標記",     LIST_CHECKONLY_CLEAR
@@ -412,7 +412,7 @@ BEGIN
         MENUITEM "前往作者網站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "開啟說明文件(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "建立更新檔案(&U)",         LIST_UPDATE_CREATE
         MENUITEM "建立 NAR(&N)...",              LIST_CREATE_NAR
@@ -434,14 +434,14 @@ BEGIN
         MENUITEM SEPARATOR
         MENUITEM "設為預設對話方塊(&E)", LIST_SET_DEFAULT
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "建立更新檔案(&U)",         LIST_UPDATE_CREATE
         MENUITEM "建立 NAR(&N)...",              LIST_CREATE_NAR
         MENUITEM "同時建立兩者(&B)...",             LIST_CREATE_BOTH
         MENUITEM "建立 zip+txt 更新套件(&Z)", LIST_CREATE_ZIPTXT
     END
-    POPUP "新聞"
+    POPUP "線上新聞"
     BEGIN
         MENUITEM "閱讀(&X)\tCtrl+H",           LIST_EXEC
         MENUITEM "前往網站\tCtrl+W",     LIST_WEBJUMP
@@ -455,7 +455,7 @@ BEGIN
         MENUITEM "前往作者網站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "開啟說明文件(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "建立更新檔案(&U)",         LIST_UPDATE_CREATE
         MENUITEM "建立 NAR(&N)...",              LIST_CREATE_NAR
@@ -476,7 +476,7 @@ BEGIN
         MENUITEM "前往作者網站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "開啟說明文件(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "啟用記錄(&L)",             LIST_LOG_ENABLE
         MENUITEM SEPARATOR
@@ -494,7 +494,7 @@ BEGIN
         MENUITEM "前往作者網站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "開啟說明文件(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "建立更新檔案(&U)",         LIST_UPDATE_CREATE
         MENUITEM "建立 NAR(&N)...",              LIST_CREATE_NAR
@@ -510,7 +510,7 @@ BEGIN
         MENUITEM "前往作者網站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "開啟說明文件(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "建立更新檔案(&U)",         LIST_UPDATE_CREATE
         MENUITEM "建立 NAR(&N)...",              LIST_CREATE_NAR
@@ -526,7 +526,7 @@ BEGIN
         MENUITEM "前往作者網站(&J)\tCtrl+J", LIST_URLJUMP
         MENUITEM "開啟說明文件(&R)",       LIST_OPEN_README
         MENUITEM SEPARATOR
-        MENUITEM "網路更新(&N)\tCtrl+U",     LIST_UPDATE
+        MENUITEM "線上更新(&N)\tCtrl+U",     LIST_UPDATE
         MENUITEM SEPARATOR
         MENUITEM "建立更新檔案(&U)",         LIST_UPDATE_CREATE
         MENUITEM "建立 NAR(&N)...",              LIST_CREATE_NAR
@@ -566,7 +566,7 @@ BEGIN
         MENUITEM "貼上(&V)\tCtrl+V",          ID_EDIT_PASTE
         MENUITEM "刪除(&D)\tDel",                ID_EDIT_CLEAR
     END
-    POPUP "登錄(&C)"
+    POPUP "收件者(&C)"
     BEGIN
         MENUITEM "新增收件者(&N)",           IDC_USERNEW
         MENUITEM "編輯收件者(&E)",             IDC_USERPROP
@@ -598,7 +598,7 @@ BEGIN
         MENUITEM "人格(&G)",                      LIST_TYPE_GHOST
         MENUITEM "外殼(&S)",                      LIST_TYPE_SHELL
         MENUITEM "對話方塊(&B)",                    LIST_TYPE_BALLOON
-        MENUITEM "新聞(&H)",                   LIST_TYPE_HEADLINE
+        MENUITEM "線上新聞(&H)",                   LIST_TYPE_HEADLINE
         MENUITEM "外掛程式(&P)",                     LIST_TYPE_PLUGIN
         MENUITEM "語言(&L)",                   LIST_TYPE_LANGUAGE
         MENUITEM "行事曆外觀(&C)",              LIST_TYPE_CALENDAR_SKIN
@@ -646,7 +646,7 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
     GROUPBOX        "人格",IDC_STATIC,4,6,228,56
     GROUPBOX        "對話方塊",IDC_STATIC,4,64,228,56
-    GROUPBOX        "新聞",IDC_STATIC,4,123,228,43
+    GROUPBOX        "線上新聞",IDC_STATIC,4,123,228,43
     GROUPBOX        "外掛程式",IDC_STATIC,4,169,228,43
     LTEXT           "共找到：[NUM]",IDC_GHOST_NUM,11,18,103,8
     LTEXT           "共找到：[NUM]",IDC_BALLOON_NUM,11,76,103,8
@@ -675,7 +675,7 @@ BEGIN
                     TBS_AUTOTICKS | WS_TABSTOP,78,56,143,20
     CONTROL         "Slider1",IDC_CLICK_TIMEOUT,"msctls_trackbar32",
                     TBS_AUTOTICKS | WS_TABSTOP,78,76,143,20
-    CONTROL         "讀取新聞時永遠立即顯示文字",
+    CONTROL         "讀取線上新聞時永遠立即顯示文字",
                     IDC_NO_WAIT_HEADLINE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,113,227,10
     CONTROL         "連線時永遠顯示對話方塊",
@@ -721,7 +721,7 @@ BEGIN
                     67,19
     GROUPBOX        "對話腳本開始時的提示音",
                     IDC_STATIC,4,208,227,33
-    CONTROL         "顯示新聞時不逾時",
+    CONTROL         "顯示線上新聞時不逾時",
                     IDC_HEADLINE_NO_TIMEOUT,"Button",BS_AUTO3STATE | 
                     WS_TABSTOP,4,126,227,10
 END
@@ -803,7 +803,7 @@ BEGIN
     CONTROL         "Spin1",IDC_HEADLINE_INTERVAL_S,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,14,9,14
-    CONTROL         "手動執行新聞時也更新自動檢查的時間點",
+    CONTROL         "手動執行線上新聞時也更新自動檢查的時間點",
                     IDC_HEADLINE_COUNT_MANUAL_UPDATE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,30,220,10
     EDITTEXT        IDC_HEADLINE_SOUNDPATH,9,55,140,14,ES_AUTOHSCROLL
@@ -840,9 +840,9 @@ BEGIN
     CONTROL         "Spin1",IDC_SPIN_TMPGHOST_INTERVAL,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,185,242,10,14
-    LTEXT           "分",IDC_STATIC,148,18,12,8
+    LTEXT           "分鐘",IDC_STATIC,148,18,12,8
     RTEXT           "每隔",IDC_STATIC,68,17,34,8
-    GROUPBOX        "新聞",IDC_STATIC,4,4,227,72
+    GROUPBOX        "線上新聞",IDC_STATIC,4,4,227,72
     LTEXT           "更新時播放音效",IDC_STATIC,9,44,112,8
     GROUPBOX        "SSTP 設定",IDC_STATIC,4,82,227,180
     LTEXT           "人格啟動：",IDC_STATIC,11,199,50,8
@@ -1251,7 +1251,7 @@ BEGIN
     CONTROL         "拖放資料夾時建立更新定義檔和/或 NAR",
                     IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     21,227,10
-    CONTROL         "網路更新時備份舊檔案",
+    CONTROL         "線上更新時備份舊檔案",
                     IDC_UPDATE_BACKUPFILES,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,33,227,10
     CONTROL         "不更新唯讀檔案",IDC_UPDATE_IGNOREREADONLY,
@@ -1450,7 +1450,7 @@ BEGIN
                     8,136,146,10
     CONTROL         "停用自動 (隨機) 切換",IDC_FOLDER_NOAUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,8,148,146,10
-    CONTROL         "停用自動 (新聞和 POP) 檢查",
+    CONTROL         "停用自動 (線上新聞和 POP) 檢查",
                     IDC_FOLDER_NOCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     165,136,146,10
     CONTROL         "停用自動更新",IDC_FOLDER_NOAUTOUPDATE,"Button",
@@ -1527,7 +1527,7 @@ BEGIN
     RTEXT           "保留時間 (分鐘)",IDC_STATIC,121,300,52,8
     RTEXT           "最大數量",IDC_STATIC,10,300,43,8
     LTEXT           "更新方式：",IDC_STATIC,11,203,54,8
-    GROUPBOX        "網路更新",IDC_STATIC,4,142,227,78
+    GROUPBOX        "線上更新",IDC_STATIC,4,142,227,78
     CONTROL         "啟用人格/對話方塊清單快取",IDC_CACHE_LIST_ENABLE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,315,169,10
     RTEXT           "間隔 (天)",IDC_STATIC,119,156,55,8
@@ -1680,7 +1680,7 @@ BEGIN
     COMBOBOX        IDC_FILE_CHARSET,74,126,150,130,CBS_DROPDOWNLIST | 
                     CBS_SORT | WS_VSCROLL | WS_TABSTOP
     RTEXT           "檔案讀寫：",IDC_STATIC,14,128,53,8
-    LTEXT           "網路更新、zip 解壓縮等",IDC_STATIC,74,143,
+    LTEXT           "線上更新、zip 解壓縮等",IDC_STATIC,74,143,
                     157,9
 END
 
@@ -1771,7 +1771,7 @@ FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     DEFPUSHBUTTON   "繼續",IDOK,200,151,50,14
     PUSHBUTTON      "結束",IDCANCEL,145,151,50,14
-    CTEXT           "請進行處理。",IDC_STATIC,4,4,246,32,
+    CTEXT           "請想想辦法。",IDC_STATIC,4,4,246,32,
                     SS_CENTERIMAGE,WS_EX_CLIENTEDGE
     LTEXT           "找不到人格和/或對話方塊，啟動失敗。\n要繼續啟動，請將 NAR 檔案拖放到此視窗，\n或使用下方按鈕變更資料夾設定。",
                     IDC_STATIC,4,43,228,28
