@@ -77,14 +77,14 @@ BEGIN
         END
         POPUP "쉘 크기 조정(&E)"
         BEGIN
-            MENUITEM "상세 설정 (고스트별 설정과 동일)", 
+            MENUITEM "상세 설정 (고스트 개별 설정)", 
                                                     SAKURA_MENU_SETUP_GHOST
-            MENUITEM "기타 크기(&O)...",        SAKURA_MENU_SCALING_FREE
+            MENUITEM "그 밖의 크기(&O)...",        SAKURA_MENU_SCALING_FREE
             MENUITEM SEPARATOR
         END
         POPUP "말풍선 크기 조정(&D)"
         BEGIN
-            MENUITEM "기타 크기(&O)...",        SAKURA_MENU_SCALING_BALLOON_FREE
+            MENUITEM "그 밖의 크기(&O)...",        SAKURA_MENU_SCALING_BALLOON_FREE
 
             MENUITEM SEPARATOR
         END
@@ -132,7 +132,7 @@ BEGIN
         POPUP "설정(&O)"
         BEGIN
             MENUITEM "SSP 설정(&P)...",             SAKURA_MENU_SETUP
-            MENUITEM "고스트별 설정...",        SAKURA_MENU_SETUP_GHOST
+            MENUITEM "고스트 개별 설정...",        SAKURA_MENU_SETUP_GHOST
             MENUITEM SEPARATOR
             MENUITEM "창 모드 - 끔",           SAKURA_MENU_WINDOWMODE_OFF
 
@@ -255,7 +255,7 @@ BEGIN
         END
         POPUP "표시 크기 조정(&S)"
         BEGIN
-            MENUITEM "기타 크기(&O)...",        SAKURA_MENU_SCALING_CALENDAR_FREE
+            MENUITEM "그 밖의 크기(&O)...",        SAKURA_MENU_SCALING_CALENDAR_FREE
 
             MENUITEM SEPARATOR
         END
@@ -626,14 +626,14 @@ BEGIN
     PUSHBUTTON      "다시 불러오기",IDC_GHOST_RELOAD,176,15,50,14
     CONTROL         "설치할 때 폴더 선택",IDC_GHOST_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
-    CONTROL         "시작할 때 사용할 폴더 선택 창 표시",
+    CONTROL         "실행할 때 불러올 폴더를 선택",
                     IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,47,212,10
     PUSHBUTTON      "편집...",IDC_BALLOON_EDIT,121,73,50,14
     PUSHBUTTON      "다시 불러오기",IDC_BALLOON_RELOAD,176,73,50,14
     CONTROL         "설치할 때 폴더 선택",IDC_BALLOON_SELECT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,91,212,10
-    CONTROL         "시작할 때 사용할 폴더 선택 창 표시",
+    CONTROL         "실행할 때 불러올 폴더를 선택",
                     IDC_BALLOON_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,105,212,10
     PUSHBUTTON      "편집...",IDC_HEADLINE_EDIT,121,132,50,14
@@ -648,10 +648,10 @@ BEGIN
     GROUPBOX        "말풍선",IDC_STATIC,4,64,228,56
     GROUPBOX        "헤드라인",IDC_STATIC,4,123,228,43
     GROUPBOX        "플러그인",IDC_STATIC,4,169,228,43
-    LTEXT           "현재 읽은 수: [NUM]",IDC_GHOST_NUM,11,18,103,8
-    LTEXT           "현재 읽은 수: [NUM]",IDC_BALLOON_NUM,11,76,103,8
-    LTEXT           "현재 읽은 수: [NUM]",IDC_HEADLINE_NUM,11,135,103,8
-    LTEXT           "현재 읽은 수: [NUM]",IDC_PLUGIN_NUM,11,181,103,8
+    LTEXT           "현재 불러온 수: [NUM]",IDC_GHOST_NUM,11,18,103,8
+    LTEXT           "현재 불러온 수: [NUM]",IDC_BALLOON_NUM,11,76,103,8
+    LTEXT           "현재 불러온 수: [NUM]",IDC_HEADLINE_NUM,11,135,103,8
+    LTEXT           "현재 불러온 수: [NUM]",IDC_PLUGIN_NUM,11,181,103,8
     EDITTEXT        IDC_TEMP_PATH,4,231,168,14,ES_AUTOHSCROLL
     LTEXT           "임시 파일 저장 위치",IDC_TEMP_PATH_STATIC,4,221,66,8
     EDITTEXT        IDC_NAR_PATH,4,262,168,14,ES_AUTOHSCROLL
@@ -860,7 +860,7 @@ FONT 9, "MS Shell Dlg"
 BEGIN
     COMBOBOX        IDC_PROTOCOL,131,13,93,141,CBS_DROPDOWNLIST | WS_VSCROLL | 
                     WS_TABSTOP
-    CONTROL         "SSL/TLS 통신 시 서버 인증서를 검증",IDC_SSL_VERIFY,
+    CONTROL         "SSL/TLS 통신 시 서버 인증서 검증",IDC_SSL_VERIFY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,31,215,10
     CONTROL         "Windows 설정을 자동으로 사용",IDC_USE_SYSTEM_SETTING,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,65,215,10
@@ -915,9 +915,9 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "메일: 메일 확인 기능 설정 (POP/BIFF)"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "메일 헤더도 가져오기 (제목 등, 속도 느림)",IDC_CHECK_MAILHEADER,"Button",
+    CONTROL         "메일 헤더도 가져오기 (메일 제목과 같은 정보도 받아옴)",IDC_CHECK_MAILHEADER,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,4,227,10
-    CONTROL         "새 메일 수를 메일 건수로 알림",
+    CONTROL         "전체 메일 개수 대신 새 메일 개수만 알림",
                     IDC_CHECK_NOTIFYONLYNEW,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,17,227,10
     CONTROL         "새 메일이 있을 때만 메시지 표시",
@@ -937,7 +937,7 @@ BEGIN
     PUSHBUTTON      "",IDC_FOLDERDN,149,311,16,14,BS_ICON
     PUSHBUTTON      "삭제",IDC_POP_DEL,187,311,38,14
     GROUPBOX        "계정 설정",IDC_STATIC,4,226,227,105
-    GROUPBOX        "메일 수신 시 재생할 소리 지정",IDC_STATIC,4,49,227,
+    GROUPBOX        "새로 온 메일 알림음",IDC_STATIC,4,49,227,
                     33
 END
 
@@ -1063,9 +1063,9 @@ FONT 9, "MS Shell Dlg"
 BEGIN
     EDITTEXT        IDC_NAME,42,6,74,14,ES_AUTOHSCROLL
     EDITTEXT        IDC_GROUPNAME,42,23,74,14,ES_AUTOHSCROLL
-    CONTROL         "SSTP 사용 시 Translate 처리 안 함",IDC_NOTRANSLATE,
+    CONTROL         "SSTP를 사용할 때 Translate(내부 텍스트 변환) 처리 끔",IDC_NOTRANSLATE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,45,226,10
-    CONTROL         "보낸 후 메시지 창 비우기",IDC_AUTOCLEAR,
+    CONTROL         "보낸 뒤 메시지 창 비우기",IDC_AUTOCLEAR,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,59,226,10
     LTEXT           "이름:",IDC_STATIC,8,9,29,8
     LTEXT           "그룹:",IDC_STATIC,8,26,29,8
@@ -1079,7 +1079,7 @@ BEGIN
     CONTROL         "IPMessenger 호환 모드 사용",IDC_IPMESSENGER,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,8,128,10
     EDITTEXT        IDC_IPMSGPORT,182,6,43,14,ES_AUTOHSCROLL
-    CONTROL         "다이얼업 접속 (브로드캐스트 불가)",
+    CONTROL         "모뎀 접속(브로드캐스트 사용이 불가능한 환경)",
                     IDC_USE_DIALUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     22,227,10
     EDITTEXT        IDC_BROADCAST_EDIT,8,58,177,14,ES_AUTOHSCROLL
@@ -1229,7 +1229,7 @@ BEGIN
                     WS_VISIBLE,79,17,235,335
     DEFPUSHBUTTON   "닫기(&C)",IDOK,261,356,50,15
     PUSHBUTTON      "도움말(&H)",IDC_HELPME,214,356,42,15
-    LTEXT           "일부 설정을 제외하고 변경 사항은 바로 반영됩니다.",
+    LTEXT           "별도 표시가 없을 경우 변경 사항은 바로 적용됩니다",
                     IDC_STATIC,4,361,207,8
     CONTROL         "List2",IDC_SHEETS,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOLABELWRAP | 
@@ -1256,7 +1256,7 @@ BEGIN
                     WS_TABSTOP,4,33,227,10
     CONTROL         "읽기 전용 파일은 업데이트하지 않음",IDC_UPDATE_IGNOREREADONLY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,45,227,10
-    CONTROL         "서피스가 없을 때 캐릭터 창 숨기기",
+    CONTROL         "서페이스가 없을 때 캐릭터 창 숨기기",
                     IDC_HIDE_SURFACEERR,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,57,227,10
     CONTROL         "Materia가 실행 중인 것처럼 보이게 함 ('sakura' 뮤텍스)",
@@ -1340,14 +1340,14 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,64,99,10
     CONTROL         "SHIORI 디버그 기능 사용",IDC_SHIORI_DEBUG_NOTIFY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,74,99,10
-    CONTROL         "자동 전환 끄기",IDC_FOLDER_NOAUTO,"Button",
+    CONTROL         "자동 변경 끄기",IDC_FOLDER_NOAUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,84,99,10
     CONTROL         "자동 확인 끄기",IDC_FOLDER_NOCHECK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,94,99,10
     CONTROL         "자동 업데이트 끄기",IDC_FOLDER_NOAUTOUPDATE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,104,99,10
     PUSHBUTTON      "스크립트 입력 Ctrl+S",IDC_OPEN_SCRIPT,4,127,99,13
-    PUSHBUTTON      "서피스 테스트 Ctrl+T",IDC_OPEN_SURFACETEST,4,141,99,13
+    PUSHBUTTON      "서페이스 테스트 Ctrl+T",IDC_OPEN_SURFACETEST,4,141,99,13
     PUSHBUTTON      "오류 로그 표시",IDC_OPEN_ERRORLOG,4,155,99,13
     PUSHBUTTON      "다시 불러오기...",IDC_EXEC_RELOAD,4,197,99,13
     PUSHBUTTON      "열기/실행...",IDC_EXEC_OPEN,4,212,99,13
@@ -1362,7 +1362,7 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "표시: 화면 표시 관련 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
-    CONTROL         "커서를 변경하지 않음 [다음 고스트 로드부터 적용]",
+    CONTROL         "커서 변경 안 함(다음 고스트 실행부터 적용됨)",
                     IDC_DONTSETCURSOR,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     4,4,227,10
     LTEXT           "작업 표시줄과의 간격 (보통 0px):",
@@ -1382,31 +1382,31 @@ BEGIN
     CONTROL         "Spin1",IDC_MENU_HEIGHT_SPIN,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,194,59,10,14
-    CONTROL         "일부 메뉴를 계층화",IDC_CREATE_SUBMENU,"Button",
+    CONTROL         "일부 항목에서 계층 메뉴 사용",IDC_CREATE_SUBMENU,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,76,227,10
-    LTEXT           "고스트·말풍선 메뉴의 최대 문자 수 (5-255):",
+    LTEXT           "고스트·말풍선 메뉴 이름 최대 길이 (5-255):",
                     IDC_STATIC,4,92,156,8
     EDITTEXT        IDC_MENU_LIMIT,164,89,40,14,ES_AUTOHSCROLL
     CONTROL         "Spin1",IDC_MENU_LIMIT_SPIN,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS,199,89,10,14
-    LTEXT           "최근 사용 메뉴의 최대 기록 수 (2-255):",IDC_STATIC,4,108,
+    LTEXT           "최근 사용 메뉴 최대 항목 개수 (2-255):",IDC_STATIC,4,108,
                     156,8
     EDITTEXT        IDC_HISTORY_LIMIT,164,105,40,14,ES_AUTOHSCROLL
     CONTROL         "Spin1",IDC_HISTORY_LIMIT_SPIN,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS,199,106,10,14
-    CONTROL         "Flip 3D 중에도 표시 (Windows Vista 이상)",
+    CONTROL         "Flip3D 중 고스트 표시 (Windows Vista 이상)",
                     IDC_FLIP3D,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,122,
                     227,10
     CONTROL         "작업 표시줄에 캐릭터 창 표시",IDC_TASKBAR,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,134,227,10
-    CONTROL         "전체 화면 앱이 실행되면 최소화",
+    CONTROL         "전체 화면 프로그램이 실행될 때 자동 최소화",
                     IDC_HIDEFULLSCREEN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     4,146,227,10
     CONTROL         "크로스페이더 사용",IDC_CROSSFADER,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,11,238,201,10
-    CONTROL         "드래그 중 투명도를 높임",IDC_DRAGDROP,
+    CONTROL         "드래그하고 있을 때 투명도를 높임",IDC_DRAGDROP,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,11,251,201,10
     CONTROL         "Slider1",IDC_ALPHA_SAKURA,"msctls_trackbar32",TBS_TOP | 
                     TBS_NOTICKS | TBS_TOOLTIPS | WS_TABSTOP,45,276,180,16
@@ -1424,13 +1424,13 @@ BEGIN
     CONTROL         "모든 가상 데스크톱에 캐릭터 창 표시 (Win10 이상)",
                     IDC_PIN_VD,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,158,
                     227,10
-    CONTROL         "캐릭터를 클릭하면 캐릭터 이외의 창도 앞으로 나옴",
+    CONTROL         "캐릭터를 클릭했을 때 다른 창도 앞으로 나오게 함",
                     IDC_BRING_OTHER_WINDOW_TO_FRONT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,170,227,10
     CONTROL         "고DPI 지원 [SSP 재시작 필요]",
                     IDC_DPI_AWARE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     182,227,10
-    CONTROL         "화면 밖의 창을 자동으로 화면 안으로 이동",
+    CONTROL         "화면 밖에 있는 창을 자동으로 들여놓음",
                     IDC_AUTOMOVE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,193,
                     226,10
 END
@@ -1445,15 +1445,15 @@ BEGIN
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_EDITLABELS | 
                     LVS_NOSORTHEADER | WS_TABSTOP,4,4,315,117,
                     WS_EX_CLIENTEDGE
-    CONTROL         "무작위 전환 대상에서 제외",
+    CONTROL         "무작위 변경 대상 제외",
                     IDC_FOLDER_NORAND,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     8,136,146,10
-    CONTROL         "자동(무작위) 전환 안 함",IDC_FOLDER_NOAUTO,"Button",
+    CONTROL         "자동 변경 대상 제외",IDC_FOLDER_NOAUTO,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,8,148,146,10
     CONTROL         "헤드라인·메일 등을 자동 확인하지 않음",
                     IDC_FOLDER_NOCHECK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     165,136,146,10
-    CONTROL         "시작 시 자동 업데이트 안 함",IDC_FOLDER_NOAUTOUPDATE,"Button",
+    CONTROL         "시작할 때 자동 업데이트 안 함",IDC_FOLDER_NOAUTOUPDATE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,165,148,146,10
     PUSHBUTTON      "추가...",IDC_FOLDERADD,4,168,37,14
     PUSHBUTTON      "변경...",IDC_FOLDERMODIFY,44,168,37,14
@@ -1471,7 +1471,7 @@ STYLE WS_CHILD | WS_CAPTION
 CAPTION "고스트 (1): 고스트 관련 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
-    CONTROL         "무작위 고스트 1개를 골라 실행 (이전 종료 시 상태는 폐기)",IDC_RANDOMGHOSTBOOT,
+    CONTROL         "SSP 시작 시 무작위 고스트 실행(직전 상태는 무시)",IDC_RANDOMGHOSTBOOT,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,4,227,10
     CONTROL         "SSP 시작 시 고스트 선택 창 표시",
                     IDC_SELECTGHOSTBOOT,"Button",BS_AUTOCHECKBOX | 
@@ -1479,14 +1479,14 @@ BEGIN
     CONTROL         "고스트 정의 메뉴를 사용하지 않음 (저사양 PC용)",
                     IDC_NOMENUMODIFY,"Button",BS_AUTO3STATE | WS_TABSTOP,4,
                     30,227,10
-    CONTROL         "최소화 중에는 말하지 않음",IDC_NOTALKMINIMIZE,"Button",
+    CONTROL         "최소화 상태일 때는 토크하지 않음",IDC_NOTALKMINIMIZE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,43,227,10
-    CONTROL         "화면 경계 판정 안 함",IDC_MIKIRE,"Button",
+    CONTROL         "고스트가 화면 밖으로 나가있어도 알리지 않음",IDC_MIKIRE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,56,227,10
-    CONTROL         "캐릭터 겹침 판정 안 함",IDC_KASANARI,"Button",
+    CONTROL         "캐릭터 겹침 확인 끄기",IDC_KASANARI,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,69,227,10
-    CONTROL         "시작 시 자동 업데이트 사용",IDC_AUTO_UPDATE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,10,155,94,10
+    CONTROL         "시작할 때 자동 업데이트 사용",IDC_AUTO_UPDATE,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,155,108,10
     EDITTEXT        IDC_AUTO_UPDATE_DURATION,177,153,40,14,ES_AUTOHSCROLL
     CONTROL         "Spin2",IDC_SPIN_AUTO_UPDATE_DURATION,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
@@ -1496,12 +1496,12 @@ BEGIN
                     10,173,133,10
     COMBOBOX        IDC_STRICT_UPDATE_KEY,146,171,50,157,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "업데이트 실행 시 말풍선·쉘의 업데이트도 함께 확인",
+    CONTROL         "고스트를 업데이트할 때 말풍선 및 쉘도 같이 확인",
                     IDC_UPDATE_CHECKOTHER,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,187,214,10
     COMBOBOX        IDC_UPDATECHECK_METHOD,78,201,146,108,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "자동 전환 사용",IDC_AUTOCHANGE,"Button",
+    CONTROL         "자동 변경 사용",IDC_AUTOCHANGE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,237,128,10
     CONTROL         "무작위",IDC_AUTOCHANGE_RANDOM,"Button",
                     BS_AUTORADIOBUTTON,9,251,39,10
@@ -1521,61 +1521,61 @@ BEGIN
     CONTROL         "Spin2",IDC_SPIN_CACHE_DURATION,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,213,295,10,14
-    GROUPBOX        "고스트 자동 전환",IDC_STATIC,4,225,227,42
-    RTEXT           "전환 간격 (분):",IDC_STATIC,121,251,52,8
-    GROUPBOX        "고스트 캐시 제어",IDC_STATIC,4,271,227,60
-    RTEXT           "유지 시간 (분):",IDC_STATIC,121,300,52,8
-    RTEXT           "최대 유지 수:",IDC_STATIC,10,300,43,8
-    LTEXT           "업데이트 확인 방법:",IDC_STATIC,11,203,54,8
+    GROUPBOX        "고스트 자동 변경",IDC_STATIC,4,225,227,42
+    RTEXT           "간격(분):",IDC_STATIC,121,251,52,8
+    GROUPBOX        "고스트 캐시 관리",IDC_STATIC,4,271,227,60
+    RTEXT           "저장 시간 (분):",IDC_STATIC,121,300,52,8
+    RTEXT           "최대 개수:",IDC_STATIC,10,300,43,8
+    LTEXT           "업데이트 방식:",IDC_STATIC,11,203,54,8
     GROUPBOX        "네트워크 업데이트",IDC_STATIC,4,142,227,78
     CONTROL         "고스트·말풍선 목록 캐시 사용",IDC_CACHE_LIST_ENABLE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,315,169,10
-    RTEXT           "업데이트 간격 (일):",IDC_STATIC,119,156,55,8
+    RTEXT           "간격(일):",IDC_STATIC,119,156,55,8
     CONTROL         "가운데 클릭 대체 키 사용:",IDC_ALT_MID_CLICK,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,83,119,10
     COMBOBOX        IDC_ALT_MID_CLICK_KEY,126,81,50,157,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "음악 재생 정보를 고스트에 알림",
+    CONTROL         "음악 재생 정보를 고스트에게 알림",
                     IDC_CHECK_NOTIFY_MUSICPLAY,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,98,227,10
 END
 
 IDD_GHOSTEXT DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
-CAPTION "고스트 (2): 고스트별 개별 설정 (기본 설정)"
+CAPTION "고스트 (2): 고스트 개별 설정(기본값)"
 FONT 9, "MS Shell Dlg"
 BEGIN
     CONTROL         "소리 끄기",IDC_SOUND,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,4,227,10
-    CONTROL         "항상 위에 표시",IDC_TOPMOST,"Button",
+    CONTROL         "항상 앞으로 나옴",IDC_TOPMOST,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,16,227,10
     CONTROL         "SERIKO Move 무시 (저사양 PC용) ***",IDC_IGNOREMOVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,28,227,10
-    CONTROL         "말풍선 위치 보정 사용",IDC_BALLOONMOVE,"Button",
+    CONTROL         "말풍선 이동 허용",IDC_BALLOONMOVE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,40,227,10
-    GROUPBOX        "개발용 옵션",IDC_DEV_STATIC,4,54,227,38
-    CONTROL         "정의되지 않은 서피스 무시 ***",IDC_DEFINEDSURFACEONLY,
+    GROUPBOX        "개발자 설정",IDC_DEV_STATIC,4,54,227,38
+    CONTROL         "정의되지 않은 서페이스 무시 ***",IDC_DEFINEDSURFACEONLY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,65,216,10
-    CONTROL         "숨김으로 지정된 요소 표시",
+    CONTROL         "숨김 설정된 요소 표시",
                     IDC_SHOW_HIDDEN_ELEMENTS,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,9,77,216,10
-    GROUPBOX        "캐릭터 자유 이동 ***",IDC_STATIC,4,155,227,27
-    CONTROL         "항상 자유 이동",IDC_FORCEALIGNFREE,"Button",
+    GROUPBOX        "캐릭터 위치 ***",IDC_STATIC,4,155,227,27
+    CONTROL         "언제나 자유",IDC_FORCEALIGNFREE,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,8,167,70,10
     CONTROL         "고스트 설정에 따름",IDC_FORCEALIGNOFF,"Button",
                     BS_AUTORADIOBUTTON,82,167,70,10
-    CONTROL         "항상 제한",IDC_FORCEALIGNLIMIT,"Button",
+    CONTROL         "언제나 고정",IDC_FORCEALIGNLIMIT,"Button",
                     BS_AUTORADIOBUTTON,156,167,70,10
     GROUPBOX        "말할 때 앞으로 나오기",IDC_STATIC,4,188,227,38
-    CONTROL         "항상",IDC_ACTIVATEWHENTALK,"Button",
+    CONTROL         "언제나",IDC_ACTIVATEWHENTALK,"Button",
                     BS_AUTORADIOBUTTON | WS_GROUP,8,198,37,10
-    CONTROL         "업데이트 중 제외",IDC_ACTIVATE_EXCEPTUPDATE,"Button",
-                    BS_AUTORADIOBUTTON,82,198,64,10
-    CONTROL         "안 함",IDC_ACTIVATE_OFF,"Button",BS_AUTORADIOBUTTON,156,
+    CONTROL         "업데이트 중에는 물러남",IDC_ACTIVATE_EXCEPTUPDATE,"Button",
+                    BS_AUTORADIOBUTTON,82,198,88,10
+    CONTROL         "안 함",IDC_ACTIVATE_OFF,"Button",BS_AUTORADIOBUTTON,172,
                     198,33,10
     CONTROL         "말이 끝나면 뒤로 물러남",IDC_DEACTIVATE,"Button",
                     BS_AUTOCHECKBOX | WS_GROUP | WS_TABSTOP,9,211,216,10
-    GROUPBOX        "모든 고스트의 설정을 기본값으로 되돌리기",IDC_RESET_STATIC,4,250,227,34
+    GROUPBOX        "모든 고스트 설정 초기화",IDC_RESET_STATIC,4,250,227,34
     PUSHBUTTON      "실행",IDC_RESET,10,263,39,14
     CONTROL         "Progress1",IDC_RESET_PROGRESS,"msctls_progress32",
                     PBS_SMOOTH | WS_BORDER,56,263,168,14
@@ -1585,17 +1585,17 @@ BEGIN
     CONTROL         "<- 이 표시는 기본 설정이 적용됨을 의미합니다",
                     IDC_CHECKBOX_SAMPLE,"Button",BS_3STATE | WS_TABSTOP,4,
                     300,227,10
-    GROUPBOX        "쉘 배율 ***",IDC_STATIC,4,97,227,52
-    CONTROL         "말풍선도 연동",IDC_SCALING_BALLOON,"Button",
+    GROUPBOX        "쉘 크기 조정 ***",IDC_STATIC,4,97,227,52
+    CONTROL         "말풍선 크기도 같이 변경",IDC_SCALING_BALLOON,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,109,136,10
-    CONTROL         "확대/축소 시 보간 처리 (느림)",IDC_SCALING_DITHER,
+    CONTROL         "크기를 조정할 때 고화질 처리 (느림)",IDC_SCALING_DITHER,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,121,136,10
-    CONTROL         "말풍선 보간 처리 (약간 느림)",
+    CONTROL         "말풍선 고화질 처리 (조금 느림)",
                     IDC_SCALING_DITHER_BALLOON,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,9,134,136,10
-    PUSHBUTTON      "쉘 공통 배율 설정...",IDC_SCALING_BUTTON,147,107,79,16
-    LTEXT           "*** = 쉘별 개별 설정",IDC_STATIC,4,289,227,8
-    PUSHBUTTON      "말풍선 공통 배율 설정...",IDC_BALLOON_SCALING_BUTTON,147,
+    PUSHBUTTON      "모든 쉘 크기 설정...",IDC_SCALING_BUTTON,147,107,79,16
+    LTEXT           "*** = 쉘 개별 설정",IDC_STATIC,4,289,227,8
+    PUSHBUTTON      "모든 말풍선 크기 설정...",IDC_BALLOON_SCALING_BUTTON,147,
                     127,79,16
 END
 
@@ -1614,7 +1614,7 @@ BEGIN
     EDITTEXT        IDC_POP_PASS,78,106,236,14,ES_PASSWORD | ES_AUTOHSCROLL
     CONTROL         "서버 접속에 SSL/TLS 사용 (포트 번호 주의!)",IDC_POP_SSL,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,5,202,309,10
-    CONTROL         "SSL/TLS 서버 인증서를 검증",IDC_POP_SSLVERIFY,
+    CONTROL         "SSL/TLS 서버 인증서 검증",IDC_POP_SSLVERIFY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,5,215,309,10
     EDITTEXT        IDC_POP_INTERVAL,150,229,35,14,ES_AUTOHSCROLL
     CONTROL         "Spin1",IDC_POP_INTERVAL_SPIN,"msctls_updown32",
@@ -1686,7 +1686,7 @@ END
 
 IDD_DICTATIONSETTING DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
-CAPTION "음성 인식/합성: SSP의 음성 인식·합성 기능 설정"
+CAPTION "음성 인식/합성: SSP 음성 인식 및 합성 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
     GROUPBOX        "음성 인식",IDC_STATIC,4,3,226,90
@@ -1695,7 +1695,7 @@ BEGIN
     COMBOBOX        IDC_DICTATION_INPUT,59,71,129,151,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     RTEXT           "인식 엔진",IDC_STATIC,9,18,48,8
-    RTEXT           "음성 입력원",IDC_STATIC,9,73,48,8
+    RTEXT           "입력 장치",IDC_STATIC,9,73,48,8
     PUSHBUTTON      "인식 엔진 설정...",IDC_DICTATION_ENGINE_CONFIG,9,48,76,
                     14
     PUSHBUTTON      "설정...",IDC_DICTATION_INPUT_CONFIG,190,70,34,14
@@ -1707,11 +1707,11 @@ BEGIN
     GROUPBOX        "음성 합성",IDC_STATIC,4,98,226,210
     COMBOBOX        IDC_TTS_OUTPUT,59,184,129,151,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    RTEXT           "음성 출력처",IDC_STATIC,9,186,48,8
+    RTEXT           "소리 출력",IDC_STATIC,9,186,48,8
     PUSHBUTTON      "설정...",IDC_TTS_OUTPUT_CONFIG,190,183,34,14
     CONTROL         "Slider1",IDC_TTS_SPEED,"msctls_trackbar32",
                     TBS_AUTOTICKS | TBS_TOP | WS_TABSTOP,9,238,216,25
-    LTEXT           "말하기 속도  느림",IDC_STATIC,9,227,52,8
+    LTEXT           "말하는 속도  느림",IDC_STATIC,9,227,52,8
     CTEXT           "보통",IDC_STATIC,105,227,23,8
     RTEXT           "빠름",IDC_STATIC,191,227,29,8
     CONTROL         "Slider1",IDC_TTS_LEVEL,"msctls_trackbar32",
@@ -1732,14 +1732,14 @@ BEGIN
     RTEXT           "\\2+",IDC_STATIC,9,162,17,8
     PUSHBUTTON      "설정...",IDC_TTS_VOICE_CONFIG_2,190,159,34,14
     LTEXT           "음성 선택",IDC_STATIC,30,109,54,8
-    LTEXT           "피치",IDC_STATIC,163,109,21,8
+    LTEXT           "높낮이",IDC_STATIC,163,109,21,8
     COMBOBOX        IDC_TTS_PITCH_0,161,122,27,195,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_TTS_PITCH_1,161,141,27,195,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_TTS_PITCH_2,161,160,27,195,CBS_DROPDOWNLIST | 
                     WS_VSCROLL | WS_TABSTOP
-    CONTROL         "음성 합성의 진행 속도에 맞춰 스크립트 재생을 대기",
+    CONTROL         "스크립트 재생을 음성 합성 속도에 맞춤",
                     IDC_TTS_SYNC,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,206,
                     215,10
 END
@@ -1779,8 +1779,8 @@ BEGIN
     PUSHBUTTON      "폴더 목록 편집...",IDC_BALLOON_EDIT,149,122,95,14
     GROUPBOX        "고스트",IDC_STATIC,4,73,246,31
     GROUPBOX        "말풍선",IDC_STATIC,4,111,246,31
-    LTEXT           "현재 읽은 수: [NUM]",IDC_GHOST_NUM,11,87,120,8
-    LTEXT           "현재 읽은 수: [NUM]",IDC_BALLOON_NUM,11,125,120,8
+    LTEXT           "현재 불러온 수: [NUM]",IDC_GHOST_NUM,11,87,120,8
+    LTEXT           "현재 불러온 수: [NUM]",IDC_BALLOON_NUM,11,125,120,8
 END
 
 IDD_SAVESHARE DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1828,16 +1828,16 @@ BEGIN
     DEFPUSHBUTTON   "확인",IDOK,185,238,50,14
     PUSHBUTTON      "취소",IDCANCEL,241,238,50,14
     RTEXT           "대상 캐릭터 ID:",IDC_STATIC,6,11,74,8
-    RTEXT           "덤프할 서피스 목록:",IDC_STATIC,6,49,74,8
+    RTEXT           "덤프할 서페이스 목록:",IDC_STATIC,6,49,74,8
     LTEXT           "\\0 = 0, \\1 = 1, \\p[2] = 2 ...",IDC_STATIC,88,28,203,
                     8
-    LTEXT           "서피스 번호를 쉼표와 하이픈으로 구분하여 지정\n예:\n0-10,12,15 = 0~10번, 12번, 15번 서피스를 덤프",
+    LTEXT           "서페이스 번호를 쉼표와 하이픈으로 구분하여 지정\n예:\n0-10,12,15 = 0~10번, 12번, 15번 서페이스를 덤프",
                     IDC_STATIC,88,83,203,36
     EDITTEXT        IDC_DEVSEREIKODUMP_PREFIX,88,124,203,14,ES_AUTOHSCROLL
     RTEXT           "파일 이름 접두사:",IDC_STATIC,6,127,74,8
     LTEXT           "덤프할 이미지의 파일 이름 접두사\n기본값: surface (예: surface0.png)",
                     IDC_STATIC,88,142,203,28
-    PUSHBUTTON      "현재 서피스 가져오기",IDC_DEVSEREIKODUMP_GETCURRENT,87,
+    PUSHBUTTON      "현재 서페이스 가져오기",IDC_DEVSEREIKODUMP_GETCURRENT,87,
                     63,92,14
     RTEXT           "출력 폴더:",IDC_STATIC,6,177,74,8
     LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
