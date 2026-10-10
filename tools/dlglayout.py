@@ -135,6 +135,7 @@ BOX = 13          # check box / radio button glyph
 BOX_GAP = 4       # between glyph and text
 BTN_PAD = 2       # horizontal padding inside push buttons
 GROUP_INSET = 12  # group box caption: 6 px from each edge, plus 2 px padding on each side of the text
+BUDDY_BORDER = 2  # an aligned up-down control overlaps its buddy's border
 
 
 class Item:
@@ -236,6 +237,7 @@ class Layout:
             if c['role'] == 'combo':
                 h = min(h, self.Y(14))
             self.items.append(Item(c, (self.X(c['x']), self.Y(c['y']), self.X(c['w']), h)))
+        self._attach_buddies()
         if auto_width:
             self._auto_width()
         self.issues = self._check()
@@ -249,6 +251,28 @@ class Layout:
     @property
     def shown(self):
         return [it for it in self.items if it.visible]
+
+    def _attach_buddies(self):
+        """Up-down controls with UDS_AUTOBUDDY take the previous control as their
+        buddy; with UDS_ALIGNRIGHT / UDS_ALIGNLEFT Windows moves them onto that
+        edge of the buddy (overlapping its border) and narrows the buddy, so the
+        position written in the resource script does not matter."""
+        for i, it in enumerate(self.items):
+            c = it.c
+            if it.role != 'updown' or i == 0 or not has(c, 'UDS_AUTOBUDDY'):
+                continue
+            right, left = has(c, 'UDS_ALIGNRIGHT'), has(c, 'UDS_ALIGNLEFT')
+            if not (right or left):
+                continue
+            buddy = self.items[i - 1]
+            bl, bt, bw, bh = buddy.rect
+            w = it.rect[2]
+            if right:
+                x, bw2, bl2 = bl + bw - w, bw - w + BUDDY_BORDER, bl
+            else:
+                x, bw2, bl2 = bl, bw - w + BUDDY_BORDER, bl + w - BUDDY_BORDER
+            buddy.rect = buddy.orig = [bl2, bt, bw2, bh]
+            it.rect = it.orig = [x, bt, w, bh]
 
     def _auto_width(self):
         f = self.font
