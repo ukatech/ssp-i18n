@@ -110,7 +110,7 @@ BEGIN
             MENUITEM "폴더 열기(&F)\tCtrl+F",    SAKURA_MENU_OPENDIR
             MENUITEM SEPARATOR
             MENUITEM "스크립트 로그(&L)\tCtrl+L",         SAKURA_MENU_SCRIPTLOG
-            MENUITEM "개발용 팔레트(&D)\tCtrl+Shift+D", 
+            MENUITEM "개발자 인터페이스(&D)\tCtrl+Shift+D", 
                                                     SAKURA_MENU_DEVELOPER
             MENUITEM SEPARATOR
             MENUITEM "고스트 캐시 해제(&G)",          SAKURA_MENU_PURGEGHOSTCACHE
@@ -675,7 +675,7 @@ BEGIN
                     TBS_AUTOTICKS | WS_TABSTOP,78,56,143,20
     CONTROL         "Slider1",IDC_CLICK_TIMEOUT,"msctls_trackbar32",
                     TBS_AUTOTICKS | WS_TABSTOP,78,76,143,20
-    CONTROL         "헤드라인을 읽을 때는 항상 웨이트 없이 즉시 표시",
+    CONTROL         "헤드라인을 읽을 때 항상 한꺼번에 표시함",
                     IDC_NO_WAIT_HEADLINE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,113,227,10
     CONTROL         "온라인일 때 항상 말풍선 표시",
@@ -685,7 +685,7 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,170,94,10
     COMBOBOX        IDC_SPEEDUP_KEY,108,168,65,94,CBS_DROPDOWNLIST | 
                     CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
-    CONTROL         "말풍선 위에 커서가 있는 동안은 타임아웃하지 않음",
+    CONTROL         "말풍선 안에 커서가 있을 땐 시간 초과를 적용하지 않음",
                     IDC_MOUSEOVER_NOTIMEOUT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,152,227,10
     EDITTEXT        IDC_TALK_SOUNDPATH,9,220,140,14,ES_AUTOHSCROLL
@@ -707,21 +707,21 @@ BEGIN
     RTEXT           "느림 (200ms)",IDC_STATIC,173,25,51,8
     LTEXT           " | 기본 (50ms)",IDC_STATIC,115,25,57,8
     RTEXT           "기본 |",IDC_STATIC,153,316,39,8
-    GROUPBOX        "구 사양 지원 - 보통은 설정 불필요",IDC_STATIC,4,285,227,46
-    LTEXT           "말풍선 타임아웃\n(기본 = 15초)",IDC_STATIC,11,36,
+    GROUPBOX        "구 사양 지원 - 대개 설정하지 않아도 됨",IDC_STATIC,4,285,227,46
+    LTEXT           "말풍선 시간 초과\n(기본 = 15초)",IDC_STATIC,11,36,
                     67,19
     LTEXT           "사용 안 함",IDC_STATIC,75,98,37,8
-    LTEXT           "선택지 타임아웃\n(기본 = 30초)",IDC_STATIC,11,56,
+    LTEXT           "선택지 시간 초과\n(기본 = 30초)",IDC_STATIC,11,56,
                     67,19
     RTEXT           "길게 (150초)",IDC_STATIC,164,98,55,8
     GROUPBOX        "말풍선 조작",IDC_STATIC,4,248,227,30
     RTEXT           "왼쪽 더블클릭:",IDC_STATIC,11,261,47,8
     RTEXT           "오른쪽 클릭:",IDC_STATIC,119,261,47,8
-    LTEXT           "클릭 대기 타임아웃\n(기본 = 사용 안 함)",IDC_STATIC,11,76,
+    LTEXT           "클릭 대기 시간 초과\n(기본 = 사용 안 함)",IDC_STATIC,11,76,
                     67,19
-    GROUPBOX        "토크 시작 시 재생할 소리 지정",
+    GROUPBOX        "토크가 시작될 때 알림음",
                     IDC_STATIC,4,208,227,33
-    CONTROL         "헤드라인을 표시한 말풍선은 타임아웃하지 않음",
+    CONTROL         "헤드라인 표시 중에는 시간 초과를 적용하지 않음",
                     IDC_HEADLINE_NO_TIMEOUT,"Button",BS_AUTO3STATE | 
                     WS_TABSTOP,4,126,227,10
 END
@@ -1242,24 +1242,24 @@ END
 
 IDD_DEVELOPER DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
-CAPTION "개발/기타: 개발용 및 기타 세부 설정"
+CAPTION "개발/그 밖에: 개발용 및 그 밖의 세부 설정"
 FONT 9, "MS Shell Dlg"
 BEGIN
     CONTROL         "FMO 이름 변경",IDC_CHANGE_FMO_NAME,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,6,79,10
     EDITTEXT        IDC_FMO_NAME,129,4,102,14,ES_AUTOHSCROLL
-    CONTROL         "폴더를 드롭했을 때 업데이트 정의 파일/NAR 생성",
+    CONTROL         "폴더를 끌어놨을 때 업데이트 정의 파일 및 NAR 만들기",
                     IDC_SET_DIRDROP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     21,227,10
-    CONTROL         "네트워크 업데이트 시 이전 파일을 남김(백업)",
+    CONTROL         "네트워크 업데이트 때 이전 파일을 그대로 둠",
                     IDC_UPDATE_BACKUPFILES,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,33,227,10
-    CONTROL         "읽기 전용 파일은 업데이트하지 않음",IDC_UPDATE_IGNOREREADONLY,
+    CONTROL         "읽기 전용 파일은 업데이트 안 함",IDC_UPDATE_IGNOREREADONLY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,45,227,10
-    CONTROL         "서페이스가 없을 때 캐릭터 창 숨기기",
+    CONTROL         "서페이스가 없을 때 캐릭터 숨기기",
                     IDC_HIDE_SURFACEERR,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,4,57,227,10
-    CONTROL         "Materia가 실행 중인 것처럼 보이게 함 ('sakura' 뮤텍스)",
+    CONTROL         "Materia가 실행된 것처럼 보이게 함 (""sakura"" Mutex)",
                     IDC_SAKURA_MUTEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     69,227,10
     CONTROL         "Vanish(제거) 실행 방지",IDC_DISABLE_VANISH,"Button",
@@ -1267,7 +1267,7 @@ BEGIN
     CONTROL         "중복 실행 방지 잠금 해제 (위험)",
                     IDC_DISABLE_LOCK,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     93,227,10
-    CONTROL         "사용 가능하면 업데이트에 버전 관리 도구 사용",
+    CONTROL         "버전 관리 도구가 있는 환경에서는 업데이트할 때 이를 사용함",
                     IDC_TORTOISESVN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
                     106,227,10
     COMBOBOX        IDC_NOTIFY_ERROR,4,119,56,81,CBS_DROPDOWNLIST | 
@@ -1292,12 +1292,12 @@ BEGIN
                     60
     GROUPBOX        "NAR 생성 위치",IDC_STATIC,4,286,227,45
     LTEXT           "-> 이 수준 이상의 오류를 알림",IDC_STATIC,67,121,149,8
-    CONTROL         "자동 업데이트 시 테스트 버전도 대상에 포함",IDC_ENABLE_TEST_UPDATE,
+    CONTROL         "자동 업데이트 사용 시 테스트 버전도 적용함",IDC_ENABLE_TEST_UPDATE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,148,227,10
     CONTROL         "항상 UTF-8 사용 (호환성에 문제 있음)",
                     IDC_UPDATE_UTF8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,
                     246,215,10
-    CONTROL         "파일 해시값 계산 결과 캐시",IDC_UPDATE_CACHE,
+    CONTROL         "파일 해시값 결과 캐시 사용",IDC_UPDATE_CACHE,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,261,215,10
 END
 
@@ -1321,16 +1321,16 @@ END
 IDD_DEVPALETTE DIALOGEX 0, 0, 107, 229
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION "개발용 팔레트"
+CAPTION "개발자 인터페이스"
 FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
-    CONTROL         "충돌 판정 영역 표시",IDC_SHOW_HITRECT,"Button",
+    CONTROL         "반응영역 표시",IDC_SHOW_HITRECT,"Button",
                     BS_AUTO3STATE | WS_TABSTOP,4,4,99,10
     CONTROL         "말풍선 테스트 모드",IDC_BALLOONTEST,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,14,99,10
     CONTROL         "SERIKO 웨이트 조정",IDC_ADJUST_SERIKOWAIT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,24,99,10
-    CONTROL         "업데이트는 확인만",IDC_DUMMYUPDATE,"Button",
+    CONTROL         "업데이트 체크만 함",IDC_DUMMYUPDATE,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,34,99,10
     CONTROL         "SHIORI의 Sender 변경",IDC_CHANGESENDER,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,44,99,10
@@ -1351,8 +1351,8 @@ BEGIN
     PUSHBUTTON      "오류 로그 표시",IDC_OPEN_ERRORLOG,4,155,99,13
     PUSHBUTTON      "다시 불러오기...",IDC_EXEC_RELOAD,4,197,99,13
     PUSHBUTTON      "열기/실행...",IDC_EXEC_OPEN,4,212,99,13
-    PUSHBUTTON      "현재 시각의 가상 변경",IDC_OPEN_TIMEMACHINE,4,169,99,13
-    PUSHBUTTON      "SERIKO 인스펙터",IDC_OPEN_SERIKO,4,183,99,13
+    PUSHBUTTON      "현재 시각을 가상 변경",IDC_OPEN_TIMEMACHINE,4,169,99,13
+    PUSHBUTTON      "SERIKO Inspector",IDC_OPEN_SERIKO,4,183,99,13
     CONTROL         "\\- 태그로 종료하지 않음",IDC_SUPPRESS_EXIT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,114,99,10
 END
