@@ -39,6 +39,10 @@ PLACEHOLDER_RE = re.compile(r'%(?:\d+|l?[sdux])|\[[A-Z_]+\]|\\[0-9\-]')
 ACCEL_RE = re.compile(r'&([^&])')
 LETTER_RE = re.compile(r'[A-Za-z]{2,}')
 LIST_SEP_RE = re.compile(r',(?!\s)')
+# Korean particle notations SSP does not resolve (AGENTS.md §5.3): slash pairs
+# such as 이/가, and full-width parentheses such as 이（가） / （으）로.
+KO_PARTICLE_BAD_RE = re.compile(r'이/가|가/이|을/를|를/을|은/는|는/은|과/와|와/과|아/야|야/아|으로/로|'
+                                r'[가-힣]*（[가-힣]{1,2}）[가-힣]*')
 
 
 class Report(object):
@@ -266,6 +270,18 @@ def check_kv(rep, en, loc, fname, list_fields=True):
         if src.value.endswith(' ') != e.value.endswith(' ') and fname == 'message.txt':
             rep.add('info', name, fname, e.line, 'trailing-space',
                     '"%s": trailing space differs from english (it is concatenated with other text)' % e.key)
+
+
+def check_ko_particles(rep, loc):
+    """Korean particles must use the combined form that SSP resolves (AGENTS.md §5.3)."""
+    if not loc.get('bcp47', '').startswith('ko'):
+        return
+    F = 'message.txt'
+    for e in loc[F] or []:
+        for m in KO_PARTICLE_BAD_RE.finditer(e.value):
+            rep.add('warn', loc['name'], F, e.line, 'ko-particle',
+                    '"%s": "%s" is not resolved by SSP; write the combined form with ASCII parentheses, '
+                    'e.g. 이(가), 을(를), (으)로 (AGENTS.md 5.3)' % (e.key, m.group(0)))
 
 
 # ---------------------------------------------------------------------------
@@ -657,6 +673,7 @@ def run_checks(targets):
         check_install(rep, loc)
         check_updates(rep, loc)
         check_kv(rep, en, loc, 'message.txt')
+        check_ko_particles(rep, loc)
         check_kv(rep, en, loc, 'surfacetable.txt', list_fields=False)
         check_rc(rep, en, loc)
     return rep

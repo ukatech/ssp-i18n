@@ -9,7 +9,7 @@ reviews it. Work is done by one person at a time, directly on `main` (no
 branches or pull requests).
 
 Contents: 1 Ground rules · 2 Repository · 3 Tools · 4 Jobs (A sync, B new language,
-C update files and release, D holiday tables) · 5 Translation rules · 6 Prompt templates
+C update files and release, D holiday tables) · 5 Translation rules (5.3 Korean particles) · 6 Prompt templates
 
 ---
 
@@ -185,7 +185,8 @@ Equivalent of `sync-translations.yml`.
    * `surfacetable.txt`, `install.txt`, `descript.txt` comments: align when english changed.
 4. **Verify.**
    * `python tools/i18n_check.py` → no ERROR; look at new WARN/INFO lines for the
-     parts you touched (`untranslated`, `placeholder`, `accel-*`, `list-fields`).
+     parts you touched (`untranslated`, `placeholder`, `accel-*`, `list-fields`,
+     `ko-particle`).
    * For each dialog/menu you touched: `python tools/rcview.py <ID> --png …` (or
      the HTML) and look at it. `python tools/rcview.py --audit` must not list new
      problems in the dialogs you touched.
@@ -343,6 +344,7 @@ These are what reviewers check; `i18n_check.py` enforces most of them.
 * **Placeholders** must survive exactly: `%1 %2 %s %d`, `[NUM]`, `[FONT]`,
   SakuraScript tags like `\0 \1 \-`. Literal `\n` in `message.txt` is a line
   break; keep roughly the same line structure.
+  Korean: particles after a placeholder are written in the combined form, see §5.3.
 * **Comma-separated lists** in `message.txt` (e.g. `resource.common.yesno,Yes,No`):
   keep the same number of fields; never put an ASCII comma inside a field (use
   the language's own comma, e.g. `，` / `、`). Prose commas in english are
@@ -388,6 +390,37 @@ setting actually does). Translate from both, not from one of them.
 5. **Never change either source folder** in a translation job, add japanese to
    `updates.txt`, release it or give it an `install.txt`. Source text changes are
    made by the maintainer only.
+
+### 5.3 Korean particles (`korean` pack)
+
+Korean particles change form with the final consonant (batchim) of the syllable
+before them, which is unknown when a placeholder or a name is inserted. Write the
+**combined form**; SSP (2.9.12 and later) looks at the character before it after
+the insertion and keeps one form.
+
+* **Write it directly after the placeholder or word**, with ASCII parentheses and no
+  spaces inside: `%1이(가)`, `'%2'을(를)`. Do not pick one form by hand after a
+  placeholder, and do not put the particle inside the quotes.
+* **Recognized forms** (both orders where shown): `이(가)` / `가(이)`, `을(를)` / `를(을)`,
+  `은(는)` / `는(은)`, `과(와)` / `와(과)`, `아(야)` / `야(아)`, `으로(로)`, `(으)로`,
+  `(이)나`, `(이)라`, `(이)랑`, `(이)여`, `(이)며`, `(이)든`, `(이)야`. Other notations
+  (`이/가`, `을/를`, …) are shown as written; do not use them. `i18n_check.py`
+  reports slash pairs and full-width parentheses as `ko-particle` WARN.
+* **How the preceding character is found:** at most one space and any closing
+  quotes/brackets (`' " ) ] >` and full-width `’ ” 〉 》 」 』 】 ） ］`) are skipped.
+  Only Hangul syllables and the digits 0–9 (read in Korean; full-width digits too)
+  decide the form; `(으)로` / `으로(로)` also takes `로` after the ㄹ batchim. After
+  Latin letters, kanji, other symbols or at the start of the text the combined
+  form stays as it is, so it must read acceptably on its own.
+* **Where it is applied:** message boxes built from `message.txt`, `info.overwrite`,
+  `script.biff.result`, and every line written to the error log. The `log.*` values
+  that start with a particle (e.g. `log.notfound,이(가) 존재하지 않습니다.`) are
+  appended to a name by SSP and resolved there. Everywhere else (menus, dialogs,
+  other messages) the text is shown as written; the combined form is still the
+  right way to write it.
+* The current `korean` pack already follows this (`info.recommended.*`,
+  `info.overwrite`, `log.*`); keep it when retranslating. Other languages are not
+  affected: only these Hangul patterns are touched.
 
 ---
 
