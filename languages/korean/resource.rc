@@ -825,7 +825,7 @@ BEGIN
     CONTROL         "선택지가 있는 SSTP는 차단하지 않음",
                     IDC_NOBLOCK_CHOICE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     10,169,177,10
-    CONTROL         "SSTP의 고스트 내 필터(Translate) 처리를 항상 건너뜀",
+    CONTROL         "SSTP의 Translate(내부 텍스트 변환) 처리 항상 건너뜀",
                     IDC_NO_SSTP_TRANSLATE_EVENT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,181,177,10
     COMBOBOX        IDC_GHOSTBOOT,63,196,134,77,CBS_DROPDOWNLIST | 
