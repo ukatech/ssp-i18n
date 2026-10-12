@@ -316,8 +316,8 @@ IDR_ARCHIVE_VIEWER_MENU MENU DISCARDABLE
 BEGIN
     POPUP "파일(&F)"
     BEGIN
-        MENUITEM "새 압축 파일(&N)\tCtrl+N",        ARCHIVE_MENU_NEW
-        MENUITEM "압축 파일 열기(&O)...\tCtrl+O",    ARCHIVE_MENU_OPEN
+        MENUITEM "새로 만들기(&N)\tCtrl+N",         ARCHIVE_MENU_NEW
+        MENUITEM "열기(&O)...\tCtrl+O",         ARCHIVE_MENU_OPEN
         MENUITEM SEPARATOR
         MENUITEM "압축 풀기(&E)...",                 ARCHIVE_MENU_EXTRACT
         MENUITEM "모두 압축 풀기(&A)...",             ARCHIVE_MENU_EXTRACTALL
