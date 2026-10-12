@@ -1334,9 +1334,9 @@ BEGIN
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,34,99,10
     CONTROL         "SHIORI의 Sender 변경",IDC_CHANGESENDER,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,44,99,10
-    CONTROL         "SHIORI 호출 로그 기록",IDC_SHIORI_LOG,"Button",
+    CONTROL         "SSP-SHIORI 통신 기록 저장",IDC_SHIORI_LOG,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,54,99,10
-    CONTROL         "SHIORI 내부 로그 기능 사용",IDC_SHIORI_LOG_NOTIFY,
+    CONTROL         "SHIORI 자체 로그 활성화",IDC_SHIORI_LOG_NOTIFY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,64,99,10
     CONTROL         "SHIORI 디버그 기능 사용",IDC_SHIORI_DEBUG_NOTIFY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,74,99,10
