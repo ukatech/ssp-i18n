@@ -118,7 +118,7 @@ resource.update.error,버전을 확인하지 못했습니다.
 
 resource.schedule.type,이벤트(일반),회의,약속,예약(병원/미용실 등),마감,파티,데이트,업무/아르바이트,외출,TV 프로그램,녹화 예약,CD 발매일,게임 발매일,비디오/DVD 발매일,도서/만화/잡지 발매일,기타 발매일
 
-resource.archive.initial,압축용 창\n이곳에 파일 및 폴더를 끌어 놓으면 압축 예정 목록에 추가됩니다.\n원본 파일은 삭제/변경 없이 그대로 유지됩니다.
+resource.archive.initial,압축용 창\n이곳에 파일 및 폴더를 끌어놓으면 압축 예정 목록에 추가됩니다.\n원본 파일은 삭제/변경 없이 그대로 유지됩니다.
 resource.archive.extract,압축 해제용 창\n여기에서 파일이나 폴더를 자유롭게 끌어서\n압축을 풀 위치에 놓으세요.
 
 //Script
