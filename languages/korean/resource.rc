@@ -138,7 +138,7 @@ BEGIN
 
             MENUITEM "창 모드 - 모든 고스트 공용",    SAKURA_MENU_WINDOWMODE_SHARED
 
-            MENUITEM "창 모드 - 고스트별",    SAKURA_MENU_WINDOWMODE_PERGHOST
+            MENUITEM "창 모드 - 고스트 개별 설정",    SAKURA_MENU_WINDOWMODE_PERGHOST
 
             MENUITEM SEPARATOR
             MENUITEM "프록시 서버 사용(&X)",               SAKURA_MENU_PROXY
@@ -347,19 +347,19 @@ BEGIN
     BEGIN
         MENUITEM "창 모드 - 끔",           CONTAINER_MENU_WM_OFF
         MENUITEM "창 모드 - 모든 고스트 공용",    CONTAINER_MENU_WM_SHARED
-        MENUITEM "창 모드 - 고스트별",    CONTAINER_MENU_WM_PERGHOST
+        MENUITEM "창 모드 - 고스트 개별 설정",    CONTAINER_MENU_WM_PERGHOST
         MENUITEM SEPARATOR
         MENUITEM "전체 화면 표시\tF11",            CONTAINER_MENU_FULLSCREEN
         MENUITEM "창 테두리 표시",           CONTAINER_MENU_FRAME
-        MENUITEM "백로그/대화 기록도 통합",       CONTAINER_MENU_BACKLOG
+        MENUITEM "백로그/대화 기록도 이 창에 표시",       CONTAINER_MENU_BACKLOG
         MENUITEM SEPARATOR
         MENUITEM "배경 - 흰색",          CONTAINER_MENU_BG_WHITE
         MENUITEM "배경 - 회색",           CONTAINER_MENU_BG_GRAY
         MENUITEM "배경 - 검은색",          CONTAINER_MENU_BG_BLACK
         MENUITEM "배경 - 바탕 화면",        CONTAINER_MENU_BG_DESKTOP
-        MENUITEM "배경 - 이미지...",       CONTAINER_MENU_BG_IMAGE
+        MENUITEM "배경 - 이미지 선택...",       CONTAINER_MENU_BG_IMAGE
         MENUITEM SEPARATOR
-        MENUITEM "스크린샷...",               CONTAINER_MENU_SCREENSHOT
+        MENUITEM "스크린샷 저장...",               CONTAINER_MENU_SCREENSHOT
         MENUITEM SEPARATOR
         MENUITEM "닫기(&C)\tCtrl+W",              CONTAINER_MENU_CLOSE
     END
