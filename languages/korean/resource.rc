@@ -803,9 +803,9 @@ BEGIN
     CONTROL         "Spin1",IDC_HEADLINE_INTERVAL_S,"msctls_updown32",
                     UDS_SETBUDDYINT | UDS_ALIGNRIGHT | UDS_AUTOBUDDY | 
                     UDS_ARROWKEYS | UDS_NOTHOUSANDS,159,14,9,14
-    CONTROL         "헤드라인을 수동 실행하면 자동 순회 시작 위치도 갱신",
+    CONTROL         "헤드라인을 수동 실행했을 때, 다음에 자동 확인할 헤드라인 순서 변경",
                     IDC_HEADLINE_COUNT_MANUAL_UPDATE,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,9,30,220,10
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,30,224,10
     EDITTEXT        IDC_HEADLINE_SOUNDPATH,9,55,140,14,ES_AUTOHSCROLL
     PUSHBUTTON      "찾아보기",IDC_HEADLINE_BROWSE,149,55,33,14
     PUSHBUTTON      "없음",IDC_HEADLINE_NONE,184,55,20,14
@@ -819,13 +819,13 @@ BEGIN
     PUSHBUTTON      "ON/OFF",IDC_SSTP_ONOFF,175,126,50,14
     CONTROL         "SSTP 로그 기록",IDC_SSTP_LOG,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,145,177,10
-    CONTROL         "실행 중이 아닌 고스트도 실행 중처럼 FMO에 등록",
+    CONTROL         "지금 실행되지 않은 고스트도 실행 중인 것처럼 인식하게 함",
                     IDC_LIST_INSTALLED_TO_FMO,"Button",BS_AUTOCHECKBOX | 
-                    WS_TABSTOP,10,157,177,10
-    CONTROL         "선택지가 있는 SSTP는 차단하지 않음",
+                    WS_TABSTOP,10,157,215,10
+    CONTROL         "선택지가 들어간 SSTP 차단 안 함",
                     IDC_NOBLOCK_CHOICE,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
                     10,169,177,10
-    CONTROL         "SSTP의 Translate(내부 텍스트 변환) 처리 항상 건너뜀",
+    CONTROL         "고스트 개별 SSTP 차단 설정 완전 무효화",
                     IDC_NO_SSTP_TRANSLATE_EVENT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,181,177,10
     COMBOBOX        IDC_GHOSTBOOT,63,196,134,77,CBS_DROPDOWNLIST | 
@@ -843,11 +843,11 @@ BEGIN
     LTEXT           "분",IDC_STATIC,148,18,12,8
     RTEXT           "간격:",IDC_STATIC,68,17,34,8
     GROUPBOX        "헤드라인",IDC_STATIC,4,4,227,72
-    LTEXT           "업데이트 시 재생할 소리 지정:",IDC_STATIC,9,44,112,8
+    LTEXT           "업데이트할 때 알림음:",IDC_STATIC,9,44,112,8
     GROUPBOX        "SSTP 통신",IDC_STATIC,4,82,227,180
     LTEXT           "고스트 실행:",IDC_STATIC,11,199,50,8
-    LTEXT           "실행 후 처리:",IDC_STATIC,11,214,50,8
-    LTEXT           "임시 실행 고스트 최대 수 (0 = 무제한)",IDC_STATIC,
+    LTEXT           "실행된 뒤:",IDC_STATIC,11,214,50,8
+    LTEXT           "임시 실행 고스트 최대 개수 (0 = 무제한)",IDC_STATIC,
                     11,229,138,8
     LTEXT           "임시 실행 고스트 최소 실행 간격:",IDC_STATIC,11,
                     245,138,8
@@ -860,11 +860,11 @@ FONT 9, "MS Shell Dlg"
 BEGIN
     COMBOBOX        IDC_PROTOCOL,131,13,93,141,CBS_DROPDOWNLIST | WS_VSCROLL | 
                     WS_TABSTOP
-    CONTROL         "SSL/TLS 통신 시 서버 인증서 검증",IDC_SSL_VERIFY,
+    CONTROL         "SSL/TLS 통신일 때 서버 인증서 확인",IDC_SSL_VERIFY,
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,31,215,10
     CONTROL         "Windows 설정을 자동으로 사용",IDC_USE_SYSTEM_SETTING,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,65,215,10
-    CONTROL         "프록시 서버 경유",IDC_ENABLEPROXY,"Button",
+    CONTROL         "프록시 서버 사용",IDC_ENABLEPROXY,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,77,215,10
     COMBOBOX        IDC_PROXYTYPE,9,102,51,83,CBS_DROPDOWNLIST | WS_VSCROLL | 
                     WS_TABSTOP
@@ -874,14 +874,14 @@ BEGIN
     EDITTEXT        IDC_PROXYPASS,120,130,71,14,ES_PASSWORD | ES_AUTOHSCROLL
     CONTROL         "인터넷에 연결되지 않았을 때",IDC_CONNECTION_ASK,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,9,164,99,10
-    CONTROL         "다음 시간 동안은 항상:",IDC_CONNECTION_LIMIT,"Button",
-                    BS_AUTOCHECKBOX | WS_TABSTOP,9,179,90,10
+    CONTROL         "다음 시각일 땐 언제나 확인함:",IDC_CONNECTION_LIMIT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,9,179,104,10
     CONTROL         "DateTimePicker1",IDC_CONNECTION_LIMIT_START,
                     "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
-                    WS_TABSTOP | 0x8,109,175,41,15
+                    WS_TABSTOP | 0x8,123,175,41,15
     CONTROL         "DateTimePicker1",IDC_CONNECTION_LIMIT_STOP,
                     "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
-                    WS_TABSTOP | 0x8,166,175,41,15
+                    WS_TABSTOP | 0x8,180,175,41,15
     COMBOBOX        IDC_SNTPADDRESS,96,212,129,143,CBS_DROPDOWN | 
                     CBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
     COMBOBOX        IDC_HTTPADDRESS,96,226,129,110,CBS_DROPDOWN | 
@@ -892,11 +892,11 @@ BEGIN
                     UDS_ARROWKEYS,136,244,9,14
     GROUPBOX        "네트워크 연결 확인",IDC_STATIC,4,153,227,42
     LTEXT           "시간마다",IDC_STATIC,157,247,45,8
-    GROUPBOX        "시스템 시간 동기화",IDC_STATIC,4,200,227,63
+    GROUPBOX        "시각 맞추기",IDC_STATIC,4,200,227,63
     LTEXT           "포트 번호",IDC_STATIC,187,92,27,8
-    GROUPBOX        "HTTP 프록시 서버 설정",IDC_STATIC,4,55,227,94
+    GROUPBOX        "프록시 서버 설정",IDC_STATIC,4,55,227,94
     LTEXT           "서버 이름 또는 IP 주소",IDC_STATIC,62,92,97,8
-    LTEXT           " ~",IDC_STATIC,154,179,8,8
+    LTEXT           " ~",IDC_STATIC,168,179,8,8
     LTEXT           "사용자 이름 (비워도 됨)",IDC_STATIC,9,120,84,8
     LTEXT           "비밀번호 (비워도 됨)",IDC_STATIC,120,120,77,8
     CONTROL         "시각 맞추기 자동 실행:",IDC_SNTP_AUTO,"Button",
