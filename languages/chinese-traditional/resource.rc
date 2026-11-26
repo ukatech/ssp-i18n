@@ -795,7 +795,7 @@ END
 IDD_NETWORKEXT DIALOGEX 0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "網路 (2)：網路連線設定"
-FONT 9, "MS Shell Dlg"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "自動檢查",IDC_AUTOHEADLINE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,9,16,56,10
@@ -816,7 +816,7 @@ BEGIN
                     WS_EX_CLIENTEDGE
     PUSHBUTTON      "新增...",IDC_SSTP_ADD,175,94,50,14
     PUSHBUTTON      "刪除",IDC_SSTP_DEL,175,110,50,14
-    PUSHBUTTON      "ON/OFF",IDC_SSTP_ONOFF,175,126,50,14
+    PUSHBUTTON      "編輯...",IDC_SSTP_ONOFF,175,126,50,14
     CONTROL         "記錄 SSTP 內容",IDC_SSTP_LOG,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,145,177,10
     CONTROL         "將未啟動的人格也登錄到 FMO",
@@ -965,7 +965,7 @@ END
 IDD_SCHEDULE DIALOGEX 0, 0, 403, 310
 STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "行程"
-FONT 9, "MS Shell Dlg"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "List1",IDC_SCHEDULE_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
@@ -1355,6 +1355,61 @@ BEGIN
     PUSHBUTTON      "SERIKO 檢查器",IDC_OPEN_SERIKO,4,183,99,13
     CONTROL         "禁止 \\- 標籤關閉",IDC_SUPPRESS_EXIT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,114,99,10
+END
+
+IDD_BALLOONTEST DIALOGEX 0, 0, 200, 158
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "對話方塊測試"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "測試項目 (可同時選擇)",IDC_STATIC,4,4,192,36
+    CONTROL         "顯示測試 (虛擬顯示與範例文字)",
+                    IDC_BT_MODE_DISP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,15,182,10
+    CONTROL         "顯示文字框 (矩形)",IDC_BT_MODE_RECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,26,182,10
+    LTEXT           "顯示已勾選角色的對話方塊：",IDC_STATIC,4,
+                    44,192,8
+    CONTROL         "List1",IDC_BT_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_TABSTOP,4,54,192,
+                    62,WS_EX_CLIENTEDGE
+    LTEXT           "所選角色的對話方塊 ID：",IDC_BT_ID_LABEL,4,122,
+                    126,8
+    COMBOBOX        IDC_BT_ID,134,120,50,80,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "重新顯示範例文字",IDC_BT_REPLAY,4,138,94,14
+    PUSHBUTTON      "結束測試",IDC_BT_STOP,102,138,94,14
+END
+
+IDD_SSTP_PORT DIALOG DISCARDABLE  0, 0, 231, 218
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SSTP 連接埠設定"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    LTEXT           "連接埠號碼：",IDC_STATIC,4,7,50,8
+    EDITTEXT        IDC_SSTPPORT_PORT,60,4,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "IPv4",IDC_SSTPPORT_IPV4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,23,40,10
+    CONTROL         "IPv6",IDC_SSTPPORT_IPV6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,55,23,40,10
+    LTEXT           "兩項都取消勾選即停用此連接埠。",IDC_STATIC,4,36,223,8
+    GROUPBOX        "接受下列來源的連線",IDC_STATIC,4,52,223,142
+    CONTROL         "Local (僅本機)",IDC_SSTPPORT_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,65,209,10
+    CONTROL         "Global (全部允許)",IDC_SSTPPORT_GLOBAL,"Button",
+                    BS_AUTORADIOBUTTON,10,79,209,10
+    CONTROL         "自訂",IDC_SSTPPORT_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON,10,93,209,10
+    EDITTEXT        IDC_SSTPPORT_ADDR,10,108,209,14,ES_AUTOHSCROLL
+    LTEXT           "多個位址請以逗號分隔。\n也可以指定 192.168.192.0/24 (CIDR) 這樣的範圍。",
+                    IDC_STATIC,10,125,209,16
+    LTEXT           "本機所在的網路 (可複製貼上)：",
+                    IDC_STATIC,10,148,209,8
+    EDITTEXT        IDC_SSTPPORT_LOCALNET,10,160,209,26,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | WS_VSCROLL
+    DEFPUSHBUTTON   "確定",IDOK,123,200,50,14
+    PUSHBUTTON      "取消",IDCANCEL,177,200,50,14
 END
 
 IDD_DISP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1783,6 +1838,27 @@ BEGIN
     LTEXT           "共找到：[NUM]",IDC_BALLOON_NUM,11,125,120,8
 END
 
+IDD_TIMEMACHINE DIALOGEX 0, 0, 195, 78
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "虛擬變更時間"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "系統時間：",IDC_STATIC,4,43,53,8,0,WS_EX_RIGHT
+    LTEXT           "目前時間：",IDC_STATIC,4,27,53,8,0,WS_EX_RIGHT
+    LTEXT           "目標時間：",IDC_STATIC,4,7,53,8,0,WS_EX_RIGHT
+    CONTROL         "DateTimePicker1",IDC_TIMEMACHINE_DEST_DATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP,63,4,65,15
+    CONTROL         "DateTimePicker2",IDC_TIMEMACHINE_DEST_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,129,4,62,15
+    PUSHBUTTON      "套用(&A)",IDC_TIMEMACHINE_APPLY,87,60,50,14
+    PUSHBUTTON      "重設(&R)",IDC_TIMEMACHINE_RESET,141,60,50,14
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_PRESENT,65,27,126,8
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_SYSTEM,65,43,126,8
+END
+
 IDD_SAVESHARE DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "存檔：共用存檔設定"
@@ -1935,7 +2011,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,91,13
+ FILEVERSION 2,9,39,14
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1954,7 +2030,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 91, 13\0"
+            VALUE "FileVersion", "2, 9, 39, 14\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"

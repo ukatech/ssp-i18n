@@ -795,7 +795,7 @@ END
 IDD_NETWORKEXT DIALOGEX 0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "네트워크 (2): 네트워크 연결 관련 설정"
-FONT 9, "MS Shell Dlg"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "자동 확인",IDC_AUTOHEADLINE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,9,16,56,10
@@ -816,7 +816,7 @@ BEGIN
                     WS_EX_CLIENTEDGE
     PUSHBUTTON      "추가...",IDC_SSTP_ADD,175,94,50,14
     PUSHBUTTON      "삭제",IDC_SSTP_DEL,175,110,50,14
-    PUSHBUTTON      "ON/OFF",IDC_SSTP_ONOFF,175,126,50,14
+    PUSHBUTTON      "편집...",IDC_SSTP_ONOFF,175,126,50,14
     CONTROL         "SSTP 로그 기록",IDC_SSTP_LOG,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,145,177,10
     CONTROL         "지금 실행되지 않은 고스트도 실행 중인 것처럼 인식하게 함",
@@ -965,7 +965,7 @@ END
 IDD_SCHEDULE DIALOGEX 0, 0, 403, 310
 STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "일정"
-FONT 9, "MS Shell Dlg"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "List1",IDC_SCHEDULE_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
@@ -1355,6 +1355,61 @@ BEGIN
     PUSHBUTTON      "SERIKO Inspector",IDC_OPEN_SERIKO,4,183,99,13
     CONTROL         "\\- 태그로 종료하지 않음",IDC_SUPPRESS_EXIT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,114,99,10
+END
+
+IDD_BALLOONTEST DIALOGEX 0, 0, 200, 158
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "말풍선 테스트"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "테스트 항목 (중복 선택 가능)",IDC_STATIC,4,4,192,36
+    CONTROL         "표시 테스트 (더미 표시와 샘플 문장)",
+                    IDC_BT_MODE_DISP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,15,182,10
+    CONTROL         "텍스트 틀 표시 (사각형)",IDC_BT_MODE_RECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,26,182,10
+    LTEXT           "체크한 캐릭터의 말풍선 표시:",IDC_STATIC,4,
+                    44,192,8
+    CONTROL         "List1",IDC_BT_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_TABSTOP,4,54,192,
+                    62,WS_EX_CLIENTEDGE
+    LTEXT           "선택한 캐릭터의 말풍선 ID:",IDC_BT_ID_LABEL,4,122,
+                    126,8
+    COMBOBOX        IDC_BT_ID,134,120,50,80,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "샘플 문장 다시 표시",IDC_BT_REPLAY,4,138,94,14
+    PUSHBUTTON      "테스트 종료",IDC_BT_STOP,102,138,94,14
+END
+
+IDD_SSTP_PORT DIALOG DISCARDABLE  0, 0, 231, 218
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SSTP 포트 설정"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    LTEXT           "포트 번호:",IDC_STATIC,4,7,50,8
+    EDITTEXT        IDC_SSTPPORT_PORT,60,4,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "IPv4",IDC_SSTPPORT_IPV4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,23,40,10
+    CONTROL         "IPv6",IDC_SSTPPORT_IPV6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,55,23,40,10
+    LTEXT           "둘 다 해제하면 이 포트는 사용하지 않습니다.",IDC_STATIC,4,36,223,8
+    GROUPBOX        "연결을 허용할 대상",IDC_STATIC,4,52,223,142
+    CONTROL         "Local (이 PC만)",IDC_SSTPPORT_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,65,209,10
+    CONTROL         "Global (모두 허용)",IDC_SSTPPORT_GLOBAL,"Button",
+                    BS_AUTORADIOBUTTON,10,79,209,10
+    CONTROL         "사용자 지정",IDC_SSTPPORT_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON,10,93,209,10
+    EDITTEXT        IDC_SSTPPORT_ADDR,10,108,209,14,ES_AUTOHSCROLL
+    LTEXT           "여러 주소는 쉼표로 구분하세요.\n192.168.192.0/24(CIDR) 같은 범위도 지정할 수 있습니다.",
+                    IDC_STATIC,10,125,209,16
+    LTEXT           "이 PC의 네트워크 (복사하여 붙여넣기 가능):",
+                    IDC_STATIC,10,148,209,8
+    EDITTEXT        IDC_SSTPPORT_LOCALNET,10,160,209,26,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | WS_VSCROLL
+    DEFPUSHBUTTON   "확인",IDOK,123,200,50,14
+    PUSHBUTTON      "취소",IDCANCEL,177,200,50,14
 END
 
 IDD_DISP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1783,6 +1838,27 @@ BEGIN
     LTEXT           "현재 불러온 수: [NUM]",IDC_BALLOON_NUM,11,125,120,8
 END
 
+IDD_TIMEMACHINE DIALOGEX 0, 0, 195, 78
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "현재 시각을 가상 변경"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "시스템 시각:",IDC_STATIC,4,43,53,8,0,WS_EX_RIGHT
+    LTEXT           "현재 시각:",IDC_STATIC,4,27,53,8,0,WS_EX_RIGHT
+    LTEXT           "변경할 시각:",IDC_STATIC,4,7,53,8,0,WS_EX_RIGHT
+    CONTROL         "DateTimePicker1",IDC_TIMEMACHINE_DEST_DATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP,63,4,65,15
+    CONTROL         "DateTimePicker2",IDC_TIMEMACHINE_DEST_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,129,4,62,15
+    PUSHBUTTON      "적용(&A)",IDC_TIMEMACHINE_APPLY,87,60,50,14
+    PUSHBUTTON      "초기화(&R)",IDC_TIMEMACHINE_RESET,141,60,50,14
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_PRESENT,65,27,126,8
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_SYSTEM,65,43,126,8
+END
+
 IDD_SAVESHARE DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "세이브 데이터: 세이브 데이터 공유 설정"
@@ -1935,7 +2011,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,91,13
+ FILEVERSION 2,9,39,14
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1954,7 +2030,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 91, 13\0"
+            VALUE "FileVersion", "2, 9, 39, 14\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"
