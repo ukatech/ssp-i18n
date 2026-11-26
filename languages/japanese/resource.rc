@@ -873,7 +873,7 @@ BEGIN
                     WS_EX_CLIENTEDGE
     PUSHBUTTON      "追加...",IDC_SSTP_ADD,175,94,50,14
     PUSHBUTTON      "削除",IDC_SSTP_DEL,175,110,50,14
-    PUSHBUTTON      "ON/OFF",IDC_SSTP_ONOFF,175,126,50,14
+    PUSHBUTTON      "編集...",IDC_SSTP_ONOFF,175,126,50,14
     CONTROL         "SSTPのログを取る",IDC_SSTP_LOG,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,145,177,10
     CONTROL         "起動していないゴーストも起動しているように見せかける",
@@ -1138,7 +1138,7 @@ BEGIN
     EDITTEXT        IDC_IPMSGPORT,182,6,43,14,ES_AUTOHSCROLL
     CONTROL         "ダイヤルアップ接続(ブロードキャストが通らない）",
                     IDC_USE_DIALUP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,4,
-                    22,158,10
+                    22,227,10
     EDITTEXT        IDC_BROADCAST_EDIT,8,58,177,14,ES_AUTOHSCROLL
     PUSHBUTTON      "追加",IDC_BROADCAST_ADD,189,58,37,14
     PUSHBUTTON      "削除",IDC_BROADCAST_DEL,122,75,37,14
@@ -1215,6 +1215,36 @@ BEGIN
     DEFPUSHBUTTON   "OK",IDOK,79,47,50,14
     PUSHBUTTON      "キャンセル",IDCANCEL,133,47,50,14
     LTEXT           "Message",IDC_ASKMESSAGE,4,4,179,23
+END
+
+IDD_SSTP_PORT DIALOG DISCARDABLE  0, 0, 231, 218
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SSTPポートの設定"
+FONT 9, "ＭＳ Ｐゴシック"
+BEGIN
+    LTEXT           "ポート番号：",IDC_STATIC,4,7,50,8
+    EDITTEXT        IDC_SSTPPORT_PORT,60,4,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "IPv4",IDC_SSTPPORT_IPV4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,23,40,10
+    CONTROL         "IPv6",IDC_SSTPPORT_IPV6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,55,23,40,10
+    LTEXT           "両方外すと無効になります。",IDC_STATIC,4,36,223,8
+    GROUPBOX        "受信指定",IDC_STATIC,4,52,223,142
+    CONTROL         "Local (PC内のみ)",IDC_SSTPPORT_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,65,209,10
+    CONTROL         "Global (すべて許可)",IDC_SSTPPORT_GLOBAL,"Button",
+                    BS_AUTORADIOBUTTON,10,79,209,10
+    CONTROL         "カスタム",IDC_SSTPPORT_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON,10,93,209,10
+    EDITTEXT        IDC_SSTPPORT_ADDR,10,108,209,14,ES_AUTOHSCROLL
+    LTEXT           "カンマ区切りで複数指定できます。\n192.168.192.0/24 のような範囲(CIDR)も指定できます。",
+                    IDC_STATIC,10,125,209,16
+    LTEXT           "このPCのネットワーク(コピーして貼り付けできます)：",
+                    IDC_STATIC,10,148,209,8
+    EDITTEXT        IDC_SSTPPORT_LOCALNET,10,160,209,26,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,123,200,50,14
+    PUSHBUTTON      "キャンセル",IDCANCEL,177,200,50,14
 END
 
 IDD_PV_RESIZE DIALOG DISCARDABLE  0, 0, 216, 132
@@ -1475,6 +1505,30 @@ BEGIN
     PUSHBUTTON      "SERIKO Inspector",IDC_OPEN_SERIKO,4,184,99,13
     CONTROL         "\\-タグで終了しない",IDC_SUPPRESS_EXIT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,114,99,10
+END
+
+IDD_BALLOONTEST DIALOGEX 0, 0, 200, 158
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "バルーンテスト"
+FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "テスト項目(併用できます)",IDC_STATIC,4,4,192,36
+    CONTROL         "表示テスト(ダミー表示とサンプル文)",IDC_BT_MODE_DISP,
+                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,15,182,10
+    CONTROL         "矩形表示(文字の枠を表示)",IDC_BT_MODE_RECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,26,182,10
+    LTEXT           "チェックを入れたキャラのバルーンを表示：",IDC_STATIC,4,
+                    44,192,8
+    CONTROL         "List1",IDC_BT_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_TABSTOP,4,54,192,
+                    62,WS_EX_CLIENTEDGE
+    LTEXT           "選択したキャラのバルーン番号：",IDC_BT_ID_LABEL,4,122,
+                    104,8
+    COMBOBOX        IDC_BT_ID,112,120,50,80,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "サンプル文を再表示",IDC_BT_REPLAY,4,138,94,14
+    PUSHBUTTON      "テスト終了",IDC_BT_STOP,102,138,94,14
 END
 
 IDD_DISP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1863,25 +1917,25 @@ BEGIN
     LTEXT           "SSP BUGTRAQ",IDC_CREATE,4,32,179,11,SS_NOTIFY
 END
 
-IDD_TIMEMACHINE DIALOGEX 0, 0, 195, 78
+IDD_TIMEMACHINE DIALOGEX 0, 0, 201, 78
 STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
 EXSTYLE WS_EX_TOOLWINDOW
-CAPTION "TimeMachine"
+CAPTION "現在時刻の仮想的変更"
 FONT 9, "ＭＳ Ｐゴシック", 0, 0, 0x1
 BEGIN
-    LTEXT           "System Time : ",IDC_STATIC,4,43,53,8,0,WS_EX_RIGHT
-    LTEXT           "Present Time : ",IDC_STATIC,4,27,53,8,0,WS_EX_RIGHT
-    LTEXT           "Dest. Time : ",IDC_STATIC,4,7,53,8,0,WS_EX_RIGHT
+    LTEXT           "システム時刻 :",IDC_STATIC,4,43,62,8,0,WS_EX_RIGHT
+    LTEXT           "現在時刻 :",IDC_STATIC,4,27,62,8,0,WS_EX_RIGHT
+    LTEXT           "変更先時刻 :",IDC_STATIC,4,7,62,8,0,WS_EX_RIGHT
     CONTROL         "DateTimePicker1",IDC_TIMEMACHINE_DEST_DATE,
                     "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
-                    WS_TABSTOP,63,4,65,15
+                    WS_TABSTOP,69,4,65,15
     CONTROL         "DateTimePicker2",IDC_TIMEMACHINE_DEST_TIME,
                     "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
-                    WS_TABSTOP | 0x8,129,4,62,15
-    PUSHBUTTON      "&Apply",IDC_TIMEMACHINE_APPLY,87,60,50,14
-    PUSHBUTTON      "&Reset",IDC_TIMEMACHINE_RESET,141,60,50,14
-    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_PRESENT,65,27,126,8
-    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_SYSTEM,65,43,126,8
+                    WS_TABSTOP | 0x8,135,4,62,15
+    PUSHBUTTON      "適用(&A)",IDC_TIMEMACHINE_APPLY,93,60,50,14
+    PUSHBUTTON      "リセット(&R)",IDC_TIMEMACHINE_RESET,147,60,50,14
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_PRESENT,71,27,126,8
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_SYSTEM,71,43,126,8
 END
 
 IDD_DEVSERIKO DIALOGEX 0, 0, 187, 109
@@ -2027,9 +2081,10 @@ BEGIN
     PUSHBUTTON      "Pause",IDC_VW_PAUSE,20,154,16,16,BS_ICON
     PUSHBUTTON      "Stop",IDC_VW_STOP,37,154,16,16,BS_ICON
     CONTROL         "Slider1",IDC_VW_POS,"msctls_trackbar32",TBS_BOTH | 
-                    TBS_NOTICKS | WS_TABSTOP,55,153,126,15
+                    TBS_NOTICKS | WS_TABSTOP,55,153,108,17
     CONTROL         "",IDC_VW_REPEAT,"Button",BS_AUTOCHECKBOX | BS_ICON | 
-                    BS_PUSHLIKE | WS_TABSTOP,184,154,16,16
+                    BS_PUSHLIKE | WS_TABSTOP,166,154,16,16
+    PUSHBUTTON      "Volume",IDC_VW_VOLUME,184,154,16,16,BS_ICON
 END
 
 IDD_ADVANCED DIALOG DISCARDABLE  0, 0, 235, 335
@@ -2189,7 +2244,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,9,11,3000
+ FILEVERSION 2,9,39,3000
  PRODUCTVERSION 2,7,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -2208,7 +2263,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "SSP\0"
-            VALUE "FileVersion", "2, 9, 11, 3000\0"
+            VALUE "FileVersion", "2, 9, 39, 3000\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"

@@ -624,8 +624,8 @@ FONT 9, "MS Shell Dlg"
 BEGIN
     PUSHBUTTON      "Edit...",IDC_GHOST_EDIT,121,15,50,14
     PUSHBUTTON      "Reload",IDC_GHOST_RELOAD,176,15,50,14
-    CONTROL         "Select folder when installing",IDC_GHOST_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
+    CONTROL         "Select folder when installing",IDC_GHOST_SELECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,33,212,10
     CONTROL         "Show folder configuration dialog when booting",
                     IDC_GHOST_SELECT_BOOT,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,10,47,212,10
@@ -642,8 +642,8 @@ BEGIN
                     "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,150,212,10
     PUSHBUTTON      "Edit...",IDC_PLUGIN_EDIT,121,178,50,14
     PUSHBUTTON      "Reload",IDC_PLUGIN_RELOAD,176,178,50,14
-    CONTROL         "Select folder when installing",IDC_PLUGIN_SELECT,
-                    "Button",BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
+    CONTROL         "Select folder when installing",IDC_PLUGIN_SELECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,196,212,10
     GROUPBOX        "Ghost",IDC_STATIC,4,6,228,56
     GROUPBOX        "Balloon",IDC_STATIC,4,64,228,56
     GROUPBOX        "Headline",IDC_STATIC,4,123,228,43
@@ -795,7 +795,7 @@ END
 IDD_NETWORKEXT DIALOGEX 0, 0, 235, 335
 STYLE WS_CHILD | WS_CAPTION
 CAPTION "Network (2): Network connection configuration"
-FONT 9, "MS Shell Dlg"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "Auto check",IDC_AUTOHEADLINE,"Button",BS_AUTOCHECKBOX | 
                     WS_TABSTOP,9,16,56,10
@@ -816,7 +816,7 @@ BEGIN
                     WS_EX_CLIENTEDGE
     PUSHBUTTON      "Add...",IDC_SSTP_ADD,175,94,50,14
     PUSHBUTTON      "Delete",IDC_SSTP_DEL,175,110,50,14
-    PUSHBUTTON      "ON/OFF",IDC_SSTP_ONOFF,175,126,50,14
+    PUSHBUTTON      "Edit...",IDC_SSTP_ONOFF,175,126,50,14
     CONTROL         "Log SSTP contents",IDC_SSTP_LOG,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,10,145,177,10
     CONTROL         "Add entries for fake (not booted) ghosts to FMO",
@@ -965,7 +965,7 @@ END
 IDD_SCHEDULE DIALOGEX 0, 0, 403, 310
 STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "Schedule"
-FONT 9, "MS Shell Dlg"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
 BEGIN
     CONTROL         "List1",IDC_SCHEDULE_LIST,"SysListView32",LVS_REPORT | 
                     LVS_SINGLESEL | LVS_SHOWSELALWAYS | LVS_NOCOLUMNHEADER | 
@@ -1355,6 +1355,61 @@ BEGIN
     PUSHBUTTON      "SERIKO inspector",IDC_OPEN_SERIKO,4,183,99,13
     CONTROL         "Disable closing with \\- tag",IDC_SUPPRESS_EXIT,"Button",
                     BS_AUTOCHECKBOX | WS_TABSTOP,4,114,99,10
+END
+
+IDD_BALLOONTEST DIALOGEX 0, 0, 200, 158
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Balloon test"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    GROUPBOX        "Test options (can be combined)",IDC_STATIC,4,4,192,36
+    CONTROL         "Display test (dummy display and sample text)",
+                    IDC_BT_MODE_DISP,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,
+                    10,15,182,10
+    CONTROL         "Show text frames (rectangles)",IDC_BT_MODE_RECT,"Button",
+                    BS_AUTOCHECKBOX | WS_TABSTOP,10,26,182,10
+    LTEXT           "Show balloons of the checked characters:",IDC_STATIC,4,
+                    44,192,8
+    CONTROL         "List1",IDC_BT_LIST,"SysListView32",LVS_REPORT | 
+                    LVS_SINGLESEL | LVS_SHOWSELALWAYS | WS_TABSTOP,4,54,192,
+                    62,WS_EX_CLIENTEDGE
+    LTEXT           "Selected character's balloon ID:",IDC_BT_ID_LABEL,4,122,
+                    126,8
+    COMBOBOX        IDC_BT_ID,134,120,50,80,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    PUSHBUTTON      "Replay sample text",IDC_BT_REPLAY,4,138,94,14
+    PUSHBUTTON      "End test",IDC_BT_STOP,102,138,94,14
+END
+
+IDD_SSTP_PORT DIALOG DISCARDABLE  0, 0, 231, 218
+STYLE DS_MODALFRAME | DS_NOIDLEMSG | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "SSTP port settings"
+FONT 9, "MS Shell Dlg"
+BEGIN
+    LTEXT           "Port number:",IDC_STATIC,4,7,50,8
+    EDITTEXT        IDC_SSTPPORT_PORT,60,4,40,14,ES_AUTOHSCROLL | ES_NUMBER
+    CONTROL         "IPv4",IDC_SSTPPORT_IPV4,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,4,23,40,10
+    CONTROL         "IPv6",IDC_SSTPPORT_IPV6,"Button",BS_AUTOCHECKBOX | 
+                    WS_TABSTOP,55,23,40,10
+    LTEXT           "Uncheck both to disable this port.",IDC_STATIC,4,36,223,8
+    GROUPBOX        "Accept connections from",IDC_STATIC,4,52,223,142
+    CONTROL         "Local (this PC only)",IDC_SSTPPORT_LOCAL,"Button",
+                    BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,10,65,209,10
+    CONTROL         "Global (allow all)",IDC_SSTPPORT_GLOBAL,"Button",
+                    BS_AUTORADIOBUTTON,10,79,209,10
+    CONTROL         "Custom",IDC_SSTPPORT_CUSTOM,"Button",
+                    BS_AUTORADIOBUTTON,10,93,209,10
+    EDITTEXT        IDC_SSTPPORT_ADDR,10,108,209,14,ES_AUTOHSCROLL
+    LTEXT           "Separate multiple addresses with commas.\nRanges such as 192.168.192.0/24 (CIDR) are also accepted.",
+                    IDC_STATIC,10,125,209,16
+    LTEXT           "Networks of this PC (copy and paste):",
+                    IDC_STATIC,10,148,209,8
+    EDITTEXT        IDC_SSTPPORT_LOCALNET,10,160,209,26,ES_MULTILINE | 
+                    ES_AUTOVSCROLL | ES_READONLY | WS_VSCROLL
+    DEFPUSHBUTTON   "OK",IDOK,123,200,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,177,200,50,14
 END
 
 IDD_DISP DIALOG DISCARDABLE  0, 0, 235, 335
@@ -1783,6 +1838,27 @@ BEGIN
     LTEXT           "Total found: [NUM]",IDC_BALLOON_NUM,11,125,120,8
 END
 
+IDD_TIMEMACHINE DIALOGEX 0, 0, 195, 78
+STYLE WS_POPUP | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_TOOLWINDOW
+CAPTION "Change time virtually"
+FONT 9, "MS Shell Dlg", 0, 0, 0x1
+BEGIN
+    LTEXT           "System Time : ",IDC_STATIC,4,43,53,8,0,WS_EX_RIGHT
+    LTEXT           "Present Time : ",IDC_STATIC,4,27,53,8,0,WS_EX_RIGHT
+    LTEXT           "Dest. Time : ",IDC_STATIC,4,7,53,8,0,WS_EX_RIGHT
+    CONTROL         "DateTimePicker1",IDC_TIMEMACHINE_DEST_DATE,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP,63,4,65,15
+    CONTROL         "DateTimePicker2",IDC_TIMEMACHINE_DEST_TIME,
+                    "SysDateTimePick32",DTS_RIGHTALIGN | DTS_UPDOWN | 
+                    WS_TABSTOP | 0x8,129,4,62,15
+    PUSHBUTTON      "&Apply",IDC_TIMEMACHINE_APPLY,87,60,50,14
+    PUSHBUTTON      "&Reset",IDC_TIMEMACHINE_RESET,141,60,50,14
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_PRESENT,65,27,126,8
+    LTEXT           "2013/4/27 22:32:39",IDC_TIMEMACHINE_SYSTEM,65,43,126,8
+END
+
 IDD_SAVESHARE DIALOG DISCARDABLE  0, 0, 235, 335
 STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Save data: Settings for sharing save data"
@@ -1842,8 +1918,8 @@ BEGIN
     RTEXT           "Output folder :",IDC_STATIC,6,177,74,8
     LTEXT           "",IDC_DEVSEREIKODUMP_DIR,88,174,203,14,SS_CENTERIMAGE | 
                     SS_SUNKEN
-    PUSHBUTTON      "Select folder",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,
-                    92,14
+    PUSHBUTTON      "Select folder",IDC_DEVSEREIKODUMP_DIRSELECT,87,192,92,
+                    14
     PUSHBUTTON      "Open in Explorer",IDC_DEVSEREIKODUMP_DIROPEN,183,192,
                     108,14
     CONTROL         "Discard image data in the upper left of 0,0",
@@ -1935,7 +2011,7 @@ END
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 2,8,91,13
+ FILEVERSION 2,9,39,14
  PRODUCTVERSION 2,8,0,0
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
@@ -1954,7 +2030,7 @@ BEGIN
             VALUE "Comments", " \0"
             VALUE "CompanyName", "D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "FileDescription", "Language Resource DLL\0"
-            VALUE "FileVersion", "2, 8, 91, 13\0"
+            VALUE "FileVersion", "2, 9, 39, 14\0"
             VALUE "InternalName", "ssp\0"
             VALUE "LegalCopyright", "(C) D-EXCLAMATION / SSP BUGTRAQ\0"
             VALUE "LegalTrademarks", " \0"
